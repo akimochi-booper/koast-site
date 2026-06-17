@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500">
+<defs><linearGradient id="mia" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3ec"/><stop offset=".6" stop-color="#ffe5d4"/><stop offset="1" stop-color="#e9f7f5"/></linearGradient></defs>
+<rect width="1200" height="500" fill="url(#mia)"/>
+<circle cx="880" cy="170" r="80" fill="#ff5c1f" opacity=".8"/>
+<g fill="#0e9d8e" opacity=".25"><rect x="120" y="180" width="90" height="240" rx="14"/><rect x="250" y="140" width="80" height="280" rx="14"/><rect x="370" y="200" width="86" height="220" rx="14"/></g>
+<g fill="#0e9d8e" opacity=".5"><rect x="150" y="210" width="60" height="210" rx="10"/><rect x="270" y="170" width="56" height="250" rx="10"/><rect x="390" y="230" width="58" height="190" rx="10"/></g>
+<path d="M700 420 C696 350 690 305 672 262 C690 278 698 288 703 300 C700 270 694 248 682 226 C700 244 708 260 712 280 C714 254 712 234 707 215 C720 234 724 256 723 282 C729 262 736 250 748 239 C738 260 731 282 729 305 C737 292 746 285 758 280 C744 296 734 314 729 336 C726 364 723 392 721 420 Z" fill="#0e1013"/>
+<path d="M0 420 Q300 396 600 412 T1200 408 V500 H0 Z" fill="#0e9d8e" opacity=".7"/>
+<path d="M0 444 Q300 424 600 436 T1200 434 V500 H0 Z" fill="#0b7d72"/>
+</svg>

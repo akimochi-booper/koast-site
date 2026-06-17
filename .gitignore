@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+dist/
+*.html
+sitemap.xml
+robots.txt
+llms.txt
+site.webmanifest
+sw.js
+koast-chat.js

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500">
+<defs><linearGradient id="den" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0e1013"/><stop offset="1" stop-color="#10302d"/></linearGradient></defs>
+<rect width="1200" height="500" fill="url(#den)"/>
+<circle cx="950" cy="120" r="50" fill="#e9f7f5" opacity=".9"/>
+<polygon points="0,500 220,180 360,360 480,140 660,420 780,200 980,500" fill="#171a1f"/>
+<polygon points="220,180 175,255 205,245 235,265 265,250 248,222" fill="#e9f7f5"/>
+<polygon points="480,140 432,225 465,212 498,235 530,218 512,190" fill="#e9f7f5"/>
+<polygon points="780,200 738,275 768,262 798,282 828,266 810,240" fill="#e9f7f5"/>
+<polygon points="300,500 560,260 820,500" fill="#1c2a28"/>
+<path d="M0 460 H1200 V500 H0 Z" fill="#0e1013"/>
+<path d="M80 470 Q600 430 1120 470" stroke="#ff5c1f" stroke-width="5" fill="none" stroke-dasharray="30 22"/>
+<g fill="#ff5c1f"><circle cx="600" cy="449" r="7"/></g>
+</svg>

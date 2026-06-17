@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500">
+<defs><linearGradient id="la" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff3ec"/><stop offset="1" stop-color="#ffd9c6"/></linearGradient></defs>
+<rect width="1200" height="500" fill="url(#la)"/>
+<circle cx="600" cy="330" r="130" fill="#ff5c1f" opacity=".85"/>
+<g fill="#0e1013">
+<rect x="80" y="300" width="40" height="110"/><rect x="140" y="260" width="50" height="150"/><rect x="210" y="320" width="36" height="90"/><rect x="950" y="280" width="44" height="130"/><rect x="1010" y="240" width="54" height="170"/><rect x="1080" y="300" width="40" height="110"/>
+</g>
+<g fill="#0e1013">
+<path d="M380 410 C376 330 370 280 348 230 C370 250 378 260 384 275 C380 240 374 215 360 190 C382 212 390 230 394 252 C396 222 394 200 388 178 C404 200 408 226 407 256 C414 234 422 220 436 207 C424 232 416 258 414 285 C424 270 434 262 448 256 C432 274 420 295 414 320 C410 350 406 380 404 410 Z"/>
+<path d="M820 410 C816 340 810 295 792 252 C810 268 818 278 823 290 C820 260 814 238 802 216 C820 234 828 250 832 270 C834 244 832 224 827 205 C840 224 844 246 843 272 C849 252 856 240 868 229 C858 250 851 272 849 295 C857 282 866 275 878 270 C864 286 854 304 849 326 C846 354 843 382 841 410 Z"/>
+</g>
+<rect x="0" y="408" width="1200" height="92" fill="#0e1013"/>
+<g stroke="#ff6c35" stroke-width="4" opacity=".8"><line x1="0" y1="452" x2="1200" y2="452" stroke-dasharray="40 30"/></g>
+</svg>

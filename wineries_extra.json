@@ -1,0 +1,1256 @@
+[
+{
+"name": "Buena Vista Winery",
+"region": "sonoma",
+"area": "Sonoma Valley",
+"address": "18000 Old Winery Road, Sonoma, CA 95476",
+"founded": "1857",
+"known": "its history as california's first premium winery and estate cabernet, pinot noir and zinfandel",
+"website": "https://www.buenavistawinery.com/",
+"res": "Reservations recommended",
+"intro": "California's first premium winery, where the story of Sonoma wine began in 1857.",
+"about_h": "California's First Premium Winery",
+"about": [
+"Founded in 1857 by Agoston Haraszthy, the colorful Count of Buena Vista, this is widely regarded as California's first premium winery and one of the most historically important sites in American wine. Today the estate has been restored under proprietor Jean-Charles Boisset, pouring Cabernet Sauvignon, Pinot Noir, Zinfandel and Chardonnay rooted in its storied heritage.",
+"The historic tasting room sits about a mile from Sonoma Square, set among original stone buildings that date to the 1850s and 1860s. Guests taste in the 1862 Press House or out in the fountain courtyard, and can explore the interactive Wine Tool Museum in the old Champagne Cellar or settle into the Bubble Lounge."
+],
+"tasting": "Taste flagship reds like The Sheriff of Buena Vista alongside Pinot Noir and Chardonnay in the courtyard or historic Press House; reservations are recommended, especially for groups.",
+"standout": "Named the #4 Best Winery Tour in the U.S. by USA Today, and recognized as California's first premium winery, founded in 1857.",
+"desc": "Chauffeured visits to Buena Vista Winery in Sonoma. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Gundlach Bundschu Winery",
+"region": "sonoma",
+"area": "Sonoma Valley / Carneros",
+"address": "2000 Denmark Street, Sonoma, CA 95476",
+"founded": "1858",
+"known": "being california's oldest family-owned winery and estate cabernet, merlot, pinot noir and dry gewurztraminer",
+"website": "https://www.gunbun.com/",
+"res": "Walk-ins welcome",
+"intro": "California's oldest family-owned winery, still in the hands of the founding family after six generations.",
+"about_h": "Six Generations on Rhinefarm",
+"about": [
+"Jacob Gundlach bought 400 acres of Sonoma land in 1858 and named it Rhinefarm, founding what is today California's oldest continuously family-owned winery, now led by the sixth generation. The estate is best known for Cabernet, Merlot and Pinot Noir, with sought-after small lots of dry Gewurztraminer, Zinfandel, Cabernet Franc and Tempranillo.",
+"The 320-acre regenerative-organic-certified estate sits at the crossroads of Sonoma Valley, Carneros and Napa Valley, against the Mayacamas Mountains. A relaxed, down-to-earth vibe pairs with one of the winery's biggest draws: a stroll through its 10,000-square-foot underground caves."
+],
+"tasting": "Sip estate Cabernet, Merlot, Pinot Noir and dry Gewurztraminer by the glass, bottle or as a seated flight, with cave and vineyard tours available; walk-ins are welcome, though tours and rainy-season tables are best reserved.",
+"standout": "California's oldest continuously family-owned winery, founded in 1858 and still run by the founding family.",
+"desc": "Chauffeured trips to Gundlach Bundschu in Sonoma. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Benziger Family Winery",
+"region": "sonoma",
+"area": "Glen Ellen / Sonoma Mountain",
+"address": "1883 London Ranch Road, Glen Ellen, CA 95442",
+"founded": "1980",
+"known": "biodynamic and certified sustainable estate wines and its tram vineyard tour",
+"website": "https://www.benziger.com/",
+"res": "Reservations recommended",
+"intro": "A Sonoma Mountain ranch where biodynamic farming and an open-air vineyard tram tour come together.",
+"about_h": "Wildly Sustainable, Family Farmed",
+"about": [
+"The Benziger family established their winery on a Glen Ellen ranch in 1980 and became pioneers of biodynamic and certified sustainable farming in Sonoma. For over thirty years they have crafted vibrant, nature-driven wines free of synthetic pesticides, with reds, whites and rose grown across Northern California vineyards.",
+"Set on a Sonoma Mountain estate, the property is known as much for its grounds as its glass, with ponds, vineyard wildlife and grazing sheep tending the landscape. Visitors can take the celebrated tram tour through the vineyards, settle into a seated tasting, or sip on the terrace."
+],
+"tasting": "Explore biodynamic and sustainably farmed reds, whites and rose through seated tastings, terrace pours or the signature vineyard tram tour; reservations are recommended, with the winery open daily.",
+"standout": "A pioneer of biodynamic and certified sustainable winegrowing in Sonoma, with a vineyard tour repeatedly voted among the best.",
+"desc": "Chauffeured visits to Benziger Family Winery in Glen Ellen. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Chateau St. Jean",
+"region": "sonoma",
+"area": "Kenwood / Sonoma Valley",
+"address": "8555 Sonoma Highway, Kenwood, CA 95452",
+"founded": "1973",
+"known": "small-production, single-vineyard wines and french-inspired chateau grounds",
+"website": "https://www.chateaustjean.com/",
+"res": "Walk-ins welcome",
+"intro": "Fifty years of elegant, site-specific Sonoma wines on French-inspired chateau grounds.",
+"about_h": "Over 50 Years of Excellence",
+"about": [
+"Since 1973, Chateau St. Jean has crafted elegant, site-specific wines that showcase the character of Sonoma's most prestigious vineyards. The winery built its reputation on small-production, single-source bottlings drawn from exceptional individual sites.",
+"The estate is anchored by French-inspired architecture and lush, manicured grounds at the foot of Sugarloaf Ridge in Kenwood. Visitors can pair tastings with curated culinary bites and wander the gardens, which also make it a sought-after wedding setting."
+],
+"tasting": "Taste elegant single-vineyard and estate wines, optionally paired with curated culinary bites, amid the chateau grounds; the winery is open daily and welcomes walk-ins.",
+"standout": "A pioneer of single-vineyard winemaking in Sonoma, celebrating more than 50 years of acclaimed, site-specific wines.",
+"desc": "Chauffeured visits to Chateau St. Jean in Kenwood. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "St. Francis Winery & Vineyards",
+"region": "sonoma",
+"area": "Kenwood / Sonoma Valley",
+"address": "100 Pythian Road, Santa Rosa, CA 95409",
+"founded": "1971",
+"known": "old-vine zinfandel, sustainable estate reds and acclaimed wine-and-food pairings",
+"website": "https://www.stfranciswinery.com/",
+"res": "Reservations recommended",
+"intro": "Authentic, fruit-driven Sonoma wines and nationally acclaimed food pairings beneath the Mayacamas.",
+"about_h": "Rooted in Real Sonoma",
+"about": [
+"St. Francis Winery & Vineyards has crafted authentic, fruit-driven wines for more than 55 years, farming over 400 acres of 100% certified sustainable vineyards across Sonoma County. The winery is especially known for its Zinfandel and Cabernet Sauvignon, with reds anchoring its Artisan and Icon collections.",
+"The Mission-style winery sits at the foot of Hood Mountain in the heart of Sonoma Valley, framed by the Mayacamas range. Its grounds and tasting rooms have earned a national reputation, with experiences ranging from seated flights to a pedal-powered vineyard tasting trolley."
+],
+"tasting": "Sample Artisan reds including signature Zinfandel and Cabernet through tasting flights, the nationally acclaimed multi-course wine-and-food pairing, or the Tour de St. Francis vineyard trolley; reservations are recommended for pairings and groups.",
+"standout": "Its multi-course wine-and-food pairing program is nationally acclaimed, and the winery has been voted among the Bay Area's best tasting rooms.",
+"desc": "Chauffeured visits to St. Francis Winery in Sonoma Valley. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Larson Family Winery",
+"region": "sonoma",
+"area": "Carneros",
+"address": "23355 Millerick Road, Sonoma, CA 95476",
+"founded": "1977",
+"known": "certified organic estate wines and a laid-back, family- and dog-friendly tasting yard",
+"website": "https://www.larsonfamilywinery.com/",
+"res": "Walk-ins welcome",
+"intro": "An unpretentious, family- and dog-friendly Carneros winery on land worked by Larsons for five generations.",
+"about_h": "From Rodeos to Vineyards",
+"about": [
+"The Larson family has worked this Carneros land for five generations, moving from cowboys and rodeos to grapes and wine and founding the winery in 1977. They farm their estate organically, crafting reds, whites and rose described as down-to-earth and made for easy enjoyment.",
+"The winery is known as one of the most laid-back and unpretentious in the region, set on a relaxed property in the Carneros corner of Sonoma. Picnic tables, lawn games, resident animals and a welcoming, dog- and kid-friendly vibe make it a casual stop where guests can bring their own food."
+],
+"tasting": "Taste certified organic, estate-grown reds, whites and rose in a casual outdoor setting where picnics, dogs and kids are welcome; walk-ins are welcome, though reservations are a good idea for larger groups.",
+"standout": "A certified-organic, five-generation family estate often called one of the most unpretentious wineries in Northern California.",
+"desc": "Chauffeured trips to Larson Family Winery in Carneros. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Jordan Vineyard & Winery",
+"region": "healdsburg",
+"area": "Alexander Valley",
+"address": "1474 Alexander Valley Road, Healdsburg, CA 95448",
+"founded": "1972",
+"known": "alexander valley cabernet sauvignon, russian river chardonnay and french-inspired hospitality",
+"website": "https://www.jordanwinery.com/",
+"res": "Reservations required",
+"intro": "French-inspired Cabernet and Chardonnay paired with gracious hospitality on a 1,200-acre Healdsburg estate.",
+"about_h": "Balance in All Things",
+"about": [
+"Founded in the 1970s, Jordan has focused on just three things: Chardonnay, Cabernet Sauvignon and hospitality. Inspired by a love of food, the family crafts French-influenced, food-friendly wines built around balance and enduring elegance rather than power.",
+"The yellow chateau anchors a scenic 1,200-acre estate in Alexander Valley, where more than three-quarters of the land is kept as wild open space. Tastings pair the wines with elegant, garden-driven cuisine at intimate alcoves and terraces across the property."
+],
+"tasting": "Enjoy estate Cabernet Sauvignon and Chardonnay paired with chef-prepared bites across tours and seated experiences on the estate; visits are by reservation only.",
+"standout": "Named the #1 vineyard in North America and #13 in the world, and a recipient of the 2025 Green Medal Community Award.",
+"desc": "Chauffeured visits to Jordan Winery in Alexander Valley. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Francis Ford Coppola Winery",
+"region": "healdsburg",
+"area": "Geyserville / Alexander Valley",
+"address": "300 Via Archimedes, Geyserville, CA 95441",
+"founded": "2006",
+"known": "the diamond collection, film-inspired experiences and a resort-style pool and restaurant",
+"website": "https://www.francisfordcoppolawinery.com/",
+"res": "Walk-ins welcome",
+"intro": "Filmmaker Francis Ford Coppola's wine destination, where pours come with a pool, restaurant and movie memorabilia.",
+"about_h": "Enter the World of Coppola",
+"about": [
+"Filmmaker Francis Ford Coppola opened this Geyserville destination in 2006 to share his passion for wine, food and cinema in one place. It is home to the award-winning Diamond Collection along with the Director's Cut, Archimedes and other tiers spanning everyday bottlings to limited Alexander Valley Cabernet.",
+"More resort than traditional tasting room, the property pairs wine with a swimming pool and cabines, the Rustic restaurant, a bandstand and film memorabilia. The lively, family-friendly setting makes it one of the most experience-driven wineries in Sonoma County."
+],
+"tasting": "Taste the Diamond Collection, Director's Cut and reserve wines while enjoying the pool, Rustic restaurant and film-inspired experiences; walk-ins are welcome for tastings.",
+"standout": "A film-themed wine destination from Oscar-winning director Francis Ford Coppola, complete with a swimming pool and movie memorabilia.",
+"desc": "Chauffeured trips to Francis Ford Coppola Winery in Geyserville. Door-to-door service, fixed pricing, no one driving home."
+},
+{
+"name": "Dry Creek Vineyard",
+"region": "healdsburg",
+"area": "Dry Creek Valley",
+"address": "3770 Lambert Bridge Road, Healdsburg, CA 95448",
+"founded": "1972",
+"known": "old-vine zinfandel, sauvignon blanc and its nautical, sailing-inspired heritage",
+"website": "https://www.drycreekvineyard.com/",
+"res": "Reservations recommended",
+"intro": "The flagship winery of Dry Creek Valley, family-owned for over 50 years and known for Zinfandel and Sauvignon Blanc.",
+"about_h": "A Family Legacy Since 1972",
+"about": [
+"David S. Stare founded Dry Creek Vineyard in 1972, helping spark a renaissance of winemaking in Dry Creek Valley and building the first new winery in the area since Prohibition. Now led by the second generation, the family-owned estate is celebrated for its Zinfandel, Sauvignon Blanc and Cabernet Sauvignon, consistently earning 90-plus point scores.",
+"Recognized as the flagship winery of Dry Creek Valley, the ivy-covered tasting room sits in the heart of the appellation. A nautical, sailing-inspired theme runs throughout, and the grounds include a lawn and bocce court suited to relaxed afternoon tastings."
+],
+"tasting": "Taste acclaimed old-vine Zinfandel, crisp Sauvignon Blanc and estate Cabernet in the tasting room or on the grounds; reservations are recommended and the winery is open daily.",
+"standout": "One of Dry Creek Valley's original wineries and the first built in the appellation since Prohibition, consistently producing 90-plus point wines.",
+"desc": "Chauffeured visits to Dry Creek Vineyard in Dry Creek Valley. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Ridge Vineyards Lytton Springs",
+"region": "healdsburg",
+"area": "Dry Creek Valley",
+"address": "650 Lytton Springs Road, Healdsburg, CA 95448",
+"founded": "1991",
+"known": "old-vine, single-vineyard zinfandel-based field blends from century-old vines",
+"website": "https://www.ridgewine.com/visit/lytton-springs/",
+"res": "Reservations recommended",
+"intro": "Century-old vines and a straw-bale winery devoted to single-vineyard Zinfandel in Dry Creek Valley.",
+"about_h": "Surrounded by Century-Old Vines",
+"about": [
+"Ridge's Lytton Springs winery sits among 115-year-old vines in Dry Creek Valley, where the renowned producer makes its single-vineyard, Zinfandel-based field blends. The site reflects Ridge's pre-eminent reputation for old-vine reds and traditional, vineyard-driven winemaking.",
+"The facility is one of the most distinctive in Sonoma, built of straw bales and vineyard clay and powered largely by solar energy as an extension of Ridge's sustainability commitment. Guests taste single-vineyard wines indoors or outside among the historic vines, with options to tour the century-old vineyards."
+],
+"tasting": "Enjoy seated flights of single-vineyard wines, the Century Tour through the historic vines or a Monte Bello Cabernet tasting; reservations are recommended, with walk-ins accommodated when possible.",
+"standout": "Set among 115-year-old vines, with a pioneering straw-bale, solar-powered winery building reflecting Ridge's sustainability leadership.",
+"desc": "Chauffeured visits to Ridge Lytton Springs in Dry Creek Valley. Door-to-door service, fixed pricing, no one driving home."
+},
+{
+"name": "Gary Farrell Vineyards & Winery",
+"region": "healdsburg",
+"area": "Russian River Valley",
+"address": "10701 Westside Road, Healdsburg, CA 95448",
+"founded": "1982",
+"known": "single-vineyard russian river valley pinot noir and chardonnay",
+"website": "https://www.garyfarrellwinery.com/",
+"res": "Reservations required",
+"intro": "Single-vineyard Pinot Noir and Chardonnay from a hilltop with some of the best views in Healdsburg.",
+"about_h": "A Legacy of Russian River Wines",
+"about": [
+"Gary Farrell founded his namesake winery in 1982, building a legacy around elegant, terroir-driven Russian River Valley wines. The winery remains devoted to single-vineyard Pinot Noir and Chardonnay that capture the distinct voice of each site.",
+"Perched on a hilltop above Westside Road, the winery is celebrated for some of the best views in Healdsburg, overlooking the Russian River Valley. Seated tastings and cellar tours unfold in a refined, hospitality-focused setting amid the surrounding vineyards."
+],
+"tasting": "Explore single-vineyard Pinot Noir and Chardonnay through the seated Discovery flight or a private cellar tour and tasting; visits are by appointment, though same-day reservations may be available.",
+"standout": "A Russian River Valley pioneer known for single-vineyard Pinot Noir and Chardonnay and some of the finest hilltop views in Healdsburg.",
+"desc": "Chauffeured visits to Gary Farrell Winery in Russian River Valley. Door-to-door service, fixed pricing, no one driving home."
+},
+{
+"name": "Rochioli Vineyards & Winery",
+"region": "healdsburg",
+"area": "Russian River Valley",
+"address": "6192 Westside Road, Healdsburg, CA 95448",
+"founded": "1976",
+"known": "highly allocated estate pinot noir, chardonnay and sauvignon blanc",
+"website": "https://www.rochioliwinery.com/",
+"res": "Walk-ins welcome",
+"intro": "A revered, family-grown Russian River estate behind some of California's most sought-after Pinot Noir.",
+"about_h": "Westside Road Estate Wines",
+"about": [
+"The Rochioli family has farmed the Russian River Valley for generations, with J. Rochioli Vineyard & Winery established in 1976 on prized Westside Road land. The estate is renowned for its highly allocated Pinot Noir, along with esteemed Chardonnay and Sauvignon Blanc grown on its celebrated vineyards.",
+"The understated tasting room sits among the family's estate vineyards, overlooking the valley below. The quiet, vineyard-focused setting reflects a winery prized far more for the depth of its wines than for spectacle."
+],
+"tasting": "Taste sought-after estate Pinot Noir, Chardonnay and Sauvignon Blanc at the tasting bar overlooking the vineyards; walk-in tastings are welcomed, with availability of allocated wines varying.",
+"standout": "One of the Russian River Valley's most revered estates, with single-vineyard Pinot Noir among the most sought-after in California.",
+"desc": "Chauffeured visits to Rochioli Winery in Russian River Valley. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "DAOU Vineyards",
+"region": "paso-robles",
+"area": "Adelaida District",
+"address": "2777 Hidden Mountain Road, Paso Robles, CA 93446",
+"founded": "2007",
+"known": "mountaintop Cabernet Sauvignon and Bordeaux-style red blends",
+"website": "https://daouvineyards.com",
+"res": "Reservations required",
+"intro": "A 2,200-foot mountaintop estate where brothers Georges and Daniel Daou set out to prove Paso Robles could rival Bordeaux.",
+"about_h": "A Mountain Built for Cabernet",
+"about": [
+"DAOU was founded in 2007 by brothers Georges and Daniel Daou, who left careers in technology to pursue a shared dream of making world-class Cabernet Sauvignon. They built the estate around a singular conviction: that the limestone-rich, high-elevation soils west of Paso Robles could produce Bordeaux-caliber wines.",
+"The winery crowns a 212-acre hilltop in the Adelaida District, rising alone to 2,200 feet above the surrounding coastal range. Tastings unfold on a terrace with sweeping views across the vineyards and valley below, an experience as much about the place as the wine."
+],
+"tasting": "The Discover DAOU tasting walks through estate Cabernet Sauvignon and Bordeaux-style blends, including the flagship Soul of a Lion. Visits are by reservation only.",
+"standout": "Built on a 2,200-foot limestone mountaintop, DAOU's Soul of a Lion Cabernet has earned consistent critical acclaim as a benchmark Paso Robles red.",
+"desc": "Chauffeured visits to DAOU Vineyards in Paso Robles. Door-to-door service, fixed upfront pricing, and no one driving home."
+},
+{
+"name": "JUSTIN Vineyards & Winery",
+"region": "paso-robles",
+"area": "Adelaida District",
+"address": "11680 Chimney Rock Road, Paso Robles, CA 93446",
+"founded": "1981",
+"known": "the ISOSCELES Bordeaux-style blend",
+"website": "https://justinwine.com",
+"res": "Reservations recommended",
+"intro": "A pioneering Bordeaux-focused estate tucked into the rolling hills west of Paso Robles, home to the iconic ISOSCELES blend.",
+"about_h": "A Bordeaux Vision in Paso",
+"about": [
+"JUSTIN was founded in 1981 by Justin and Deborah Baldwin, who planted Cabernet Sauvignon, Cabernet Franc and Merlot in the limestone hills of the Adelaida District. The winery built its reputation on ISOSCELES, a Bordeaux-style blend that helped put Paso Robles on the fine-wine map.",
+"The estate sits among rolling, oak-dotted hills west of town and pairs its tasting room with the five-star JUST INN and a destination restaurant. It remains one of the region's most complete wine-country experiences."
+],
+"tasting": "Tastings center on the flagship ISOSCELES blend alongside estate Cabernet Sauvignon and other Bordeaux varieties, with seated and food-paired options available. Reservations are recommended.",
+"standout": "JUSTIN's ISOSCELES is one of Paso Robles' most decorated wines, a defining Bordeaux-style blend that established the region's age-worthy red credentials.",
+"desc": "Chauffeured trips to JUSTIN Vineyards & Winery in Paso Robles. Door-to-door, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Tablas Creek Vineyard",
+"region": "paso-robles",
+"area": "Adelaida District",
+"address": "9339 Adelaida Road, Paso Robles, CA 93446",
+"founded": "1989",
+"known": "organic, estate-grown Rhone-style blends",
+"website": "https://tablascreek.com",
+"res": "Reservations recommended",
+"intro": "A French-American partnership that brought Chateauneuf-du-Pape's grapes to the limestone hills of west Paso Robles.",
+"about_h": "Rhone Roots in Limestone Soil",
+"about": [
+"Tablas Creek was founded in 1989 by the Perrin family of Chateau de Beaucastel and Robert Haas of Vineyard Brands, who imported Rhone grape cuttings to plant in Paso Robles' calcareous soils. The estate became a leading voice for Rhone varieties in California and for regenerative, organic farming.",
+"The vineyard sits in the limestone hills of the Adelaida District, farmed organically and Biodynamically. Seated flight tastings are offered on the patio or at the bar, with a relaxed, agricultural sense of place."
+],
+"tasting": "Seated flights showcase estate Rhone-style blends like Esprit de Tablas alongside varietal bottlings, served on the patio or in the tasting room. Reservations are recommended, especially on spring and fall weekends.",
+"standout": "Tablas Creek was certified by the Regenerative Organic Alliance as the world's first Regenerative Organic Certified vineyard, a milestone in sustainable winegrowing.",
+"desc": "Chauffeured visits to Tablas Creek Vineyard in Paso Robles. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Eberle Winery",
+"region": "paso-robles",
+"area": "Highway 46 East",
+"address": "3810 Highway 46 East, Paso Robles, CA 93446",
+"founded": "1982",
+"known": "estate Cabernet Sauvignon and its underground caves",
+"website": "https://www.eberlewinery.com",
+"res": "Walk-ins welcome",
+"intro": "A Paso Robles founding family's winery where every tasting includes a tour of the cellars carved beneath the vineyard.",
+"about_h": "Caves Beneath the Vines",
+"about": [
+"Eberle Winery was established in 1982 by Gary Eberle, a Paso Robles pioneer who helped shape the region's reputation for Cabernet Sauvignon. The boar on the label nods to the German meaning of the family name, 'small boar.'",
+"In 1991 the winery expanded underground, and today some 16,000 square feet of caves run below the property. Tastings come with a cave tour and broad views across the estate vineyard along Highway 46 East."
+],
+"tasting": "Tastings span estate Cabernet Sauvignon, Syrah and Zinfandel, and every visit includes a guided tour of the underground caves. Walk-ins are welcome, with reservations available for larger groups.",
+"standout": "Founder Gary Eberle is widely regarded as a founding father of the Paso Robles wine industry, having helped establish the region's first AVA.",
+"desc": "Chauffeured trips to Eberle Winery in Paso Robles. Door-to-door, fixed upfront pricing, and no one driving home."
+},
+{
+"name": "Halter Ranch",
+"region": "paso-robles",
+"area": "Adelaida District",
+"address": "8910 Adelaida Road, Paso Robles, CA 93446",
+"founded": "2000",
+"known": "estate-grown Bordeaux and Rhone-style wines",
+"website": "https://www.halterranch.com",
+"res": "Reservations recommended",
+"intro": "A sprawling, historic Adelaida District ranch producing estate Bordeaux and Rhone wines from sustainably farmed hills.",
+"about_h": "A Historic Adelaida Estate",
+"about": [
+"Halter Ranch was established as a winery in 2000 when Hansjorg Wyss purchased the property and named it for his mother, Alice Halter. The land itself dates to an 1880 homestead, and the estate now produces Bordeaux and Rhone-style wines from its own vineyards.",
+"The 2,700-acre property in the Adelaida District blends working ranch and modern winery, with a restored 1880s farmhouse and a covered bridge on the grounds. Tastings are seated, with flights and lunch served at the estate."
+],
+"tasting": "Seated flights feature estate Bordeaux and Rhone-style blends, with lunch available at the tasting room. Party sizes are limited to eight guests and reservations are recommended.",
+"standout": "Halter Ranch farms a 2,700-acre Certified Sustainable estate in the Adelaida District, home to a heritage coast live oak among the largest in California.",
+"desc": "Chauffeured visits to Halter Ranch in Paso Robles. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Turley Wine Cellars",
+"region": "paso-robles",
+"area": "Templeton",
+"address": "2900 Vineyard Drive, Templeton, CA 93465",
+"founded": "1993",
+"known": "old-vine Zinfandel and Petite Syrah",
+"website": "https://www.turleywinecellars.com",
+"res": "Walk-ins welcome",
+"intro": "A cult Zinfandel producer drawing on old vines, some over a century old, from vineyards across California.",
+"about_h": "Champions of Old-Vine Zinfandel",
+"about": [
+"Turley Wine Cellars was founded in 1993 by Larry Turley, a former emergency-room physician who became one of California's most celebrated names in Zinfandel. The winery produces dozens of single-vineyard bottlings, many from old vines dating to the late 1800s.",
+"The Paso Robles tasting room sits among vineyards in Templeton, a relaxed country setting south of town. Tastings focus on the breadth of Turley's old-vine Zinfandel and Petite Syrah program."
+],
+"tasting": "Tastings explore single-vineyard old-vine Zinfandels and Petite Syrah from vineyards across the state. Walk-ins are welcome daily, with reservations required for special tasting experiences.",
+"standout": "Turley crafts dozens of single-vineyard wines sourced from some of California's oldest surviving vines, several planted in the 1800s.",
+"desc": "Chauffeured trips to Turley Wine Cellars in Templeton. Door-to-door, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Sunstone Winery",
+"region": "santa-ynez",
+"area": "Santa Ynez",
+"address": "125 N Refugio Road, Santa Ynez, CA 93460",
+"founded": "1990",
+"known": "organically farmed Bordeaux and Rhone varietals",
+"website": "https://sunstonewinery.com",
+"res": "Reservations recommended",
+"intro": "A Provence-inspired organic estate in the Santa Ynez Valley, built around a stone villa and reclaimed-material courtyards.",
+"about_h": "A Taste of Provence in Santa Ynez",
+"about": [
+"Sunstone was founded in 1990 as one of the first organic vineyard estates in Santa Barbara County. The winery built its reputation on Bordeaux and Rhone varietals grown to California Certified Organic Farmer standards.",
+"The estate evokes the south of France, anchored by a villa completed in 2002 using reclaimed materials brought over from across France. Stone courtyards, lavender and oak set the tone for tastings in the Santa Ynez Valley."
+],
+"tasting": "Tasting flights highlight estate Bordeaux and Rhone-style wines in a Provence-style courtyard setting. Reservations are recommended, and groups of eight or more must book a private tasting.",
+"standout": "Sunstone was among the first organic vineyard estates in Santa Barbara County, farming to California Certified Organic Farmer standards.",
+"desc": "Chauffeured visits to Sunstone Winery in Santa Ynez. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Fess Parker Winery & Vineyard",
+"region": "santa-ynez",
+"area": "Foxen Canyon, Los Olivos",
+"address": "6200 Foxen Canyon Road, Los Olivos, CA 93441",
+"founded": "1989",
+"known": "Sta. Rita Hills Pinot Noir, Chardonnay and estate Rhone varietals",
+"website": "https://www.fessparker.com",
+"res": "Reservations recommended",
+"intro": "The Santa Ynez Valley estate founded by actor Fess Parker, set along the Foxen Canyon Wine Trail.",
+"about_h": "A Foxen Canyon Landmark",
+"about": [
+"Fess Parker Winery & Vineyard was established in 1989 by actor Fess Parker and his family, who remain at the helm today. The winery is known for Sta. Rita Hills Pinot Noir and Chardonnay alongside estate-grown Rhone varietals.",
+"The property sits along the Foxen Canyon Wine Trail, with a distinctive lodge-style tasting room and lawns shaded by oaks. It is one of the valley's most recognizable wine-country stops."
+],
+"tasting": "Tastings feature Sta. Rita Hills Pinot Noir and Chardonnay along with estate Syrah and Rhone-style wines, in seated flight formats. Reservations are recommended.",
+"standout": "Founded by frontier-film star Fess Parker, the winery has become a benchmark Santa Barbara County producer of Pinot Noir, Chardonnay and Syrah.",
+"desc": "Chauffeured trips to Fess Parker Winery & Vineyard in Santa Ynez Valley. Door-to-door, fixed pricing, no one driving home."
+},
+{
+"name": "Firestone Vineyard",
+"region": "santa-ynez",
+"area": "Los Olivos",
+"address": "5017 Zaca Station Road, Los Olivos, CA 93441",
+"founded": "1972",
+"known": "being Santa Barbara County's first estate winery",
+"website": "https://www.firestonewine.com",
+"res": "Reservations recommended",
+"intro": "The first estate winery in Santa Barbara County, perched above the vineyards just outside Los Olivos.",
+"about_h": "A California Original Since 1972",
+"about": [
+"Firestone Vineyard was founded in 1972 as the first estate winery in Santa Barbara County, helping launch the Santa Ynez Valley as a winegrowing region. It built its name on approachable, estate-grown wines.",
+"The winery sits on a hillside just outside Los Olivos, with a tasting room and terrace overlooking the vineyards. Visits range from flights and tours to interactive wine labs and live music."
+],
+"tasting": "Tastings offer estate flights, winery tours and interactive wine labs on a terrace above the vines. Walk-ins are welcome for smaller groups, though reservations are recommended and required for some experiences.",
+"standout": "Firestone Vineyard was the first estate winery established in Santa Barbara County, a founding landmark of the Santa Ynez Valley wine scene.",
+"desc": "Chauffeured visits to Firestone Vineyard in Santa Ynez Valley. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "The Brander Vineyard",
+"region": "santa-ynez",
+"area": "Los Olivos",
+"address": "2401 N Refugio Road, Santa Ynez, CA 93460",
+"founded": "1975",
+"known": "estate Sauvignon Blanc",
+"website": "https://www.brander.com",
+"res": "Reservations recommended",
+"intro": "A Santa Barbara winemaking pioneer devoted to Sauvignon Blanc, set in the Los Olivos District.",
+"about_h": "A Sauvignon Blanc Pioneer",
+"about": [
+"The Brander Vineyard was founded in 1975 by Fred Brander, making it one of the winemaking pioneers of Santa Barbara County. Brander chose the south-facing site for its soil and climate, and built a reputation centered on classically styled Sauvignon Blanc and Bordeaux varieties.",
+"The estate vineyard lies in the Los Olivos District AVA, with a small chateau-style tasting room among the vines. Tastings are relaxed and grape-focused, with charcuterie available."
+],
+"tasting": "Tastings spotlight estate Sauvignon Blanc alongside Cabernet Sauvignon and other Bordeaux varieties, with charcuterie offered. Reservations are recommended.",
+"standout": "Founder Fred Brander is recognized as one of California's leading Sauvignon Blanc specialists and a pioneer of Santa Barbara County winemaking.",
+"desc": "Chauffeured trips to The Brander Vineyard in Santa Ynez. Door-to-door, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Gainey Vineyard",
+"region": "santa-ynez",
+"area": "Santa Ynez",
+"address": "3950 E Highway 246, Santa Ynez, CA 93460",
+"founded": "1984",
+"known": "estate Pinot Noir, Chardonnay and Bordeaux varietals",
+"website": "https://gaineyvineyard.com",
+"res": "Reservations recommended",
+"intro": "A family farming estate in the heart of the Santa Ynez Valley, set among one of the region's largest diversified ranches.",
+"about_h": "A Santa Ynez Family Estate",
+"about": [
+"Gainey Vineyard was founded in 1984 by the Gainey family, whose holdings make up one of the largest diversified farming operations in Santa Barbara County. The winery is known for estate Pinot Noir, Chardonnay and Bordeaux varietals, including a Limited Selection program.",
+"The home estate lies just east of Santa Ynez along Highway 246, with a Spanish-style tasting room and gardens. Tastings are seated, with views across the working vineyards and ranch."
+],
+"tasting": "Tastings feature estate wines including the Limited Selection Pinot Noir and Chardonnay in a seated format. Walk-ins are accepted subject to availability, and reservations are recommended.",
+"standout": "Gainey farms one of the largest diversified agricultural operations in Santa Barbara County, with vineyards spanning the Santa Ynez Valley and Sta. Rita Hills.",
+"desc": "Chauffeured visits to Gainey Vineyard in Santa Ynez. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Alma Rosa Winery & Vineyards",
+"region": "santa-ynez",
+"area": "Solvang",
+"address": "1623 Mission Drive, Suite M, Solvang, CA 93463",
+"founded": "2005",
+"known": "organic Sta. Rita Hills Pinot Noir and Chardonnay",
+"website": "https://www.almarosawinery.com",
+"res": "Reservations recommended",
+"intro": "The winery of Sta. Rita Hills pioneer Richard Sanford, devoted to organic, cool-climate Pinot Noir and Chardonnay.",
+"about_h": "A Sta. Rita Hills Pioneer",
+"about": [
+"Alma Rosa was founded in 2005 by Richard Sanford, the first person to plant Pinot Noir in the Sta. Rita Hills back in 1971. The winery built its name on organically farmed, cool-climate Pinot Noir and Chardonnay from its estate vineyards.",
+"The estate's El Jabali and La Encantada vineyards sit on the slopes of the Sta. Rita Hills, both certified organic. The downtown Solvang tasting room brings those estate wines into the heart of the Santa Ynez Valley."
+],
+"tasting": "Tastings pour estate Pinot Noir and Chardonnay from the certified-organic Sta. Rita Hills vineyards, with vineyard hikes and tastings offered at the estate. Walk-ins are welcome and reservations are recommended.",
+"standout": "Founder Richard Sanford planted the first Pinot Noir in the Sta. Rita Hills in 1971, pioneering what became one of California's premier cool-climate AVAs.",
+"desc": "Chauffeured trips to Alma Rosa Winery & Vineyards in Solvang. Door-to-door, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Wente Vineyards",
+"region": "livermore",
+"area": "Livermore Valley",
+"address": "5050 Arroyo Rd, Livermore, CA 94550",
+"founded": "1883",
+"known": "the oldest continuously operating family-owned winery in the country and its estate chardonnay",
+"website": "https://wentevineyards.com",
+"res": "Reservations recommended",
+"intro": "Five generations of California winemaking on the valley floor where Chardonnay first took root.",
+"about_h": "California's Oldest Family Winery",
+"about": [
+"C.H. Wente planted his first vines in 1883, and the winery has run continuously under the same family ever since, the oldest of its kind in the United States. The estate planted the Livermore Valley's first Chardonnay in 1908, and the Wente clone remains one of the most widely planted in California.",
+"The Arroyo Road estate pairs a tasting lounge with a restaurant and a golf course set against the foothills. Long lawns, a barrel-aged cave, and a summer concert series make it a place to settle in rather than pass through."
+],
+"tasting": "Seated flights center on the estate Chardonnay and Bordeaux reds in the Tasting Lounge, with cave tours available; reservations are recommended though walk-ins are accommodated.",
+"standout": "Recognized as the oldest continuously operating, family-owned winery in the United States.",
+"desc": "Chauffeured visits to Wente Vineyards in Livermore Valley. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Concannon Vineyard",
+"region": "livermore",
+"area": "Tesla Road",
+"address": "4590 Tesla Rd, Livermore, CA 94550",
+"founded": "1883",
+"known": "bottling america's first single-varietal petite sirah",
+"website": "https://concannon.wine",
+"res": "Reservations recommended",
+"intro": "An 1883 estate on Tesla Road where the first American Petite Sirah was bottled.",
+"about_h": "Home of America's First Petite Sirah",
+"about": [
+"James Concannon founded the vineyard in 1883, and in 1961 it became the first winery in the country to bottle a single-varietal Petite Sirah. The estate also played a foundational role in California Cabernet through its widely propagated Concannon clones.",
+"The Tesla Road property keeps a historic, low-key feel, with a tasting room and shaded grounds among mature vines. It sits a short drive from the cluster of wineries at the eastern end of the valley."
+],
+"tasting": "Tastings highlight the estate Petite Sirah and Cabernet Sauvignon, with seated flights on the grounds; booking ahead is recommended, especially on weekends.",
+"standout": "First U.S. winery to bottle a single-varietal Petite Sirah, released in 1961.",
+"desc": "Chauffeured visits to Concannon Vineyard on Tesla Road. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Murrieta's Well",
+"region": "livermore",
+"area": "Mines Road",
+"address": "3005 Mines Rd, Livermore, CA 94550",
+"founded": "1884",
+"known": "estate-grown red and white blends",
+"website": "https://murrietaswell.com",
+"res": "Reservations recommended",
+"intro": "A historic gravity-flow estate built around one of Livermore's original artesian wells.",
+"about_h": "Estate Blends From a Historic Well",
+"about": [
+"The estate traces to an 1884 winery built on land where the well that gives it its name still flows. Today it is known for its proprietary red and white blends, made exclusively from estate-grown fruit matched to the microclimates across the property.",
+"The original gravity-flow winery building anchors the visit, with a tasting room and a hilltop terrace overlooking the vines. Tucked along Mines Road, it has a quieter, off-the-main-drag feel."
+],
+"tasting": "Seated flights showcase the signature estate blends, including The Spur and The Whip; reservations are recommended for the roughly 90-minute experience.",
+"standout": "Built around a historic artesian well on an estate dating to the 1880s.",
+"desc": "Chauffeured visits to Murrieta's Well in Livermore Valley. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "McGrail Vineyards and Winery",
+"region": "livermore",
+"area": "Greenville Road",
+"address": "5600 Greenville Rd, Livermore, CA 94550",
+"founded": "2008",
+"known": "small-production estate cabernet sauvignon",
+"website": "https://mcgrailvineyards.com",
+"res": "Reservations recommended",
+"intro": "A family-run hilltop estate on Greenville Road built around small-lot Cabernet.",
+"about_h": "A Family Boutique Cabernet House",
+"about": [
+"Jim and Ginger McGrail planted their Cabernet vineyard in 1999 and opened the winery to the public in 2008. The boutique, family-run operation has built its reputation on small-production estate Cabernet Sauvignon.",
+"The tasting room sits on a rise on Greenville Road with wide views across the eastern valley. Lawns, a patio, and a relaxed pace make it a popular stop for groups settling in for an afternoon."
+],
+"tasting": "Flights feature the estate and reserve Cabernet Sauvignon, offered as seated tastings on the patio and lawn; reservations are recommended.",
+"standout": "Its Cabernet has earned Double Gold and Best of Class honors at major California competitions.",
+"desc": "Chauffeured visits to McGrail Vineyards on Greenville Road. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "The Steven Kent Winery",
+"region": "livermore",
+"area": "South Vasco Road",
+"address": "2245 S Vasco Rd, Livermore, CA 94550",
+"founded": "1996",
+"known": "bordeaux-style cabernet and its lineage red blend",
+"website": "https://www.stevenkent.com",
+"res": "Reservations recommended",
+"intro": "A focused house chasing world-class Cabernet from the heart of the Livermore Valley.",
+"about_h": "Livermore's Bordeaux Ambition",
+"about": [
+"Steven Kent Mirassou founded the winery in 1996 with a single goal: to make Livermore Valley Cabernet that rivals the world's great reds. The Mirassou name reaches back to one of the oldest winemaking families in the country, and the flagship Lineage blend is its signature.",
+"The tasting room on South Vasco Road sits among a cluster of producers at the valley's southern edge. The focus stays squarely on the wine, with seated flights of Cabernet Franc and Cabernet Sauvignon."
+],
+"tasting": "Seated tastings center on the Lineage red blend and small-lot Cabernet Franc and Cabernet Sauvignon; reservations are recommended, and the winery is closed early in the week.",
+"standout": "Its Lineage blend is regularly ranked among Livermore Valley's most collectible reds.",
+"desc": "Chauffeured visits to The Steven Kent Winery in Livermore. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Las Positas Vineyards",
+"region": "livermore",
+"area": "Wetmore Road",
+"address": "1828 Wetmore Rd, Livermore, CA 94550",
+"founded": "2006",
+"known": "rhone and bordeaux varietals and award-winning blends",
+"website": "https://www.laspositasvineyards.com",
+"res": "Reservations recommended",
+"intro": "A southwest-corner estate on Wetmore Road with a knack for competition-winning wines.",
+"about_h": "Award-Winning Wines on Wetmore Road",
+"about": [
+"Lisa and Lothar Maier bought a 20-acre vineyard in the southwest corner of the Livermore Valley in 2006 and built Las Positas Vineyards around it. The estate works with Rhone and Bordeaux varietals and has earned an outsized share of competition honors for its size.",
+"The Wetmore Road property pairs a tasting room with patios, a lawn, and live music on weekends. It draws a steady local crowd looking to linger over a bottle."
+],
+"tasting": "Tastings span estate Rhone and Bordeaux varietals and blends, with a Sunday estate tour-and-tasting available; reservations are recommended on weekends and required for larger groups.",
+"standout": "A multiple-time Sweepstakes Best of Show winner at the San Francisco Chronicle Wine Competition.",
+"desc": "Chauffeured visits to Las Positas Vineyards on Wetmore Road. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Wilson Creek Winery & Vineyard",
+"region": "temecula",
+"area": "Rancho California Road",
+"address": "35960 Rancho California Rd, Temecula, CA 92591",
+"founded": "1996",
+"known": "its almond sparkling wine",
+"website": "https://www.wilsoncreekwinery.com",
+"res": "Reservations recommended",
+"intro": "The family winery behind Temecula's famous Almond Sparkling Wine.",
+"about_h": "Home of the Almond Sparkling Wine",
+"about": [
+"The Wilson family bought their Rancho California Road property in 1996 and grew it into one of Temecula's best-known wineries. It is famous above all for its Almond Sparkling Wine, alongside a broader lineup of sparkling and still wines.",
+"The lively estate pairs a large tasting room with the creekside Creekside Grille and event lawns beside the vines. It is one of the valley's busiest stops and a fixture on tasting-room tours."
+],
+"tasting": "The signature Almond Sparkling Wine anchors the lineup, with walk-in tastings and seated Library experiences plus charcuterie; reservations are recommended and required for limos and party buses.",
+"standout": "Its Almond Sparkling Wine is among the most recognized wines to come out of Temecula Valley.",
+"desc": "Chauffeured visits to Wilson Creek Winery in Temecula Valley. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "South Coast Winery Resort & Spa",
+"region": "temecula",
+"area": "Rancho California Road",
+"address": "34843 Rancho California Rd, Temecula, CA 92591",
+"founded": "2003",
+"known": "being a full winery resort with villas and a spa",
+"website": "https://www.southcoastwinery.com",
+"res": "Reservations recommended",
+"intro": "A winery, resort, and spa rolled into one estate on Rancho California Road.",
+"about_h": "A Winery, Resort, and Spa",
+"about": [
+"South Coast Winery opened in 2003 and grew into a full destination resort, repeatedly named California Winery of the Year at the state fair commercial competition. It pairs an extensive estate wine program with overnight stays.",
+"The grounds include villas and an all-suite tower, the Vineyard Rose restaurant, a full-service spa, and gardens among the vines. Guests can taste, dine, and stay without leaving the property."
+],
+"tasting": "Tastings span a broad estate lineup in the tasting room and gardens, with the Vineyard Rose restaurant on site; reservations are recommended and required for larger parties.",
+"standout": "A multiple-time California Winery of the Year at the state fair commercial wine competition.",
+"desc": "Chauffeured visits to South Coast Winery Resort & Spa in Temecula. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Ponte Winery",
+"region": "temecula",
+"area": "Rancho California Road",
+"address": "35053 Rancho California Rd, Temecula, CA 92591",
+"founded": "2003",
+"known": "estate wines and its on-site vineyard restaurant",
+"website": "https://www.pontewinery.com",
+"res": "Reservations recommended",
+"intro": "A family estate surrounded by hundreds of acres of mature Temecula vineyard.",
+"about_h": "Estate Wines Among Mature Vines",
+"about": [
+"The Ponte family farmed vineyards in Temecula from 1984 and opened the winery in 2003. The estate is known for its broad lineup of estate-grown wines drawn from nearly 300 acres of mature vines.",
+"The grounds wrap a tasting room, the open-air Restaurant at Ponte, gardens, and an on-site inn among the vineyards. It is built for long, unhurried visits rather than quick stops."
+],
+"tasting": "Tastings draw on a wide range of estate wines, with seated experiences and the vineyard-side Restaurant at Ponte on the property; reservations are recommended.",
+"standout": "Surrounded by nearly 300 acres of estate vineyard, with vines farmed since 1984.",
+"desc": "Chauffeured visits to Ponte Winery in Temecula Valley. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Leoness Cellars",
+"region": "temecula",
+"area": "De Portola Wine Trail",
+"address": "38311 De Portola Rd, Temecula, CA 92592",
+"founded": "2003",
+"known": "estate wines and hilltop vineyard views",
+"website": "https://www.leonesscellars.com",
+"res": "Reservations recommended",
+"intro": "A hilltop estate on the De Portola Wine Trail overlooking rolling vineyard.",
+"about_h": "Hilltop Estate on The Trail",
+"about": [
+"Leoness Cellars was founded in 2003 by Mike Rennie and Gary Winder along the De Portola Wine Trail. The estate has built its name on estate-grown wines and a polished, service-led tasting experience.",
+"The tasting room sits on a hilltop overlooking the Rolling Hills vineyard, with patios and a restaurant taking in the view. Set back from the busier Rancho California corridor, it has a more secluded feel."
+],
+"tasting": "Guided tour-and-taste options led by the winery's sommeliers showcase the estate wines, with on-site dining available; reservations are recommended.",
+"standout": "A perennial favorite on Temecula's De Portola Wine Trail, known for its hilltop estate views.",
+"desc": "Chauffeured visits to Leoness Cellars on the De Portola Wine Trail. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Doffo Winery",
+"region": "temecula",
+"area": "Calle Contento area",
+"address": "36083 Summitville St, Temecula, CA 92592",
+"founded": "1997",
+"known": "small-lot malbec and its vintage motorcycle collection",
+"website": "https://doffowines.com",
+"res": "Reservations recommended",
+"intro": "Handcrafted wines and a vintage motorcycle collection on a secluded Temecula lane.",
+"about_h": "Wine and Vintage Motorcycles",
+"about": [
+"The Doffo family has handcrafted wines in Temecula Valley since 1997 on a small, secluded estate. The boutique winery is known for its small-lot reds, with Malbec the signature bottling.",
+"The property doubles as home to the MotoDoffo collection of more than 200 vintage motorcycles and scooters, displayed in the barrel room. The intimate, family-run setting sets it apart from the valley's larger estates."
+],
+"tasting": "Tastings feature the estate Malbec and other small-lot reds, with options ranging from a simple flight to tours that include the MotoDoffo motorcycle collection; reservations are recommended.",
+"standout": "Home to the MotoDoffo collection of more than 200 vintage motorcycles spanning eight decades.",
+"desc": "Chauffeured visits to Doffo Winery in Temecula Valley. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Robert Renzoni Vineyards & Winery",
+"region": "temecula",
+"area": "De Portola Wine Trail",
+"address": "37350 De Portola Rd, Temecula, CA 92592",
+"founded": "2008",
+"known": "italian varietals and a tuscan-style estate",
+"website": "https://robertrenzonivineyards.com",
+"res": "Reservations recommended",
+"intro": "A Tuscan-styled estate on De Portola Road carrying a four-generation Italian wine lineage.",
+"about_h": "Italian Roots on De Portola Road",
+"about": [
+"Robert Renzoni bought the De Portola Road property in 2006 and opened the winery in spring 2008, carrying forward a family winemaking lineage that traces back to Italy. The estate specializes in Italian varietals such as Sangiovese, Montepulciano, and Barbera alongside Bordeaux grapes.",
+"The 12-acre estate is built for a Tuscan feel, with a villa-style tasting room and patios looking over the vines in the secluded Valle de los Caballos. Its setting off the main road gives it a quieter atmosphere."
+],
+"tasting": "Tastings highlight the estate's Italian varietals and blends, offered as seated flights with patio seating; reservations are recommended Friday through Sunday.",
+"standout": "Recognized as the first 100% solar-powered winery in Temecula Valley.",
+"desc": "Chauffeured visits to Robert Renzoni Vineyards in Temecula Valley. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Domaine Drouhin Oregon",
+"region": "willamette-valley",
+"area": "Dundee Hills",
+"address": "6750 NE Breyman Orchards Rd, Dayton, OR 97114",
+"founded": "1987",
+"known": "burgundian-style pinot noir and chardonnay",
+"website": "https://domainedrouhin.com",
+"res": "Reservations recommended",
+"intro": "Burgundy's Drouhin family brought four generations of winemaking to a hilltop estate high above the Dundee Hills.",
+"about_h": "French Soul, Oregon Soil",
+"about": [
+"When Burgundy's celebrated Drouhin family planted in the Dundee Hills in the late 1980s, they bet that Oregon could rival their homeland for pinot noir. Fourth-generation winemaker Veronique Boss-Drouhin has crafted the estate's pinot noir and chardonnay ever since, splitting her year between Oregon and Burgundy.",
+"The four-level gravity-flow winery sits atop a 235-acre estate overlooking the Willamette Valley, with tastings indoors, on an expansive terrace, or in the quiet of the Secret Garden. On clear days the view stretches to Mount Hood."
+],
+"tasting": "Seated flights compare estate pinot noir and chardonnay from the Dundee Hills and Eola-Amity Hills, with a cross-continental Oregon-and-Burgundy option; reservations are recommended though walk-ins are welcomed as space allows.",
+"standout": "Founded by Burgundy's Maison Joseph Drouhin, with wines made by fourth-generation winemaker Veronique Boss-Drouhin since 1988.",
+"desc": "Chauffeured visits to Domaine Drouhin Oregon in the Willamette Valley. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "The Eyrie Vineyards",
+"region": "willamette-valley",
+"area": "McMinnville",
+"address": "935 NE 10th Avenue, McMinnville, OR 97128",
+"founded": "1965",
+"known": "pioneering oregon pinot noir and pinot gris",
+"website": "https://eyrievineyards.com",
+"res": "Reservations recommended",
+"intro": "The vineyard where David Lett planted Oregon's first pinot noir and the country's first pinot gris.",
+"about_h": "Where Oregon Pinot Began",
+"about": [
+"In 1965, against the advice of his professors, David Lett planted the first pinot noir in the Willamette Valley and the first pinot gris in the United States. His vines established the very tone of Oregon winegrowing, and today second-generation winemaker Jason Lett carries the work forward with wild-yeast fermentations and library releases drawn from those original vines.",
+"The tasting room sits in downtown McMinnville rather than at a manicured estate, a fitting reflection of Eyrie's artisanal, understated character. Pours lean toward restraint, age-worthiness, and a deep sense of place."
+],
+"tasting": "Tastings explore estate pinot noir, pinot gris, and other varieties, often including bottles from the historic Original Vines; reservations are recommended.",
+"standout": "Planted the Willamette Valley's first pinot noir and the first pinot gris in the United States.",
+"desc": "Chauffeured visits to The Eyrie Vineyards in the Willamette Valley. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Argyle Winery",
+"region": "willamette-valley",
+"area": "Dundee",
+"address": "691 Highway 99W, Dundee, OR 97115",
+"founded": "1987",
+"known": "méthode champenoise sparkling wine, pinot noir and chardonnay",
+"website": "https://www.argylewinery.com",
+"res": "Reservations recommended",
+"intro": "Oregon's benchmark for sparkling wine, poured in a converted Dundee farmhouse on the valley's main road.",
+"about_h": "Oregon's Sparkling Standard-Bearer",
+"about": [
+"Rollin Soles founded Argyle in 1987 in a former hazelnut processing facility, set on making world-class sparkling wine from Willamette Valley fruit. Sparkling has been the signature since the first vintage, alongside a portfolio that grew to include pinot noir, chardonnay, and riesling.",
+"The Tasting House sits right on Highway 99W in downtown Dundee, with a gallery space and gardens that make it an easy, welcoming stop along the valley's wine route."
+],
+"tasting": "Flights showcase the méthode champenoise sparkling wines alongside still pinot noir and chardonnay, including library and reserve bottlings; reservations are recommended.",
+"standout": "The only winery in the world named to Wine Spectator's Top 100 for sparkling, chardonnay, and pinot noir.",
+"desc": "Chauffeured visits to Argyle Winery in the Willamette Valley. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Adelsheim Vineyard",
+"region": "willamette-valley",
+"area": "Chehalem Mountains",
+"address": "16800 NE Calkins Lane, Newberg, OR 97132",
+"founded": "1971",
+"known": "chehalem mountains pinot noir and chardonnay",
+"website": "https://www.adelsheim.com",
+"res": "Reservations recommended",
+"intro": "One of Oregon's founding wine families, rooted in the Chehalem Mountains for more than five decades.",
+"about_h": "A Founding Oregon Wine Family",
+"about": [
+"David and Ginny Adelsheim planted in the Chehalem Mountains in 1971, among the first families of the Oregon wine industry. More than fifty years on, winemaker Gina Hennen draws on the estate's 173 acres to craft pinot noir and chardonnay that express the AVA's volcanic, sedimentary, and loess soils.",
+"The vineyard-side tasting room in Newberg opens onto a covered patio and lush gardens at the heart of Oregon wine country. Experiences range from approachable flights to seasonal cave tastings and a guided estate hike."
+],
+"tasting": "Choose from the Exploration Tasting, an Estate Reserve flight of single-vineyard pinot noir and chardonnay, or seasonal cave and winery experiences; reservations are recommended and walk-ins are welcome.",
+"standout": "A Certified B Corporation and one of the founding families of the Oregon wine industry.",
+"desc": "Chauffeured visits to Adelsheim Vineyard in the Willamette Valley. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Brooks Wine",
+"region": "willamette-valley",
+"area": "Eola-Amity Hills",
+"address": "21101 SE Cherry Blossom Lane, Amity, OR 97101",
+"founded": "1998",
+"known": "biodynamic riesling and pinot noir",
+"website": "https://www.brookswine.com",
+"res": "Reservations recommended",
+"intro": "A family-owned, biodynamic estate in the Eola-Amity Hills with a sweeping panoramic view.",
+"about_h": "Biodynamic Riesling and Pinot",
+"about": [
+"Founded in 1998 by Jimi Brooks, the winery became a family stewardship after his passing, carried on for his son Pascal. Brooks is one of Oregon's most awarded wineries and a leader in biodynamic farming, known above all for its rieslings and pinot noirs.",
+"The hilltop tasting room in the Eola-Amity Hills offers a 180-degree panoramic view of the valley, a monthly pairings menu, and a relaxed, welcoming atmosphere that reflects the estate's community spirit."
+],
+"tasting": "Seated tastings feature the estate's range of dry and off-dry rieslings, pinot noir, and aromatic whites, with a rotating monthly pairings menu; reservations are recommended.",
+"standout": "One of the world's leading biodynamic wineries, named to The World's 50 Best Vineyards list.",
+"desc": "Chauffeured visits to Brooks Wine in the Willamette Valley. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "King Estate Winery",
+"region": "willamette-valley",
+"area": "South Willamette Valley",
+"address": "80854 Territorial Highway, Eugene, OR 97405",
+"founded": "1991",
+"known": "estate pinot gris and pinot noir from a biodynamic estate",
+"website": "https://kingestate.com",
+"res": "Reservations recommended",
+"intro": "A vast biodynamic estate of vineyards, gardens, and woodland in the hills southwest of Eugene.",
+"about_h": "North America's Biodynamic Landmark",
+"about": [
+"Founded in 1991 with a commitment to sustainability and respect for the land, King Estate built its reputation on pinot gris and pinot noir grown at the southern end of the Willamette Valley. Long certified organic, the estate adopted the Biodynamic standard in 2016.",
+"The estate is an integrated ecosystem of vineyard, woodland, orchards, and culinary gardens, anchored by a hilltop winery and restaurant. It is North America's largest certified Biodynamic vineyard, and the kitchen draws on produce grown just steps away."
+],
+"tasting": "Tastings pair estate pinot gris, pinot noir, and limited single-vineyard wines with a farm-to-table restaurant overlooking the vineyards; reservations are recommended.",
+"standout": "North America's largest certified Biodynamic vineyard.",
+"desc": "Chauffeured visits to King Estate Winery in the Willamette Valley. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "L'Ecole No 41",
+"region": "walla-walla",
+"area": "Lowden",
+"address": "41 Lowden School Road, Lowden, WA 99360",
+"founded": "1983",
+"known": "bordeaux-style reds and semillon",
+"website": "https://www.lecole.com",
+"res": "Walk-ins welcome",
+"intro": "Three generations of one family, pouring in a historic 1915 schoolhouse in the Walla Walla Valley.",
+"about_h": "The Historic Schoolhouse Winery",
+"about": [
+"Founded in 1983 by Jean and Baker Ferguson as a retirement project, L'Ecole No 41 is the third oldest winery in the Walla Walla Valley and is now run by three generations of the family. It is best known for Bordeaux-style reds and what some critics call America's best semillon.",
+"The tasting room occupies a restored 1915 schoolhouse in the small town of Lowden, with tastings in the historic classrooms or on a scenic deck. A Legacy Cellar and a behind-the-barrel tour round out the offerings."
+],
+"tasting": "Premier and Grand Cru flights of current releases pour in the historic classrooms or on the deck, with Legacy Cellar and barrel experiences available; walk-ins are welcome and reservations are recommended for larger groups.",
+"standout": "Twice named producer of the Best Bordeaux Blend in the World at the Decanter World Wine Awards.",
+"desc": "Chauffeured visits to L'Ecole No 41 in Walla Walla. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Woodward Canyon Winery",
+"region": "walla-walla",
+"area": "Lowden",
+"address": "11920 Old Hwy 12, Lowden, WA 99360",
+"founded": "1981",
+"known": "age-worthy cabernet sauvignon and chardonnay",
+"website": "https://woodwardcanyon.com",
+"res": "Walk-ins welcome",
+"intro": "The second winery ever bonded in the Walla Walla Valley, still family-built and quietly serious about its wines.",
+"about_h": "Bold Dreams, Humble Roots",
+"about": [
+"Rick Small and Darcey Fugman-Small started Woodward Canyon in 1981, making it the second winery in the Walla Walla Valley. The Smalls helped win federal approval of the valley's appellation, and the winery built its name on age-worthy cabernet sauvignon and chardonnay.",
+"The tasting room sits in a converted farmhouse along Old Highway 12 in Lowden, with a front porch and backyard garden open to picnics. The mood is unpretentious and first-come, first-served."
+],
+"tasting": "A seated flight samples the estate's cabernet sauvignon, chardonnay, and Old Vines bottlings, with charcuterie and a picnic-friendly garden; walk-ins are welcome and reservations are appreciated for larger parties.",
+"standout": "The second winery ever bonded in the Walla Walla Valley, founded in 1981.",
+"desc": "Chauffeured visits to Woodward Canyon Winery in Walla Walla. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Long Shadows Vintners",
+"region": "walla-walla",
+"area": "Walla Walla",
+"address": "1604 Frenchtown Road, Walla Walla, WA 99362",
+"founded": "2003",
+"known": "collaborations with world-renowned winemakers",
+"website": "https://longshadows.com",
+"res": "Reservations recommended",
+"intro": "An audacious project bringing seven of the wine world's most acclaimed winemakers to a single Walla Walla estate.",
+"about_h": "Seven Winemakers, One Vision",
+"about": [
+"Founded in 2003 by former Chateau Ste. Michelle CEO Allen Shoup, Long Shadows pairs renowned winemakers from around the world, each crafting a single Washington wine in their specialty. The result is a portfolio of seven distinct labels under one roof.",
+"The Walla Walla tasting room sits on Frenchtown Road amid the vines and has been recognized nationally for its hospitality. Tastings move through wines shaped by some of the most decorated names in winemaking."
+],
+"tasting": "Seated tastings move through the collaborative portfolio of cabernet sauvignon, red blends, and riesling made by world-renowned vintners; reservations are recommended.",
+"standout": "Voted America's #1 Tasting Room in the USA Today Readers' Choice Awards.",
+"desc": "Chauffeured visits to Long Shadows Vintners in Walla Walla. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Dunham Cellars",
+"region": "walla-walla",
+"area": "Airport District",
+"address": "150 E. Boeing Ave., Walla Walla, WA 99362",
+"founded": "1995",
+"known": "cabernet sauvignon and syrah",
+"website": "https://dunhamcellars.com",
+"res": "Walk-ins welcome",
+"intro": "A family-owned winery in a converted World War II airplane hangar in Walla Walla's Airport District.",
+"about_h": "Winemaking in a Hangar",
+"about": [
+"Dunham Cellars was founded in the mid-1990s as a family venture and built its reputation on Walla Walla cabernet sauvignon and syrah. It remains family-owned and operated, with wines drawn from its Kenny Hill and Lewis Estate vineyards.",
+"The winery sits in the Airport District, where tastings are poured in the Hangar Lounge of a converted aircraft hangar or out in a dog-friendly courtyard. The setting is relaxed and welcoming to families and pets alike."
+],
+"tasting": "Tastings in the Hangar Lounge feature the estate's cabernet sauvignon and syrah, with a guided Founders Room experience and cellar tour available by appointment; walk-ins are welcome and reservations are available.",
+"standout": "One of the original wineries to establish Walla Walla's Airport District, housed in a converted aircraft hangar.",
+"desc": "Chauffeured visits to Dunham Cellars in Walla Walla. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Pepper Bridge Winery",
+"region": "walla-walla",
+"area": "Walla Walla",
+"address": "1704 J B George Road, Walla Walla, WA 99362",
+"founded": "1998",
+"known": "estate-grown bordeaux-style cabernet sauvignon and merlot",
+"website": "https://www.pepperbridge.com",
+"res": "Reservations recommended",
+"intro": "An estate-focused winery built on two of the Walla Walla Valley's most respected vineyards.",
+"about_h": "Estate-Grown Bordeaux Reds",
+"about": [
+"Norm and Virginia McKibben founded Pepper Bridge in 1998, and it remains one of the few Walla Walla wineries focused exclusively on estate-grown Bordeaux-style wines. Its premium cabernet sauvignon and merlot come entirely from the estate's Pepper Bridge and Seven Hills vineyards.",
+"The hilltop winery looks out over the valley's vines, with a gravity-flow facility built into the slope. Tastings center on the depth and structure of the estate reds."
+],
+"tasting": "Seated tastings showcase estate cabernet sauvignon, merlot, and Bordeaux-style blends from the Pepper Bridge and Seven Hills vineyards; reservations are recommended.",
+"standout": "One of the first Walla Walla wineries to focus exclusively on estate-grown Bordeaux-style wines.",
+"desc": "Chauffeured visits to Pepper Bridge Winery in Walla Walla. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Sleight of Hand Cellars",
+"region": "walla-walla",
+"area": "Walla Walla",
+"address": "1959 J B George Road, Walla Walla, WA 99362",
+"founded": "2007",
+"known": "syrah, cabernet sauvignon, and a rock-and-roll tasting room",
+"website": "https://www.sofhcellars.com",
+"res": "Walk-ins welcome",
+"intro": "Serious Walla Walla wine with the volume turned up, poured to a soundtrack of vinyl records.",
+"about_h": "Wine With the Volume Up",
+"about": [
+"Founded in 2007 by Trey Busch and Jerry and Sandy Solomon, Sleight of Hand built its name on Walla Walla syrah and cabernet sauvignon, with a playful, music-loving spirit woven through the brand. The wines are taken seriously even as the atmosphere stays loose.",
+"The tasting room is famous for its rock-and-roll soul, with turntables spinning vinyl from a collection of more than 2,000 albums and walls of band memorabilia. It is one of the valley's most distinctive places to taste."
+],
+"tasting": "Tastings pour the estate's syrah, cabernet sauvignon, and blends with vinyl spinning in the background; walk-ins are welcome and larger groups can arrange a reservation by email.",
+"standout": "Known for an Epic Tasting Room with turntables and a collection of over 2,000 vinyl records.",
+"desc": "Chauffeured visits to Sleight of Hand Cellars in Walla Walla. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Dr. Konstantin Frank Winery",
+"region": "finger-lakes",
+"area": "Keuka Lake",
+"address": "9749 Middle Road, Hammondsport, NY 14840",
+"founded": "1962",
+"known": "pioneering vinifera wines and dry riesling",
+"website": "https://www.drfrankwines.com",
+"res": "Reservations recommended",
+"intro": "On the southwestern shore of Keuka Lake, the family estate that proved European vinifera could thrive in the Finger Lakes.",
+"about_h": "The Finger Lakes vinifera pioneer",
+"about": [
+"Founded in 1962 by Dr. Konstantin Frank, the winery was the first to successfully grow European vinifera grapes in the eastern United States, changing the course of Finger Lakes wine. Now run by the third and fourth generations of the Frank family, it remains best known for its dry Riesling and broad range of vinifera wines.",
+"The tasting room sits high on the western hills above Keuka Lake, with sweeping water and vineyard views. Visits range from intimate seated tastings to vineyard walks and the immersive 1886 Wine Experience, with Eugenia's Garden offering a relaxed outdoor pour in season."
+],
+"tasting": "Signature seated tastings center on the estate's dry Rieslings and sparkling wines, with a guided Vinifera Vineyard Tour and the immersive 1886 Wine Experience available seasonally; reservations are recommended, especially on weekends.",
+"standout": "Credited with being the first to successfully cultivate European vinifera vines in the eastern U.S., launching the modern Finger Lakes wine industry.",
+"desc": "Chauffeured visits to Dr. Konstantin Frank Winery on Keuka Lake. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Hermann J. Wiemer Vineyard",
+"region": "finger-lakes",
+"area": "Seneca Lake",
+"address": "3962 NY-14, Dundee, NY 14837",
+"founded": "1979",
+"known": "biodynamically farmed dry riesling",
+"website": "https://www.wiemer.com",
+"res": "Reservations recommended",
+"intro": "A pioneering Seneca Lake estate where meticulous farming and indigenous-yeast winemaking define some of America's most respected Riesling.",
+"about_h": "A Seneca Lake riesling flagship",
+"about": [
+"Founded in 1979 by German-born viticulturist Hermann J. Wiemer, the vineyard helped pioneer serious Riesling in the Finger Lakes and is now led by Fred Merwarth. It is widely regarded as one of the region's flagship estates, known for dry Riesling, an on-site grapevine nursery, and biodynamic farming.",
+"Set along the western shore of Seneca Lake, the estate pairs working vineyards and a nursery with an unhurried tasting experience. Visitors can book educational seated tastings or enjoy self-guided flights and wines by the glass, alongside an Open Doors event series and guided farm tours."
+],
+"tasting": "Educational seated tastings showcase the estate's dry Rieslings and indigenous-yeast wines, while preset self-guided flights and wines by the glass welcome more spontaneous visits; reservations are recommended for the guided experience.",
+"standout": "Praised by Wine & Spirits as making some of the best Riesling in the United States, and recognized as one of the region's indisputable flagship estates.",
+"desc": "Chauffeured visits to Hermann J. Wiemer Vineyard on Seneca Lake. Door-to-door service, fixed pricing, and no one driving home."
+},
+{
+"name": "Fox Run Vineyards",
+"region": "finger-lakes",
+"area": "Seneca Lake",
+"address": "670 NY-14, Penn Yan, NY 14527",
+"founded": "1989",
+"known": "terroir-driven dry riesling",
+"website": "https://www.foxrunvineyards.com",
+"res": "Walk-ins welcome",
+"intro": "A welcoming Seneca Lake winery in a restored 1860s dairy barn, known for Riesling that reads the land beneath it.",
+"about_h": "Riesling and Seneca Lake terroir",
+"about": [
+"Founded in 1989 on the western shore of Seneca Lake, Fox Run Vineyards has become one of the Finger Lakes' most recognized producers under longtime owner Scott Osborn. It is best known for dry Riesling, including its Geology Series that explores the influence of the region's ancient glacial soils.",
+"The winery's tasting room occupies a restored 1860s dairy barn surrounded by vineyards, with a cafe and market on site. Guests can taste daily and join hilltop vineyard tours that walk from the tasting room up through the vines to the winemaking facility."
+],
+"tasting": "Daily tastings highlight the estate's dry Rieslings and the terroir-focused Geology Series, with a hilltop vineyard tour and a Friday Food & Wine Experience that pairs a flight with lunch; walk-ins are welcome.",
+"standout": "Its dry Riesling was selected by Wegmans to wash and ripen a French-style cave-aged cheese, a nod to the wine's regional standing.",
+"desc": "Chauffeured visits to Fox Run Vineyards on Seneca Lake. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Wagner Vineyards Estate Winery",
+"region": "finger-lakes",
+"area": "Seneca Lake",
+"address": "9322 State Route 414, Lodi, NY 14860",
+"founded": "1979",
+"known": "estate-grown vinifera and its octagonal winery",
+"website": "https://wagnervineyards.com",
+"res": "Reservations recommended",
+"intro": "One of the oldest and most beloved wineries on Seneca Lake, family-run for generations and famous for its octagonal cellar.",
+"about_h": "A Seneca Lake family estate",
+"about": [
+"Opened in 1979 on the eastern shore of Seneca Lake, Wagner Vineyards is one of the oldest and most recognized wineries in the Finger Lakes, now run by the fourth and fifth generations of the Wagner family. It produces more than thirty award-winning wines ranging from bone-dry vinifera to sweet dessert styles.",
+"The estate is anchored by its distinctive octagonal winery building and includes the Ginny Lee Cafe and Wagner Valley Brewing Company on site. Guests can enjoy lake-view flights at the Vantage Point deck or book a guided or library tasting for a deeper look at the wines."
+],
+"tasting": "Self-guided flights are always available for walk-ins at the lake-view Vantage Point, while guided and library tastings dig into the estate's vinifera and dessert wines; reservations are strongly suggested for guided tastings.",
+"standout": "Home to a landmark octagonal winery and one of the region's most enduring family operations, with a portfolio of more than 30 award-winning wines.",
+"desc": "Chauffeured visits to Wagner Vineyards on Seneca Lake. Door-to-door service, fixed pricing, and no one driving home."
+},
+{
+"name": "Sheldrake Point Winery",
+"region": "finger-lakes",
+"area": "Cayuga Lake",
+"address": "7448 County Road 153, Ovid, NY 14521",
+"founded": "1997",
+"known": "estate riesling and lakeside dining",
+"website": "https://sheldrakepoint.com",
+"res": "Walk-ins welcome",
+"intro": "A lakeside estate on a quiet point of Cayuga Lake, pairing cool-climate Riesling with a working farm and bistro.",
+"about_h": "On the western shore of Cayuga Lake",
+"about": [
+"Founded in 1997 on the western shore of Cayuga Lake, Sheldrake Point Winery farms a 60-acre estate vineyard at the water's edge. It is best known for its estate-grown white wines, particularly Riesling, made in a cool-climate, food-friendly style.",
+"The setting is right on the lake, with a tasting room, the Point of Flavor Bistro, and summer evenings of live music and barbecue. Visitors can taste wines by the glass, bottle, or flight and linger with local snacks and lake views."
+],
+"tasting": "Tastings spotlight the estate-grown Rieslings and other whites, available by the glass, half-glass, bottle, or flight alongside the Point of Flavor Bistro and Wednesday-night summer music; walk-ins are welcome.",
+"standout": "A 60-acre estate vineyard sits directly on Cayuga Lake, one of the few Finger Lakes wineries planted right at the water's edge.",
+"desc": "Chauffeured visits to Sheldrake Point Winery on Cayuga Lake. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Heron Hill Winery",
+"region": "finger-lakes",
+"area": "Keuka Lake",
+"address": "9301 County Route 76, Hammondsport, NY 14840",
+"founded": "1977",
+"known": "estate wines and sweeping keuka lake views",
+"website": "https://www.heronhill.com",
+"res": "Reservations recommended",
+"intro": "A hilltop winery above Keuka Lake, farming sustainably for half a century with one of the region's most photographed views.",
+"about_h": "Above the bluffs of Keuka Lake",
+"about": [
+"Founded in 1977, Heron Hill Winery has spent roughly fifty years farming sustainably above Keuka Lake. It is known for estate-grown wines and a commitment to quality grape growing, with winemaking now led by Master of Wine Nova Cadamatre.",
+"The flagship tasting room sits on a bluff with sweeping vineyard and lake views, complemented by a second tasting room on Canandaigua Lake. Visitors come for tasting flights and the scenery as much as the wines themselves."
+],
+"tasting": "Tasting flights feature the winery's sustainably farmed estate whites, reds, rosé, and sparkling wines; reservations are recommended.",
+"standout": "Winemaking is led by Nova Cadamatre, one of the first women in the U.S. to earn the Master of Wine title.",
+"desc": "Chauffeured visits to Heron Hill Winery on Keuka Lake. Door-to-door service, fixed pricing, and no one driving home."
+},
+{
+"name": "Barboursville Vineyards",
+"region": "virginia",
+"area": "Monticello AVA",
+"address": "17655 Winery Road, Barboursville, VA 22923",
+"founded": "1976",
+"known": "italian-influenced vinifera and its octagon bordeaux blend",
+"website": "https://www.bbvwine.com",
+"res": "Reservations recommended",
+"intro": "An Italian-rooted estate in the Monticello AVA, set beside the ruins of a Jefferson-designed mansion.",
+"about_h": "Italian heritage in Jefferson country",
+"about": [
+"Founded in 1976 by Gianni Zonin of Italy's Zonin winemaking family, Barboursville Vineyards helped prove that European vinifera could flourish in central Virginia. It is best known for Italian-influenced wines and its flagship Octagon Bordeaux-style red.",
+"The estate surrounds the ruins of a mansion designed by Thomas Jefferson for Governor James Barbour, with vineyards rolling toward the Blue Ridge. Visitors can taste in the Library 1821 room and dine at the on-site Palladio Restaurant and stay at the 1804 Inn."
+],
+"tasting": "Tastings and flights in the Library 1821 room showcase the estate's vinifera wines and the signature Octagon red, paired with cheese, charcuterie, and a trattoria-style menu; reservations are recommended.",
+"standout": "The vineyards encircle the ruins of a mansion Thomas Jefferson designed for Governor James Barbour, a National Historic Landmark.",
+"desc": "Chauffeured visits to Barboursville Vineyards in the Monticello AVA. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "King Family Vineyards",
+"region": "virginia",
+"area": "Crozet",
+"address": "6550 Roseland Farm, Crozet, VA 22932",
+"founded": "1998",
+"known": "monticello-ava vinifera and sunday polo",
+"website": "https://kingfamilyvineyards.com",
+"res": "Reservations recommended",
+"intro": "A family farm in the Blue Ridge foothills near Charlottesville, where award-winning wine meets summer afternoons of polo.",
+"about_h": "A family farm near Charlottesville",
+"about": [
+"A family-owned and operated winery farming in Crozet since 1998, King Family Vineyards has earned a reputation as one of Virginia's best. Under winemaker Matthieu Finot, it specializes in premium wines that showcase the Monticello AVA, including its acclaimed Meritage Bordeaux-style blend.",
+"The farm sits in the foothills of the Blue Ridge Mountains about fifteen minutes from Charlottesville, with a tasting room open daily and a lawn that doubles as a polo field. Roseland Polo matches draw crowds for tailgating on summer Sundays."
+],
+"tasting": "The tasting room is open daily, pouring the estate's Monticello AVA wines including the flagship Meritage, with founder-led farm and vineyard tours offered most Saturdays; reservations are recommended.",
+"standout": "Home to Roseland Polo, where free summer Sunday matches play out on the lawn beside the vineyard.",
+"desc": "Chauffeured visits to King Family Vineyards in Crozet, Virginia. Door-to-door service, fixed pricing, and no one driving home."
+},
+{
+"name": "Pippin Hill Farm & Vineyards",
+"region": "virginia",
+"area": "North Garden",
+"address": "5022 Plank Road, North Garden, VA 22959",
+"founded": "2011",
+"known": "estate wines and garden-to-table cuisine",
+"website": "https://www.pippinhillfarm.com",
+"res": "Reservations recommended",
+"intro": "A culinary vineyard in the Blue Ridge foothills, where estate wine and a working garden share the same table.",
+"about_h": "A culinary vineyard in wine country",
+"about": [
+"Pippin Hill Farm & Vineyards is a boutique vineyard and all-season venue in the Monticello wine region, opened in 2011 in the foothills of the Blue Ridge Mountains. It is known for award-winning estate wines and a garden-to-table approach that ties its vineyard, garden, and kitchen together.",
+"The hilltop setting south of Charlottesville pairs sweeping mountain views with a granary tasting room, greenhouse, and culinary experiences. Visitors come for table service, estate tours, cooking classes, and a thoughtfully local menu, with a restored 1820s inn just down the hill."
+],
+"tasting": "The Tasting Room offers seated table service alongside experiences like the Estate Tour & Tasting and Greenhouse grazing table, all built around the estate's whites, reds, and rosés; reservations for table service are recommended.",
+"standout": "Built around a culinary program with on-site gardens and a cooking school, earning recognition as one of Virginia's premier wine destinations.",
+"desc": "Chauffeured visits to Pippin Hill Farm & Vineyards in North Garden, VA. Door-to-door service, fixed pricing, no one driving home."
+},
+{
+"name": "Stone Tower Winery",
+"region": "virginia",
+"area": "Leesburg",
+"address": "19925 Hogback Mountain Road, Leesburg, VA 20175",
+"founded": "2009",
+"known": "estate wines and panoramic hilltop views",
+"website": "https://www.stonetowerwinery.com",
+"res": "Walk-ins welcome",
+"intro": "A sprawling estate atop Hogback Mountain in Loudoun County, with panoramic views over more than 400 acres of vines.",
+"about_h": "Atop Hogback Mountain in Loudoun",
+"about": [
+"Stone Tower Winery has cultivated its Loudoun County vineyards since 2009, producing craft wines on a more than 400-acre estate set atop Hogback Mountain. The rocky soils, rolling terrain, and elevation give the estate a distinctive microclimate for its range of whites and reds.",
+"The property includes the family- and pet-friendly Harvest Barn tasting room and the members-only Tower View, which overlooks the surrounding hills. The expansive setting near Leesburg makes it a popular wine-country stop within easy reach of Washington, D.C."
+],
+"tasting": "The Harvest Barn tasting room pours the estate's sparkling, rosé, whites, and reds on a first-come, first-served basis, while the panoramic Tower View is reserved for wine club members; walk-ins are welcome at the Harvest Barn.",
+"standout": "Spread across more than 400 acres atop Hogback Mountain, one of the largest estate vineyards in Loudoun County.",
+"desc": "Chauffeured visits to Stone Tower Winery near Leesburg, VA. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Breaux Vineyards",
+"region": "virginia",
+"area": "Purcellville",
+"address": "36888 Breaux Vineyards Lane, Purcellville, VA 20132",
+"founded": "1997",
+"known": "internationally acclaimed estate wines and nebbiolo",
+"website": "https://www.breauxvineyards.com",
+"res": "Reservations recommended",
+"intro": "A 400-acre family estate climbing Short Hill Mountain, with long Blue Ridge vistas and a Louisiana-tinged sense of hospitality.",
+"about_h": "A 400-acre estate in Loudoun",
+"about": [
+"Founded in 1997, Breaux Vineyards is a family-owned, 400-plus-acre estate in Loudoun County with more than 100 acres planted to 17 grape varieties. It is known for internationally acclaimed estate wines, including Nebbiolo and Bordeaux-style blends, with warm, Louisiana-rooted hospitality.",
+"The vineyards climb the slopes of Short Hill Mountain, with long views of the Blue Ridge from the tasting room, Patio Madeleine, and landscaped terraces. Located about an hour from Washington, D.C., it is a well-known stop on the Loudoun wine trail."
+],
+"tasting": "The tasting room offers tasting and tour options spanning the estate's reds, whites, sparkling, and rosé, with the patio and terraces open for relaxed pours; reservations are recommended.",
+"standout": "One of Loudoun County's largest estates, with 17 grape varieties planted and an international wine-competition track record.",
+"desc": "Chauffeured visits to Breaux Vineyards in Purcellville, VA. Door-to-door service, fixed pricing, and no one driving home."
+},
+{
+"name": "Greenhill Vineyards",
+"region": "virginia",
+"area": "Middleburg",
+"address": "23595 Winery Lane, Middleburg, VA 20117",
+"founded": "2013",
+"known": "100% virginia wines and blanc de blancs",
+"website": "https://experiencegreenhill.com",
+"res": "Reservations recommended",
+"intro": "A boutique winery in the heart of Middleburg hunt country, pouring all-Virginia wines amid rolling estate views.",
+"about_h": "In the heart of hunt country",
+"about": [
+"Greenhill Vineyards is a boutique winery in Loudoun County's Middleburg hunt country, producing 100% Virginia wines with a belief that quality begins in the vineyard. It is known for its award-winning whites and sparkling Blanc de Blancs.",
+"The estate's tasting room sits amid the rolling, picturesque terrain of horse country, paired with a carefully curated Mezze menu. Open to adults only, it offers an intimate, refined setting for tastings and curated bites."
+],
+"tasting": "Tastings showcase the estate's all-Virginia whites, reds, and sparkling Blanc de Blancs alongside a curated Mezze menu in an adults-only setting; reservations are recommended and required for groups of ten or more.",
+"standout": "An adults-only boutique estate committed to 100% Virginia-grown wines in the heart of Middleburg hunt country.",
+"desc": "Chauffeured visits to Greenhill Vineyards in Middleburg, VA. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Becker Vineyards",
+"region": "texas-hill-country",
+"area": "Stonewall",
+"address": "464 Becker Farms Rd, Stonewall, TX 78671",
+"founded": "1992",
+"known": "texas viognier and cabernet sauvignon",
+"website": "https://www.beckervineyards.com/",
+"res": "Walk-ins welcome",
+"intro": "One of the founding names of Texas wine, set among lavender fields in a German-style stone barn near Stonewall.",
+"about_h": "A Texas Hill Country pioneer",
+"about": [
+"Becker Vineyards was established in 1992 by Richard and Bunny Becker in the Hill Country between Fredericksburg and Stonewall. An early force in the modern Texas wine movement, Becker was the first Texas winery to produce Viognier commercially, and its Viognier and Cabernet Sauvignon remain the wines it is best known for.",
+"Tastings take place in a reproduction 19th-century German stone barn surrounded by rows of vines and the winery's well-known lavender fields. The estate is a relaxed, expansive stop on the 290 corridor, with both indoor and outdoor seating and room to wander."
+],
+"tasting": "Sample the wines Becker built its name on, including the Viognier and the Reserve Cabernet Sauvignon, in the stone-barn tasting room or out on the grounds. Walk-ins are welcome at the tasting room.",
+"standout": "Becker was the first Texas winery to commercially produce Viognier, and its wines have been poured at the White House.",
+"desc": "Chauffeured visits to Becker Vineyards in Texas Hill Country. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "William Chris Vineyards",
+"region": "texas-hill-country",
+"area": "Hye",
+"address": "10352 U.S. Highway 290, Hye, TX 78635",
+"founded": "2008",
+"known": "100% texas-grown wine and a grown, not made philosophy",
+"website": "https://williamchriswines.com/",
+"res": "Reservations required",
+"intro": "The first and only Texas winery on the World's 50 Best Vineyards list, pouring 100% Texas-grown wine in Hye.",
+"about_h": "Grown, not made, in Hye",
+"about": [
+"William Chris Vineyards was founded in 2008 by William 'Bill' Blackmon and Chris Brundrett as a collaboration built on Old-World technique and Texas-grown fruit. Their 'grown, not made' philosophy has helped put Texas wine on the national map, and in 2025 the winery became the first Texas producer ever named to the World's 50 Best Vineyards list.",
+"The estate sits along Highway 290 in the tiny hamlet of Hye, where seated tastings, the Oak Room, and a Chef's Table pairing draw on warm Hill Country hospitality. The grounds host live music and events through the year, with shaded tables and open lawns built for slowing down."
+],
+"tasting": "Seated tastings run through the William Chris range, with an elevated Oak Room flight and a Chef's Table food-and-wine pairing for those who want to go deeper. Reservations are required.",
+"standout": "The first and only Texas winery ever named to the World's 50 Best Vineyards list, debuting at No. 31.",
+"desc": "Chauffeured trips to William Chris Vineyards in Texas Hill Country. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Grape Creek Vineyards",
+"region": "texas-hill-country",
+"area": "Fredericksburg",
+"address": "10587 E. U.S. Highway 290, Fredericksburg, TX 78624",
+"founded": "1985",
+"known": "tuscan-style estate wines and a restaurant on the 290 wine trail",
+"website": "https://heathfamilybrands.com/grape-creek-vineyards/",
+"res": "Reservations recommended",
+"intro": "A 'Tuscany in Texas' estate on the Highway 290 wine trail, with vineyard tours, tastings, and a restaurant.",
+"about_h": "Tuscany in Texas on Highway 290",
+"about": [
+"Grape Creek Vineyards is a Hill Country estate winery on the Highway 290 wine trail outside Fredericksburg, now part of the family-owned Heath Family Brands portfolio. It is known for award-winning estate wines and a Tuscan-inspired setting that has become a fixture of the Fredericksburg wine scene.",
+"The estate pairs a tasting room and working vineyard with member patios, lounges, and Stout's Signature restaurant. A tram-and-tour experience takes guests through the vines and the barrel room, with a more urban tasting room option in downtown Fredericksburg."
+],
+"tasting": "The Classic Wine Tasting offers a personalized flight of the Grape Creek collection, while the Taste & Tour adds a tram ride through the vineyards and a barrel tasting in the cellar. Reservations are recommended; walk-ins are welcome as available.",
+"standout": "One of the longer-running estates on the Fredericksburg 290 wine trail and anchor of the Heath Family Brands collection.",
+"desc": "Chauffeured visits to Grape Creek Vineyards in Texas Hill Country. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Pedernales Cellars",
+"region": "texas-hill-country",
+"area": "Stonewall",
+"address": "2916 Upper Albert Rd, Stonewall, TX 78671",
+"founded": "2006",
+"known": "texas tempranillo and viognier",
+"website": "https://www.pedernalescellars.com/",
+"res": "Reservations recommended",
+"intro": "Serious Texas wine from a sixth-generation family, with long Hill Country views from the estate above Stonewall.",
+"about_h": "A sixth-generation Texas family",
+"about": [
+"Pedernales Cellars was founded in 2006 by the Kuhlken and Osterberg families, building on an estate vineyard first planted in 1995 in the Bell Mountain area. The sixth-generation Texas family is best known for its Texas Tempranillo and Viognier, both considered benchmarks for those varietals in the state.",
+"The estate tasting room sits high above the Pedernales river valley, with sweeping Hill Country views from its terrace and an underground barrel cellar below. Set off Upper Albert Road near Stonewall, it is a quieter, view-driven stop away from the main highway."
+],
+"tasting": "Tastings center on the wines Pedernales is known for, led by the Texas Tempranillo and Viognier, with reserve flights and barrel-room visits available. Reservations are recommended, especially on weekends and for reserve tastings.",
+"standout": "Its Texas Tempranillo and Viognier are widely regarded as benchmarks for those varietals in Texas.",
+"desc": "Chauffeured trips to Pedernales Cellars in Texas Hill Country. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Signor Vineyards",
+"region": "texas-hill-country",
+"area": "Fredericksburg",
+"address": "362 Livesay Lane, Fredericksburg, TX 78624",
+"founded": "2015",
+"known": "hearty reds and crisp whites on a scenic estate",
+"website": "https://www.signorvineyards.com/",
+"res": "Walk-ins welcome",
+"intro": "Named the most beautiful vineyard in Texas, a 200-acre estate on the Highway 290 wine trail near Fredericksburg.",
+"about_h": "Texas roots, deep hospitality",
+"about": [
+"Signor Vineyards was founded in 2015 by Clay Signor and opened to the public in 2018, with winemaking led by Eric Weisinger of a longtime Oregon winemaking family. The two families' friendship dates back decades, and the winery specializes in hearty reds and crisp whites sourced from Texas and Oregon.",
+"The tranquil 200-acre estate sits along the Highway 290 wine trail and has been named Texas' most beautiful vineyard by Austin Monthly. Guests can taste in casual or formal settings across the property, which also includes gardens and a market, plus a second tasting room in downtown Fredericksburg."
+],
+"tasting": "Tastings span Signor's hearty reds and crisp whites in both casual and formal settings, available daily, with a downtown Fredericksburg room as a second option. Walk-ins are welcome; groups of six or more need prior approval.",
+"standout": "Named Texas' most beautiful vineyard by Austin Monthly.",
+"desc": "Chauffeured visits to Signor Vineyards in Texas Hill Country. Door-to-door service, fixed upfront pricing, no one driving home."
+},
+{
+"name": "Lost Draw Cellars",
+"region": "texas-hill-country",
+"area": "Johnson City",
+"address": "1686 US-290, Johnson City, TX 78636",
+"founded": "2012",
+"known": "100% texas wine from the high plains and hill country",
+"website": "https://lostdraw.com/",
+"res": "Reservations recommended",
+"intro": "Grower-driven, 100% Texas wine on nine acres of vineyard just west of downtown Johnson City.",
+"about_h": "Our vines, our wines",
+"about": [
+"Lost Draw was launched in 2012 by Andrew Sides, his uncle Andy Timmons, and Troy Ottmers, three founding families with deep roots in farming the Texas High Plains. The winery is committed to 100% Texas wine that highlights the terroir of the High Plains and Hill Country, and it has earned both local and national recognition.",
+"The Johnson City tasting room sits on nine acres of vineyard along Highway 290, just west of downtown. It is a relaxed, grower-minded space where the founding families' farming background shapes the experience as much as the wines."
+],
+"tasting": "The Signature Tasting walks through a generous range of sparkling, white, and red wines, all 100% Texas-grown, with member and large-group options available. Reservations are recommended given visitor volume.",
+"standout": "An estate built by Texas High Plains growers, pouring award-winning wines made entirely from Texas fruit.",
+"desc": "Chauffeured trips to Lost Draw Cellars in Texas Hill Country. Door-to-door service, fixed upfront pricing, no one driving home."
+}
+]
