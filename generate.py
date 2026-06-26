@@ -1347,7 +1347,7 @@ if CARE_RIDES_LIVE:
         {feat("pin","t","Text updates at every step","Chauffeur assigned, arriving, picked up, dropped off — you know without calling anyone.")}
         {feat("receipt","o","A patient, steady hand","Our chauffeurs walk riders to and from the door, offer a steadying arm, stow canes and folding walkers, and never rush.")}
         {feat("globe","t","Book for them, from anywhere","Put the ride in their name and your phone number on the updates. You arrange everything; they just walk out the front door.")}
-        {feat("receipt","t","Recurring appointments, handled","Dialysis, physical therapy, oncology — set a standing schedule once by text and we take it from there.")}
+        {feat("receipt","t","Recurring appointments, handled","Dialysis, physical therapy, oncology — set a standing schedule once and we take it from there.")}
         {feat("users","o","Comfort they can count on","Same clean vehicle class, same routine, same calm professionalism every time. Routine is reassurance.")}
       </div>
     </div></section>
@@ -1355,7 +1355,7 @@ if CARE_RIDES_LIVE:
       <h2>How a Care Ride works</h2>
       <p>Senior transportation, the concierge way.</p>
       <div class="grid-3">
-        <div class="step"><div class="num">1</div><h3>Book in their name</h3><p>Use the booking widget or text us — rider's name and address, your number for updates, flat all-inclusive price upfront.</p></div>
+        <div class="step"><div class="num">1</div><h3>Book in their name</h3><p>Use the booking widget or email us — rider's name and address, your number for updates, flat all-inclusive price upfront.</p></div>
         <div class="step"><div class="num">2</div><h3>Door-to-door pickup</h3><p>The chauffeur meets them at the door, offers an arm, handles bags and walkers, and gets them settled comfortably.</p></div>
         <div class="step"><div class="num">3</div><h3>We wait, or come back</h3><p>For medical appointments, book hourly and your chauffeur waits on site — or schedule a return pickup. Either way, you get the updates.</p></div>
       </div>
@@ -1372,7 +1372,7 @@ if CARE_RIDES_LIVE:
           </ul>
         </div>
         <div class="card"><h3 style="color:var(--orange-dark)">What we don't do</h3>
-          <p style="font-size:14.5px;color:var(--muted);margin-top:12px;line-height:1.7">Koast is a transportation company, not a medical provider. We don't operate wheelchair-lift vehicles, provide physical transfer assistance, or carry medical equipment. If your loved one needs hands-on or wheelchair-accessible transport, text us — we'll gladly point you to a specialized provider in your area.</p>
+          <p style="font-size:14.5px;color:var(--muted);margin-top:12px;line-height:1.7">Koast is a transportation company, not a medical provider. We don't operate wheelchair-lift vehicles, provide physical transfer assistance, or carry medical equipment. If your loved one needs hands-on or wheelchair-accessible transport, email us — we'll gladly point you to a specialized provider in your area.</p>
         </div>
       </div>
     </div></section>"""
@@ -1388,9 +1388,9 @@ if CARE_RIDES_LIVE:
       ("Can my parent have the same chauffeur every time?",
        "That's the goal — for recurring Care Rides we match riders with the same chauffeur whenever possible. Familiarity matters: riders relax with a driver they know, and the chauffeur learns their routine, their door, and their pace."),
       ("Can you handle recurring appointments like dialysis or PT?",
-       "Yes. Text us the standing schedule once and we'll set up the recurring rides — same chauffeur whenever possible, same routine, updates to your phone every time."),
+       "Yes. Email us the standing schedule once and we'll set up the recurring rides — same chauffeur whenever possible, same routine, updates to your phone every time."),
     ], "Care Rides questions")
-    s += cta_section("Get them there. Ride easy.", "Book in under a minute, or text us and we'll set everything up for you.")
+    s += cta_section("Get them there. Ride easy.", "Book in under a minute, or email us and we'll set everything up for you.")
     s += footer("../")
     write("services/care-rides.html", s)
 
@@ -1939,7 +1939,7 @@ p += f"""
   <p><strong>4.3 Vehicle class, upgrades.</strong> Depending on regional availability, the user can choose from different vehicle classes (for example "Business Class Sedan", "Business Class SUV", "First Class Sedan", "First Class SUV", or "Sprinter Class"). Vehicles shown in the Koast Tools are illustrative examples; there is no right to a particular vehicle model within a booked class. Koast may upgrade a booking to a higher vehicle class at any time at no additional cost, depending on availability: "Business Class Sedan" may be upgraded to "Business Class SUV", "First Class SUV", or "First Class Sedan"; "Business Class SUV" may be upgraded to "First Class SUV". Koast will never downgrade your vehicle to a cheaper vehicle type or a smaller one — for example, sending a Sedan if you reserved an SUV.</p>
   <p><strong>4.4 Transport safety.</strong> The price in the booking confirmation includes the number of pieces of luggage specified in the booking form. Excess or bulky luggage (such as a wheelchair), weapons, or animals must be specified during booking; the TSP may refuse transport of items not agreed upon, including animals not housed in a closed, suitable transport box, except where local law requires accommodation. If the TSP permits carriage of additional items, surcharges may apply. The need for child restraints must be specified in the ride request, including the number and age of children and the type of restraints required. The transport of unaccompanied minors may be rejected by the TSP. The maximum number of passengers and luggage for a specific vehicle is set out in a binding luggage policy; the TSP may refuse transport where space and safety conditions do not permit it. If transport is refused because mandatory requirements were not correctly communicated by the user, Koast remains entitled to compensation.</p>
   <p><strong>4.5 Delays.</strong> Exceptional situations such as air traffic control strikes or inclement weather can only be compensated to a limited extent; in these cases longer waiting times or short-notice cancellations must be accepted.</p>
-  <p><strong>4.6 Cancellations, rebookings and no-shows.</strong> For transfer rides, long-distance rides, and hourly bookings, cancellation is free if made more than 24 hours before the agreed pickup time. Between 12–24 hours before pickup, a 50% refund applies. Within 12 hours of pickup, the full price is payable. An effective cancellation can only be carried out by calling or texting (SMS) our business number. Rebookings are generally treated as new bookings, and the cancellation rules apply to the originally agreed ride. A transfer ride is considered a no-show if the guest does not appear within 30 minutes after the agreed pickup time (60 minutes at airports); hourly bookings are a no-show if the guest does not appear by the end of the booked hours. No-show rides must be fully compensated unless a later pickup time was agreed with the TSP by phone.</p>
+  <p><strong>4.6 Cancellations, rebookings and no-shows.</strong> For transfer rides, long-distance rides, and hourly bookings, cancellation is free if made more than 24 hours before the agreed pickup time. Between 12–24 hours before pickup, a 50% refund applies. Within 12 hours of pickup, the full price is payable. An effective cancellation can only be carried out by emailing us. Rebookings are generally treated as new bookings, and the cancellation rules apply to the originally agreed ride. A transfer ride is considered a no-show if the guest does not appear within 30 minutes after the agreed pickup time (60 minutes at airports); hourly bookings are a no-show if the guest does not appear by the end of the booked hours. No-show rides must be fully compensated unless a later pickup time was agreed with the TSP.</p>
   <p><strong>4.7 Behavior in the vehicle.</strong> During the entire ride, applicable road traffic rules apply to all guests, particularly seat belt requirements. The TSP's instructions must be followed. Guests may not open doors during the ride, throw objects from the vehicle, extend any body part from or scream from the vehicle. Use of equipment in the vehicle requires the TSP's prior permission. Smoking is prohibited; violations bear the cost of vehicle cleaning and resulting loss of serviceability. Food is discouraged; alcoholic drinks only with prior consent.</p>
 
   <h2>5. Remuneration and payment</h2>
@@ -2161,7 +2161,7 @@ Sitemap: {BASE_URL}/sitemap.xml
     _care_facts = (", Care Rides (concierge senior and medical appointment transportation)\n"
         "- Care Rides: door-to-door rides for seniors and medical appointments, designed for family members booking on a parent's behalf. "
         "Chauffeur walks the rider to and from the door, offers a steadying arm, stows canes and folding walkers; text status updates go to the family member; "
-        "hourly booking lets the chauffeur wait during appointments; recurring schedules (dialysis, PT) can be set up by text; recurring riders are matched with the same chauffeur "
+        "hourly booking lets the chauffeur wait during appointments; recurring schedules (dialysis, PT) can be set up by email; recurring riders are matched with the same chauffeur "
         "whenever possible so they see a familiar, trusted face every time. Riders must be able to walk on their own. Private-pay only (no Medicare/Medicaid/insurance billing). "
         "Koast is not a medical provider: no wheelchair-lift vehicles, no physical transfer assistance — we refer those riders to specialized providers. "
         "Page: https://koastride.com/services/care-rides.html") if CARE_RIDES_LIVE else ""
@@ -3127,19 +3127,19 @@ blog_page("group-wine-tour-planning",
 
 # ============================ SUPPORT PAGE ============================
 sp = head("Support & FAQs | Koast Black Car Service",
-          "Get help with your Koast booking — contact us by phone, text, or email, and find detailed answers on pricing, airport pickups, changes, and vehicles.")
+          "Get help with your Koast booking — contact us by email, and find detailed answers on pricing, airport pickups, changes, and vehicles.")
 sp += nav("", "support")
 sp += f"""
 <header class="hero-dark"><div class="wrap">
   <div class="crumbs"><a href="index.html">Home</a><span>/</span>Support</div>
   <h1>How can we <span class="o">help?</span></h1>
-  <p class="lede">Real humans, 24/7. Most questions are answered below — and the best way to reach us is a text.</p>
+  <p class="lede">Real humans, 24/7. Most questions are answered below — and the best way to reach us is email.</p>
 </div></header>
 <section class="tight" style="padding-bottom:0"><div class="wrap">
   <div class="ask-agent aa-live">
     <div class="aa-copy">
       <h2>Ask our agent</h2>
-      <p>Instant answers about booking, airports, pricing rules, and the fleet — 24/7, in seconds. For anything personal, a human is one text away.</p>
+      <p>Instant answers about booking, airports, pricing rules, and the fleet — 24/7, in seconds. For anything personal, a human is one email away.</p>
       <div class="aa-chips">
         <button onclick="kaiAsk(this.textContent)">How does airport pickup work?</button>
         <button onclick="kaiAsk(this.textContent)">What's included in the price?</button>
@@ -3216,10 +3216,10 @@ SUPPORT_FAQS = [
    "Enter your pickup, drop-off, and time in the booking widget on any page — you'll see an instant, all-inclusive price for each vehicle class. No account needed to get a quote."),
   ("How far in advance should I book?",
    "Same-day rides are often available, but we recommend booking 24+ hours ahead for early-morning airport runs, and 1–2 weeks ahead for weekends, events, and wine tours so your preferred vehicle is available."),
-  ("Can I book by text instead of online?",
+  ("Can I book by email instead of online?",
    f"Absolutely — email {EMAIL} any time and we'll set it up for you. It's usually the fastest way to book."),
   ("Do you do last-minute pickups?",
-   "Often, yes — availability depends on your city and time. Text us your pickup location and we'll confirm within minutes."),
+   "Often, yes — availability depends on your city and time. Email us your pickup location and we'll confirm within minutes."),
   ("Can I book a multi-stop or hourly trip?",
    "Yes. Choose Hourly in the booking widget for as-directed service with multiple stops, or add stops to a one-way trip. Hourly is usually the better value once you have three or more stops."),
  ]),
@@ -3247,7 +3247,7 @@ SUPPORT_FAQS = [
   ("How do I change my pickup time or address?",
    f"Email {EMAIL} with your updated details, or use the rider portal. Changes are free when made with reasonable notice and subject to availability."),
   ("What's the cancellation policy?",
-   "Cancellation windows vary by vehicle class — sedans and SUVs have shorter windows, Sprinters and buses longer ones. The full schedule is in our <a href='terms.html'>Terms &amp; Conditions</a>. When in doubt, text us — we'll always tell you exactly where you stand before you decide."),
+   "Cancellation windows vary by vehicle class — sedans and SUVs have shorter windows, Sprinters and buses longer ones. The full schedule is in our <a href='terms.html'>Terms &amp; Conditions</a>. When in doubt, email us — we'll always tell you exactly where you stand before you decide."),
   ("I left something in the vehicle — what do I do?",
    f"Email {EMAIL} with your trip date and pickup location. We'll contact your chauffeur immediately and arrange return of your item."),
  ]),
@@ -3257,7 +3257,7 @@ SUPPORT_FAQS = [
   ("What vehicles do you operate?",
    "Business sedans, business and first-class SUVs, executive Sprinter vans, and party buses up to 32 passengers. <a href='index.html#fleet'>See the fleet →</a>"),
   ("Do you have car seats?",
-   "Yes — forward-facing, rear-facing, and boosters are available on request. Add a note when booking or text us and we'll have them installed before pickup."),
+   "Yes — forward-facing, rear-facing, and boosters are available on request. Add a note when booking or email us and we'll have them installed before pickup."),
   ("Can you handle large groups?",
    "Up to 32 in a single vehicle, and we coordinate multi-vehicle moves for bigger groups, weddings, and corporate events. Tell us your headcount and we'll propose the right mix."),
  ]),
