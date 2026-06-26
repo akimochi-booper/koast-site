@@ -103,7 +103,7 @@ CHAT_WIDGET = """
     <button id="kchat-send" aria-label="Send">→</button>
     <input id="kchat-file" type="file" accept="image/*" multiple hidden>
   </div>
-  <a class="kchat-sms" href="sms:6508806514">Prefer a human? Text us →</a>
+  <a class="kchat-sms" href="mailto:reserve@koastride.com">Prefer a human? Email us →</a>
 </div>
 <script>
 (function(){
@@ -160,7 +160,7 @@ CHAT_WIDGET = """
     if(imgs.length){var g=document.createElement('div');g.className='km-imgs';imgs.forEach(function(a){var im=document.createElement('img');im.src=a.url;g.appendChild(im);});ud.appendChild(g);}
     atts=[];renderAtts();
     if(imgs.length && !IMG_LIVE){
-      add('bot',"Thanks for the photo! Reading itineraries and screenshots is coming soon with our new booking system. For now, tell me what you need in a message, or text us at (650) 880-6514 and a human will help.");
+      add('bot',"Thanks for the photo! Reading itineraries and screenshots is coming soon with our new booking system. For now, tell me what you need in a message, or email us at reserve@koastride.com and a human will help.");
       if(!q){hist.push({role:'user',content:'(photo attached)'});busy=false;return;}
       hist.push({role:'user',content:q});
     } else {
@@ -169,8 +169,8 @@ CHAT_WIDGET = """
     var dots=add('bot dots','…');
     fetch(URL_,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:hist})})
       .then(function(r){return r.json()})
-      .then(function(d){dots.remove();var a=d.reply||"Sorry — something went wrong. Text us at (650) 880-6514 and a human will help.";add('bot',a);hist.push({role:'assistant',content:a});busy=false;})
-      .catch(function(){dots.remove();add('bot',"I can't connect right now — text us at (650) 880-6514 and a real person will answer.");busy=false;});
+      .then(function(d){dots.remove();var a=d.reply||"Sorry — something went wrong. Email us at reserve@koastride.com and a human will help.";add('bot',a);hist.push({role:'assistant',content:a});busy=false;})
+      .catch(function(){dots.remove();add('bot',"I can't connect right now — email us at reserve@koastride.com and a real person will answer.");busy=false;});
   }
   btn.addEventListener('click',send);
   inp.addEventListener('keydown',function(e){if(e.key==='Enter')send();});
@@ -192,8 +192,8 @@ def footer(prefix=""):
     <div>
       <div class="foot-logo"><img src="{prefix}img/logo-transparent.png" alt="Koast" style="height:58px;width:auto;margin-bottom:8px"></div>
       <p>Headquartered in San Francisco, California · Serving major cities nationwide</p>
-      <p>{EMAIL} · {PHONE}</p>
-      <p style="margin-top:8px"><a href="{SMS}" style="color:#0e9d8e;font-weight:700">Text us anytime →</a></p>
+      <p>{EMAIL}</p>
+      <p style="margin-top:8px"><a href="mailto:{EMAIL}" style="color:#0e9d8e;font-weight:700">Email us anytime →</a></p>
     </div>
     <div><h4>Services</h4>
       <a href="{prefix}services/airport-transfers.html">Airport Transfers</a>
@@ -391,7 +391,7 @@ def faq_section(items, title="Common questions"):
 </div></section>"""
 
 def cta_section(h="Ride easy.", p=None):
-    p = p or f"Get an instant quote now — or text us at {PHONE}."
+    p = p or f"Get an instant quote now — or email us at {EMAIL}."
     return f"""
 <section style="padding-top:0"><div class="wrap"><div class="cta">
   <h2>{h}</h2><p>{p}</p>
@@ -1336,7 +1336,7 @@ if CARE_RIDES_LIVE:
       <p class="lede">Concierge senior &amp; medical appointment transportation. Book for a parent or loved one, get a text at every step, and know a vetted professional chauffeur is at the wheel — there and back, door to door.</p>
       <div style="display:flex;gap:14px;position:relative;z-index:2;flex-wrap:wrap">
         <a class="btn btn-orange btn-lg" href="{BOOK}">Book a Care Ride</a>
-        <a class="btn btn-ghost-light btn-lg" href="{SMS}">Text Us a Question</a>
+        <a class="btn btn-ghost-light btn-lg" href="mailto:{EMAIL}">Email Us a Question</a>
       </div>
     </div></header>
     <section><div class="wrap">
@@ -1972,7 +1972,7 @@ p += f"""
   <h2>9. Final provisions</h2>
   <p>These T&amp;Cs constitute the entire agreement between Koast and the user for the contractually agreed services; there are no collateral agreements, and amendments must be made in writing. The user may only set off against Koast's claims or assert retention rights if counterclaims are legally established or undisputed, and may not assign claims to third parties without Koast's express written consent. The law of the United States of America applies to all legal relations between Koast and the user; the place of fulfillment is San Francisco, and the exclusive place of jurisdiction is San Francisco insofar as the user is a merchant or has no fixed place of residence in the USA. Koast is neither willing nor obliged to participate in dispute resolution proceedings before a consumer arbitration board. Should individual provisions of these T&amp;Cs be or become ineffective, the remaining provisions remain effective and shall be replaced by provisions most closely approximating the intended meaning and economic purpose.</p>
 
-  <p>Questions: <a href="mailto:{EMAIL}" style="color:var(--orange);font-weight:700">{EMAIL}</a> · {PHONE}</p>
+  <p>Questions: <a href="mailto:{EMAIL}" style="color:var(--orange);font-weight:700">{EMAIL}</a></p>
 </div></section>"""
 p += footer("")
 write("terms.html", p)
@@ -2031,7 +2031,7 @@ p += f"""
   <p>We may change this Privacy Policy from time to time. If we make significant changes in the way we treat your personal information, we will provide you notice through the Services or by some other means, such as email.</p>
 
   <h2>Contact us</h2>
-  <p>If you have any questions about this privacy statement, please contact us at <a href="mailto:{EMAIL}" style="color:var(--orange);font-weight:700">{EMAIL}</a> or via SMS at 650-880-6514.</p>
+  <p>If you have any questions about this privacy statement, please contact us at <a href="mailto:{EMAIL}" style="color:var(--orange);font-weight:700">{EMAIL}</a> or by email.</p>
 </div></section>"""
 p += footer("")
 write("privacy.html", p)
@@ -2045,7 +2045,7 @@ def _schema_for(rel, src, url, title, desc):
     blocks = []
     org = {"@context":"https://schema.org","@type":"LocalBusiness","@id":BASE_URL+"/#org",
         "name":"Koast","description":"Professional chauffeured black car service. Flat-rate pricing, vetted drivers, flight tracking. Bay Area based, serving major cities nationwide.",
-        "url":BASE_URL,"telephone":"+1-650-880-6514","email":EMAIL,
+        "url":BASE_URL,"email":EMAIL,
         "logo":BASE_URL+"/img/logo-transparent.png","image":BASE_URL+"/img/hero-banner.jpg",
         "slogan":"Ride easy.","priceRange":"$$$",
         "address":{"@type":"PostalAddress","addressLocality":"San Francisco","addressRegion":"CA","addressCountry":"US"},
@@ -2188,7 +2188,7 @@ Key facts:
 - Airports served: {airports_list}
 - Car seats: forward-facing, rear-facing, and boosters available on request
 - Payment: all major credit/debit cards via the secure booking portal
-- Contact: TEXT (650) 880-6514 (preferred, real humans 24/7) · {EMAIL}
+- Contact: {EMAIL}
 
 Fleet:
 {fleet_lines}
@@ -3155,7 +3155,7 @@ sp += f"""
         <input id="kai-in" type="text" placeholder="Type a question…" maxlength="500">
         <button id="kai-send" aria-label="Send">→</button>
       </div>
-      <a class="kai-sms" href="sms:6508806514">Prefer a human? Text us →</a>
+      <a class="kai-sms" href="mailto:reserve@koastride.com">Prefer a human? Email us →</a>
     </div>
   </div>
   <style>#kchat-fab,#kchat{{display:none!important}}</style>
@@ -3175,12 +3175,12 @@ sp += f"""
         .then(function(r){{return r.json()}})
         .then(function(d){{
           dots.remove();
-          var a=d.reply||"Sorry — something went wrong. Text us at (650) 880-6514 and a human will help.";
+          var a=d.reply||"Sorry — something went wrong. Email us at reserve@koastride.com and a human will help.";
           add('bot',a);hist.push({{role:'assistant',content:a}});busy=false;
         }})
         .catch(function(){{
           dots.remove();
-          add('bot',"I can't connect right now — text us at (650) 880-6514 and a real person will answer.");
+          add('bot',"I can't connect right now — email us at reserve@koastride.com and a real person will answer.");
           busy=false;
         }});
     }}
@@ -3192,10 +3192,10 @@ sp += f"""
 <section class="tight"><div class="wrap">
   <div class="sec-head center"><span class="pill">Contact</span><h2>Talk to us</h2></div>
   <div class="grid-3">
-    <a class="card" href="{SMS}" style="text-align:center">
-      <div style="font-size:13px;font-weight:800;letter-spacing:.1em;color:var(--teal);margin-bottom:8px">TEXT</div>
-      <h3 style="font-size:20px">{PHONE}</h3>
-      <div class="sub" style="margin-top:6px">Fastest response — usually minutes</div>
+    <a class="card" href="{BOOK}" style="text-align:center">
+      <div style="font-size:13px;font-weight:800;letter-spacing:.1em;color:var(--teal);margin-bottom:8px">BOOK</div>
+      <h3 style="font-size:20px">Get a quote</h3>
+      <div class="sub" style="margin-top:6px">Fixed price, instant — no account needed</div>
     </a>
     <a class="card" href="mailto:{EMAIL}" style="text-align:center">
       <div style="font-size:13px;font-weight:800;letter-spacing:.1em;color:var(--orange);margin-bottom:8px">EMAIL</div>
@@ -3217,7 +3217,7 @@ SUPPORT_FAQS = [
   ("How far in advance should I book?",
    "Same-day rides are often available, but we recommend booking 24+ hours ahead for early-morning airport runs, and 1–2 weeks ahead for weekends, events, and wine tours so your preferred vehicle is available."),
   ("Can I book by text instead of online?",
-   f"Absolutely — text {PHONE} any time and we'll set it up for you. It's usually the fastest way to book."),
+   f"Absolutely — email {EMAIL} any time and we'll set it up for you. It's usually the fastest way to book."),
   ("Do you do last-minute pickups?",
    "Often, yes — availability depends on your city and time. Text us your pickup location and we'll confirm within minutes."),
   ("Can I book a multi-stop or hourly trip?",
@@ -3245,11 +3245,11 @@ SUPPORT_FAQS = [
  ]),
  ("Changes & cancellations", [
   ("How do I change my pickup time or address?",
-   f"Text {PHONE} with your updated details, or use the rider portal. Changes are free when made with reasonable notice and subject to availability."),
+   f"Email {EMAIL} with your updated details, or use the rider portal. Changes are free when made with reasonable notice and subject to availability."),
   ("What's the cancellation policy?",
    "Cancellation windows vary by vehicle class — sedans and SUVs have shorter windows, Sprinters and buses longer ones. The full schedule is in our <a href='terms.html'>Terms &amp; Conditions</a>. When in doubt, text us — we'll always tell you exactly where you stand before you decide."),
   ("I left something in the vehicle — what do I do?",
-   f"Text {PHONE} with your trip date and pickup location. We'll contact your chauffeur immediately and arrange return of your item."),
+   f"Email {EMAIL} with your trip date and pickup location. We'll contact your chauffeur immediately and arrange return of your item."),
  ]),
  ("Vehicles & chauffeurs", [
   ("Who are your chauffeurs?",
@@ -3277,7 +3277,7 @@ sp += f"""
     <div class="ksearch"><input id="fsearch" type="search" placeholder="Search the FAQs — wait time, cancel, car seats…" aria-label="Search FAQs"></div>
   </div>
   <div id="faqwrap">{faq_html}</div>
-  <p id="fnone" style="display:none;text-align:center;color:var(--muted);margin-top:26px">No matches — try a different word, or <a href="sms:6508806514" style="color:var(--orange);font-weight:700">text us</a> and a human will answer.</p>
+  <p id="fnone" style="display:none;text-align:center;color:var(--muted);margin-top:26px">No matches — try a different word, or <a href="mailto:reserve@koastride.com" style="color:var(--orange);font-weight:700">email us</a> and a human will answer.</p>
 </div></section>
 <script>
 (function(){{
@@ -3305,7 +3305,7 @@ sp += f"""
   }});
 }})();
 </script>"""
-sp += cta_section("Still have a question?", f"Text us at {PHONE} — a real person answers, 24/7.")
+sp += cta_section("Still have a question?", f"Email us at {EMAIL} — a real person answers, 24/7.")
 sp += footer("")
 write("support.html", sp)
 
