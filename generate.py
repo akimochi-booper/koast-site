@@ -2024,6 +2024,13 @@ p += f"""
   <p><strong>Location information:</strong> you can disable collection of precise location via your device settings, though this limits certain features and does not limit collection of trip location from a Driver's device or approximate location from your IP address.</p>
   <p><strong>Promotional communications:</strong> opt out by following the "unsubscribe" instructions in those messages. We may still send non-promotional communications about your account, requested services, or ongoing business relations.</p>
 
+  <h2>Google user data (Calendar integration)</h2>
+  <p>If you choose to connect your Google Calendar to Koast, we access your Google user data only to provide the features you turn on, and in accordance with the <a href="https://developers.google.com/terms/api-services-user-data-policy" rel="noopener" target="_blank">Google API Services User Data Policy</a>, including its Limited Use requirements.</p>
+  <p><strong>What we access:</strong> with your permission, Koast reads your upcoming calendar events (title, time, and location) and can create or update calendar events for rides you book.</p>
+  <p><strong>How we use it:</strong> solely to show your schedule alongside your rides, to suggest and correctly time chauffeur pickups for events and flights on your calendar, and to keep ride events on your calendar up to date. We do not use Google user data for advertising, we do not sell it, and no humans read it except with your consent, for security purposes, or where required by law.</p>
+  <p><strong>Storage and sharing:</strong> your Google authorization token is stored encrypted; calendar event details are processed to render your schedule and are not shared with third parties. Google user data is never transferred to data brokers or used to build advertising profiles.</p>
+  <p><strong>Revoking access:</strong> you can disconnect Google Calendar at any time in the Koast app (Account &rarr; Calendar), which deletes our stored authorization, or via your <a href="https://myaccount.google.com/permissions" rel="noopener" target="_blank">Google account permissions</a>.</p>
+
   <h2>Your California privacy rights</h2>
   <p>California law permits residents of California to request certain details about how their information is shared with third parties for direct marketing purposes. Koast does not share your personally identifiable information with third parties for the third parties' direct marketing purposes unless you provide us with consent to do so.</p>
 
