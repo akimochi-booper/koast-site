@@ -2031,6 +2031,14 @@ p += f"""
   <p><strong>Storage and sharing:</strong> your Google authorization token is stored encrypted; calendar event details are processed to render your schedule and are not shared with third parties. Google user data is never transferred to data brokers or used to build advertising profiles.</p>
   <p><strong>Revoking access:</strong> you can disconnect Google Calendar at any time in the Koast app (Account &rarr; Calendar), which deletes our stored authorization, or via your <a href="https://myaccount.google.com/permissions" rel="noopener" target="_blank">Google account permissions</a>.</p>
 
+  <h2>How we protect your data</h2>
+  <p>We protect all personal information &mdash; and apply heightened safeguards to sensitive data, including Google user data &mdash; using the following mechanisms:</p>
+  <p><strong>Encryption in transit:</strong> all data moving between your device, our services, and Google's APIs is encrypted using TLS 1.2 or higher (HTTPS). We do not transmit personal or Google user data over unencrypted connections.</p>
+  <p><strong>Encryption at rest:</strong> all stored data is encrypted at rest on our infrastructure provider (Cloudflare). Google OAuth refresh tokens receive an additional layer of application-level encryption using AES-256-GCM before they are written to storage, so tokens are never stored in plaintext.</p>
+  <p><strong>Access controls and data minimization:</strong> access to production systems is restricted to authorized personnel on a least-privilege basis and protected by authentication. Google user data is processed by automated systems only; our staff do not read it except with your explicit consent, for security incident investigation, or where required by law. We request only the minimum OAuth scopes needed for the calendar features you enable, and each user's tokens grant access only to that user's own data.</p>
+  <p><strong>Retention and deletion:</strong> we retain Google user data only for as long as needed to provide the calendar features you have turned on. Disconnecting Google Calendar in the app immediately deletes our stored authorization tokens and synced event data. You may also request deletion of your account data by contacting us, and we will honor the request without undue delay.</p>
+  <p><strong>Incident response:</strong> we monitor our systems for unauthorized access. If a breach affecting your personal or Google user data occurs, we will notify affected users and applicable authorities without undue delay, consistent with applicable law.</p>
+
   <h2>Your California privacy rights</h2>
   <p>California law permits residents of California to request certain details about how their information is shared with third parties for direct marketing purposes. Koast does not share your personally identifiable information with third parties for the third parties' direct marketing purposes unless you provide us with consent to do so.</p>
 
