@@ -674,6 +674,24 @@ home += f"""
     <div class="step"><div class="num">STEP 03</div><h3>Meet your chauffeur</h3><p>Get driver details, live GPS tracking, and text updates before pickup.</p></div>
   </div>
 </div></div></section>"""
+
+# --- "The Koast app" section: required by Google OAuth branding review.
+# The homepage must (a) show the app name "Koast" prominently as text and
+# (b) explain the functionality behind the OAuth scopes (Google sign-in +
+# optional Calendar sync). Keep this section on the homepage.
+home += f"""
+<section class="sec" id="app"><div class="wrap">
+  <div class="sec-head center"><span class="pill pill-orange">The Koast app</span>
+    <h2>Koast</h2>
+    <p style="max-width:680px;margin:10px auto 0;color:var(--muted,#9aa3b2)">Koast is our booking app for riders. Book a chauffeur, see your fixed price upfront, track your car live on a map, message your chauffeur, and keep receipts for every trip &mdash; on the web or installed on your phone.</p>
+  </div>
+  <div class="grid-2">
+    {feat("shield","o","Sign in with Google","You can create and access your Koast account with your Google email &mdash; no separate password to remember. We only receive your name and email address.")}
+    {feat("plane","t","Google Calendar, optional","If you choose to connect Google Calendar, Koast shows your upcoming events beside your rides, can suggest an airport pickup when a flight is on your calendar, and can add booked trips to your calendar. You can disconnect at any time in the app.")}
+  </div>
+  <p style="text-align:center;margin-top:18px;font-size:14px;color:var(--muted,#9aa3b2)">Your data is used only to provide these features and is never sold. See our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms</a>.</p>
+</div></section>"""
+
 home += testi_section()
 home += services_section()
 home += faq_section([
