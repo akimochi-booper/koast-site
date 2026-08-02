@@ -51,12 +51,14 @@ def nav(prefix="", active=""):
     cities_dd = f'''<div class="nav-dd"><a href="{prefix}cities/index.html"{AC if active=='cities' else ''}>Cities <span class="caret">&#9662;</span></a>
       <div class="dd-menu"><div class="dd-col"><h5>Popular</h5>{cpop}</div><div class="dd-col"><h5>More</h5>{cmore}<a href="{prefix}cities/index.html" {_orange}>All cities &#8594;</a></div></div></div>'''
     links = services_dd + wine_dd + cities_dd
+    links += f'<a href="{prefix}app.html"{AC if active=="app" else ""}>App</a>'
     links += f'<a href="{prefix}blog/index.html"{AC if active=="blog" else ""}>Guides</a>'
     links += f'<a href="{prefix}support.html"{AC if active=="support" else ""}>Support</a>'
 
     mlinks = f'''<details class="mm-dd"><summary>Services <span class="mm-caret">&#9662;</span></summary><div class="mm-dd-list"><a href="{prefix}services/airport-transfers.html">Airport Transfers</a><a href="{prefix}services/corporate-travel.html">Corporate Travel</a><a href="{prefix}services/weddings.html">Weddings</a><a href="{prefix}services/party-bus.html">Party Bus</a><a href="{prefix}index.html#fleet">Our Fleet</a></div></details>
       <details class="mm-dd"><summary>Wine <span class="mm-caret">&#9662;</span></summary><div class="mm-dd-list"><a href="{prefix}services/wine-tours.html" class="mm-all">Wine tour service &#8594;</a><a href="{prefix}wineries/index.html" class="mm-all">Browse all wineries &#8594;</a><h6>California</h6>{ca}<h6>Nationwide</h6>{us}</div></details>
       <details class="mm-dd"><summary>Cities <span class="mm-caret">&#9662;</span></summary><div class="mm-dd-list"><a href="{prefix}cities/index.html" class="mm-all">All cities &#8594;</a>{cpop}{cmore}</div></details>
+      <a href="{prefix}app.html">App</a>
       <a href="{prefix}blog/index.html">Guides</a>
       <a href="{prefix}support.html">Support</a>'''
 
@@ -214,6 +216,7 @@ def footer(prefix=""):
     </div>
     <div><h4>Company</h4>
       <a href="{prefix}support.html">Support</a>
+      <a href="{prefix}app.html">The Koast app</a>
       <a href="{prefix}blog/index.html">Guides</a>
       <a href="{prefix}terms.html">Terms</a>
       <a href="{prefix}privacy.html">Privacy</a>
@@ -690,6 +693,7 @@ home += f"""
     {feat("plane","t","Google Calendar, optional","If you choose to connect Google Calendar, Koast shows your upcoming events beside your rides, can suggest an airport pickup when a flight is on your calendar, and can add booked trips to your calendar. You can disconnect at any time in the app.")}
   </div>
   <p style="text-align:center;margin-top:18px;font-size:14px;color:var(--muted,#9aa3b2)">Your data is used only to provide these features and is never sold. See our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms</a>.</p>
+  <div style="text-align:center;margin-top:22px"><a class="btn btn-orange" href="app.html">Meet the Koast app &rarr;</a></div>
 </div></section>"""
 
 home += testi_section()
@@ -3590,6 +3594,117 @@ blog_page("group-airport-transfers",
     <details><summary>How is a group transfer billed?</summary><p>Through a corporate account, every vehicle and leg lands on one consolidated invoice rather than separate receipts to reconcile.</p></details>
   </div>""",
  "The whole team, moving as one.")
+
+
+# ============================ /APP — the Koast app page (concepts A+D) ============================
+APP_URL = "get-app"  # stable redirect (_redirects -> the live app); QR encodes koastride.com/get-app
+
+app_css = """
+<style>
+.apphero{background:radial-gradient(75% 120% at 78% 0%,rgba(255,115,9,.16),transparent 60%),var(--ink);color:#fff;padding:88px 0 72px}
+.apphero .wrap{display:flex;gap:56px;align-items:center}
+.apphero-copy{flex:1;min-width:0}
+.apphero .eyebrow{font-weight:800;font-size:13px;letter-spacing:.07em;text-transform:uppercase;color:var(--orange);margin:0 0 14px}
+.apphero h1{font-size:clamp(44px,6vw,64px);letter-spacing:-.02em;line-height:1.02;margin:0;color:#fff}
+.apphero h1 em{font-style:normal;color:var(--orange)}
+.apphero .sub{color:#aab3c2;font-size:17px;line-height:1.65;margin:18px 0 28px;max-width:460px}
+.appcta{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:18px}
+.appbadges{display:flex;gap:8px;flex-wrap:wrap}
+.appbadges span{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:#aab3c2;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:99px;padding:6px 12px}
+.aphone{width:264px;height:540px;border-radius:40px;background:#05070a;border:1px solid rgba(255,255,255,.16);box-shadow:0 46px 90px -34px rgba(0,0,0,.85),inset 0 0 0 6px #0b0d12;position:relative;overflow:hidden;flex:none}
+.aphone:before{content:'';position:absolute;top:11px;left:50%;transform:translateX(-50%);width:78px;height:21px;border-radius:12px;background:#000;z-index:3}
+.ascr{position:absolute;inset:6px;border-radius:34px;background:linear-gradient(180deg,#0d1016,#0a0c10);padding:44px 15px 15px;display:flex;flex-direction:column;gap:10px;color:#eef1f6}
+.ascr .top{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:800}
+.ascr .top i{font-style:normal;color:#2dd4bf;font-size:9.5px;font-weight:700}
+.amap{flex:1;border-radius:13px;background:radial-gradient(circle at 65% 30%,rgba(45,212,191,.25),transparent 55%),radial-gradient(circle at 30% 70%,rgba(255,115,9,.22),transparent 50%),#11151c;position:relative;min-height:150px}
+.amap:after{content:'';position:absolute;left:28%;top:30%;width:44%;height:40%;border-left:2px solid #2dd4bf;border-bottom:2px solid var(--orange);border-radius:0 0 0 28px;opacity:.85}
+.amap b{position:absolute;left:28%;top:26%;width:11px;height:11px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 5px rgba(255,115,9,.25)}
+.arow{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:13px;padding:11px;font-size:11px}
+.arow b{display:block;font-size:11.5px}
+.arow span{color:#8b95a5;font-size:9.5px}
+.apill{align-self:center;background:linear-gradient(135deg,#ff9a3d,#ff7309);color:#2a1400;font-weight:800;border-radius:99px;padding:8px 22px;font-size:11px;margin-top:2px}
+.getapp{background:var(--ink);border-radius:28px;padding:64px 56px;color:#fff}
+.getapp h2{color:#fff}
+.getapp>p{color:#aab3c2}
+.qrcard{display:flex;gap:22px;align-items:center;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:22px;margin:26px 0}
+.qrcard img{width:132px;height:132px;border-radius:14px;background:#fff;padding:8px;flex:none}
+.qrcard b{font-size:16px}
+.qrcard p{color:#aab3c2;font-size:14px;margin-top:6px;line-height:1.55}
+.osnote{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+.osnote div{flex:1;min-width:220px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:14px 16px;font-size:13px;color:#aab3c2;line-height:1.55}
+.osnote b{color:#fff;display:block;margin-bottom:4px;font-size:13.5px}
+@media(max-width:900px){.apphero .wrap{flex-direction:column}.apphero{padding:56px 0 48px}.aphone{width:238px;height:488px}.getapp{padding:44px 24px}.qrcard{flex-direction:column;text-align:center}}
+</style>"""
+
+app = head("The Koast App — Book, Track & Ride | Koast",
+           "The Koast app: book a chauffeur in seconds, fixed fares upfront, live trip tracking, and one-tap rebooking. Free on iPhone and Android — no App Store needed.",
+           extra=app_css)
+app += nav("", "app")
+app += f"""
+<header class="apphero"><div class="wrap">
+  <div class="apphero-copy">
+    <p class="eyebrow">The Koast App</p>
+    <h1>Ride <em>easy.</em></h1>
+    <p class="sub">Your chauffeur, in your pocket. Book in seconds, watch your car arrive live on the map, message your chauffeur, and keep every receipt &mdash; free, and no App Store needed.</p>
+    <div class="appcta">
+      <a class="btn btn-orange" href="{APP_URL}" style="font-size:16px;padding:15px 28px">Open the Koast app &rarr;</a>
+      <a class="btn" href="#install" style="font-size:15px;background:rgba(255,255,255,.07);color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)">How to install</a>
+    </div>
+    <div class="appbadges"><span>&#10003; Free</span><span>&#10003; iPhone &amp; Android</span><span>&#10003; Installs in one tap</span></div>
+  </div>
+  <div class="aphone"><div class="ascr">
+    <div class="top">Koast <i>&#9679; Chauffeur en route</i></div>
+    <div class="amap"><b></b></div>
+    <div class="arow"><b>Your chauffeur &middot; First-Class SUV</b><span>Arriving in 6 min &middot; details in the app</span></div>
+    <div class="arow"><b>SFO &rarr; Downtown</b><span>Fixed fare &mdash; locked at booking</span></div>
+    <div class="apill">Message chauffeur</div>
+  </div></div>
+</div></header>
+
+<section class="sec"><div class="wrap">
+  <div class="sec-head center"><span class="pill pill-orange">Why the app</span><h2>Everything about your ride, one screen away.</h2></div>
+  <div class="grid-2">
+    {feat("price","o","Fixed fares, upfront","Your quote is your final price, locked at booking. No surge, no meter anxiety, itemized receipts on every trip.")}
+    {feat("pin","t","Live trip tracking","Watch your chauffeur approach in real time, share your trip with family, and get flight-aware pickups that adjust when you're delayed.")}
+    {feat("receipt","o","One-tap everything","Rebook your usual route in a tap, message your chauffeur in-app, and keep receipts, favorites, and saved places in one place.")}
+    {feat("shield","t","Built for peace of mind","Verify your chauffeur by plate and PIN, share live trips with the people who care, and reach a real person 24/7.")}
+  </div>
+</div></section>
+
+<section style="padding-top:0" id="install"><div class="wrap"><div class="getapp">
+  <h2>On your phone in under a minute.</h2>
+  <p>Koast installs straight from your browser &mdash; nothing to download from a store.</p>
+  <div class="qrcard">
+    <img src="img/app-qr.png" alt="QR code that opens the Koast app" width="132" height="132" loading="lazy">
+    <div><b>On a computer? Scan with your phone's camera.</b>
+    <p>Point your camera at the code and the Koast app opens instantly. Already on your phone? Just tap the button below.</p>
+    <a class="btn btn-orange" href="{APP_URL}" style="margin-top:10px;display:inline-flex">Open the Koast app &rarr;</a></div>
+  </div>
+  <div class="grid-3">
+    <div class="step"><div class="num">STEP 01</div><h3>Open</h3><p>Tap the button above or scan the code &mdash; the app opens right in your browser.</p></div>
+    <div class="step"><div class="num">STEP 02</div><h3>Install</h3><p>Add Koast to your home screen for the full-screen app experience.</p></div>
+    <div class="step"><div class="num">STEP 03</div><h3>Ride</h3><p>Sign in with your phone number and book your first ride.</p></div>
+  </div>
+  <div class="osnote">
+    <div><b>iPhone &amp; iPad</b>In Safari, tap the Share button, then &ldquo;Add to Home Screen.&rdquo; Koast appears on your home screen like any app.</div>
+    <div><b>Android</b>In Chrome, tap &ldquo;Install&rdquo; when prompted &mdash; or the menu (&#8942;) then &ldquo;Install app.&rdquo;</div>
+    <div><b>Desktop</b>Works right in your browser &mdash; or click the install icon in the address bar for a windowed app.</div>
+  </div>
+</div></div></section>
+"""
+app += faq_section([
+  ("Is the Koast app free?",
+   "Yes. The app is completely free — you only ever pay for rides, at the fixed fare quoted before you book."),
+  ("Why isn't it in the App Store?",
+   "Koast installs straight from your browser as a modern web app — one tap, no store account, and updates arrive instantly. It lives on your home screen and works like any other app."),
+  ("Does it work on iPhone and Android?",
+   "Yes — iPhone, iPad, Android, and desktop. Your account, trips, and saved places stay in sync everywhere you sign in."),
+  ("Do I need the app to book a ride?",
+   "No. You can always book right here on the website. The app adds live trip tracking, one-tap rebooking, chauffeur messaging, and your trip history in one place."),
+], title="App questions")
+app += cta_section("Your next ride is a tap away.", "Open the app, get an instant fixed price, and ride easy.")
+app += footer("")
+write("app.html", app)
 
 # SEO enhance — must run last
 enhance()
