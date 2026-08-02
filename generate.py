@@ -621,13 +621,6 @@ home += f"""
   <div class="hero-copy">
     <p class="hero-brandline" style="font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:#ff7309;margin:0 0 12px">Koast — Professional Black Car &amp; Chauffeur Service</p>
     <h1>Ride <span class="o">easy.</span></h1>
-    <p class="lede hide-m">Flat-rate chauffeured black car service — instant quotes, vetted professional drivers, flight tracking included. 24/7.</p>
-    <p class="lede show-m">Flat-rate black car service — no surge, 24/7, nationwide.</p>
-    <ul class="check check-o hide-m" style="margin-bottom:0">
-      <li>Fixed all-inclusive pricing — never surge</li>
-      <li>Flight tracking &amp; free airport wait time</li>
-      <li>Vetted, commercially licensed chauffeurs</li>
-    </ul>
   </div>
   {book_card()}
 </div></header>"""
