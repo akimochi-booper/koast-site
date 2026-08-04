@@ -626,3 +626,8 @@ body.kchat-open #kchat{opacity:1;pointer-events:auto;transform:none}
 .kchat-thumb{position:relative;width:54px;height:54px;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,.16)}
 .kchat-thumb img{width:100%;height:100%;object-fit:cover;display:block}
 .kchat-thumb button{position:absolute;top:-7px;right:-7px;width:20px;height:20px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:#0e1013;
+/* ---------- mobile: drop "Ride easy." headline from photo hero (photo band stays) ---------- */
+@media(max-width:900px){
+  .hero.hero-split .hero-copy h1{display:none}
+  .hero.hero-split .hero-copy{min-height:200px}
+}
