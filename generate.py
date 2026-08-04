@@ -21,7 +21,8 @@ def head(title, desc, prefix="", extra=""):
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{prefix}css/main.css?v=11">
 <link rel="manifest" href="/site.webmanifest">
-<meta name="theme-color" content="#0e1013">{extra}
+<meta name="theme-color" content="#0e1013">
+<meta property="og:site_name" content="Koast">{extra}
 </head>
 <body>"""
 
@@ -64,7 +65,7 @@ def nav(prefix="", active=""):
 
     return f"""
 <nav class="site-nav"><div class="wrap nav-inner">
-  <a class="logo" href="{prefix}index.html"><img src="{prefix}img/logo-transparent.png" alt="Koast — Premier Chauffeur Service" style="height:58px;width:auto"></a>
+  <a class="logo" href="{prefix}index.html"><img src="{prefix}img/logo-transparent.png" alt="Koast" style="height:58px;width:auto"></a>
   <div class="nav-links">{links}</div>
   <div class="nav-cta">
     <a class="btn btn-line" href="https://customer.moovs.app/koast/new/info">Log In</a>
@@ -621,6 +622,7 @@ home += f"""
   <div class="hero-copy">
     <p class="hero-brandline" style="font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:#ff7309;margin:0 0 12px">Koast — Professional Black Car &amp; Chauffeur Service</p>
     <h1>Ride <span class="o">easy.</span></h1>
+    <p class="lede" style="max-width:520px;margin-top:14px">Koast is a ride-booking app for professional chauffeured black-car service &mdash; fixed upfront prices, vetted licensed chauffeurs, and live trip tracking. Book on the web or install it on your phone.</p>
   </div>
   {book_card()}
 </div></header>"""
@@ -663,7 +665,7 @@ home += service_areas_section()
 home += f"""
 <section style="padding-top:0"><div class="wrap"><div class="steps">
   <h2>Booked in under a minute.</h2>
-  <p>No account. No app download. No phone tag.</p>
+  <p>No account needed. Nothing to install. No phone tag.</p>
   <div class="grid-3">
     <div class="step"><div class="num">STEP 01</div><h3>Enter your trip</h3><p>Pickup, drop-off, date and time. Get an instant all-inclusive price.</p></div>
     <div class="step"><div class="num">STEP 02</div><h3>Confirm your ride</h3><p>Choose your vehicle class and pay securely. Change plans anytime.</p></div>
@@ -678,6 +680,7 @@ home += f"""
 home += f"""
 <section class="sec" id="app"><div class="wrap">
   <div class="sec-head center"><span class="pill pill-orange">The Koast app</span>
+    <img src="img/app-icon.png" alt="Koast app logo" width="84" height="84" style="border-radius:20px;display:block;margin:14px auto 6px" loading="lazy">
     <h2>Koast</h2>
     <p style="max-width:680px;margin:10px auto 0;color:var(--muted,#9aa3b2)">Koast is our booking app for riders. Book a chauffeur, see your fixed price upfront, track your car live on a map, message your chauffeur, and keep receipts for every trip &mdash; on the web or installed on your phone.</p>
   </div>
@@ -3636,6 +3639,7 @@ app += nav("", "app")
 app += f"""
 <header class="apphero"><div class="wrap">
   <div class="apphero-copy">
+    <img src="img/app-icon.png" alt="Koast app logo" width="72" height="72" style="border-radius:18px;display:block;margin:0 0 14px">
     <p class="eyebrow">The Koast App</p>
     <h1>Ride <em>easy.</em></h1>
     <p class="sub">Your chauffeur, in your pocket. Book in seconds, watch your car arrive live on the map, message your chauffeur, and keep every receipt &mdash; free, and no App Store needed.</p>
