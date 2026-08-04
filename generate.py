@@ -19,7 +19,7 @@ def head(title, desc, prefix="", extra=""):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{prefix}css/main.css?v=13">
+<link rel="stylesheet" href="{prefix}css/main.css?v=14">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0e1013">
 <meta property="og:site_name" content="Koast">{extra}

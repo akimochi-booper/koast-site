@@ -304,7 +304,7 @@ footer.site-footer{background:#000;border-top:1px solid #1c1f24}
   .hide-m{display:none!important}
   .show-m{display:block}
   .hero.hero-split{background:none;padding:0 0 30px}
-  .hero.hero-split .hero-copy{margin:0 -20px;padding:44px 20px 64px;background:linear-gradient(180deg,rgba(8,10,12,.72) 0%,rgba(8,10,12,.32) 100%),url('../img/hero-mobile.webp') center 62%/cover no-repeat}
+  .hero.hero-split .hero-copy{margin:0 -20px;padding:44px 20px 64px;background:linear-gradient(180deg,rgba(8,10,12,.35) 0%,rgba(8,10,12,.08) 100%),url('../img/hero-mobile.webp') center 62%/cover no-repeat}
   .hero.hero-split .pill{background:rgba(233,247,245,.93);border-color:rgba(200,233,229,.5)}
   .hero.hero-split h1{color:#fff;font-size:38px;margin:12px 0 8px}
   .hero.hero-split p.lede{color:#e6eaef;font-size:14.5px;margin-bottom:2px;max-width:92%}
