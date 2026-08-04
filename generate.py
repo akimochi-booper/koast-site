@@ -620,9 +620,13 @@ home += nav("")
 home += f"""
 <header class="hero hero-split hero-photo"><div class="wrap hero-grid">
   <div class="hero-copy">
-    <p class="hero-brandline" style="font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:#ff7309;margin:0 0 12px">Koast — Professional Black Car &amp; Chauffeur Service</p>
     <h1>Ride <span class="o">easy.</span></h1>
-    <p class="lede" style="max-width:520px;margin-top:14px">Koast is a ride-booking app for professional chauffeured black-car service &mdash; fixed upfront prices, vetted licensed chauffeurs, and live trip tracking. Book on the web or install it on your phone.</p>
+    <p class="lede hide-m">Flat-rate chauffeured black car service — instant quotes, vetted professional drivers, flight tracking included. 24/7.</p>
+    <ul class="check check-o hide-m" style="margin-bottom:0">
+      <li>Fixed all-inclusive pricing — never surge</li>
+      <li>Flight tracking &amp; free airport wait time</li>
+      <li>Vetted, commercially licensed chauffeurs</li>
+    </ul>
   </div>
   {book_card()}
 </div></header>"""
