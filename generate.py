@@ -220,6 +220,7 @@ def footer(prefix=""):
       <a href="{prefix}app.html">The Koast app</a>
       <a href="{prefix}blog/index.html">Guides</a>
       <a href="{prefix}terms.html">Terms</a>
+      <a href="{prefix}sms-terms.html">SMS Terms</a>
       <a href="{prefix}privacy.html">Privacy</a>
     </div>
   </div>
@@ -2000,6 +2001,61 @@ p += f"""
 p += footer("")
 write("terms.html", p)
 
+# ============================ SMS TERMS ============================
+p = head("SMS Terms | Koast", "Terms for Koast Ride Updates, our optional transactional text messaging program.", "")
+p += nav("")
+p += f"""
+<section class="tight"><div class="wrap article">
+  <span class="pill">Legal</span>
+  <h1>SMS Terms</h1>
+  <div class="meta">Effective August 11, 2026</div>
+
+  <h2>Koast Ride Updates</h2>
+  <p>Koast Ride Updates is an optional transactional text messaging program operated by Krujim Inc., doing business as Koast. By checking the consent box in your Koast account and selecting <strong>Enable text alerts</strong>, you expressly agree to receive recurring automated text messages at the mobile number you provide.</p>
+
+  <h2>Messages you may receive</h2>
+  <p>Messages relate to services you request from Koast and may include booking confirmations, quote notices, chauffeur assignment and arrival updates, pickup reminders, trip or flight changes, cancellation notices, payment and receipt notices, and support replies. This program does not include marketing or promotional messages.</p>
+
+  <h2>Frequency and charges</h2>
+  <p>Message frequency varies based on your bookings, trip activity, and support conversations. Message and data rates may apply. Koast does not charge a separate fee for text messages, but your wireless carrier's rates apply.</p>
+
+  <h2>Opting out and getting help</h2>
+  <p>Reply <strong>STOP</strong> to opt out at any time. After you opt out, you may receive one final message confirming your request. Reply <strong>HELP</strong> for help, email <a href="mailto:{EMAIL}">{EMAIL}</a>, or call <a href="tel:+16508806514">{PHONE}</a>. You can also turn off text alerts in Koast under Account &rarr; Notifications.</p>
+
+  <h2>Consent and delivery</h2>
+  <p>Consent to receive text messages is not a condition of purchasing or using Koast's transportation services. Mobile carriers are not liable for delayed or undelivered messages. You are responsible for providing a valid mobile number and for notifying Koast or opting out before transferring or discontinuing that number.</p>
+
+  <h2>Privacy</h2>
+  <p>We handle mobile numbers and messaging consent as described in our <a href="privacy.html">Privacy Policy</a>. We do not sell or share mobile numbers or SMS opt-in data and consent with third parties or affiliates for marketing or promotional purposes.</p>
+
+  <h2>Changes</h2>
+  <p>We may update these SMS Terms. Material changes will be posted here with a revised effective date. Continuing to participate after a change means you accept the updated terms.</p>
+</div></section>"""
+p += footer("")
+write("sms-terms.html", p)
+
+# ============================ SMS CONSENT REVIEWER PREVIEW ============================
+p = head("SMS Consent | Koast", "Public preview of the optional Koast Ride Updates text-message consent flow.", "")
+p += nav("")
+p += f"""
+<section class="tight"><div class="wrap article">
+  <span class="pill">Reviewer preview</span>
+  <h1>Koast Ride Updates consent</h1>
+  <p>This is a public preview of the consent screen customers see after signing in to Koast and opening <strong>Account &rarr; Notifications</strong>. The consent checkbox is optional and is never pre-selected.</p>
+  <div style="max-width:680px;margin:28px 0;padding:24px;border:1px solid #dedbd5;border-radius:18px;background:#fff;color:#151515">
+    <label for="sms-preview-phone" style="display:block;font-weight:700;margin-bottom:8px">Verified mobile number</label>
+    <input id="sms-preview-phone" type="tel" value="(415) 555-0123" readonly aria-readonly="true" style="box-sizing:border-box;width:100%;padding:13px 14px;border:1px solid #cfcac2;border-radius:10px;background:#f6f4ef;color:#343434;font-size:16px">
+    <label style="display:flex;align-items:flex-start;gap:12px;margin-top:18px;line-height:1.55;cursor:pointer">
+      <input type="checkbox" aria-label="SMS consent preview checkbox" style="width:20px;height:20px;margin-top:2px;flex:none">
+      <span>I agree to receive recurring automated transactional text messages from Koast about my bookings, including confirmations, chauffeur updates, trip changes, reminders, payment notices, and support replies. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. Consent is not a condition of purchase. <a href="sms-terms.html">SMS Terms</a> and <a href="privacy.html">Privacy Policy</a>.</span>
+    </label>
+    <button type="button" style="width:100%;margin-top:20px;padding:14px;border:0;border-radius:10px;background:#0e1013;color:#fff;font:inherit;font-weight:700">Enable text alerts</button>
+  </div>
+  <p><strong>Opt-in method:</strong> Web Form. Koast records the customer, verified mobile number, disclosure version, timestamp, source, IP address, and user agent when consent is submitted.</p>
+</div></section>"""
+p += footer("")
+write("sms-consent.html", p)
+
 # ============================ PRIVACY (ported from koastride.com) ============================
 p = head("Privacy Policy | Koast", "How Koast collects, uses, and safeguards your personal information.", "")
 p += nav("")
@@ -2039,7 +2095,8 @@ p += f"""
   <p>The Services may integrate with social sharing features that let you share actions you take on our Services with other apps, sites, or media. Use of such features enables sharing with your friends or the public depending on your settings with the social sharing service — refer to their privacy policies. Analytics and advertising services may use cookies, web beacons, SDKs, and other technologies to identify your device when you visit our site and other online services, for audience measurement and to serve and measure advertisements on our behalf.</p>
 
   <h2>SMS/MMS mobile messaging</h2>
-  <p>We will only use your mobile phone numbers with explicit consent provided through our services or via our website. We use the information you provide through the program to transmit your mobile messages and respond to you, which may include sharing with platform providers, phone companies, and other vendors who assist in message delivery. We do not share phone numbers collected through the program with any third party, though we reserve the right to disclose information as necessary to satisfy any law, regulation, or governmental request, avoid liability, or protect our rights or property. When you provide information in connection with the program, you agree to provide accurate, complete, and true information and not to use a false or misleading name. If we believe information is untrue or you opted in for an ulterior purpose, we may refuse access to the program and pursue appropriate legal remedies.</p>
+  <p><strong>Koast Ride Updates is optional.</strong> We use a mobile number for recurring transactional text messages only after the number's owner gives express consent through our services. Consent is not a condition of purchase. Messages may include booking and quote notices, chauffeur assignment or arrival updates, pickup reminders, trip or flight changes, cancellation notices, payment and receipt notices, and support replies. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. See our <a href="sms-terms.html">SMS Terms</a>.</p>
+  <p>We do not sell, rent, or share mobile numbers, SMS opt-in data, or SMS consent with third parties or affiliates for marketing or promotional purposes. We may disclose this information to service providers, mobile carriers, and vendors only as needed to deliver and support the messaging program, or when required by law; those parties may not use it for their own marketing. Opting out of text messages does not affect non-SMS communications needed to provide a requested service.</p>
 
   <h2>Your choices</h2>
   <p><strong>Account information:</strong> you may correct your account information at any time by logging into your Koast account. To cancel your account, contact us at {EMAIL}. We may retain certain information as required by law or for legitimate business purposes.</p>
