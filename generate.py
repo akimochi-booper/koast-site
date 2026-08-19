@@ -245,7 +245,7 @@ def book_card():
     if(String(e.origin).indexOf('moovs')===-1)return;
     var h=null,d=e.data;
     if(d&&typeof d==='object')h=d.height||d.frameHeight||(d.payload&&d.payload.height);
-    if(typeof d==='string'){{var m=d.match(/"height"\s*:\s*(\d+)/);if(m)h=+m[1];}}
+    if(typeof d==='string'){{var m=d.match(/"height"\\s*:\\s*(\\d+)/);if(m)h=+m[1];}}
     if(h&&h>300&&h<4000)document.querySelectorAll('.book-widget iframe').forEach(function(f){{f.style.height=h+'px';}});
   }});
   </script>
@@ -406,7 +406,7 @@ def cta_section(h="Ride easy.", p=None):
 def write(path, html):
     full = os.path.join(ROOT, path)
     os.makedirs(os.path.dirname(full) or ".", exist_ok=True)
-    with open(full, "w") as f: f.write(html)
+    with open(full, "w", encoding="utf-8", newline="\n") as f: f.write(html)
     print("wrote", path)
 
 TESTIMONIALS = [
@@ -2195,7 +2195,7 @@ def enhance():
         if not CARE_RIDES_LIVE and rel == "services/care-rides.html": continue
         url = BASE_URL + "/" + ("" if rel=="index.html" else rel)
         urls.append(url)
-        src = open(fp).read()
+        src = open(fp, encoding="utf-8").read()
         if 'rel="canonical"' in src: continue
         title = _re.search(r"<title>(.*?)</title>", src, _re.S).group(1).strip()
         desc_m = _re.search(r'name="description" content="(.*?)"', src)
@@ -2223,7 +2223,7 @@ def enhance():
         for b in _schema_for(rel, src, url, title, desc):
             inject += '<script type="application/ld+json">' + _json.dumps(b, ensure_ascii=False) + "</script>\n"
         src = src.replace("</head>", inject + "</head>", 1)
-        open(fp,"w").write(src)
+        open(fp,"w",encoding="utf-8",newline="\n").write(src)
         print("enhanced", rel)
     # sitemap.xml
     import datetime as _dt
@@ -2232,7 +2232,7 @@ def enhance():
     for u in urls:
         sm += f"  <url><loc>{u}</loc><lastmod>{_today}</lastmod></url>\n"
     sm += "</urlset>\n"
-    open(os.path.join(ROOT,"sitemap.xml"),"w").write(sm)
+    open(os.path.join(ROOT,"sitemap.xml"),"w",encoding="utf-8",newline="\n").write(sm)
     # PWA: manifest + minimal service worker (quiet install eligibility; real prompt ships with the booker portal)
     _manifest = {"name": "Koast — Black Car Service", "short_name": "Koast",
         "description": "Chauffeured black car service. Flat rates, vetted drivers. Ride easy.",
@@ -2240,13 +2240,13 @@ def enhance():
         "background_color": "#0e1013", "theme_color": "#0e1013",
         "icons": [{"src": "/img/icon-192.png", "sizes": "192x192", "type": "image/png"},
                   {"src": "/img/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}]}
-    open(os.path.join(ROOT, "site.webmanifest"), "w").write(_json.dumps(_manifest))
-    open(os.path.join(ROOT, "sw.js"), "w").write(
+    open(os.path.join(ROOT, "site.webmanifest"), "w", encoding="utf-8", newline="\n").write(_json.dumps(_manifest))
+    open(os.path.join(ROOT, "sw.js"), "w", encoding="utf-8", newline="\n").write(
         "self.addEventListener('install',e=>self.skipWaiting());"
         "self.addEventListener('activate',e=>e.waitUntil(clients.claim()));"
         "self.addEventListener('fetch',()=>{});")
     # robots.txt
-    open(os.path.join(ROOT,"robots.txt"),"w").write(
+    open(os.path.join(ROOT,"robots.txt"),"w",encoding="utf-8",newline="\n").write(
 f"""User-agent: *
 Allow: /
 
@@ -2268,7 +2268,7 @@ Sitemap: {BASE_URL}/sitemap.xml
         _wl = WINERIES.get(_ws, [])
         _names = "; ".join(f"{w['name']} ({w['area']}, known for {w['known']}, {w['res'].lower()})" for w in _wl)
         wine_lines += f"- {_wr['name']}: {_wr['drive']}, known for {_wr['known']}. Notable wineries: {_names}\n"
-    open(os.path.join(ROOT,"llms.txt"),"w").write(
+    open(os.path.join(ROOT,"llms.txt"),"w",encoding="utf-8",newline="\n").write(
 f"""# Koast — Professional Chauffeured Black Car Service
 
 > Koast is a professional black car and chauffeur service headquartered in San Francisco, California, serving the Bay Area and major U.S. cities nationwide. Motto: "Ride easy."
