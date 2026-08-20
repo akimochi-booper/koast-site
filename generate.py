@@ -19,12 +19,13 @@ def head(title, desc, prefix="", extra=""):
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{prefix}css/main.css?v=14">
+<link rel="stylesheet" href="{prefix}css/main.css?v=15">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0e1013">
 <meta property="og:site_name" content="Koast">{extra}
 </head>
-<body>"""
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>"""
 
 NAV_ITEMS = [("index.html#fleet","Fleet","fleet"),
              ("services/airport-transfers.html","Airports","airport"),
@@ -57,7 +58,7 @@ def nav(prefix="", active=""):
     links += f'<a href="{prefix}support.html"{AC if active=="support" else ""}>Support</a>'
 
     mlinks = f'''<details class="mm-dd"><summary>Services <span class="mm-caret">&#9662;</span></summary><div class="mm-dd-list"><a href="{prefix}services/airport-transfers.html">Airport Transfers</a><a href="{prefix}services/corporate-travel.html">Corporate Travel</a><a href="{prefix}services/weddings.html">Weddings</a><a href="{prefix}services/party-bus.html">Party Bus</a><a href="{prefix}index.html#fleet">Our Fleet</a></div></details>
-      <details class="mm-dd"><summary>Wine <span class="mm-caret">&#9662;</span></summary><div class="mm-dd-list"><a href="{prefix}services/wine-tours.html" class="mm-all">Wine tour service &#8594;</a><a href="{prefix}wineries/index.html" class="mm-all">Browse all wineries &#8594;</a><h6>California</h6>{ca}<h6>Nationwide</h6>{us}</div></details>
+      <details class="mm-dd"><summary>Wine <span class="mm-caret">&#9662;</span></summary><div class="mm-dd-list"><a href="{prefix}services/wine-tours.html" class="mm-all">Wine tour service &#8594;</a><a href="{prefix}wineries/index.html" class="mm-all">Browse all wineries &#8594;</a><span class="mm-label">California</span>{ca}<span class="mm-label">Nationwide</span>{us}</div></details>
       <details class="mm-dd"><summary>Cities <span class="mm-caret">&#9662;</span></summary><div class="mm-dd-list"><a href="{prefix}cities/index.html" class="mm-all">All cities &#8594;</a>{cpop}{cmore}</div></details>
       <a href="{prefix}app.html">App</a>
       <a href="{prefix}blog/index.html">Guides</a>
@@ -70,11 +71,27 @@ def nav(prefix="", active=""):
   <div class="nav-cta">
     <a class="btn btn-line" href="https://customer.moovs.app/koast/new/info">Log In</a>
     <a class="btn btn-orange" href="{BOOK}">Book a Ride</a>
-    <button class="nav-burger" onclick="document.body.classList.toggle('nav-open')" aria-label="Menu">&#9776;</button>
+    <button class="nav-burger" id="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">&#9776;</button>
   </div>
 </div>
-<div class="mobile-menu">{mlinks}<a href="https://customer.moovs.app/koast/new/info">Log In</a></div>
-</nav>"""
+<div class="mobile-menu" id="mobile-menu">{mlinks}<a href="https://customer.moovs.app/koast/new/info">Log In</a></div>
+</nav>
+<script>
+(function(){{
+  var b=document.getElementById('nav-toggle'),m=document.getElementById('mobile-menu');
+  if(!b||!m)return;
+  function setNav(open){{
+    document.body.classList.toggle('nav-open',open);
+    b.setAttribute('aria-expanded',String(open));
+    b.setAttribute('aria-label',open?'Close menu':'Open menu');
+    b.innerHTML=open?'&times;':'&#9776;';
+  }}
+  b.addEventListener('click',function(){{setNav(!document.body.classList.contains('nav-open'))}});
+  m.addEventListener('click',function(e){{if(e.target.closest('a'))setNav(false)}});
+  document.addEventListener('keydown',function(e){{if(e.key==='Escape'&&document.body.classList.contains('nav-open')){{setNav(false);b.focus()}}}});
+}})();
+</script>
+<main id="main-content">"""
 
 
 # ============================ AI CHAT WIDGET ============================
@@ -82,13 +99,13 @@ def nav(prefix="", active=""):
 CHAT_WORKER_URL = "https://koast-chat.euburaga.workers.dev"
 
 CHAT_WIDGET = """
-<button id="kchat-fab" aria-label="Chat with Koast" onclick="document.body.classList.toggle('kchat-open')">
+<button id="kchat-fab" aria-label="Chat with Koast" aria-controls="kchat" aria-expanded="false">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
 </button>
-<div id="kchat" role="dialog" aria-label="Koast assistant">
+<div id="kchat" role="dialog" aria-modal="true" aria-label="Koast assistant" aria-hidden="true" inert>
   <div class="kchat-head">
     <div class="kchat-id"><span class="kcoin">K</span><div><strong>Koast Agent</strong><span>Online — answers in seconds</span></div></div>
-    <button class="kchat-x" onclick="document.body.classList.remove('kchat-open')" aria-label="Close">&times;</button>
+    <button class="kchat-x" type="button" aria-label="Close assistant">&times;</button>
   </div>
   <div class="kchat-msgs" id="kchat-msgs">
     <div class="km bot">Hi! Ask me anything about booking, airports, the fleet, or wine tours. For exact prices, the instant-quote widget is the way.</div>
@@ -102,7 +119,7 @@ CHAT_WIDGET = """
   <div class="kchat-foot">
     <button id="kchat-mic" class="kchat-tool" type="button" aria-label="Speak" title="Speak"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg></button>
     <button id="kchat-attach" class="kchat-tool" type="button" aria-label="Attach a photo" title="Attach a photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg></button>
-    <input id="kchat-in" type="text" placeholder="Type, speak, or attach a photo…" maxlength="500">
+    <input id="kchat-in" type="text" aria-label="Message the Koast assistant" placeholder="Type, speak, or attach a photo…" maxlength="500">
     <button id="kchat-send" aria-label="Send">→</button>
     <input id="kchat-file" type="file" accept="image/*" multiple hidden>
   </div>
@@ -114,7 +131,25 @@ CHAT_WIDGET = """
   var IMG_LIVE=false; /* flip to true once the booking system handles photos/itineraries */
   var msgs=document.getElementById('kchat-msgs'),inp=document.getElementById('kchat-in'),btn=document.getElementById('kchat-send');
   var mic=document.getElementById('kchat-mic'),attBtn=document.getElementById('kchat-attach'),fileIn=document.getElementById('kchat-file'),attWrap=document.getElementById('kchat-att'),panel=document.getElementById('kchat');
+  var fab=document.getElementById('kchat-fab'),closeBtn=panel.querySelector('.kchat-x');
   var hist=[],busy=false,atts=[];
+  function setChat(open){
+    document.body.classList.toggle('kchat-open',open);
+    panel.toggleAttribute('inert',!open);
+    panel.setAttribute('aria-hidden',String(!open));
+    fab.setAttribute('aria-expanded',String(open));
+    if(open)inp.focus();else fab.focus();
+  }
+  fab.addEventListener('click',function(){setChat(true)});
+  closeBtn.addEventListener('click',function(){setChat(false)});
+  panel.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){e.preventDefault();setChat(false);return;}
+    if(e.key!=='Tab')return;
+    var f=[].slice.call(panel.querySelectorAll('button:not([disabled]),a[href],input:not([disabled])')).filter(function(x){return x.offsetParent!==null});
+    if(!f.length)return;
+    if(e.shiftKey&&document.activeElement===f[0]){e.preventDefault();f[f.length-1].focus()}
+    else if(!e.shiftKey&&document.activeElement===f[f.length-1]){e.preventDefault();f[0].focus()}
+  });
   function add(cls,text){var d=document.createElement('div');d.className='km '+cls;if(text)d.textContent=text;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
   window.kchatAsk=function(q){inp.value=q;send();};
 
@@ -190,6 +225,7 @@ if _sm:
 
 def footer(prefix=""):
     return f"""
+</main>
 <footer class="site-footer"><div class="wrap">
   <div class="foot-grid">
     <div>
@@ -266,7 +302,7 @@ def fleet_section(prefix=""):
         ints = FLEET_INTERIORS.get(v["img"])
         strip = ""
         if ints:
-            cells = "".join(f'<div><img src="{prefix}img/{f}" alt="Koast {v["name"]} — {lbl}" title="{lbl}" loading="lazy"></div>' for f, lbl in ints)
+            cells = "".join(f'<button class="int-photo" type="button" aria-label="Open {lbl} photo"><img src="{prefix}img/{f}" alt="Koast {v["name"]} — {lbl}" title="{lbl}" loading="lazy"></button>' for f, lbl in ints)
             strip = (f'<div class="int-wrap"><button class="int-nav iprev off" aria-label="Previous photos">‹</button>'
                      f'<div class="int-strip">{cells}</div>'
                      f'<button class="int-nav inext" aria-label="More photos">›</button></div>')
@@ -299,8 +335,8 @@ def fleet_section(prefix=""):
     var orig=t.children.length,K=2;
     var w=function(){{return t.children[0].offsetWidth+22}};
     var kids=[].slice.call(t.children);
-    for(var i=0;i<K;i++) t.appendChild(kids[i].cloneNode(true));
-    for(var j=orig-1;j>=orig-K;j--) t.insertBefore(kids[j].cloneNode(true),t.firstChild);
+    for(var i=0;i<K;i++){{var c=kids[i].cloneNode(true);c.setAttribute('aria-hidden','true');c.setAttribute('inert','');t.appendChild(c)}}
+    for(var j=orig-1;j>=orig-K;j--){{var c=kids[j].cloneNode(true);c.setAttribute('aria-hidden','true');c.setAttribute('inert','');t.insertBefore(c,t.firstChild)}}
     requestAnimationFrame(function(){{t.scrollLeft=K*w()}});
     for(var i=0;i<orig;i++)(function(i){{var b=document.createElement('button');b.setAttribute('aria-label','Vehicle '+(i+1));b.onclick=function(){{t.scrollTo({{left:(i+K)*w(),behavior:'smooth'}})}};d.appendChild(b)}})(i);
     function wrap(){{
@@ -318,21 +354,21 @@ def fleet_section(prefix=""):
     wrap();
     /* interior lightbox */
     if(!document.getElementById('klb')){{
-      var lb=document.createElement('div');lb.id='klb';lb.className='klb';
-      lb.innerHTML='<span class="klb-x">&times;</span><button class="klb-a klb-prev">&#8592;</button><img alt=""><button class="klb-a klb-next">&#8594;</button><div class="klb-cap"></div>';
+      var lb=document.createElement('div');lb.id='klb';lb.className='klb';lb.setAttribute('role','dialog');lb.setAttribute('aria-modal','true');lb.setAttribute('aria-label','Vehicle interior photos');lb.setAttribute('aria-hidden','true');lb.setAttribute('inert','');
+      lb.innerHTML='<button type="button" class="klb-x" aria-label="Close photos">&times;</button><button class="klb-a klb-prev" aria-label="Previous photo">&#8592;</button><img alt=""><button class="klb-a klb-next" aria-label="Next photo">&#8594;</button><div class="klb-cap" aria-live="polite"></div>';
       document.body.appendChild(lb);
-      var im=lb.querySelector('img'),cap=lb.querySelector('.klb-cap'),set=[],idx=0;
+      var im=lb.querySelector('img'),cap=lb.querySelector('.klb-cap'),set=[],idx=0,lastFocus=null;
       function show(i){{idx=(i+set.length)%set.length;im.src=set[idx].src;cap.textContent=set[idx].title||set[idx].alt;}}
-      function close(){{lb.classList.remove('on');document.body.style.overflow=''}}
+      function close(){{lb.classList.remove('on');lb.setAttribute('aria-hidden','true');lb.setAttribute('inert','');document.body.style.overflow='';if(lastFocus)lastFocus.focus()}}
       lb.addEventListener('click',function(e){{if(e.target===lb||e.target.classList.contains('klb-x'))close()}});
       lb.querySelector('.klb-prev').onclick=function(e){{e.stopPropagation();show(idx-1)}};
       lb.querySelector('.klb-next').onclick=function(e){{e.stopPropagation();show(idx+1)}};
       document.addEventListener('keydown',function(e){{if(!lb.classList.contains('on'))return;if(e.key==='Escape')close();if(e.key==='ArrowLeft')show(idx-1);if(e.key==='ArrowRight')show(idx+1)}});
       document.addEventListener('click',function(e){{
-        var d=e.target.closest('.int-strip div');if(!d)return;
+        var d=e.target.closest('.int-photo');if(!d)return;
         var strip=d.closest('.int-strip');set=Array.prototype.map.call(strip.querySelectorAll('img'),function(x){{return x}});
         show(Array.prototype.indexOf.call(strip.children,d));
-        lb.classList.add('on');document.body.style.overflow='hidden';
+        lastFocus=d;lb.classList.add('on');lb.removeAttribute('inert');lb.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';lb.querySelector('.klb-x').focus();
       }});
       document.addEventListener('click',function(e){{
         var b=e.target.closest('.int-nav');if(!b)return;
@@ -412,7 +448,7 @@ def write(path, html):
 TESTIMONIALS = [
  ("Our executives fly into SFO every month and Koast hasn't missed a pickup yet. Flight delayed two hours — the driver was simply there when they landed.","Sarah M.","Corporate Travel Manager · enterprise software company, SF"),
  ("I coordinate ground travel for three executives across two time zones. One dashboard, driver details before every pickup, one invoice at month end.","Danielle R.","Executive Assistant · global investment firm, New York"),
- ("Booked the Sprinter for a client offsite to Napa — fourteen people, four wineries, zero logistics on my plate. Clients still bring it up.","Marcus T.","Account Director · marketing agency, SF"),
+ ("Booked the Sprinter for a client offsite to Napa — a full group, four wineries, zero logistics on my plate. Clients still bring it up.","Marcus T.","Account Director · marketing agency, SF"),
  ("Every candidate we fly in gets a Koast pickup now. It sets the tone before they ever reach the office, and the booking takes my team ninety seconds.","Priya K.","Head of People · biotech company, South San Francisco"),
  ("My calendar moves constantly. The hourly charter just absorbs it — driver waits, route adjusts, and I've never once thought about parking on Sand Hill.","James W.","Partner · venture capital firm, Menlo Park"),
  ("We moved 120 conference guests between venues over three days. Koast ran it like a transit system — buses on time, every time.","Elena V.","Event Producer · hospitality group, Las Vegas"),
@@ -452,8 +488,8 @@ def testi_section():
     var orig=t.children.length,K=2;
     var w=function(){{return t.children[0].offsetWidth+22}};
     var kids=[].slice.call(t.children);
-    for(var i=0;i<K;i++) t.appendChild(kids[i].cloneNode(true));
-    for(var j=orig-1;j>=orig-K;j--) t.insertBefore(kids[j].cloneNode(true),t.firstChild);
+    for(var i=0;i<K;i++){{var c=kids[i].cloneNode(true);c.setAttribute('aria-hidden','true');c.setAttribute('inert','');t.appendChild(c)}}
+    for(var j=orig-1;j>=orig-K;j--){{var c=kids[j].cloneNode(true);c.setAttribute('aria-hidden','true');c.setAttribute('inert','');t.insertBefore(c,t.firstChild)}}
     requestAnimationFrame(function(){{t.scrollLeft=K*w()}});
     for(var i=0;i<orig;i++)(function(i){{var b=document.createElement('button');b.setAttribute('aria-label','Review '+(i+1));b.onclick=function(){{t.scrollTo({{left:(i+K)*w(),behavior:'smooth'}})}};d.appendChild(b)}})(i);
     function wrap(){{
@@ -531,10 +567,10 @@ def service_areas_section(prefix=""):
     var s=document.currentScript.closest('section'),t=s.querySelector('.car-track');
     var orig=t.children.length,K=3;
     var w=function(){{return t.children[0].offsetWidth+22}};
-    // clone for infinite loop
+    // clone for infinite loop; clones stay out of the accessibility tree
     var kids=[].slice.call(t.children);
-    for(var i=0;i<K;i++) t.appendChild(kids[i].cloneNode(true));
-    for(var j=orig-1;j>=orig-K;j--) t.insertBefore(kids[j].cloneNode(true),t.firstChild);
+    for(var i=0;i<K;i++){{var c=kids[i].cloneNode(true);c.setAttribute('aria-hidden','true');c.setAttribute('inert','');t.appendChild(c)}}
+    for(var j=orig-1;j>=orig-K;j--){{var c=kids[j].cloneNode(true);c.setAttribute('aria-hidden','true');c.setAttribute('inert','');t.insertBefore(c,t.firstChild)}}
     requestAnimationFrame(function(){{t.scrollLeft=K*w()}});
     function wrap(){{
       var W=w();
@@ -591,10 +627,10 @@ def services_section(prefix=""):
     var s=document.currentScript.closest('section'),t=s.querySelector('.car-track');
     var orig=t.children.length,K=3;
     var w=function(){{return t.children[0].offsetWidth+22}};
-    // clone for infinite loop
+    // clone for infinite loop; clones stay out of the accessibility tree
     var kids=[].slice.call(t.children);
-    for(var i=0;i<K;i++) t.appendChild(kids[i].cloneNode(true));
-    for(var j=orig-1;j>=orig-K;j--) t.insertBefore(kids[j].cloneNode(true),t.firstChild);
+    for(var i=0;i<K;i++){{var c=kids[i].cloneNode(true);c.setAttribute('aria-hidden','true');c.setAttribute('inert','');t.appendChild(c)}}
+    for(var j=orig-1;j>=orig-K;j--){{var c=kids[j].cloneNode(true);c.setAttribute('aria-hidden','true');c.setAttribute('inert','');t.insertBefore(c,t.firstChild)}}
     requestAnimationFrame(function(){{t.scrollLeft=K*w()}});
     function wrap(){{
       var W=w();
@@ -812,7 +848,7 @@ def plan_trip(groups, lead=""):
     for label, chips in groups:
         if not chips: continue
         ch = "".join(f'<a class="chip" href="{href}"><i>{ic}</i> {txt}</a>' for href, txt, ic in chips)
-        secs += f'<h6>{label}</h6><div class="chips">{ch}</div>'
+        secs += f'<h3 class="related-label">{label}</h3><div class="chips">{ch}</div>'
     if not secs: return ""
     lead_html = f'<p class="lead">{lead}</p>' if lead else ""
     return f"""
@@ -831,7 +867,7 @@ for slug, c in CITIES.items():
     h += nav("../", "cities")
     h += f"""
 <header class="hero-dark"><div class="wrap">
-  <div class="crumbs"><a href="../index.html">Home</a><span>/</span><a href="index.html">Cities</a><span>/</span>{c['name']}</div>
+  <div class="crumbs"><a href="../index.html">Home</a><span>/</span><a href="../cities/index.html">Cities</a><span>/</span>{c['name']}</div>
   <div class="hero-grid">
     <div class="hero-copy">
       <h1>Black car service in <span class="o">{c['name']}.</span></h1>
@@ -1221,7 +1257,7 @@ def route_page(slug, d):
   </div>
   <div>
     <h3 style="margin-bottom:16px">Match the vehicle to the trip</h3>
-    {routes_table([("Business Class Sedan","1–3 passengers"),("Business / First-Class SUV","up to 6"),("Executive Sprinter","up to 14"),("Party bus","groups &amp; events")], "Vehicle", "Best for")}
+    {routes_table([("Business Class Sedan","1–3 passengers"),("Business / First-Class SUV","up to 6"),("Executive Sprinter","up to 12"),("Party bus","groups &amp; events")], "Vehicle", "Best for")}
   </div>
 </div></section>"""
     p += faq_section(d["faqs"], f"{f} to {d['to']} questions")
@@ -1453,7 +1489,7 @@ s += f"""
     <ul class="check">
       <li><strong>Couples</strong> — Business Sedan or First-Class SUV</li>
       <li><strong>Friends &amp; families (up to 6)</strong> — Business or First-Class SUV</li>
-      <li><strong>Groups up to 14</strong> — Executive Sprinter</li>
+      <li><strong>Groups up to 12</strong> — Executive Sprinter</li>
       <li><strong>Big celebrations (up to 32)</strong> — Mid-Size or Large Party Bus</li>
     </ul>
   </div>
@@ -1567,7 +1603,7 @@ BLOG_FAQ = {
  "houston-rodeo-guide": [
   ("What's the best way to get to NRG Park for the rodeo?", "A black car drop-off at the gate skips the half-mile lot hike and the post-show parking crawl. Pickup is pre-arranged on the Fannin side so you're at dinner while the lots are still clearing."),
   ("Does pricing surge on concert nights?", "No. Koast is flat-rate, so a headline rodeo concert night costs the same per route as any other day — no event surge."),
-  ("Can a group ride to the rodeo together?", "Yes — a Suburban for six or a Sprinter for fourteen keeps everyone together, with room for the cooler and a scheduled pickup for the ride home."),
+  ("Can a group ride to the rodeo together?", "Yes — a Suburban for six or a Sprinter for up to twelve keeps everyone together, with room for the cooler and a scheduled pickup for the ride home."),
  ],
  "seattle-events-guide": [
   ("How do you get around Seattle on a stadium or festival day?", "A pre-scheduled black car skips the I-5 and SoDo crush. Pickups are set on streets like First Avenue so you're moving while the stadium lots are still gridlocked."),
@@ -1625,7 +1661,7 @@ BLOG_FAQ = {
   ("Are winter visits to the Willamette Valley worth it?", "Yes — quieter tasting rooms, easier reservations, and the same world-class Pinot. A warm car and a chauffeur make the off-season drive genuinely pleasant."),
  ],
  "group-wine-tour-planning": [
-  ("What size vehicle do I need for a group wine tour?", "Up to six rides comfortably in an SUV; larger groups take a Sprinter (up to fourteen) or a party bus. Matching the vehicle to the group keeps everyone together with room for cases."),
+  ("What size vehicle do I need for a group wine tour?", "Up to six rides comfortably in an SUV; larger groups take a Sprinter (up to twelve) or a party bus. Matching the vehicle to the group keeps everyone together with room for cases."),
   ("How far ahead should I book a group wine tour?", "Book a few weeks out for weekends and peak season — both the vehicle and the winery reservations fill up. We can help sequence stops and timing."),
   ("Does a chauffeured wine tour solve the designated-driver problem?", "Yes — that's the point. Everyone tastes, the chauffeur drives, and there's no parking, no navigation, and no one drawing the short straw."),
  ],
@@ -1647,7 +1683,7 @@ BLOG_FAQ = {
  "napa-sonoma-chauffeur-day-trip": [
   ("How does a chauffeured Napa or Sonoma day trip work?", "An hourly booking holds the car for the day — you taste, we drive. No designated driver, no parking, and no rushing between winery reservations."),
   ("How far is wine country from San Francisco?", "Napa and Sonoma are roughly 60–90 minutes from the city, traffic depending. A flat rate keeps the round trip predictable with no metered surprises."),
-  ("What vehicle is best for a wine-country day?", "A sedan or SUV suits couples and small groups; a Sprinter fits up to fourteen with room for cases — all with the same chauffeur standard and no designated-driver problem."),
+  ("What vehicle is best for a wine-country day?", "A sedan or SUV suits couples and small groups; a Sprinter fits up to twelve with room for cases — all with the same chauffeur standard and no designated-driver problem."),
  ],
  "nyc-ground-travel-guide": [
   ("JFK, LaGuardia, or Newark — which is best for a black car?", "LaGuardia is closest to Midtown when traffic cooperates, Newark can win for the West Side and New Jersey, and JFK is the international gateway with the most predictable ride. We quote a flat rate for any of them."),
@@ -1855,7 +1891,7 @@ p += f"""
   </ul>
   <div class="callout"><p><strong>Napa or Sonoma?</strong> Napa is polish — grand estates, cabernet, reservations. Sonoma is charm — family producers, walkable square, easier pace. Healdsburg splits the difference beautifully. Can't decide? They're 30 minutes apart; do one of each.</p></div>
   <h2>Matching the vehicle to the group</h2>
-  <p>Two people: a Business Sedan feels right. Four to six: a First-Class SUV gives everyone a window and legroom for the nap home. Eight to fourteen: the Executive Sprinter — the group stays together, and the ride between wineries becomes part of the party. Bigger celebrations ride the party buses.</p>
+  <p>Two people: a Business Sedan feels right. Four to six: a First-Class SUV gives everyone a window and legroom for the nap home. Eight to twelve: the Executive Sprinter — the group stays together, and the ride between wineries becomes part of the party. Bigger celebrations ride the party buses.</p>
   <h2>Why hourly charter beats point-to-point</h2>
   <p>Wine tours are booked as one flat hourly rate: your chauffeur waits at every stop, the route flexes when you fall in love with a patio, and there's no app-refreshing in a parking lot with no cell signal. Most days run 6–8 hours door to door.</p>
   <p><a href="../services/wine-tours.html" style="color:var(--orange);font-weight:700">See our wine tour service →</a></p>
@@ -2026,7 +2062,7 @@ p += f"""
   <p>Consent to receive text messages is not a condition of purchasing or using Koast's transportation services. Mobile carriers are not liable for delayed or undelivered messages. You are responsible for providing a valid mobile number and for notifying Koast or opting out before transferring or discontinuing that number.</p>
 
   <h2>Privacy</h2>
-  <p>We handle mobile numbers and messaging consent as described in our <a href="privacy.html">Privacy Policy</a>. We do not sell or share mobile numbers or SMS opt-in data and consent with third parties or affiliates for marketing or promotional purposes.</p>
+  <p>We handle mobile numbers and messaging consent as described in our <a href="privacy.html">Privacy Policy</a>. Review the public <a href="sms-consent.html">SMS consent disclosure</a>. We do not sell or share mobile numbers or SMS opt-in data and consent with third parties or affiliates for marketing or promotional purposes.</p>
 
   <h2>Changes</h2>
   <p>We may update these SMS Terms. Material changes will be posted here with a revised effective date. Continuing to participate after a change means you accept the updated terms.</p>
@@ -2444,7 +2480,7 @@ blog_page("vegas-convention-transportation",
   <p>During CES and the major shows, the distance between your hotel and the convention center matters less than the throughput of the route between them. Monorail queues, rideshare lot waits, and walking in convention shoes all tax your team before the first meeting. The companies that do this well treat transportation as part of the show budget, not an afterthought.</p>
   <h2>What works</h2>
   <ul>
-    <li><strong>A dedicated Sprinter on hourly charter</strong> — one vehicle, your schedule, moving 8–14 people between hotel, convention center, and dinners. The vehicle becomes a rolling green room for prep between stops.</li>
+    <li><strong>A dedicated Sprinter on hourly charter</strong> — one vehicle, your schedule, moving 8–12 people between hotel, convention center, and dinners. The vehicle becomes a rolling green room for prep between stops.</li>
     <li><strong>Scheduled airport waves</strong> — book arrivals in clusters so each inbound group is met and moved without anyone standing at LAS baggage claim coordinating by group text.</li>
     <li><strong>Evening shuttle loops</strong> — client dinners and after-events run on time when the ride is standing by, not summoned into a 60-deep queue.</li>
   </ul>
@@ -2834,7 +2870,7 @@ for slug, r in WINE_REGIONS.items():
   </div>
   <div>
     <h3 style="margin-bottom:16px">Match the vehicle to the group</h3>
-    {routes_table([("Couples & small groups — Business Sedan / SUV","1–6 guests"),("Friends & celebrations — First-Class SUV","up to 6"),("The whole crew — Executive Sprinter","up to 14"),("Big celebrations — Party Bus","up to 32")], "Group", "Guests")}
+    {routes_table([("Couples & small groups — Business Sedan / SUV","1–6 guests"),("Friends & celebrations — First-Class SUV","up to 6"),("The whole crew — Executive Sprinter","up to 12"),("Big celebrations — Party Bus","up to 32")], "Group", "Guests")}
   </div>
 </div></section>"""
     p += winery_section(slug, nm)
@@ -2938,7 +2974,7 @@ def winery_page(wslug, d):
   </div>
   <div>
     <h3 style="margin-bottom:16px">Match the vehicle to the group</h3>
-    {routes_table([("Couples &amp; small groups &mdash; Business Sedan / SUV","1–6 guests"),("Friends &amp; celebrations &mdash; First-Class SUV","up to 6"),("The whole crew &mdash; Executive Sprinter","up to 14"),("Big celebrations &mdash; Party Bus","up to 32")], "Group", "Guests")}
+    {routes_table([("Couples &amp; small groups &mdash; Business Sedan / SUV","1–6 guests"),("Friends &amp; celebrations &mdash; First-Class SUV","up to 6"),("The whole crew &mdash; Executive Sprinter","up to 12"),("Big celebrations &mdash; Party Bus","up to 32")], "Group", "Guests")}
   </div>
 </div></section>"""
     p += faq_section([
@@ -3050,7 +3086,7 @@ OCCASIONS = {
    ],
    "cover_h":"What we cover",
    "cover":["A dedicated car for the couple — arrival and the getaway","The wedding party in an SUV or Executive Sprinter, kept together","Guest shuttles by party bus between hotel, ceremony, and reception","Venue-to-venue moves on a coordinated timeline","Late-night returns so everyone gets home safe"],
-   "vehicles":[("Couple & VIPs — Business / First-Class SUV","1–6"),("Wedding party — Executive Sprinter","up to 14"),("Guests — Mid-size party bus","groups"),("Large party — Large party bus","25+")],
+   "vehicles":[("Couple & VIPs — Business / First-Class SUV","1–6"),("Wedding party — Executive Sprinter","up to 12"),("Guests — Mid-size party bus","groups"),("Large party — Large party bus","25+")],
    "related":[("Wine country weddings",[("../wine-tours/napa-valley.html","Napa Valley wine tours","→"),("../wine-tours/sonoma.html","Sonoma wine tours","→")]),("Getting there",[("../services/airport-transfers.html","Airport transfers","→"),("../routes/sfo-to-napa.html","SFO to Napa","→")])],
    "faqs":[
      ("How far in advance should we book wedding transportation?","As early as you can — popular dates and larger vehicles book out months ahead, especially in wine country and peak season. Once your date and venues are set, lock the cars in."),
@@ -3076,7 +3112,7 @@ OCCASIONS = {
    ],
    "cover_h":"Built for the occasion",
    "cover":["Bachelorette and bachelor parties","Birthdays and milestone celebrations","Wine-country tours, winery to winery","Concerts, games, and nights out","Corporate events and team outings"],
-   "vehicles":[("Smaller groups — Executive Sprinter","up to 14"),("Mid-size party bus","groups & events"),("Large party bus","25+"),("Need two? We'll coordinate","any size")],
+   "vehicles":[("Smaller groups — Executive Sprinter","up to 12"),("Mid-size party bus","groups & events"),("Large party bus","25+"),("Need two? We'll coordinate","any size")],
    "related":[("Popular for",[("../services/wine-tours.html","Wine tours","→"),("../services/corporate-travel.html","Corporate events","→")]),("Wine country",[("../wine-tours/napa-valley.html","Napa Valley","→"),("../wine-tours/sonoma.html","Sonoma","→")])],
    "faqs":[
      ("How many people fit on a party bus?","We run mid-size and large party buses — the large bus seats 25 or more — plus an Executive Sprinter for smaller groups. Tell us your headcount and we'll match the vehicle."),
@@ -3286,7 +3322,7 @@ blog_page("group-wine-tour-planning",
   <p>Group wine days are either the best day of the year or a logistics headache, and the difference is decided before anyone pours. Seven decisions, in order:</p>
   <h2>The seven</h2>
   <ul>
-    <li><strong>1. Group size first.</strong> Everything keys off this. Six fits an SUV and intimate tastings; fourteen needs a Sprinter and group-friendly wineries; thirty needs a bus and advance winery approval.</li>
+    <li><strong>1. Group size first.</strong> Everything keys off this. Six fits an SUV and intimate tastings; twelve needs a Sprinter and group-friendly wineries; thirty needs a bus and advance winery approval.</li>
     <li><strong>2. Region to match the vibe.</strong> Celebration energy → Temecula or Sonoma. Serious tasters → Napa or Willamette. Short notice from the Bay → Livermore.</li>
     <li><strong>3. Reservations, always.</strong> Post-2020, walk-ins are dead for groups. Most wineries cap groups at 8 without special arrangement — book 3–4 weeks out and state your exact headcount.</li>
     <li><strong>4. Two or three wineries, not five.</strong> Groups move slowly. Two tastings plus a long lunch beats four rushed pours every time.</li>
@@ -3325,7 +3361,7 @@ sp += f"""
         <div class="km bot">Hi! I'm Koast's agent. Ask me anything about booking, airports, the fleet, or how pricing works.</div>
       </div>
       <div class="kai-foot">
-        <input id="kai-in" type="text" placeholder="Type a question…" maxlength="500">
+        <input id="kai-in" type="text" aria-label="Ask the Koast agent" placeholder="Type a question…" maxlength="500">
         <button id="kai-send" aria-label="Send">→</button>
       </div>
       <a class="kai-sms" href="mailto:reserve@koastride.com">Prefer a human? Email us →</a>
@@ -3546,7 +3582,7 @@ blog_page("nashville-music-calendar",
     <li><strong>Year-round:</strong> Friday-to-Sunday bachelorette flow means Broadway gridlock every single weekend — not just festival weeks.</li>
   </ul>
   <h2>The group answer</h2>
-  <p>Sprinters were built for this town: 14 friends, one vehicle, honky-tonk to dinner to the Gulch with zero "where's the second Uber" texts. <a href="../cities/nashville.html" style="color:var(--teal-dark);font-weight:700">Koast in Nashville →</a></p>""",
+  <p>Sprinters were built for this town: 12 friends, one vehicle, honky-tonk to dinner to the Gulch with zero "where's the second Uber" texts. <a href="../cities/nashville.html" style="color:var(--teal-dark);font-weight:700">Koast in Nashville →</a></p>""",
  "Music City, in sync.")
 
 blog_page("houston-rodeo-guide",
@@ -3561,7 +3597,7 @@ blog_page("houston-rodeo-guide",
     <li><strong>Pickup is the real win:</strong> while the lots crawl, a pre-arranged pickup on the Fannin side has you at dinner before the parking queue moves.</li>
   </ul>
   <h2>Group nights, done right</h2>
-  <p>Company rodeo nights and family outings ride better in one vehicle — Suburban for six, Sprinter for fourteen — with the cooler space for the trip home. <a href="../cities/houston.html" style="color:var(--teal-dark);font-weight:700">Koast in Houston →</a></p>""",
+  <p>Company rodeo nights and family outings ride better in one vehicle — Suburban for six, Sprinter for up to twelve — with the cooler space for the trip home. <a href="../cities/houston.html" style="color:var(--teal-dark);font-weight:700">Koast in Houston →</a></p>""",
  "Boots on. Parking off.")
 
 blog_page("seattle-events-guide",
@@ -3599,7 +3635,7 @@ blog_page("jfk-black-car-guide",
   <h2>JFK, LaGuardia or Newark?</h2>
   <p>If you're still choosing where to fly, each airport is practically a different commute. We broke down the trade-offs in <a href="../blog/nyc-ground-travel-guide.html" style="color:var(--teal-dark);font-weight:700">Getting Around New York &rarr;</a> &mdash; LaGuardia is closest to Midtown when traffic cooperates, Newark can win for the West Side, and JFK is the international gateway with the most predictable (if longest) ride.</p>
   <h2>Teams and business travel</h2>
-  <p>Flying a group in for an offsite or moving executives between meetings? A corporate account keeps every JFK pickup on one invoice, and a Sprinter keeps a team of fourteen together instead of scattered across cars. <a href="../services/corporate-travel.html" style="color:var(--teal-dark);font-weight:700">Koast for business &rarr;</a> &middot; <a href="../cities/new-york.html" style="color:var(--teal-dark);font-weight:700">Koast in New York &rarr;</a></p>
+  <p>Flying a group in for an offsite or moving executives between meetings? A corporate account keeps every JFK pickup on one invoice, and a Sprinter keeps a team of up to twelve together instead of scattered across cars. <a href="../services/corporate-travel.html" style="color:var(--teal-dark);font-weight:700">Koast for business &rarr;</a> &middot; <a href="../cities/new-york.html" style="color:var(--teal-dark);font-weight:700">Koast in New York &rarr;</a></p>
   <div class="faq" style="margin-top:36px">
     <details><summary>How much is a black car from JFK to Manhattan?</summary><p>You see a flat, all-inclusive price before you book &mdash; tolls and gratuity included, no surge. Enter your exact pickup and drop-off for an instant quote; the price holds even if your flight is delayed.</p></details>
     <details><summary>How long does JFK to Midtown take?</summary><p>Roughly 45&ndash;55 minutes off-peak and 75&ndash;90 minutes at rush hour or on a busy Friday. Your chauffeur chooses the fastest route for the conditions.</p></details>
@@ -3715,7 +3751,7 @@ blog_page("group-airport-transfers",
  "Corporate","blog-group.jpg","5", """
   <p>Moving one executive from the airport is easy. Moving twelve people arriving on six flights into one offsite is a different sport. The mistake is treating it like twelve separate bookings &mdash; the fix is treating it like one coordinated operation.</p>
   <h2>One vehicle or several?</h2>
-  <p>The first decision is the vehicle math. A team that lands together rides better in one cabin: an Executive Sprinter keeps fourteen people and their bags together, which means one drop-off, one headcount, and a group that arrives as a group. When flights are scattered across the day, two or three SUVs staged to match arrival waves beats one van waiting four hours for the last straggler. <a href="../index.html#fleet" style="color:var(--teal-dark);font-weight:700">See the fleet &rarr;</a></p>
+  <p>The first decision is the vehicle math. A team that lands together rides better in one cabin: an Executive Sprinter keeps up to twelve people and their bags together, which means one drop-off, one headcount, and a group that arrives as a group. When flights are scattered across the day, two or three SUVs staged to match arrival waves beats one van waiting four hours for the last straggler. <a href="../index.html#fleet" style="color:var(--teal-dark);font-weight:700">See the fleet &rarr;</a></p>
   <h2>Staggered flights, one plan</h2>
   <p>The real work is the schedule. Collect everyone's flight numbers, group the arrivals into waves, and assign vehicles to waves rather than to individuals. Each pickup is flight-tracked, so a delayed connection doesn't strand a car or the people waiting in it. A dispatcher who has the whole manifest can shuffle in real time when one flight slips.</p>
   <h2>Give it to one point of contact</h2>
@@ -3723,7 +3759,7 @@ blog_page("group-airport-transfers",
   <h2>One invoice for the whole move</h2>
   <p>Account billing rolls every vehicle and every leg into a single invoice instead of a pile of receipts to reconcile. <a href="../services/corporate-travel.html" style="color:var(--teal-dark);font-weight:700">Koast for business &rarr;</a> &middot; <a href="../services/airport-transfers.html" style="color:var(--teal-dark);font-weight:700">Airport transfers &rarr;</a></p>
   <div class="faq" style="margin-top:36px">
-    <details><summary>Should a group ride together or split across vehicles?</summary><p>If everyone lands together, one Executive Sprinter (up to fourteen with luggage) keeps the group together. If flights are staggered, several SUVs matched to arrival waves usually beats one vehicle waiting hours for the last arrival.</p></details>
+    <details><summary>Should a group ride together or split across vehicles?</summary><p>If everyone lands together, one Executive Sprinter (up to twelve with luggage) keeps the group together. If flights are staggered, several SUVs matched to arrival waves usually beats one vehicle waiting hours for the last arrival.</p></details>
     <details><summary>How do you handle a team arriving on different flights?</summary><p>We group arrivals into waves and assign vehicles to each wave, with every pickup flight-tracked so delays don't strand a car. A dispatcher with the full manifest adjusts in real time.</p></details>
     <details><summary>Can one person book and manage the whole group?</summary><p>Yes. A single coordinator holds the manifest and makes changes in one place, with driver details sent before each pickup &mdash; no group text with the drivers.</p></details>
     <details><summary>How is a group transfer billed?</summary><p>Through a corporate account, every vehicle and leg lands on one consolidated invoice rather than separate receipts to reconcile.</p></details>
