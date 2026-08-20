@@ -2133,8 +2133,80 @@ write("privacy.html", p)
 
 # ============================ SEO POST-PROCESSING ============================
 import re as _re, json as _json, glob as _glob
+from urllib.parse import urljoin as _urljoin, urlsplit as _urlsplit, urlunsplit as _urlunsplit
 
 BASE_URL = "https://koastride.com"
+
+_ROOT_LINK_PREFIXES = {
+    "airports", "blog", "cities", "css", "img", "routes", "services",
+    "wine-tours", "wineries"
+}
+
+def _clean_public_path(path):
+    """Return the extensionless public URL path Cloudflare Pages actually serves."""
+    if not path:
+        return "/"
+    if path == "/index.html":
+        return "/"
+    if path.endswith("/index.html"):
+        return path[:-10]
+    if path.endswith(".html"):
+        return path[:-5]
+    return path
+
+def _public_url_for_rel(rel):
+    return BASE_URL + _clean_public_path("/" + rel.lstrip("/"))
+
+def _rewrite_internal_href(raw, rel, root_files):
+    """Resolve authored relative links once, then publish one root-relative clean URL."""
+    if not raw or raw.startswith(("#", "mailto:", "tel:", "data:", "javascript:")):
+        return raw
+    parts = _urlsplit(raw)
+    if parts.scheme or parts.netloc:
+        if parts.scheme not in ("http", "https") or parts.netloc.lower() not in ("koastride.com", "www.koastride.com"):
+            return raw
+        return _urlunsplit(("", "", _clean_public_path(parts.path), parts.query, parts.fragment))
+
+    if parts.path.startswith("/"):
+        resolved = parts.path
+    else:
+        first = parts.path.split("/", 1)[0]
+        if first in _ROOT_LINK_PREFIXES or ("/" not in parts.path and first in root_files):
+            resolved = "/" + parts.path
+        else:
+            resolved = _urljoin("/" + rel, parts.path)
+    return _urlunsplit(("", "", _clean_public_path(resolved), parts.query, parts.fragment))
+
+def _rewrite_site_links(src, rel, root_files):
+    def repl(match):
+        return match.group(1) + _rewrite_internal_href(match.group(2), rel, root_files) + match.group(3)
+    return _re.sub(r'((?:href|action)=["\'])([^"\']+)(["\'])', repl, src, flags=_re.I)
+
+def _rewrite_absolute_site_urls(src):
+    def repl(match):
+        parts = _urlsplit(match.group(0))
+        return _urlunsplit(("https", "koastride.com", _clean_public_path(parts.path), parts.query, parts.fragment))
+    return _re.sub(r'https://(?:www\.)?koastride\.com/[^"\'<>\s]*', repl, src)
+
+def _validate_indexing_contract(pages, sitemap):
+    errors = []
+    for fp in pages:
+        rel = os.path.relpath(fp, ROOT).replace("\\", "/")
+        if not CARE_RIDES_LIVE and rel == "services/care-rides.html":
+            continue
+        src = open(fp, encoding="utf-8").read()
+        expected = _public_url_for_rel(rel)
+        canonical = _re.search(r'<link\s+rel="canonical"\s+href="([^"]+)"', src, _re.I)
+        if not canonical or canonical.group(1) != expected:
+            errors.append(f"{rel}: canonical must be {expected}")
+        for href in _re.findall(r'(?:href|action)=["\']([^"\']+)["\']', src, _re.I):
+            parts = _urlsplit(href)
+            if (not parts.netloc or parts.netloc.lower() in ("koastride.com", "www.koastride.com")) and parts.path.endswith(".html"):
+                errors.append(f"{rel}: redirected internal link {href}")
+    if ".html" in sitemap or "<lastmod>" in sitemap:
+        errors.append("sitemap.xml must contain only clean URLs and no synthetic lastmod values")
+    if errors:
+        raise RuntimeError("Indexing contract failed:\n" + "\n".join(errors[:25]))
 
 def _schema_for(rel, src, url, title, desc):
     blocks = []
@@ -2189,14 +2261,20 @@ def _schema_for(rel, src, url, title, desc):
 
 def enhance():
     pages = sorted(_glob.glob(os.path.join(ROOT,"**","*.html"), recursive=True))
+    root_files = {os.path.basename(fp) for fp in pages if os.path.dirname(fp) == ROOT}
     urls = []
     for fp in pages:
         rel = os.path.relpath(fp, ROOT).replace("\\","/")
         if not CARE_RIDES_LIVE and rel == "services/care-rides.html": continue
-        url = BASE_URL + "/" + ("" if rel=="index.html" else rel)
+        url = _public_url_for_rel(rel)
         urls.append(url)
         src = open(fp, encoding="utf-8").read()
-        if 'rel="canonical"' in src: continue
+        src = _rewrite_site_links(src, rel, root_files)
+        src = _rewrite_absolute_site_urls(src)
+        if 'rel="canonical"' in src:
+            src = _re.sub(r'<link\s+rel="canonical"\s+href="[^"]*"\s*/?>', f'<link rel="canonical" href="{url}">', src, count=1, flags=_re.I)
+            open(fp,"w",encoding="utf-8",newline="\n").write(src)
+            continue
         title = _re.search(r"<title>(.*?)</title>", src, _re.S).group(1).strip()
         desc_m = _re.search(r'name="description" content="(.*?)"', src)
         desc = desc_m.group(1) if desc_m else ""
@@ -2223,16 +2301,16 @@ def enhance():
         for b in _schema_for(rel, src, url, title, desc):
             inject += '<script type="application/ld+json">' + _json.dumps(b, ensure_ascii=False) + "</script>\n"
         src = src.replace("</head>", inject + "</head>", 1)
+        src = _rewrite_absolute_site_urls(src)
         open(fp,"w",encoding="utf-8",newline="\n").write(src)
         print("enhanced", rel)
     # sitemap.xml
-    import datetime as _dt
-    _today = _dt.date.today().isoformat()
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
     for u in urls:
-        sm += f"  <url><loc>{u}</loc><lastmod>{_today}</lastmod></url>\n"
+        sm += f"  <url><loc>{u}</loc></url>\n"
     sm += "</urlset>\n"
     open(os.path.join(ROOT,"sitemap.xml"),"w",encoding="utf-8",newline="\n").write(sm)
+    _validate_indexing_contract(pages, sm)
     # PWA: manifest + minimal service worker (quiet install eligibility; real prompt ships with the booker portal)
     _manifest = {"name": "Koast — Black Car Service", "short_name": "Koast",
         "description": "Chauffeured black car service. Flat rates, vetted drivers. Ride easy.",
@@ -2259,7 +2337,7 @@ Sitemap: {BASE_URL}/sitemap.xml
         "hourly booking lets the chauffeur wait during appointments; recurring schedules (dialysis, PT) can be set up by email; recurring riders are matched with the same chauffeur "
         "whenever possible so they see a familiar, trusted face every time. Riders must be able to walk on their own. Private-pay only (no Medicare/Medicaid/insurance billing). "
         "Koast is not a medical provider: no wheelchair-lift vehicles, no physical transfer assistance — we refer those riders to specialized providers. "
-        "Page: https://koastride.com/services/care-rides.html") if CARE_RIDES_LIVE else ""
+        "Page: https://koastride.com/services/care-rides") if CARE_RIDES_LIVE else ""
     cities_list = ", ".join(c["name"] for c in CITIES.values())
     airports_list = ", ".join(f"{a['code']} ({a['name']})" for a in AIRPORTS.values())
     fleet_lines = "\n".join(f"- {v['name']}: {', '.join(v['tags'])} — {v['sub']}" for v in FLEET)
@@ -2293,11 +2371,11 @@ Wine tour regions:
 
 Key pages:
 - [Book a ride]({BOOK})
-- [Airport transfers]({BASE_URL}/services/airport-transfers.html)
-- [Corporate travel]({BASE_URL}/services/corporate-travel.html)
-- [Wine tours]({BASE_URL}/services/wine-tours.html)
-- [All cities]({BASE_URL}/cities/index.html)
-- [Blog]({BASE_URL}/blog/index.html)
+- [Airport transfers]({BASE_URL}/services/airport-transfers)
+- [Corporate travel]({BASE_URL}/services/corporate-travel)
+- [Wine tours]({BASE_URL}/services/wine-tours)
+- [All cities]({BASE_URL}/cities/)
+- [Blog]({BASE_URL}/blog/)
 """)
     print("sitemap.xml, robots.txt, llms.txt written")
 
