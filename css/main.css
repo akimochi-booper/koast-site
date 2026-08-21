@@ -10,7 +10,7 @@
 :root{
   --ink:#0e1013; --ink-2:#171a1f; --text:#33363d; --muted:#697080;
   --bg:#ffffff; --bg-2:#f5f6f8; --line:#e6e8ec;
-  --orange:#c2410c; --orange-dark:#9a3412; --orange-tint:#fff3ec;
+  --orange:#ff5c1f; --orange-dark:#e64a10; --orange-tint:#fff3ec;
   --teal:#0b7d72; --teal-dark:#08655d; --teal-tint:#e9f7f5;
   --radius:16px;
 }
@@ -275,11 +275,11 @@ nav.site-nav{background:#000;border-bottom:1px solid #1c1f24}
 .card .amen li::before{content:'✓';position:absolute;left:0;top:5px;width:16px;height:16px;border-radius:50%;background:var(--teal-tint);color:var(--teal-dark);font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center}
 
 /* ---------- v20: nicer book buttons ---------- */
-.btn-orange{background:var(--orange);box-shadow:0 4px 14px rgba(194,65,12,.3);transition:.2s}
-.btn-orange:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(154,52,18,.35);background:var(--orange-dark)}
+.btn-orange{background:linear-gradient(180deg,#ff6c35 0%,var(--orange) 60%,var(--orange-dark) 100%);box-shadow:0 4px 14px rgba(255,92,31,.35);transition:.2s}
+.btn-orange:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(255,92,31,.45);background:linear-gradient(180deg,#ff7a48 0%,var(--orange) 60%,var(--orange-dark) 100%)}
 .btn-orange:active{transform:translateY(0);box-shadow:0 3px 10px rgba(255,92,31,.35)}
-.card .row a.btn-book{display:inline-flex;align-items:center;gap:6px;background:var(--orange);color:#fff;font-size:13.5px;font-weight:800;padding:10px 20px;border-radius:99px;box-shadow:0 4px 12px rgba(194,65,12,.28);transition:.2s}
-.card .row a.btn-book:hover{color:#fff;background:var(--orange-dark);transform:translateY(-1px);box-shadow:0 8px 18px rgba(154,52,18,.35)}
+.card .row a.btn-book{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(180deg,#ff6c35 0%,var(--orange) 60%,var(--orange-dark) 100%);color:#fff;font-size:13.5px;font-weight:800;padding:10px 20px;border-radius:99px;box-shadow:0 4px 12px rgba(255,92,31,.3);transition:.2s}
+.card .row a.btn-book:hover{color:#fff;transform:translateY(-1px);box-shadow:0 8px 18px rgba(255,92,31,.42)}
 
 /* ---------- v24: black footer + blog art ---------- */
 footer.site-footer{background:#000;border-top:1px solid #1c1f24}
@@ -327,7 +327,7 @@ footer.site-footer{background:#000;border-top:1px solid #1c1f24}
 .feat-card{background:#fff;border:1px solid var(--line);box-shadow:0 4px 16px rgba(15,17,21,.05);align-items:center}
 .feat-ic{min-width:46px;width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center}
 .feat-ic svg{width:23px;height:23px}
-.feat-ic.o{background:linear-gradient(135deg,var(--orange),var(--orange-dark))}
+.feat-ic.o{background:linear-gradient(135deg,#ff6c35,#e64a10)}
 .feat-ic.t{background:linear-gradient(135deg,#16b3a2,#0b7d72)}
 
 /* ---------- v32: count-up stats row ---------- */
@@ -444,7 +444,7 @@ body.kchat-open #kchat-fab{transform:scale(0)}
 body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transform:none;transition-delay:0s}
 .kchat-head{background:transparent;color:#fff;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.07)}
 .kchat-id{display:flex;align-items:center;gap:11px}
-.kcoin{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--orange),var(--orange-dark));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:#fff;box-shadow:0 4px 14px rgba(194,65,12,.32);flex-shrink:0}
+.kcoin{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--orange),#ff8c5c);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:#fff;box-shadow:0 4px 14px rgba(255,92,31,.4);flex-shrink:0}
 .kchat-head strong{display:block;font-size:15.5px}
 .kchat-head span{font-size:11px;color:#7ee0d3;font-weight:600}
 .kchat-head span::before{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;background:#19c8b4;margin-right:5px;box-shadow:0 0 8px #19c8b4}
@@ -455,7 +455,7 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
 .kchat-msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:11px;background:transparent}
 .km{max-width:84%;padding:10px 14px;border-radius:14px;font-size:13.5px;line-height:1.5}
 .km.bot{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.09);color:#e6e9ee;border-bottom-left-radius:4px;align-self:flex-start}
-.km.user{background:linear-gradient(135deg,var(--orange),var(--orange-dark));color:#fff;border-bottom-right-radius:4px;align-self:flex-end;box-shadow:0 6px 18px rgba(194,65,12,.28)}
+.km.user{background:linear-gradient(135deg,#ff6c35,var(--orange));color:#fff;border-bottom-right-radius:4px;align-self:flex-end;box-shadow:0 6px 18px rgba(255,92,31,.3)}
 .km.dots{color:#8a919e;letter-spacing:2px}
 .kchat-chips{display:flex;flex-direction:column;gap:7px;margin-top:2px}
 .kchat-chips button{border:1px solid #353b44;background:rgba(255,255,255,.05);border-radius:99px;padding:8px 14px;font-family:inherit;font-size:12.5px;font-weight:600;color:#dfe3e9;cursor:pointer;text-align:left;transition:.18s}
@@ -508,7 +508,7 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
 .fleet-card .tag{border:1.5px solid #ffc4a3;background:#fff;border-radius:99px;padding:7px 14px;font-size:12px;font-weight:700;color:#3a3f49;box-shadow:0 2px 8px rgba(255,92,31,.08)}
 .fleet-card .amen{border-top:1px solid #f0e4dc}
 .fleet-card .amen li{font-weight:500;color:#4a505b;padding:5px 0 5px 27px}
-.fleet-card .amen li::before{width:17px;height:17px;top:7px;background:linear-gradient(135deg,var(--orange),var(--orange-dark));color:#fff;font-size:10px;box-shadow:0 3px 8px rgba(194,65,12,.25)}
+.fleet-card .amen li::before{width:17px;height:17px;top:7px;background:linear-gradient(135deg,var(--orange),#e64a10);color:#fff;font-size:10px;box-shadow:0 3px 8px rgba(255,92,31,.3)}
 
 /* ---------- teal review dots ---------- */
 .tdots{margin-top:18px}
