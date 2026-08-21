@@ -2168,10 +2168,105 @@ p += footer("")
 write("privacy.html", p)
 
 # ============================ SEO POST-PROCESSING ============================
-import re as _re, json as _json, glob as _glob
+import re as _re, json as _json, glob as _glob, struct as _struct
+from functools import lru_cache as _lru_cache
 from urllib.parse import urljoin as _urljoin, urlsplit as _urlsplit, urlunsplit as _urlunsplit
 
 BASE_URL = "https://koastride.com"
+
+@_lru_cache(maxsize=None)
+def _image_dimensions(path):
+    """Read intrinsic image dimensions without adding a build dependency."""
+    try:
+        ext = os.path.splitext(path)[1].lower()
+        if ext == ".svg":
+            text = open(path, encoding="utf-8").read(4096)
+            width = _re.search(r'\bwidth=["\']([0-9.]+)', text, _re.I)
+            height = _re.search(r'\bheight=["\']([0-9.]+)', text, _re.I)
+            if width and height:
+                return round(float(width.group(1))), round(float(height.group(1)))
+            viewbox = _re.search(r'\bviewBox=["\']\s*[-0-9.]+[ ,]+[-0-9.]+[ ,]+([0-9.]+)[ ,]+([0-9.]+)\s*["\']', text, _re.I)
+            if viewbox:
+                return round(float(viewbox.group(1))), round(float(viewbox.group(2)))
+            return None
+
+        with open(path, "rb") as image:
+            header = image.read(32)
+            if ext == ".png" and header.startswith(b"\x89PNG\r\n\x1a\n"):
+                return _struct.unpack(">II", header[16:24])
+            if ext == ".jpg" or ext == ".jpeg":
+                image.seek(2)
+                while True:
+                    marker_start = image.read(1)
+                    if not marker_start:
+                        return None
+                    if marker_start != b"\xff":
+                        continue
+                    marker = image.read(1)
+                    while marker == b"\xff":
+                        marker = image.read(1)
+                    if not marker or marker in (b"\xd8", b"\xd9"):
+                        continue
+                    size_bytes = image.read(2)
+                    if len(size_bytes) != 2:
+                        return None
+                    size = _struct.unpack(">H", size_bytes)[0]
+                    if marker[0] in (0xC0, 0xC1, 0xC2, 0xC3, 0xC5, 0xC6, 0xC7, 0xC9, 0xCA, 0xCB, 0xCD, 0xCE, 0xCF):
+                        payload = image.read(5)
+                        if len(payload) != 5:
+                            return None
+                        height, width = _struct.unpack(">HH", payload[1:5])
+                        return width, height
+                    image.seek(size - 2, 1)
+            if ext == ".webp" and header[:4] == b"RIFF" and header[8:12] == b"WEBP":
+                kind = header[12:16]
+                if kind == b"VP8X":
+                    width = 1 + int.from_bytes(header[24:27], "little")
+                    height = 1 + int.from_bytes(header[27:30], "little")
+                    return width, height
+                if kind == b"VP8L" and header[20:21] == b"\x2f":
+                    bits = int.from_bytes(header[21:25], "little")
+                    return 1 + (bits & 0x3fff), 1 + ((bits >> 14) & 0x3fff)
+                if kind == b"VP8 ":
+                    image.seek(0)
+                    payload = image.read(64)
+                    frame = payload.find(b"\x9d\x01\x2a")
+                    if frame >= 0 and len(payload) >= frame + 7:
+                        width, height = _struct.unpack("<HH", payload[frame + 3:frame + 7])
+                        return width & 0x3fff, height & 0x3fff
+    except (OSError, ValueError, _struct.error):
+        return None
+    return None
+
+def _add_image_dimensions(src, page_path):
+    """Reserve each local image's layout space before the asset downloads."""
+    def repl(match):
+        tag = match.group(0)
+        source_match = _re.search(r'\bsrc=["\']([^"\']+)["\']', tag, _re.I)
+        if not source_match or source_match.group(1).startswith(("data:", "http://", "https://", "//")):
+            return tag
+        source = source_match.group(1).split("?", 1)[0].split("#", 1)[0]
+        if not source:
+            return tag
+        path = os.path.join(ROOT, source.lstrip("/")) if source.startswith("/") else os.path.join(os.path.dirname(page_path), source)
+        path = os.path.normpath(path)
+        try:
+            if os.path.commonpath((ROOT, path)) != ROOT:
+                return tag
+        except ValueError:
+            return tag
+        dims = _image_dimensions(path)
+        if not dims:
+            return tag
+        attrs = ""
+        if not _re.search(r'\bwidth\s*=', tag, _re.I):
+            attrs += f' width="{dims[0]}"'
+        if not _re.search(r'\bheight\s*=', tag, _re.I):
+            attrs += f' height="{dims[1]}"'
+        if not attrs:
+            return tag
+        return tag[:-2] + attrs + "/>" if tag.endswith("/>") else tag[:-1] + attrs + ">"
+    return _re.sub(r'<img\b[^>]*>', repl, src, flags=_re.I)
 
 _ROOT_LINK_PREFIXES = {
     "airports", "blog", "cities", "css", "img", "routes", "services",
@@ -2307,6 +2402,7 @@ def enhance():
         src = open(fp, encoding="utf-8").read()
         src = _rewrite_site_links(src, rel, root_files)
         src = _rewrite_absolute_site_urls(src)
+        src = _add_image_dimensions(src, fp)
         if 'rel="canonical"' in src:
             src = _re.sub(r'<link\s+rel="canonical"\s+href="[^"]*"\s*/?>', f'<link rel="canonical" href="{url}">', src, count=1, flags=_re.I)
             open(fp,"w",encoding="utf-8",newline="\n").write(src)
