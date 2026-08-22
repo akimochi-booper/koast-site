@@ -278,7 +278,7 @@ def book_card():
   <div class="widget-fallback">Widget not loading? <a href="{BOOK}">Book directly here →</a></div>
   <script>
   window.addEventListener('message',function(e){{
-    if(String(e.origin).indexOf('moovs')===-1)return;
+    if(e.origin!=='https://customer.moovs.app')return;
     var h=null,d=e.data;
     if(d&&typeof d==='object')h=d.height||d.frameHeight||(d.payload&&d.payload.height);
     if(typeof d==='string'){{var m=d.match(/"height"\\s*:\\s*(\\d+)/);if(m)h=+m[1];}}
