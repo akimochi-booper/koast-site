@@ -4018,7 +4018,7 @@ write("app.html", app)
 # SEO enhance — must run last
 enhance()
 
-# A real 404 response prevents unknown retired URLs from being indexed as copies of the homepage.
+# A branded noindex fallback prevents unknown retired URLs from being indexed as copies of the homepage.
 not_found = head(
     "Page Not Found | Koast",
     "That Koast page could not be found. Return home, explore service areas, or contact support.",
