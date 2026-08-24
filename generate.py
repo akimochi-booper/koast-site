@@ -2288,6 +2288,43 @@ def _clean_public_path(path):
 def _public_url_for_rel(rel):
     return BASE_URL + _clean_public_path("/" + rel.lstrip("/"))
 
+def _write_redirects(pages):
+    """Keep retired paths and generated .html URLs out of Google's duplicate index."""
+    legacy = [
+        ("/home", "/"),
+        ("/home-2", "/"),
+        ("/for-riders", "/"),
+        ("/for-drivers", "/support"),
+        ("/vehicles", "/#fleet"),
+        ("/vehicles-1-1", "/#fleet"),
+        ("/sedans/suvs", "/#fleet"),
+        ("/sprinters-buses", "/#fleet"),
+        ("/rider-faqs", "/support"),
+        ("/chauffeur-requirements", "/support"),
+        ("/partner-cities", "/cities/"),
+        ("/become-an-affiliate", "/support"),
+        ("/privacy-policy", "/privacy"),
+        ("/terms-conditions", "/terms"),
+        ("/sedans/cities/san-jose.html", "/cities/san-jose"),
+        ("/sedans/cities/wine-tours/index.html", "/wine-tours/"),
+        ("/sedans/cities/wine-tours/napa-valley.html", "/wine-tours/napa-valley"),
+        ("/sedans/cities/wine-tours/sonoma.html", "/wine-tours/sonoma"),
+        ("/sedans/cities/wine-tours/wine-tours/santa-ynez.html", "/wine-tours/santa-ynez"),
+    ]
+    redirects = [f"{source} {destination} 301" for source, destination in legacy]
+    legacy_sources = {source for source, _ in legacy}
+    for fp in pages:
+        rel = os.path.relpath(fp, ROOT).replace("\\", "/")
+        if not CARE_RIDES_LIVE and rel == "services/care-rides.html":
+            continue
+        source = "/" + rel
+        if source not in legacy_sources:
+            redirects.append(f"{source} {_clean_public_path(source)} 301")
+    redirects.append("/get-app https://app.koastride.com/ 302")
+    open(os.path.join(ROOT, "_redirects"), "w", encoding="utf-8", newline="\n").write(
+        "\n".join(redirects) + "\n"
+    )
+
 def _rewrite_internal_href(raw, rel, root_files):
     """Resolve authored relative links once, then publish one root-relative clean URL."""
     if not raw or raw.startswith(("#", "mailto:", "tel:", "data:", "javascript:")):
@@ -2391,7 +2428,10 @@ def _schema_for(rel, src, url, title, desc):
     return blocks
 
 def enhance():
-    pages = sorted(_glob.glob(os.path.join(ROOT,"**","*.html"), recursive=True))
+    pages = sorted(
+        fp for fp in _glob.glob(os.path.join(ROOT,"**","*.html"), recursive=True)
+        if os.path.basename(fp) != "404.html"
+    )
     root_files = {os.path.basename(fp) for fp in pages if os.path.dirname(fp) == ROOT}
     urls = []
     for fp in pages:
@@ -2462,6 +2502,7 @@ Allow: /
 
 Sitemap: {BASE_URL}/sitemap.xml
 """)
+    _write_redirects(pages)
     # llms.txt for AI crawlers + the live fact sheet for the chat agent (auto-rebuilt every deploy)
     _care_facts = (", Care Rides (concierge senior and medical appointment transportation)\n"
         "- Care Rides: door-to-door rides for seniors and medical appointments, designed for family members booking on a parent's behalf. "
@@ -3976,3 +4017,25 @@ write("app.html", app)
 
 # SEO enhance — must run last
 enhance()
+
+# A real 404 response prevents unknown retired URLs from being indexed as copies of the homepage.
+not_found = head(
+    "Page Not Found | Koast",
+    "That Koast page could not be found. Return home, explore service areas, or contact support.",
+)
+not_found = not_found.replace("</head>", '<meta name="robots" content="noindex,follow">\n</head>', 1)
+not_found += nav("")
+not_found += """
+<main class="sec"><div class="wrap" style="max-width:760px;text-align:center;padding:72px 24px 96px">
+  <span class="pill pill-orange">404</span>
+  <h1 style="margin-top:18px">This page took a wrong turn.</h1>
+  <p style="font-size:18px;max-width:560px;margin:16px auto 30px">The address may be outdated or mistyped. Head back to Koast, browse where we operate, or reach our support team.</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <a class="btn btn-orange" href="/">Go to the homepage</a>
+    <a class="btn" href="/cities/">Browse cities</a>
+    <a class="btn" href="/support">Contact support</a>
+  </div>
+</div></main>
+"""
+not_found += footer("")
+write("404.html", not_found)
