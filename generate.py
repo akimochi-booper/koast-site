@@ -999,8 +999,8 @@ write("cities/index.html", ci)
 
 # ============================ AIRPORT PAGES ============================
 for slug, a in AIRPORTS.items():
-    h = head(f"{a['code']} Airport Black Car Service & Transfers | Koast",
-             f"Chauffeured airport transfers at {a['name']} ({a['code']}). Flight tracking, free wait time, flat rates. Book 24/7.", "../")
+    h = head(a.get('seo_title', f"{a['code']} Airport Black Car Service & Transfers | Koast"),
+             a.get('seo_desc', f"Chauffeured airport transfers at {a['name']} ({a['code']}). Flight tracking, free wait time, flat rates. Book 24/7."), "../")
     h += nav("../", "airport")
     h += f"""
 <header class="hero-dark"><div class="wrap">
@@ -1012,7 +1012,7 @@ for slug, a in AIRPORTS.items():
       <ul class="check" style="color:#cdd3dc">
         <li>Live flight tracking — we adjust automatically</li>
         <li>{a['wait']}</li>
-        <li>Flight-tracked curbside pickup, timed to your landing</li>
+        <li>{a.get('pickup', 'Flight-tracked curbside pickup, timed to your landing')}</li>
       </ul>
     </div>
     {book_card()}
@@ -1024,7 +1024,7 @@ for slug, a in AIRPORTS.items():
     <h2 style="font-size:32px;margin:14px 0 16px">We're there when you land</h2>
     <ul class="check">
       <li>Live flight tracking — delays &amp; early arrivals handled</li>
-      <li>Curbside pickup, timed to your landing</li>
+      <li>{a.get('pickup', 'Curbside pickup, timed to your landing')}</li>
       <li>{a['wait']}</li>
       <li>Serving {a['terminals']}</li>
       <li>Luggage handled by your chauffeur</li>
@@ -1036,15 +1036,30 @@ for slug, a in AIRPORTS.items():
     {routes_table(a['routes'])}
   </div>
 </div></section>"""
+    if a.get('local_info'):
+        _local = a['local_info']
+        h += f"""
+<section class="tight"><div class="wrap">
+  <span class="pill">Local airport details</span>
+  <h2 style="font-size:32px;margin:14px 0 24px">{_local['title']}</h2>
+  <div class="grid-2" style="align-items:stretch;gap:24px">
+    <article class="card" style="padding:28px"><h3 style="margin:0 0 12px">At the airport</h3><p style="margin:0">{_local['airport']}</p></article>
+    <article class="card" style="padding:28px"><h3 style="margin:0 0 12px">On the road</h3><p style="margin:0">{_local['road']}</p></article>
+  </div>
+  <p class="muted" style="margin:18px 0 0">Airport curb rules can change. Your chauffeur sends the current pickup instructions before arrival.</p>
+</div></section>"""
     h += fleet_section("../")
-    h += faq_section([
+    _airport_faqs = [
       (f"Where does my driver meet me at {a['code']}?",
-       "Your chauffeur tracks your flight and is ready when you land, with pickup timed to your actual arrival — you'll receive their name, photo, contact details, and live location before you land."),
+       a.get('pickup_faq', "Your chauffeur tracks your flight and is ready when you land, with pickup timed to your actual arrival — you'll receive their name, photo, contact details, and live location before you land.")),
       ("What happens if my flight is delayed?",
        f"Nothing you need to do — we track your flight and adjust the pickup automatically. {a['wait']}."),
       ("Are tolls and fees included in the price?",
        "Yes. Your quote is all-inclusive: tolls, airport fees, and standard gratuity are itemized upfront. The price you see is the price you pay."),
-    ], f"{a['code']} pickup questions")
+    ]
+    if a.get('local_info'):
+        _airport_faqs.append(a['local_info']['faq'])
+    h += faq_section(_airport_faqs, f"{a['code']} pickup questions")
     _city = AP_CITY.get(slug)
     h += plan_trip([
       ("Guides", [(f"../blog/{g}.html", GUIDE_TITLE[g], "✦") for g in AP_GUIDES.get(slug, DEFAULT_GUIDES[:1])]),
