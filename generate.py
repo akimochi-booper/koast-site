@@ -8,6 +8,9 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 # Care Rides launch switch — False keeps the service out of the built site
 CARE_RIDES_LIVE = False
 
+# Keep the unfinished rider app out of public marketing until launch.
+APP_MARKETING_LIVE = False
+
 def head(title, desc, prefix="", extra=""):
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -53,14 +56,17 @@ def nav(prefix="", active=""):
     cities_dd = f'''<div class="nav-dd"><a href="{prefix}cities/index.html"{AC if active=='cities' else ''}>Cities <span class="caret">&#9662;</span></a>
       <div class="dd-menu"><div class="dd-col"><h5>Popular</h5>{cpop}</div><div class="dd-col"><h5>More</h5>{cmore}<a href="{prefix}cities/index.html" {_orange}>All cities &#8594;</a></div></div></div>'''
     links = services_dd + wine_dd + cities_dd
-    links += f'<a href="{prefix}app.html"{AC if active=="app" else ""}>App</a>'
+    if APP_MARKETING_LIVE:
+        links += f'<a href="{prefix}app.html"{AC if active=="app" else ""}>App</a>'
     links += f'<a href="{prefix}blog/index.html"{AC if active=="blog" else ""}>Guides</a>'
     links += f'<a href="{prefix}support.html"{AC if active=="support" else ""}>Support</a>'
+
+    app_mobile_link = f'<a href="{prefix}app.html">App</a>' if APP_MARKETING_LIVE else ""
 
     mlinks = f'''<details class="mm-dd"><summary>Services <span class="mm-caret">&#9662;</span></summary><div class="mm-dd-list"><a href="{prefix}services/airport-transfers.html">Airport Transfers</a><a href="{prefix}services/corporate-travel.html">Corporate Travel</a><a href="{prefix}services/weddings.html">Weddings</a><a href="{prefix}services/party-bus.html">Party Bus</a><a href="{prefix}index.html#fleet">Our Fleet</a></div></details>
       <details class="mm-dd"><summary>Wine <span class="mm-caret">&#9662;</span></summary><div class="mm-dd-list"><a href="{prefix}services/wine-tours.html" class="mm-all">Wine tour service &#8594;</a><a href="{prefix}wineries/index.html" class="mm-all">Browse all wineries &#8594;</a><span class="mm-label">California</span>{ca}<span class="mm-label">Nationwide</span>{us}</div></details>
       <details class="mm-dd"><summary>Cities <span class="mm-caret">&#9662;</span></summary><div class="mm-dd-list"><a href="{prefix}cities/index.html" class="mm-all">All cities &#8594;</a>{cpop}{cmore}</div></details>
-      <a href="{prefix}app.html">App</a>
+      {app_mobile_link}
       <a href="{prefix}blog/index.html">Guides</a>
       <a href="{prefix}support.html">Support</a>'''
 
@@ -253,7 +259,7 @@ def footer(prefix=""):
     </div>
     <div><h4>Company</h4>
       <a href="{prefix}support.html">Support</a>
-      <a href="{prefix}app.html">The Koast app</a>
+      {('<a href="' + prefix + 'app.html">The Koast app</a>') if APP_MARKETING_LIVE else ""}
       <a href="{prefix}blog/index.html">Guides</a>
       <a href="{prefix}terms.html">Terms</a>
       <a href="{prefix}sms-terms.html">SMS Terms</a>
@@ -714,11 +720,9 @@ home += f"""
   </div>
 </div></div></section>"""
 
-# --- "The Koast app" section: required by Google OAuth branding review.
-# The homepage must (a) show the app name "Koast" prominently as text and
-# (b) explain the functionality behind the OAuth scopes (Google sign-in +
-# optional Calendar sync). Keep this section on the homepage.
-home += f"""
+# --- "The Koast app" section. Keep the copy available for launch and OAuth review.
+if APP_MARKETING_LIVE:
+    home += f"""
 <section class="sec" id="app"><div class="wrap">
   <div class="sec-head center"><span class="pill pill-orange">The Koast app</span>
     <img src="img/app-icon.png" alt="Koast app logo" width="84" height="84" style="border-radius:20px;display:block;margin:14px auto 6px" loading="lazy">
@@ -2335,7 +2339,10 @@ def _write_redirects(pages):
         source = "/" + rel
         if source not in legacy_sources:
             redirects.append(f"{source} {_clean_public_path(source)} 301")
-    redirects.append("/get-app https://app.koastride.com/ 302")
+    if APP_MARKETING_LIVE:
+        redirects.append("/get-app https://app.koastride.com/ 302")
+    else:
+        redirects.extend(("/app / 302", "/app.html / 302", "/get-app / 302"))
     open(os.path.join(ROOT, "_redirects"), "w", encoding="utf-8", newline="\n").write(
         "\n".join(redirects) + "\n"
     )
@@ -4028,7 +4035,12 @@ app += faq_section([
 ], title="App questions")
 app += cta_section("Your next ride is a tap away.", "Open the app, get an instant fixed price, and ride easy.")
 app += footer("")
-write("app.html", app)
+if APP_MARKETING_LIVE:
+    write("app.html", app)
+else:
+    stale_app_page = os.path.join(ROOT, "app.html")
+    if os.path.exists(stale_app_page):
+        os.remove(stale_app_page)
 
 # SEO enhance — must run last
 enhance()

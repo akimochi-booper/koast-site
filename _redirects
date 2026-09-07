@@ -45,7 +45,6 @@
 /airports/san.html /airports/san 301
 /airports/sfo.html /airports/sfo 301
 /airports/sjc.html /airports/sjc 301
-/app.html /app 301
 /blog/atlanta-airport-black-car-guide.html /blog/atlanta-airport-black-car-guide 301
 /blog/austin-festival-season.html /blog/austin-festival-season 301
 /blog/black-car-vs-rideshare-cost.html /blog/black-car-vs-rideshare-cost 301
@@ -219,4 +218,6 @@
 /wineries/william-chris-vineyards.html /wineries/william-chris-vineyards 301
 /wineries/wilson-creek-winery-and-vineyard.html /wineries/wilson-creek-winery-and-vineyard 301
 /wineries/woodward-canyon-winery.html /wineries/woodward-canyon-winery 301
-/get-app https://app.koastride.com/ 302
+/app / 302
+/app.html / 302
+/get-app / 302
