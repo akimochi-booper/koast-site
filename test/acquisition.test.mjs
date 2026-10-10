@@ -12,12 +12,12 @@ function browser(options={}) {
   const navigator={...options.navigator};
   const document={referrer:options.referrer || '', querySelector:()=>options.noCanonical?null:{href:'https://koastride.com/services/wine-tours'},
     addEventListener:(type,fn)=>listeners[type]=fn};
-  const context=vm.createContext({URL,URLSearchParams,Number,window:{},location:url,document,navigator,crypto:{randomUUID},
+  const context=vm.createContext({URL,URLSearchParams,Number,window:{addEventListener:(type,fn)=>listeners[type]=fn},location:url,document,navigator,crypto:{randomUUID},
     Date:{now:()=>now},sessionStorage:{getItem:k=>{if(options.brokenStorage)throw Error('denied');return store.get(k)||null},setItem:(k,v)=>{if(options.brokenStorage)throw Error('denied');store.set(k,v)}},
     fetch:(endpoint,init)=>{if(options.brokenFetch)throw Error('offline');events.push({endpoint,init,data:JSON.parse(init.body)});return Promise.resolve({ok:true})}});
   function run(){vm.runInContext(source,context)}
   run();
-  return {events,store,run,navigator,advance:ms=>now+=ms,click:href=>{
+  return {events,store,run,navigator,advance:ms=>now+=ms,pageshow:persisted=>listeners.pageshow?.({persisted}),click:href=>{
     let canceled=false;listeners.click?.({target:{closest:()=>({href})},preventDefault:()=>canceled=true});assert.equal(canceled,false);
   }};
 }
@@ -58,7 +58,7 @@ test('new campaigns update last touch while keeping first touch',()=>{
 });
 test('reject personal-looking campaign labels and unknown paths',()=>{
  const b=browser({url:'https://koastride.com/private@example.com?utm_source=person%40example.com&utm_campaign=14155551212&utm_term=https%3A%2F%2Fbad.test',noCanonical:true});
- const p=b.events[0].data;assert.equal(p.path,'/404');assert.equal(p.utm_source,'');assert.equal(p.utm_campaign,'');assert.equal(p.utm_term,'');
+ const p=b.events[0].data;assert.equal(p.path,'/404');assert.equal(p.utm_source,'');assert.equal(p.utm_campaign,'');assert.equal(Object.hasOwn(p,'utm_term'),false);
 });
 test('storage and network failures do not break browsing; in-memory session still works',()=>{
  const b=browser({brokenStorage:true});b.click('tel:123');assert.equal(b.events[0].data.session_id,b.events[1].data.session_id);
@@ -71,4 +71,39 @@ test('every generated HTML page loads the tracker once and CSP permits collector
  const pages=html(root);assert.ok(pages.length>100,'Run python generate.py before this test');
  for(const p of pages){const text=readFileSync(p,'utf8');assert.equal((text.match(/src="\/koast-acquisition\.js\?v=1"/g)||[]).length,1,p);assert.equal(p.includes('care-rides.html'),false);}
  const headers=readFileSync(new URL('../_headers',import.meta.url),'utf8');assert.match(headers,/connect-src[^;]*https:\/\/koast-platform\.euburaga\.workers\.dev/);
+});
+
+test('campaign labels match backend grammar, length, and lowercase contract',()=>{
+ for(const label of ['Wine + Dinner (October)','x'.repeat(81),'1234567','-leading']){
+  const b=browser({url:'https://koastride.com/?utm_campaign='+encodeURIComponent(label)});
+  assert.equal(b.events[0].data.utm_campaign,'');
+ }
+ const b=browser({url:'https://koastride.com/?utm_campaign=Autumn_2026-VIP.A'});
+ assert.equal(b.events[0].data.utm_campaign,'autumn_2026-vip.a');
+});
+test('advertising marker types persist without transmitting or storing their values or search terms',()=>{
+ for(const [key,type] of [['gclid','google'],['gbraid','google'],['wbraid','google'],['msclkid','microsoft'],['fbclid','meta']]){
+  const b=browser({url:'https://koastride.com/?'+key+'=sensitive-click-identity&utm_term=sensitive-search-phrase'});
+  assert.equal(b.events[0].data.first_touch.click_id_type,type);
+  const next=browser({store:b.store,url:'https://koastride.com/blog',referrer:'https://koastride.com/'});
+  assert.equal(next.events[0].data.first_touch.click_id_type,type);
+  for(const serialized of [JSON.stringify(b.events),JSON.stringify(next.events),JSON.stringify([...b.store])]){
+   assert.equal(serialized.includes('sensitive-click-identity'),false);assert.equal(serialized.includes('sensitive-search-phrase'),false);
+   assert.equal(serialized.includes('utm_term'),false);
+  }
+ }
+ assert.equal(browser({url:'https://koastride.com/?gclid='}).events[0].data.first_touch.click_id_type,'');
+});
+test('restored history pages count another page view, respect opt out, and expire idle sessions',()=>{
+ const b=browser();const original=b.events[0].data.session_id;
+ b.pageshow(false);assert.equal(b.events.length,1);
+ b.pageshow(true);assert.equal(b.events.length,2);assert.equal(b.events[1].data.session_id,original);
+ b.advance(30*60*1000);b.pageshow(true);assert.notEqual(b.events[2].data.session_id,original);
+ b.store.set('koast_tracking_off','1');b.pageshow(true);assert.equal(b.events.length,3);
+});
+test('restored history page adopts the newer session written in the same tab',()=>{
+ const b=browser();const next=browser({store:b.store,now:3_000_001,url:'https://koastride.com/?utm_source=newsletter'});
+ b.advance(2_000_002);b.pageshow(true);
+ assert.equal(b.events[1].data.session_id,next.events[0].data.session_id);
+ assert.equal(b.events[1].data.first_touch.source,'newsletter');
 });

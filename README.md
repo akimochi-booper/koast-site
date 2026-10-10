@@ -13,7 +13,7 @@ The collector determines organization from the allowed website origin.
 The script uses a random tab-session ID with 30-minute idle expiry, stores first
 and latest source within that session, and omits cookies, form values, raw page
 queries, click IDs, and destination addresses. Only published canonical paths,
-referring origins, and sanitized campaign labels are sent. Browser DNT/GPC and
+referring origins, sanitized campaign labels (80 characters maximum), and the advertising-platform type when a click marker is present are sent. Raw click identifiers and search-term parameters are never sent or stored. Browser DNT/GPC and
 `?koast_tracking=off` disable collection. Local/Pages preview hosts never collect.
 Labels should describe campaigns, not people; do not put personal information in
 UTM links. The backend must still sanitize, rate-limit, deduplicate, and scope data.
