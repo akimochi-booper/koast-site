@@ -25,6 +25,7 @@ def head(title, desc, prefix="", extra=""):
 <link rel="stylesheet" href="{prefix}css/main.css?v=17">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0e1013">
+<script src="/koast-acquisition.js?v=1" defer></script>
 <meta property="og:site_name" content="Koast">{extra}
 </head>
 <body>
@@ -2137,6 +2138,10 @@ p += f"""
     <li><strong>Log information:</strong> server logs including device IP address, access dates and times, pages viewed, crashes and system activity, browser type, and referring sites or apps.</li>
   </ul>
   <p><strong>Information from other sources.</strong> We may receive information from other sources and combine it with information collected through the Services — for example, from a linked payment provider or social media service, from your employer if it uses one of our enterprise solutions, from Drivers who provide a user rating after a trip, or from your interactions with the Services in another capacity.</p>
+
+  <h2>Website measurement</h2>
+  <p>We use our own website measurement to understand which pages and campaign links lead to booking, phone, and email clicks. It records the public page, referring website, campaign labels, and the type of click. It does not collect form entries, the phone number or email address clicked, payment details, or the contents of your booking. A booking-link click does not tell us whether a reservation was completed.</p>
+  <p>This measurement uses a random identifier in this browser tab's session storage, with a new session after 30 minutes of inactivity. It does not use an analytics cookie, a persistent visitor identifier, or device fingerprinting. We respect browser Do Not Track and Global Privacy Control signals for this measurement. You can also <a href="/?koast_tracking=off">turn off this measurement for this browser tab's session</a>. Booking providers and other services may have their own measurement practices.</p>
 
   <h2>Use of information</h2>
   <p>We may use the information we collect about you to: provide, maintain, and improve the Services (including facilitating payments, sending receipts, providing requested services, developing new and safety features, authenticating Clients, and sending product updates and administrative messages); perform internal operations (fraud prevention, troubleshooting, data analysis, testing, research, and monitoring usage trends); send or facilitate communications between you and a Driver (such as ETAs) or between you and your contacts at your direction; send you communications we think will interest you, including products, services, promotions, news, and events, where permissible under applicable law, and process promotion entries and awards; and personalize and improve the Services, including features, content, social connections, referrals, and advertisements.</p>
