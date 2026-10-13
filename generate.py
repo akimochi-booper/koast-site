@@ -4,6 +4,9 @@ import os
 from data import BOOK, PHONE, SMS, EMAIL, FLEET, CITIES, AIRPORTS, WINE_REGIONS
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
+from editorial import load_posts, display_date
+EDITORIAL_POSTS = load_posts(ROOT)
+EDITORIAL_BY_SLUG = {post["slug"]: post for post in EDITORIAL_POSTS}
 
 # Care Rides launch switch — False keeps the service out of the built site
 CARE_RIDES_LIVE = False
@@ -1754,11 +1757,18 @@ BLOG = [
  ("group-airport-transfers.html","blog-group.jpg","Corporate","Group Airport Transfers: Moving a Team Through Arrivals","Staggered flights, one vehicle vs. several, and keeping a whole team moving on arrival."),
 ]
 
+for post in EDITORIAL_POSTS:
+    if any(item[0] == post["slug"] + ".html" for item in BLOG):
+        raise ValueError("Editorial slug duplicates an existing guide: " + post["slug"])
+BLOG = [(p["slug"] + ".html", p["image"], p["category"], p["title"], p["description"]) for p in EDITORIAL_POSTS] + BLOG
+
 def post_card(href, img, cat, title, excerpt):
+    post = EDITORIAL_BY_SLUG.get(href.removesuffix(".html"))
+    date_label = display_date(post["published"]) if post else "June 2026"
     return f"""
   <a class="card post-card" href="{href}">
     <div class="thumb"><img src="../img/{img}" alt="{title}" loading="lazy"></div>
-    <div class="body"><div class="meta"><b>{cat}</b> · June 2026</div>
+    <div class="body"><div class="meta"><b>{cat}</b> · {date_label}</div>
     <h3>{title}</h3>
     <p>{excerpt}</p></div>
   </a>"""
@@ -2436,7 +2446,8 @@ def _schema_for(rel, src, url, title, desc):
             "headline":_re.sub(r"<.*?>","",h1.group(1)).strip() if h1 else title,
             "description":desc,"url":url,
             "image":BASE_URL+"/"+img.group(1) if img else BASE_URL+"/img/hero-banner.jpg",
-            "datePublished":"2026-06-01","dateModified":"2026-06-12",
+            "datePublished":EDITORIAL_BY_SLUG.get(os.path.basename(rel).removesuffix(".html"), {}).get("published", "2026-06-01"),
+            "dateModified":EDITORIAL_BY_SLUG.get(os.path.basename(rel).removesuffix(".html"), {}).get("modified", "2026-06-12"),
             "author":{"@type":"Organization","name":"Koast"},
             "publisher":{"@id":BASE_URL+"/#org"}})
     # BreadcrumbList for section pages
@@ -2582,13 +2593,17 @@ Key pages:
 
 # ============================ BLOG BATCH 2 ============================
 def blog_page(slug, title, desc, cat, img, minutes, body, cta):
+    post = EDITORIAL_BY_SLUG.get(slug)
+    date_label = display_date(post["published"]) if post else "June 2026"
+    if post and post["modified"] != post["published"]:
+        date_label += " · Updated " + display_date(post["modified"])
     p = head(title + " | Koast", desc, "../")
     p += nav("../", "blog")
     p += f"""
 <section class="tight"><div class="wrap article">
   <span class="pill">{cat}</span>
   <h1>{title}</h1>
-  <div class="meta">By the Koast Team · June 2026 · {minutes} min read</div>
+  <div class="meta">By the Koast Team · {date_label} · {minutes} min read</div>
   <img class="post-hero" src="../img/{img}" alt="{title}">
   {body}
 </div></section>"""
@@ -4046,6 +4061,11 @@ else:
     stale_app_page = os.path.join(ROOT, "app.html")
     if os.path.exists(stale_app_page):
         os.remove(stale_app_page)
+
+# Dated editorial posts use the existing guide layout and index.
+for post in EDITORIAL_POSTS:
+    blog_page(post["slug"], post["title"], post["description"], post["category"],
+              post["image"], post["minutes"], post["body"], post["cta"])
 
 # SEO enhance — must run last
 enhance()

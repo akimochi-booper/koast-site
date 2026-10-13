@@ -25,14 +25,18 @@ jobs:
         run: |
           node --check koast-acquisition.js
           node --test test/acquisition.test.mjs
+      - name: Check generated site
+        run: python scripts/check_site.py --today "$(TZ=America/Los_Angeles date +%F)"
       - name: Stage deploy directory
         run: |
           mkdir -p dist
           rsync -a \
             --exclude='.git' --exclude='.github' --exclude='dist' \
-            --exclude='generate.py' --exclude='data.py' \
+            --exclude='generate.py' --exclude='data.py' --exclude='editorial.py' \
+            --exclude='content' --exclude='scripts' \
             --exclude='wineries_extra.json' --exclude='__pycache__' \
             --exclude='README.md' --exclude='test' --exclude='docs' \
+            --exclude='EDITORIAL.md' \
             ./ dist/
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
