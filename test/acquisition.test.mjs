@@ -107,3 +107,26 @@ test('restored history page adopts the newer session written in the same tab',()
  assert.equal(b.events[1].data.session_id,next.events[0].data.session_id);
  assert.equal(b.events[1].data.first_touch.source,'newsletter');
 });
+
+test('Moovs login and unrelated or lookalike paths are not booking intent',()=>{
+ const b=browser();
+ for(const href of [
+  'https://customer.moovs.app/koast/new/info',
+  'https://customer.moovs.app/koast/',
+  'https://customer.moovs.app/koast/iframe',
+  'https://customer.moovs.app/koast/request/newer',
+  'https://customer.moovs.app/koast/request/new/extra',
+  'https://customer.moovs.app/koast-other/request/new',
+  'https://customer.moovs.app.evil.example/koast/request/new',
+  'http://customer.moovs.app/koast/request/new'
+ ]) b.click(href);
+ assert.equal(b.events.length,1,'Non-booking paths must not add booking clicks');
+ for(const href of [
+  'https://customer.moovs.app/koast/request/new',
+  'https://customer.moovs.app/koast/request/new/?utm_source=website',
+  'https://customer.moovs.app/koast/request/new#ride'
+ ]) b.click(href);
+ assert.deepEqual(b.events.slice(1).map(x=>[x.data.event,x.data.destination]),[
+  ['booking_click','moovs'],['booking_click','moovs'],['booking_click','moovs']
+ ]);
+});

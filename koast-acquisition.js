@@ -84,7 +84,7 @@
     try {
       var u = new URL(a.href, location.href);
       if (u.protocol === 'tel:' || u.protocol === 'mailto:') track('contact_click', u.protocol === 'tel:' ? 'phone' : 'email');
-      else if (u.protocol === 'https:' && u.hostname === 'customer.moovs.app' && /^\/koast(?:\/|$)/.test(u.pathname)) track('booking_click', 'moovs');
+      else if (u.protocol === 'https:' && u.hostname === 'customer.moovs.app' && /^\/koast\/request\/new\/?$/.test(u.pathname)) track('booking_click', 'moovs');
       else if (u.protocol === 'https:' && u.hostname === 'app.koastride.com' && /^\/(?:book|booking|request)(?:\/|$)/.test(u.pathname)) track('booking_click', 'book');
     } catch (_) {}
   });
