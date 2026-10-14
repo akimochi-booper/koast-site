@@ -16,7 +16,7 @@ New guides live in `content/posts/<slug>.json`. The generator adds them to the e
 ## Current topic queue
 
 - Published 2026-10-13: Hourly Chauffeur or Separate Transfers? Planning a Day of Meetings.
-- Airport ride booking for another passenger: an exact handoff checklist (different from the broad EA guide).
+- Published 2026-10-14: Booking an Airport Ride for Someone Else: A Passenger Handoff Checklist. Includes a copyable traveler brief, change ownership and communications fallback; distinct from the broad EA guide.
 - SFO vs OAK vs SJC for a Silicon Valley business trip, with destination-based comparison and official links.
 - Business SUV luggage planning: bags, strollers and child seats (confirm real configurations; avoid fixed fit guarantees).
 - Hotel checkout before an evening flight: luggage and transportation planning.
