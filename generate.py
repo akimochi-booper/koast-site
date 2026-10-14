@@ -30,7 +30,7 @@ def head(title, desc, prefix="", extra=""):
 <meta name="description" content="{desc}">
 <link rel="preload" href="/fonts/plus-jakarta-sans-latin-v12.woff2" as="font" type="font/woff2" crossorigin>
 <style>@font-face{{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:200 800;font-display:swap;src:url('/fonts/plus-jakarta-sans-latin-v12.woff2') format('woff2')}}</style>
-<link rel="stylesheet" href="{prefix}css/main.css?v=17">
+<link rel="stylesheet" href="{prefix}css/main.css?v=18">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0e1013">
 <script src="/koast-acquisition.js?v=2" defer></script>
@@ -55,15 +55,15 @@ def nav(prefix="", active=""):
     _cmore = ["seattle","dallas","boston","washington-dc","san-diego","atlanta"]
     cpop = "".join(f'<a href="{prefix}cities/{c}.html">{CITIES[c]["name"]}</a>' for c in _cpop if c in CITIES)
     cmore = "".join(f'<a href="{prefix}cities/{c}.html">{CITIES[c]["name"]}</a>' for c in _cmore if c in CITIES)
-    _orange = 'style="color:var(--orange)!important;font-weight:700"'
+    _orange = 'style="color:var(--orange-text)!important;font-weight:700"'
     svc_active = active in ('airport','corporate','services','weddings','party-bus','fleet')
 
     services_dd = f'''<div class="nav-dd"><a href="{prefix}services/airport-transfers.html"{AC if svc_active else ''}>Services <span class="caret">&#9662;</span></a>
-      <div class="dd-menu"><div class="dd-col"><h5>Ride types</h5><a href="{prefix}services/airport-transfers.html">Airport Transfers</a><a href="{prefix}services/corporate-travel.html">Corporate Travel</a><a href="{prefix}services/weddings.html">Weddings</a><a href="{prefix}services/party-bus.html">Party Bus</a><a href="{prefix}index.html#fleet">Our Fleet</a></div></div></div>'''
+      <div class="dd-menu"><div class="dd-col"><p class="dd-label">Ride types</p><a href="{prefix}services/airport-transfers.html">Airport Transfers</a><a href="{prefix}services/corporate-travel.html">Corporate Travel</a><a href="{prefix}services/weddings.html">Weddings</a><a href="{prefix}services/party-bus.html">Party Bus</a><a href="{prefix}index.html#fleet">Our Fleet</a></div></div></div>'''
     wine_dd = f'''<div class="nav-dd"><a href="{prefix}services/wine-tours.html"{AC if active=='wine' else ''}>Wine <span class="caret">&#9662;</span></a>
-      <div class="dd-menu"><div class="dd-col"><h5>California</h5>{ca}</div><div class="dd-col"><h5>Nationwide</h5>{us}</div><div class="dd-col"><h5>Browse</h5><a href="{prefix}wineries/index.html" {_orange}>All 72 wineries &#8594;</a><a href="{prefix}services/wine-tours.html">Wine tour service</a></div></div></div>'''
+      <div class="dd-menu"><div class="dd-col"><p class="dd-label">California</p>{ca}</div><div class="dd-col"><p class="dd-label">Nationwide</p>{us}</div><div class="dd-col"><p class="dd-label">Browse</p><a href="{prefix}wineries/index.html" {_orange}>All 72 wineries &#8594;</a><a href="{prefix}services/wine-tours.html">Wine tour service</a></div></div></div>'''
     cities_dd = f'''<div class="nav-dd"><a href="{prefix}cities/index.html"{AC if active=='cities' else ''}>Cities <span class="caret">&#9662;</span></a>
-      <div class="dd-menu"><div class="dd-col"><h5>Popular</h5>{cpop}</div><div class="dd-col"><h5>More</h5>{cmore}<a href="{prefix}cities/index.html" {_orange}>All cities &#8594;</a></div></div></div>'''
+      <div class="dd-menu"><div class="dd-col"><p class="dd-label">Popular</p>{cpop}</div><div class="dd-col"><p class="dd-label">More</p>{cmore}<a href="{prefix}cities/index.html" {_orange}>All cities &#8594;</a></div></div></div>'''
     links = services_dd + wine_dd + cities_dd
     if APP_MARKETING_LIVE:
         links += f'<a href="{prefix}app.html"{AC if active=="app" else ""}>App</a>'
@@ -101,6 +101,34 @@ def nav(prefix="", active=""):
     b.setAttribute('aria-label',open?'Close menu':'Open menu');
     b.innerHTML=open?'&times;':'&#9776;';
   }}
+  document.querySelectorAll('.nav-dd').forEach(function(dd){{
+    dd.addEventListener('mouseenter',function(){{dd.classList.remove('dd-dismissed')}});
+    dd.addEventListener('focusout',function(e){{if(!dd.contains(e.relatedTarget))dd.classList.remove('dd-dismissed')}});
+    dd.addEventListener('mouseleave',function(){{if(!dd.contains(document.activeElement))dd.classList.remove('dd-dismissed')}});
+  }});
+  document.addEventListener('keydown',function(e){{
+    if(e.key!=='Escape')return;
+    document.querySelectorAll('.nav-dd').forEach(function(dd){{
+      if(dd.matches(':hover')||dd.contains(document.activeElement)){{
+        e.preventDefault();dd.classList.add('dd-dismissed');
+        if(dd.contains(document.activeElement))dd.querySelector('a').focus();
+      }}
+    }});
+  }});
+  // Keep modal focus and pointer interaction on the visible dialog only.
+  window.koastModalBackground=function(panel,open){{
+    if(open){{
+      if(panel._koastInertState)return;
+      panel._koastInertState=[];
+      Array.prototype.forEach.call(document.body.children,function(el){{
+        if(el===panel||el.contains(panel)||el.tagName==='SCRIPT')return;
+        panel._koastInertState.push([el,el.inert]);el.inert=true;
+      }});
+    }}else if(panel._koastInertState){{
+      panel._koastInertState.forEach(function(item){{item[0].inert=item[1]}});
+      panel._koastInertState=null;
+    }}
+  }};
   b.addEventListener('click',function(){{setNav(!document.body.classList.contains('nav-open'))}});
   m.addEventListener('click',function(e){{if(e.target.closest('a'))setNav(false)}});
   document.addEventListener('keydown',function(e){{if(e.key==='Escape'&&document.body.classList.contains('nav-open')){{setNav(false);b.focus()}}}});
@@ -122,7 +150,7 @@ CHAT_WIDGET = """
     <div class="kchat-id"><span class="kcoin">K</span><div><strong>Koast Agent</strong><span>Online — answers in seconds</span></div></div>
     <button class="kchat-x" type="button" aria-label="Close assistant">&times;</button>
   </div>
-  <div class="kchat-msgs" id="kchat-msgs">
+  <div class="kchat-msgs" id="kchat-msgs" role="log" aria-label="Conversation with Koast" aria-live="polite" aria-relevant="additions text">
     <div class="km bot">Hi! Ask me anything about booking, airports, the fleet, or wine tours. For exact prices, the instant-quote widget is the way.</div>
     <div class="kchat-chips">
       <button onclick="kchatAsk(this.textContent)">How does airport pickup work?</button>
@@ -150,10 +178,10 @@ CHAT_WIDGET = """
   var hist=[],busy=false,atts=[];
   function setChat(open){
     document.body.classList.toggle('kchat-open',open);
-    panel.toggleAttribute('inert',!open);
-    panel.setAttribute('aria-hidden',String(!open));
+    window.koastModalBackground(panel,open);
+    if(open){panel.removeAttribute('inert');panel.setAttribute('aria-hidden','false');inp.focus()}
+    else{fab.focus();panel.setAttribute('inert','');panel.setAttribute('aria-hidden','true')}
     fab.setAttribute('aria-expanded',String(open));
-    if(open)inp.focus();else fab.focus();
   }
   fab.addEventListener('click',function(){setChat(true)});
   closeBtn.addEventListener('click',function(){setChat(false)});
@@ -165,8 +193,8 @@ CHAT_WIDGET = """
     if(e.shiftKey&&document.activeElement===f[0]){e.preventDefault();f[f.length-1].focus()}
     else if(!e.shiftKey&&document.activeElement===f[f.length-1]){e.preventDefault();f[0].focus()}
   });
-  function add(cls,text){var d=document.createElement('div');d.className='km '+cls;if(text)d.textContent=text;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
-  window.kchatAsk=function(q){inp.value=q;send();};
+  function add(cls,text){var d=document.createElement('div');d.className='km '+cls;if(cls.indexOf('dots')!==-1)d.setAttribute('aria-hidden','true');if(text)d.textContent=text;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
+  window.kchatAsk=function(q){inp.value=q;send();inp.focus();};
 
   /* image attach + drag-and-drop */
   function renderAtts(){
@@ -249,7 +277,7 @@ def footer(prefix=""):
       <p>{EMAIL}</p>
       <p style="margin-top:8px"><a href="mailto:{EMAIL}" style="color:#0e9d8e;font-weight:700">Email us anytime →</a></p>
     </div>
-    <div><h4>Services</h4>
+    <div><p class="foot-label">Services</p>
       <a href="{prefix}services/airport-transfers.html">Airport Transfers</a>
       <a href="{prefix}services/corporate-travel.html">Corporate Travel</a>
       <a href="{prefix}services/wine-tours.html">Wine Tours</a>
@@ -258,7 +286,7 @@ def footer(prefix=""):
       <a href="{prefix}services/weddings.html">Weddings</a>
       <a href="{prefix}services/party-bus.html">Party Bus</a>
     </div>
-    <div><h4>Cities</h4>
+    <div><p class="foot-label">Cities</p>
       <a href="{prefix}cities/san-francisco.html">San Francisco</a>
       <a href="{prefix}cities/new-york.html">New York</a>
       <a href="{prefix}cities/los-angeles.html">Los Angeles</a>
@@ -266,7 +294,7 @@ def footer(prefix=""):
       <a href="{prefix}cities/miami.html">Miami</a>
       <a href="{prefix}cities/index.html">All cities →</a>
     </div>
-    <div><h4>Company</h4>
+    <div><p class="foot-label">Company</p>
       <a href="{prefix}support.html">Support</a>
       {('<a href="' + prefix + 'app.html">The Koast app</a>') if APP_MARKETING_LIVE else ""}
       <a href="{prefix}blog/index.html">Guides</a>
@@ -330,7 +358,7 @@ def fleet_section(prefix=""):
         strip = ""
         if ints:
             cells = "".join(f'<button class="int-photo" type="button" aria-label="Open {lbl} photo"><img src="{prefix}img/{f}" alt="Koast {v["name"]} — {lbl}" title="{lbl}" loading="lazy"></button>' for f, lbl in ints)
-            strip = (f'<div class="int-wrap"><button class="int-nav iprev off" aria-label="Previous photos">‹</button>'
+            strip = (f'<div class="int-wrap"><button class="int-nav iprev off" aria-label="Previous photos" disabled>‹</button>'
                      f'<div class="int-strip">{cells}</div>'
                      f'<button class="int-nav inext" aria-label="More photos">›</button></div>')
         cards += f"""
@@ -386,7 +414,13 @@ def fleet_section(prefix=""):
       document.body.appendChild(lb);
       var im=lb.querySelector('img'),cap=lb.querySelector('.klb-cap'),set=[],idx=0,lastFocus=null;
       function show(i){{idx=(i+set.length)%set.length;im.src=set[idx].src;cap.textContent=set[idx].title||set[idx].alt;}}
-      function close(){{lb.classList.remove('on');lb.setAttribute('aria-hidden','true');lb.setAttribute('inert','');document.body.style.overflow='';if(lastFocus)lastFocus.focus()}}
+      function close(){{lb.classList.remove('on');window.koastModalBackground(lb,false);if(lastFocus)lastFocus.focus();lb.setAttribute('aria-hidden','true');lb.setAttribute('inert','');document.body.style.overflow=''}}
+      lb.addEventListener('keydown',function(e){{
+        if(e.key!=='Tab')return;
+        var f=lb.querySelectorAll('button:not([disabled])'),first=f[0],last=f[f.length-1];
+        if(e.shiftKey&&document.activeElement===first){{e.preventDefault();last.focus()}}
+        else if(!e.shiftKey&&document.activeElement===last){{e.preventDefault();first.focus()}}
+      }});
       lb.addEventListener('click',function(e){{if(e.target===lb||e.target.classList.contains('klb-x'))close()}});
       lb.querySelector('.klb-prev').onclick=function(e){{e.stopPropagation();show(idx-1)}};
       lb.querySelector('.klb-next').onclick=function(e){{e.stopPropagation();show(idx+1)}};
@@ -395,7 +429,7 @@ def fleet_section(prefix=""):
         var d=e.target.closest('.int-photo');if(!d)return;
         var strip=d.closest('.int-strip');set=Array.prototype.map.call(strip.querySelectorAll('img'),function(x){{return x}});
         show(Array.prototype.indexOf.call(strip.children,d));
-        lastFocus=d;lb.classList.add('on');lb.removeAttribute('inert');lb.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';lb.querySelector('.klb-x').focus();
+        lastFocus=d;window.koastModalBackground(lb,true);lb.classList.add('on');lb.removeAttribute('inert');lb.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';lb.querySelector('.klb-x').focus();
       }});
       document.addEventListener('click',function(e){{
         var b=e.target.closest('.int-nav');if(!b)return;
@@ -406,8 +440,10 @@ def fleet_section(prefix=""):
       function updInt(st){{
         var wr=st.parentElement,pv=wr.querySelector('.iprev'),nx=wr.querySelector('.inext');
         if(!pv)return;
-        pv.classList.toggle('off',st.scrollLeft<8);
-        nx.classList.toggle('off',st.scrollLeft>st.scrollWidth-st.clientWidth-8);
+        pv.disabled=st.scrollLeft<8;
+        nx.disabled=st.scrollLeft>=st.scrollWidth-st.clientWidth-8;
+        pv.classList.toggle('off',pv.disabled);
+        nx.classList.toggle('off',nx.disabled);
       }}
       Array.prototype.forEach.call(document.querySelectorAll('.int-strip'),function(st){{
         st.addEventListener('scroll',function(){{requestAnimationFrame(function(){{updInt(st)}})}});updInt(st);
@@ -3578,7 +3614,7 @@ sp += f"""
     </div>
     <div class="kai">
       <div class="kai-head"><span class="kcoin">K</span><div><b>Koast Agent</b><small>Online — answers in seconds</small></div></div>
-      <div class="kai-msgs" id="kai-msgs">
+      <div class="kai-msgs" id="kai-msgs" role="log" aria-label="Conversation with Koast" aria-live="polite" aria-relevant="additions text">
         <div class="km bot">Hi! I'm Koast's agent. Ask me anything about booking, airports, the fleet, or how pricing works.</div>
       </div>
       <div class="kai-foot">
@@ -3594,7 +3630,7 @@ sp += f"""
     var URL_="{CHAT_WORKER_URL}";
     var msgs=document.getElementById('kai-msgs'),inp=document.getElementById('kai-in'),btn=document.getElementById('kai-send');
     var hist=[],busy=false;
-    function add(cls,text){{var d=document.createElement('div');d.className='km '+cls;d.textContent=text;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}}
+    function add(cls,text){{var d=document.createElement('div');d.className='km '+cls;if(cls.indexOf('dots')!==-1)d.setAttribute('aria-hidden','true');d.textContent=text;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}}
     window.kaiAsk=function(q){{inp.value=q;send();inp.focus();}};
     function send(){{
       var q=inp.value.trim();if(!q||busy)return;
@@ -4120,7 +4156,7 @@ not_found = head(
 not_found = not_found.replace("</head>", '<meta name="robots" content="noindex,follow">\n</head>', 1)
 not_found += nav("")
 not_found += """
-<main class="sec"><div class="wrap" style="max-width:760px;text-align:center;padding:72px 24px 96px">
+<section class="sec"><div class="wrap" style="max-width:760px;text-align:center;padding:72px 24px 96px">
   <span class="pill pill-orange">404</span>
   <h1 style="margin-top:18px">This page took a wrong turn.</h1>
   <p style="font-size:18px;max-width:560px;margin:16px auto 30px">The address may be outdated or mistyped. Head back to Koast, browse where we operate, or reach our support team.</p>
@@ -4129,7 +4165,7 @@ not_found += """
     <a class="btn" href="/cities/">Browse cities</a>
     <a class="btn" href="/support">Contact support</a>
   </div>
-</div></main>
+</div></section>
 """
 not_found += footer("")
 write("404.html", not_found)
