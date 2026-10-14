@@ -28,6 +28,13 @@ Daily cadence is a target, not permission to publish unsupported or repetitive c
 
 ## Image standards
 
+### Koast visual direction (owner requested October 14, 2026)
+
+- Anchor conceptual illustrations in the website palette: charcoal #0e1013 / #171a1f, crisp white or silver, and restrained Koast orange #ff5c1f. Teal #0b7d72 is an optional secondary accent, not the dominant mood. Avoid beige/pastel craft scenes and decorative foliage unless the article actually calls for them.
+- Aim for a clean premium travel-editorial feel: disciplined composition, believable object proportions, subtle matte textures, controlled light and clear silhouettes. Leave breathing room and keep the subject legible at card size. Avoid toy-like forms, excessive gloss, neon effects and stock-art clutter.
+- Keep the palette and level of finish consistent while varying the scene and visual metaphor by article. Do not turn every guide into the same dark background, car or phone composition. Light backgrounds can work when the same charcoal/orange visual language remains clear.
+- Match the article topic and preserve the existing factual safeguards below. Conceptual art stays clearly illustrative; actual fleet and service claims still require authorized real photography. Do not invent or redraw the Koast logo inside generated art.
+
 - Use a distinct, relevant illustration for new articles; do not repeatedly reuse generic car banners. Match a restrained premium visual style and the article question. Real service demonstrations need real authorized photographs, not invented visual evidence.
 - Review the generated image for incorrect vehicle geometry, unreadable text, misleading airport signs, extra limbs, logos, license plates, VINs and misleading fleet representations. Regenerate if the result is poor. No logos or text inside conceptual illustrations by default.
 - Keep an original master outside the public deploy. Export a web-ready WebP, ordinarily 1600px wide and below 250KB; automated gates require at least 1200px and at most 350KB. Preserve the composition rather than stretching or cropping essential details.
