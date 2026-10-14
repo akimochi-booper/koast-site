@@ -28,9 +28,8 @@ def head(title, desc, prefix="", extra=""):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <meta name="description" content="{desc}">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/plus-jakarta-sans-latin-v12.woff2" as="font" type="font/woff2" crossorigin>
+<style>@font-face{{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:200 800;font-display:swap;src:url('/fonts/plus-jakarta-sans-latin-v12.woff2') format('woff2')}}</style>
 <link rel="stylesheet" href="{prefix}css/main.css?v=17">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0e1013">
@@ -289,10 +288,22 @@ def footer(prefix=""):
 def book_card():
     return f"""
 <div class="book-card book-widget">
-  <iframe src="https://customer.moovs.app/koast/iframe" title="Book a ride with Koast"
+  <iframe data-src="https://customer.moovs.app/koast/iframe" title="Book a ride with Koast"
     loading="lazy" style="width:100%;height:620px;border:none;border-radius:12px;background:#fff"></iframe>
+  <noscript><p><a href="{BOOK}">Get a quote and book your ride →</a></p></noscript>
   <div class="widget-fallback">Widget not loading? <a href="{BOOK}">Book directly here →</a></div>
   <script>
+  (function(){{
+    var frame=document.currentScript.parentElement.querySelector('iframe[data-src]');
+    function load(){{if(frame.dataset.src){{frame.src=frame.dataset.src;delete frame.dataset.src;}}}}
+    if('IntersectionObserver' in window){{
+      var observer=new IntersectionObserver(function(entries){{
+        if(entries.some(function(entry){{return entry.isIntersecting}})){{load();observer.disconnect();}}
+      }},{{rootMargin:'120px 0px'}});
+      observer.observe(frame);
+      frame.addEventListener('focus',load,{{once:true}});
+    }}else load();
+  }})();
   window.addEventListener('message',function(e){{
     if(e.origin!=='https://customer.moovs.app')return;
     var h=null,d=e.data;
@@ -564,7 +575,8 @@ def service_areas_section(prefix=""):
     cards = ""
     for name, href, img in SERVICE_AREAS:
         cards += f"""
-    <a class="area-card" href="{prefix}{href}" style="background-image:linear-gradient(rgba(10,12,15,.38),rgba(10,12,15,.5)),url('{prefix}img/{img}')">
+    <a class="area-card" href="{prefix}{href}">
+      <img class="carousel-backdrop" src="{prefix}img/{img}" alt="" loading="lazy" decoding="async">
       <span>{name}</span>
     </a>"""
     return f"""
@@ -625,7 +637,8 @@ def services_section(prefix=""):
         if not _sos.path.exists(os.path.join(ROOT, "img", img)):
             img = "fleet-first-class-suv.jpg"
         cards += f"""
-    <a class="svc-card" href="{url}" style="background-image:linear-gradient(180deg,rgba(10,12,15,.04) 32%,rgba(10,12,15,.82)),url('{prefix}img/{img}')">
+    <a class="svc-card" href="{url}">
+      <img class="carousel-backdrop" src="{prefix}img/{img}" alt="" loading="lazy" decoding="async">
       <div class="svc-meta"><strong>{name}</strong><span>{sub}</span></div>
     </a>"""
     return f"""
