@@ -1,12 +1,18 @@
 #!/usr/bin/env python3
 """Koast site generator. Data lives in data.py — add a city there and re-run."""
 import os
+from html import escape
 from data import BOOK, PHONE, SMS, EMAIL, FLEET, CITIES, AIRPORTS, WINE_REGIONS
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 from editorial import load_posts, display_date
 EDITORIAL_POSTS = load_posts(ROOT)
 EDITORIAL_BY_SLUG = {post["slug"]: post for post in EDITORIAL_POSTS}
+LEGACY_MODIFIED = {slug: "2026-10-13" for slug in (
+    "san-francisco-summer-2026-events", "sfo-to-san-francisco-black-car-guide",
+    "lax-airport-black-car-guide", "chicago-ohare-midway-guide", "black-car-vs-rideshare-cost",
+    "chauffeur-terms-glossary", "jfk-black-car-guide", "miami-airport-black-car-guide")}
+ARCHIVED_GUIDES = {"san-francisco-summer-2026-events"}
 
 # Care Rides launch switch — False keeps the service out of the built site
 CARE_RIDES_LIVE = False
@@ -28,7 +34,7 @@ def head(title, desc, prefix="", extra=""):
 <link rel="stylesheet" href="{prefix}css/main.css?v=17">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0e1013">
-<script src="/koast-acquisition.js?v=1" defer></script>
+<script src="/koast-acquisition.js?v=2" defer></script>
 <meta property="og:site_name" content="Koast">{extra}
 </head>
 <body>
@@ -422,7 +428,7 @@ def why_section():
     <h2>Everything rideshare isn't.</h2>
   </div>
   <div class="grid-2">
-    {feat("price","o","Fixed, upfront pricing","Your quote is your final price. No surge, no hidden fees, itemized receipts.")}
+    {feat("price","o","Fixed, upfront pricing","Fixed pricing for your agreed itinerary, with an itemized quote. Extra stops, extended time or waiting beyond the included allowance may cost more.")}
     {feat("plane","t","Flight tracking built in","We watch your flight and adjust automatically — 30 min free wait domestic, 1 hr international.")}
     {feat("shield","o","Vetted professional chauffeurs","Commercially licensed and insured. Your driver's details sent before every trip.")}
     {feat("building","t","Corporate accounts","Account-based billing, passenger lists, and team ride coordination for businesses.")}
@@ -1098,12 +1104,12 @@ ROUTES = {
    "miles":"about 13 miles","time":"roughly 20–35 minutes","route":"US-101 or I-280","goodfor":"Arrivals, business travel, anyone headed downtown",
    "lede":"The classic run — flight-tracked, flat-rate, and timed to your actual landing so you're moving the moment you clear the terminal.",
    "drive_h":"A short hop where timing is everything",
-   "drive":["It's only about 13 miles up US-101 or I-280, but the timing is the whole game. Arrivals stack up, the 101 corridor backs up at rush hour, and the SFO curb is its own kind of chaos. Your chauffeur tracks your flight and is waiting curbside when you land, so all you do is walk to the car.",
+   "drive":["It's only about 13 miles up US-101 or I-280, but the timing is the whole game. Arrivals stack up, the 101 corridor backs up at rush hour, and the SFO curb is its own kind of chaos. Your chauffeur tracks your flight and coordinates pickup for when you are ready, following the airport's permitted pickup arrangements.",
      "Into the city we know which approach wins at which hour — 101 toward the Embarcadero and downtown, 280 for the western neighborhoods and SoMa. The price is fixed before you book, with no surge no matter when you touch down."],
    "airport":("../airports/sfo.html","SFO airport transfers","→"),"dest":("../cities/san-francisco.html","San Francisco black car service","→"),
    "faqs":[("How much is a car service from SFO to San Francisco?","You get a flat, all-in price up front when you book — no surge and no meter, whatever time you land. Tell us your destination for an instant quote."),
      ("How long does SFO to downtown San Francisco take?","Usually about 20 to 35 minutes for the roughly 13-mile trip, depending on traffic and the approach. Your chauffeur picks the fastest route for your arrival time."),
-     ("What if my flight is delayed?","We track your flight and adjust pickup automatically, early or late. Every arrival includes complimentary wait time, so a delay never costs you the ride."),
+     ("What if my flight is delayed?","We track your flight and adjust pickup automatically, early or late. Airport pickups include a waiting allowance. If your plans change or you need longer, contact us; additional waiting may be charged under your confirmation and Terms."),
      ("Can you pick up late at night or very early?","Yes — we run 24/7. Book a red-eye or a 5 a.m. departure and a flight-tracked chauffeur is there, at the price you were quoted.")]},
  "sfo-to-napa": {"from":"SFO","navname":"SFO → Napa Valley","to":"Napa Valley","h1_to":"Napa Valley",
    "title":"SFO to Napa Valley Car Service | Private Transfer | Koast",
@@ -1151,11 +1157,11 @@ ROUTES = {
    "lede":"Across the Bay Bridge and into the city — flight-tracked, flat-rate, and timed to your landing at OAK.",
    "drive_h":"Over the Bay Bridge, timed right",
    "drive":["Oakland sits about 12 miles from downtown San Francisco, straight across the Bay Bridge on I-80. It's quick when the bridge is clear and a slog when it isn't — backups and the toll plaza are the whole story, and a chauffeur who runs it daily knows which lane moves.",
-     "We track your flight and have a car waiting curbside when you land, so you skip the BART transfer and the rideshare lot. Fixed price quoted before you book, no surge no matter the hour."],
+     "We track your flight and coordinate your pickup using the instructions in your confirmation. Fixed price quoted before you book, no surge no matter the hour."],
    "airport":("../airports/oak.html","OAK airport transfers","→"),"dest":("../cities/san-francisco.html","San Francisco black car service","→"),
    "faqs":[("How much is a car from OAK to San Francisco?","A flat, all-in price up front — no surge, no meter, whatever time you land. Tell us your destination for an instant quote."),
      ("How long does OAK to San Francisco take?","Usually about 20 to 35 minutes across the Bay Bridge, depending on bridge traffic and the toll plaza. Your chauffeur times the run to your arrival."),
-     ("What about Bay Bridge tolls and traffic?","Tolls are included in your flat rate, and your chauffeur plans around the known backup windows. A delayed flight just means we adjust — wait time is complimentary."),
+     ("What about Bay Bridge tolls and traffic?","Tolls are included in your flat rate, and your chauffeur plans around the known backup windows. We adjust pickup for a tracked delayed flight. Waiting beyond the included allowance may be charged under your confirmation and Terms."),
      ("Do you run late at night?","Yes, 24/7. Red-eyes and early departures included, at the price you were quoted.")]},
  "oak-to-napa": {"from":"OAK","navname":"OAK → Napa Valley","to":"Napa Valley","h1_to":"Napa Valley",
    "title":"OAK to Napa Valley Car Service | Private Transfer | Koast",
@@ -1585,8 +1591,8 @@ write("services/wine-tours.html", s)
 BLOG_FAQ = {
  "lax-airport-black-car-guide": [
   ("How much is a black car from LAX?", "A flat, all-inclusive rate quoted before you book — tolls and gratuity included, with no surge during peak arrivals. Enter your pickup and drop-off for an instant price."),
-  ("How does pickup work with the LAX-it lot?", "Your chauffeur tracks your flight and coordinates pickup for your terminal, so you skip the LAX-it shuttle and ride-app lot entirely. The car is arranged to meet you on arrival."),
-  ("How long will the chauffeur wait if my flight is late?", "LAX arrivals include complimentary wait time — 30 minutes domestic, an hour international — and the flight is tracked, so pickup shifts with your actual landing at no extra charge."),
+  ("How does pickup work with the LAX-it lot?", "Your chauffeur tracks your flight and coordinates pickup for your terminal. Follow your reservation instructions for the permitted pickup point; airport rules and traffic controls can affect access."),
+  ("How long will the chauffeur wait if my flight is late?", "LAX airport pickups include 30 minutes for domestic flights and 60 minutes for international flights after the agreed pickup time; for delayed flights, pickup time starts when the plane has landed. Additional waiting is charged by vehicle class under the Terms."),
  ],
  "chicago-ohare-midway-guide": [
   ("Is a black car cheaper from O'Hare or Midway?", "Pricing is by distance and flat-rate either way, with no surge. Midway is closer to downtown, so that ride is usually shorter; O'Hare serves more airlines and international routes."),
@@ -1664,8 +1670,8 @@ BLOG_FAQ = {
   ("Can one account cover travel across multiple cities?", "Yes. A single Koast corporate account books the same standard of service in every market we serve, with one consolidated invoice instead of a vendor in each city."),
  ],
  "chauffeur-terms-glossary": [
-  ("What does flat-rate or all-inclusive pricing mean?", "The price you're quoted before booking is the final price — tolls, fees, and gratuity included, with no surge. What you see is what you pay."),
-  ("What is complimentary wait time at the airport?", "It's free wait time built into airport pickups — 30 minutes for domestic flights and an hour for international — with the flight tracked so the clock follows your actual landing."),
+  ("What does flat-rate or all-inclusive pricing mean?", "Your quote covers the agreed itinerary and lists included charges. Additional stops, extra time or waiting beyond the included allowance may incur charges under your confirmation and the Terms."),
+  ("What is complimentary wait time at the airport?", "Airport pickups include 30 minutes for domestic flights and 60 minutes for international flights after the agreed pickup time. For delayed flights, pickup time starts when the plane has landed. Waiting beyond the allowance may be charged; see the Terms."),
   ("What's the difference between a transfer and an hourly booking?", "A transfer is point-to-point at a flat rate. An hourly booking keeps the same car and chauffeur on standby for a set number of hours — ideal for multiple stops or an as-directed day."),
  ],
  "sonoma-first-timers": [
@@ -1691,12 +1697,12 @@ BLOG_FAQ = {
  "black-car-vs-rideshare-cost": [
   ("Is a black car actually more expensive than rideshare?", "Once you add surge, airport fees, tips, and the occasional cancellation, the gap narrows — and a flat, all-inclusive black car price removes the uncertainty rideshare can't."),
   ("Does a black car ever beat rideshare on price?", "During surge — airport peaks, bad weather, big events — a flat-rate black car can come in lower than a surged rideshare, while always being more predictable."),
-  ("What's included in a Koast flat rate?", "Tolls, fees, and gratuity, with no surge. The quoted price is the final price, so there's nothing added after the ride."),
+  ("What's included in a Koast flat rate?", "Review the written quote for included tolls, fees and gratuity. The fixed price covers the agreed itinerary; extra stops, extended time and waiting beyond the included allowance may cost more."),
  ],
  "sfo-to-san-francisco-black-car-guide": [
   ("How much is a black car from SFO to San Francisco?", "A flat, all-inclusive rate quoted before you book — tolls and gratuity included, no surge. Enter your pickup and drop-off for an instant price."),
-  ("How long is SFO to downtown San Francisco?", "Usually 25–40 minutes depending on the hour and whether the 101 is flowing. Your chauffeur routes for the conditions; the flat price holds either way."),
-  ("How long will the chauffeur wait if my flight is delayed?", "SFO arrivals include complimentary wait time — 30 minutes domestic, an hour international — and the flight is tracked so pickup follows your actual landing at no extra charge."),
+  ("How long is SFO to downtown San Francisco?", "Travel time depends on the destination, traffic and terminal departure. Check current conditions and allow a buffer; no fixed drive time is guaranteed."),
+  ("How long will the chauffeur wait if my flight is delayed?", "SFO airport pickups include 30 minutes for domestic flights and 60 minutes for international flights after the agreed pickup time; for delayed flights, pickup time starts when the plane has landed. Additional waiting is charged by vehicle class under the Terms."),
  ],
  "san-francisco-summer-2026-events": [
   ("What's the best way to get around SF during a big summer event?", "A pre-scheduled black car skips the road closures and rideshare surge around World Cup matches, Outside Lands, and street festivals. Pickups are set in advance so you arrive on time."),
@@ -1728,7 +1734,7 @@ BLOG = [
  ("nashville-music-calendar.html","blog-banner-nash-music.jpg","City Events","Nashville's Music Calendar: CMA Fest to New Year's Eve","Broadway's biggest weeks, when hotels spike, and how groups move between honky-tonks and arenas."),
  ("houston-rodeo-guide.html","blog-banner-hou-rodeo.jpg","City Events","Houston Rodeo Season: The Getting-There Guide","Three weeks, two million visitors, one parking nightmare — the NRG Park playbook for rodeo nights."),
  ("seattle-events-guide.html","blog-banner-sea-events.jpg","City Events","Seattle's Event Season: Bumbershoot to Game Day","Festivals, sold-out shows, and stadium Saturdays — moving around Seattle when everyone has plans."),
- ("san-francisco-summer-2026-events.html","blog-banner-sf.jpg","City Events","San Francisco Summer 2026: World Cup, Outside Lands & More","The Bay's biggest summer ever — what's on, where it is, and how to get there without parking nightmares."),
+ ("san-francisco-summer-2026-events.html","blog-banner-sf.jpg","City Events","San Francisco Summer 2026: Event Guide Archive","Seasonal archive for summer 2026, with a current checklist for planning transportation to future San Francisco events."),
  ("lax-airport-black-car-guide.html","blog-banner-la.jpg","Airport Guides","LAX Without the Chaos: The Black Car Pickup Guide","Terminal-by-terminal pickup reality, the LAX-it lot problem, and how chauffeured pickup actually works."),
  ("chicago-ohare-midway-guide.html","blog-banner-chicago.jpg","Airport Guides","O'Hare or Midway? The Chicago Airport Decision","Which airport to fly into, what each ride downtown really takes, and winter travel survival."),
  ("vegas-convention-transportation.html","blog-banner-vegas.jpg","Corporate","The Las Vegas Convention Playbook","Moving a team through CES week without losing hours in taxi lines — venue logistics that work."),
@@ -1739,7 +1745,7 @@ BLOG = [
  ("black-car-vs-rideshare-cost.html","blog-banner-rideshare.jpg","Industry","Black Car vs. Rideshare: The Real Cost Math","Surge, airport fees, tips, cancellations — what the price comparison looks like when you count everything."),
  ("choosing-corporate-car-service.html","blog-banner-corporate.jpg","Corporate","How to Choose a Corporate Car Service: 9 Questions to Ask","The vetting checklist travel managers use — insurance, billing, coverage, and the questions vendors dodge."),
  ("chauffeur-terms-glossary.html","blog-banner-glossary.jpg","Industry","Wait Time, Hourly & Flat Rate: Chauffeur Terms, Explained","The industry's vocabulary decoded, so you know exactly what you're booking."),
- ("sfo-to-san-francisco-black-car-guide.html","blog-banner-sfo.jpg","Airport Guides","SFO to San Francisco: The Complete Black Car Guide","What it costs, how pickup works, and why travelers are switching from rideshare for airport runs."),
+ ("sfo-to-san-francisco-black-car-guide.html","blog-banner-sfo.jpg","Airport Guides","SFO to San Francisco: The Complete Black Car Guide","Pickup preparation, included waiting, quote comparisons and a practical airport booking checklist."),
  ("ea-guide-executive-ground-travel.html","blog-banner-ea-guide.jpg","Corporate","The EA's Guide to Booking Executive Ground Travel","How executive assistants coordinate flawless ground transportation for leadership teams."),
  ("austin-festival-season.html","city-austin.jpg","City Events","Austin Festival Season, Survived","SXSW and ACL move half a million people — how locals and pros get around when the city doubles."),
  ("boston-logan-guide.html","city-boston.jpg","Airport Guides","Logan Airport Done Right","Boston's tunnels, the Ted Williams, and why pre-booked beats the rideshare scrum at Terminal E."),
@@ -1765,15 +1771,20 @@ BLOG = [(p["slug"] + ".html", p["image"], p["category"], p["title"], p["descript
 def post_card(href, img, cat, title, excerpt):
     post = EDITORIAL_BY_SLUG.get(href.removesuffix(".html"))
     date_label = display_date(post["published"]) if post else "June 2026"
+    if href.removesuffix(".html") in ARCHIVED_GUIDES:
+        date_label += " · Seasonal archive"
+    if not post and href.removesuffix(".html") in LEGACY_MODIFIED:
+        date_label += " · Updated " + display_date(LEGACY_MODIFIED[href.removesuffix(".html")])
+    image_alt = escape(post["image_alt"] if post else title, quote=True)
     return f"""
   <a class="card post-card" href="{href}">
-    <div class="thumb"><img src="../img/{img}" alt="{title}" loading="lazy"></div>
+    <div class="thumb"><img src="../img/{img}" alt="{image_alt}" loading="lazy" decoding="async"></div>
     <div class="body"><div class="meta"><b>{cat}</b> · {date_label}</div>
     <h3>{title}</h3>
     <p>{excerpt}</p></div>
   </a>"""
 
-CAT_ORDER = ["City Events","Airport Guides","City Guides","Wine Country","Trips","Corporate","Industry"]
+CAT_ORDER = ["Airport Guides","City Guides","Wine Country","Trips","Corporate","Industry","City Events","Archive"]
 
 b = head("Koast Blog — Travel, Airports & Ground Transportation",
          "Guides on airports, black car travel, corporate ground transportation, wine country, and getting around the cities we serve.", "../")
@@ -1790,8 +1801,11 @@ b += """
 </div></header>
 <section class="tight" style="padding-top:28px"><div class="wrap" id="bwrap">
 """
+if EDITORIAL_POSTS:
+    latest_cards = "".join(post_card(p["slug"]+".html", p["image"], p["category"], p["title"], p["description"]) for p in EDITORIAL_POSTS[:6])
+    b += '<div id="latest-guides" class="bcat"><h2 class="bcat-title">Latest guides</h2><div class="grid-3">' + latest_cards + '</div></div>'
 for cat in CAT_ORDER:
-    posts = [p for p in BLOG if p[2] == cat]
+    posts = [p for p in BLOG if (p[0].removesuffix(".html") in ARCHIVED_GUIDES if cat == "Archive" else p[2] == cat and p[0].removesuffix(".html") not in ARCHIVED_GUIDES)]
     if not posts: continue
     cards = "".join(post_card(*p) for p in posts)
     b += f"""
@@ -1804,7 +1818,7 @@ b += """
 </div></section>
 <script>
 (function(){
-  var cats = Array.prototype.map.call(document.querySelectorAll('.bcat'), function(c){return c.dataset.cat});
+  var cats = Array.prototype.map.call(document.querySelectorAll('.bcat[data-cat]'), function(c){return c.dataset.cat});
   var chips = document.getElementById('bchips');
   var activeCat = 'All';
   ['All'].concat(cats).forEach(function(c){
@@ -1817,7 +1831,8 @@ b += """
   q.addEventListener('input', filter);
   function filter(){
     var term = q.value.toLowerCase(); var any = false;
-    document.querySelectorAll('.bcat').forEach(function(sec){
+    var latest = document.getElementById('latest-guides'); if(latest) latest.style.display = !term && activeCat==='All' ? '' : 'none';
+    document.querySelectorAll('.bcat[data-cat]').forEach(function(sec){
       var secMatch = (activeCat==='All' || sec.dataset.cat===activeCat); var vis = 0;
       sec.querySelectorAll('.post-card').forEach(function(card){
         var hit = secMatch && card.textContent.toLowerCase().indexOf(term) > -1;
@@ -1834,29 +1849,29 @@ b += footer("../")
 write("blog/index.html", b)
 
 p = head("SFO to San Francisco: The Complete Black Car Guide (2026) | Koast",
-         "How much a black car from SFO to San Francisco costs, how pickup works, and how it compares to rideshare. Updated 2026.", "../")
+         "Plan an SFO transfer with clear pickup instructions, included waiting, complete quote comparisons and a practical booking checklist.", "../")
 p += nav("../", "blog")
 p += f"""
 <section class="tight"><div class="wrap article">
   <span class="pill">Airport Guides</span>
   <h1>SFO to San Francisco: The Complete Black Car Guide</h1>
-  <div class="meta">By the Koast Team · Updated June 2026 · 5 min read</div>
+  <div class="meta">By the Koast Team · Published June 2026 · Updated October 13, 2026 · 3 min read</div>
   <img class="post-hero" src="../img/blog-banner-sfo.jpg" alt="San Francisco airport at dawn">
-  <p>Landing at SFO after a long flight, the last thing you want is a 25-minute wait in the rideshare lot watching your driver cancel twice. Here's how chauffeured airport transfer actually works, what it costs, and when it makes sense over rideshare.</p>
+  <p>A pre-booked airport transfer gives you a confirmed plan for getting from SFO to your destination. The useful details are your flight, pickup instructions, luggage and the written quote—not a promise that a car can wait at any curb.</p>
   <h2>How pickup works</h2>
-  <p>With a pre-booked black car, your driver tracks your flight and times the pickup to your actual arrival — early, late, or on time. You'll have their name, photo, and phone number before you land. Your driver pulls up curbside when you're ready, or helps with your bags — pickup timed to your actual arrival.</p>
-  <div class="callout"><p><strong>Wait time is free:</strong> 30 minutes on domestic arrivals and a full hour on international — enough for customs, baggage, and a coffee.</p></div>
-  <h2>What it costs</h2>
-  <p>Black car pricing is flat-rate: quoted upfront, all-inclusive of tolls, airport fees, and gratuity. Rideshare from SFO to downtown often looks cheaper — until surge pricing, airport pickup fees, and tips stack up. On busy evenings, rideshare can exceed a fixed black car rate while delivering a fraction of the experience.</p>
-  <h2>When black car beats rideshare</h2>
+  <p>Provide the flight number and arrival date when booking. Follow the pickup instructions in your confirmation and contact your chauffeur when you are ready. Terminal access and pickup locations can change; consult <a href="https://www.flysfo.com/to-from/ground-transportation">SFO's official ground transportation information</a> for current airport guidance.</p>
+  <h2>Included waiting and extra time</h2>
+  <p>Koast's published Terms include 30 minutes for domestic airport pickups and 60 minutes for international airport pickups after the agreed pickup time. For delayed flights, pickup time starts when the plane has landed. Waiting beyond the allowance is charged by vehicle class. Review your confirmation and <a href="../terms.html">current Terms</a>; the allowance is not a guarantee that baggage or customs will take less time.</p>
+  <h2>Compare the complete quote</h2>
+  <p>Use the same date, route, vehicle class and passenger count when comparing options. Check which tolls, fees and gratuity are included. Your fixed quote covers the agreed itinerary; additional stops, extra time or waiting can change the total.</p>
+  <h2>What to send when booking</h2>
   <ul>
-    <li><strong>Early or critical flights</strong> — a confirmed, scheduled pickup beats hoping a driver accepts at 4:30 AM.</li>
-    <li><strong>Business travel</strong> — receipts, consistency, and a quiet professional environment between calls.</li>
-    <li><strong>Groups &amp; luggage</strong> — SUVs and Sprinters swallow ski bags, golf clubs, and sample cases.</li>
-    <li><strong>Guests you care about</strong> — clients, candidates, parents. A chauffeur ready the moment they land sets the tone.</li>
+    <li>Flight number, arrival date, destination and passenger contact.</li>
+    <li>Passenger count and the number and size of bags; mention strollers or bulky equipment.</li>
+    <li>Any planned stops, child-seat requirements and firm arrival deadlines.</li>
+    <li>A separate return pickup if you also need a ride back to the airport.</li>
   </ul>
-  <h2>Booking it</h2>
-  <p>Enter your flight and drop-off at <a href="{BOOK}" style="color:var(--orange);font-weight:700">koastride.com</a> for an instant quote. No account or app needed — you'll get text updates and live driver tracking automatically.</p>
+  <p>Check current traffic when planning the day and leave room for baggage collection and terminal exit. Compare <a href="../airports/sfo.html">Koast SFO airport transfers</a>, then <a href="{BOOK}">request a quote</a> for your actual itinerary.</p>
 </div></section>"""
 p += cta_section("Try it on your next landing.")
 p += faq_section(BLOG_FAQ["sfo-to-san-francisco-black-car-guide"])
@@ -1866,35 +1881,29 @@ write("blog/sfo-to-san-francisco-black-car-guide.html", p)
 print("Done - site generated.")
 
 # ============================ BLOG: SF SUMMER 2026 ============================
-p = head("San Francisco Summer 2026: World Cup, Outside Lands & Every Big Event | Koast",
-         "SF's biggest summer ever — World Cup matches at Levi's Stadium, Outside Lands, Stern Grove, Fillmore Jazz Fest. What's on and how to get there.", "../")
+p = head("San Francisco Summer 2026 Events — Seasonal Archive | Koast",
+         "Archived San Francisco summer 2026 event guide, plus a checklist and official sources for planning transport to future events.", "../")
 p += nav("../", "blog")
 p += f"""
 <section class="tight"><div class="wrap article">
-  <span class="pill">City Events</span>
-  <h1>San Francisco Summer 2026: The Bay's Biggest Season Ever</h1>
-  <div class="meta">By the Koast Team · June 2026 · 6 min read</div>
+  <span class="pill">Seasonal archive</span>
+  <h1>San Francisco Summer 2026: Event Guide Archive</h1>
+  <div class="meta">By the Koast Team · Published June 2026 · Updated October 13, 2026</div>
   <img class="post-hero" src="../img/blog-banner-sf.jpg" alt="San Francisco summer events illustration">
-  <p>Between the FIFA World Cup coming to the Bay, Outside Lands in Golden Gate Park, and a packed calendar of street festivals, summer 2026 is the busiest the Bay Area has been in years. Here's what's on — and a local's advice on getting to each one, because parking is about to get historic.</p>
-  <h2>The World Cup comes to the Bay (June 11 – July 19)</h2>
-  <p>FIFA World Cup matches run at Levi's Stadium in Santa Clara, with fan zones and watch parties across San Francisco, Oakland, and San Jose all tournament long. If you're heading to a match, know this: Levi's Stadium on event days is a traffic event of its own. Pre-booked drop-off beats the parking lots by a wide margin — your driver drops you at the gate, and is waiting at a set pickup point when the final whistle blows.</p>
-  <div class="callout"><p><strong>Pro tip:</strong> book match-day rides as round trips with hourly wait. Surge pricing on rideshare after a World Cup match will be brutal; a flat rate locked in weeks ahead won't be.</p></div>
-  <h2>Outside Lands — August 7–9, Golden Gate Park</h2>
-  <p>The lineup spans pop, rap, R&amp;B and rock — Charli XCX, PinkPantheress, and GloRilla headline the bill. There is functionally no parking near Golden Gate Park during Outside Lands. Get dropped on the park's edge and walk in like the veterans do.</p>
-  <h2>Free music all summer</h2>
-  <p>The Stern Grove Festival runs free Sunday concerts June 14 through August 16 under the eucalyptus — this year's lineup includes Major Lazer (July 5), Public Enemy (Aug 15), and Al Green (Aug 16). In July, the Fillmore Jazz Festival takes over twelve blocks of Pacific Heights as the largest free jazz festival on the West Coast.</p>
-  <h2>Street festival season</h2>
+  <div class="callout"><p><strong>This season has ended.</strong> This URL originally covered summer 2026. It is retained for readers following older links; it is not a current event calendar. Outdated dates, lineups and advance-booking predictions have been removed.</p></div>
+  <h2>Planning your next San Francisco event trip</h2>
+  <p>Start with the organizer's current event page and the venue's transportation instructions. For an overview, check <a href="https://www.sftravel.com/things-to-do/events">San Francisco Travel's event listings</a>, then confirm your chosen event directly before reserving transportation.</p>
+  <h2>A pickup plan that works with the venue</h2>
   <ul>
-    <li><strong>June:</strong> SF Pride, the Union Street Festival (June 6–7), Juneteenth on Fillmore (June 13), and the North Beach Festival (June 20–21) celebrating the neighborhood's Italian-American and Beat heritage.</li>
-    <li><strong>July 4:</strong> fireworks and free entertainment along the waterfront.</li>
-    <li><strong>August:</strong> the Pistahan Parade &amp; Festival (Aug 8–9) at Yerba Buena Gardens — the West Coast's largest Filipino celebration.</li>
+    <li>Confirm the date, venue, door time and expected finish time.</li>
+    <li>Check permitted drop-off and pickup areas, road closures and walking distance. A private car still has to follow traffic controls.</li>
+    <li>Book the return leg explicitly and agree on a reachable meeting point and passenger contact.</li>
+    <li>Tell the operator your passenger count, luggage and accessibility needs before choosing a vehicle.</li>
+    <li>Compare separate transfers with an hourly booking if the finish time is uncertain; confirm the included time and additional charges.</li>
   </ul>
-  <h2>Getting around it all</h2>
-  <p>Big-event weekends are exactly when ground transportation falls apart — surge pricing, closed streets, drivers canceling. A pre-booked chauffeur with a flat rate and a fixed pickup point removes all of it. For groups, a Sprinter or party bus turns the ride to the show into part of the night.</p>
-  <p><a href="{BOOK}" style="color:var(--orange);font-weight:700">Lock in your event-day ride →</a></p>
+  <p>For current transportation options, see <a href="../cities/san-francisco.html">Koast in San Francisco</a> and our <a href="hourly-chauffeur-vs-point-to-point-transfers.html">hourly versus separate transfers guide</a>. No car service can guarantee access through a closure or eliminate event traffic.</p>
 </div></section>"""
-p += cta_section("Make event days easy.")
-p += faq_section(BLOG_FAQ["san-francisco-summer-2026-events"])
+p += cta_section("Plan your next event ride.")
 p += footer("../")
 write("blog/san-francisco-summer-2026-events.html", p)
 
@@ -2008,16 +2017,16 @@ p += f"""
 <section class="tight"><div class="wrap article">
   <span class="pill">Legal</span>
   <h1>Terms &amp; Conditions</h1>
-  <div class="meta">Version: San Francisco, January 2024</div>
+  <div class="meta">Updated October 13, 2026 · Operating relationship clarified</div>
 
   <h2>1. General provisions</h2>
-  <p>Koast, headquartered in San Francisco, California (hereinafter referred to as "Koast") enables its users to book transportation services via its own online platform by integrating third-party online platforms and applications for mobile devices ("apps"; all methods collectively referred to as "Koast Tools"). Koast's service consists of arranging for the transportation of a user by an independent ride service provider (Transportation Service Provider or "TSP"). Koast arranges this business service for the user but does not provide the actual transportation service.</p>
-  <p>These General Terms and Conditions ("T&amp;Cs") are part of each agreement of the user concerning Koast's arrangement of business service contracts. They also describe the details of the transportation services for which Koast provides the user a direct claim against a particular TSP.</p>
+  <p>Koast is operated by Krujim Inc, headquartered in San Francisco, California. Koast provides chauffeured transportation directly and also arranges transportation with independent Transportation Service Providers ("TSPs"), depending on the reservation. Users may book through Koast's online platform, integrated third-party platforms, mobile applications or directly with Koast (collectively, the "Koast Tools").</p>
+  <p>These General Terms and Conditions ("T&amp;Cs") apply to bookings for transportation provided directly by Krujim Inc and transportation arranged by Koast with an independent TSP. References to the TSP in the service provisions mean the operator providing the ride, including Krujim Inc for directly operated rides, as applicable.</p>
   <p>Conflicting general terms and conditions of the user are hereby also contradicted in the case of confirmation letters and services accepted without condition. Any terms to the contrary shall only apply insofar as the management of Koast has expressly consented to this in writing.</p>
 
   <h2>2. Contractual relationship and contract conclusion</h2>
-  <p><strong>2.1 Contractual relationship.</strong> Koast does not itself provide the transportation services in connection with the Koast Tools and does not do so by way of third-party agents. Koast only provides the user with a claim for transport against a TSP, which is independent of Koast. For this purpose, Koast concludes the necessary agreements on its own behalf with the TSP that provide the user with a claim for transport against the TSP ("contract for the benefit of third parties"). On this basis, the user is entitled to request the transportation service and any further claims in respect of that service directly from the TSP. Koast and the user only agree to the arrangement of a business service contract and not to the arrangement of the actual transportation services. The claim for compensation by Koast includes the compensation for arranging business services as well as the compensation distributed to the TSP for the transportation services.</p>
-  <p><strong>2.2 Conclusion of contract.</strong> By transmitting a completed booking form via the Koast Tools or by making arrangements by telephone with Koast, the user transmits an offer to conclude a business service contract ("ride request"). Koast first transmits an email confirmation of the details of the requested ride service it has received; in so doing, Koast only confirms receipt of the ride request. It is only by separate declaration ("booking confirmation") by email from Koast that the business service contract between Koast and the user is concluded for the desired ride service. The user is then directly entitled vis-à-vis the TSP to request the ride service and to assert further claims in respect of such ride service directly against the TSP.</p>
+  <p><strong>2.1 Contractual relationship.</strong> For rides operated directly by Krujim Inc, Koast is the transportation service provider. For rides fulfilled by an independent TSP, Koast arranges the transportation and the independent TSP provides the ride. Contact Koast if you need to confirm which operator will fulfill your reservation.</p>
+  <p><strong>2.2 Conclusion of contract.</strong> By transmitting a completed booking form via the Koast Tools or by making arrangements by telephone with Koast, the user transmits an offer to book the requested transportation service ("ride request"). Koast first transmits an email confirmation of the details of the requested ride service it has received; in so doing, Koast only confirms receipt of the ride request. It is only by separate declaration ("booking confirmation") by email from Koast that the booking contract between Koast and the user is concluded for the desired ride service. The user is then directly entitled vis-à-vis the TSP to request the ride service and to assert further claims in respect of such ride service directly against the TSP.</p>
 
   <h2>3. Registration obligation</h2>
   <p>The user provides assurance to Koast that all information it transmits or has transmitted to Koast on its behalf by another person is complete and accurate. Registrations by automated processes are prohibited.</p>
@@ -2447,7 +2456,7 @@ def _schema_for(rel, src, url, title, desc):
             "description":desc,"url":url,
             "image":BASE_URL+"/"+img.group(1) if img else BASE_URL+"/img/hero-banner.jpg",
             "datePublished":EDITORIAL_BY_SLUG.get(os.path.basename(rel).removesuffix(".html"), {}).get("published", "2026-06-01"),
-            "dateModified":EDITORIAL_BY_SLUG.get(os.path.basename(rel).removesuffix(".html"), {}).get("modified", "2026-06-12"),
+            "dateModified":EDITORIAL_BY_SLUG.get(os.path.basename(rel).removesuffix(".html"), {}).get("modified", LEGACY_MODIFIED.get(os.path.basename(rel).removesuffix(".html"), "2026-06-12")),
             "author":{"@type":"Organization","name":"Koast"},
             "publisher":{"@id":BASE_URL+"/#org"}})
     # BreadcrumbList for section pages
@@ -2597,6 +2606,11 @@ def blog_page(slug, title, desc, cat, img, minutes, body, cta):
     date_label = display_date(post["published"]) if post else "June 2026"
     if post and post["modified"] != post["published"]:
         date_label += " · Updated " + display_date(post["modified"])
+    if not post and slug in LEGACY_MODIFIED:
+        date_label += " · Updated " + display_date(LEGACY_MODIFIED[slug])
+    image_alt = escape(post["image_alt"] if post else title, quote=True)
+    image_attrs = f' width="{post["image_width"]}" height="{post["image_height"]}" style="height:auto"' if post else ""
+    image_caption = '<p class="meta">AI-generated editorial illustration.</p>' if post and post.get("image_generated") else ""
     p = head(title + " | Koast", desc, "../")
     p += nav("../", "blog")
     p += f"""
@@ -2604,7 +2618,8 @@ def blog_page(slug, title, desc, cat, img, minutes, body, cta):
   <span class="pill">{cat}</span>
   <h1>{title}</h1>
   <div class="meta">By the Koast Team · {date_label} · {minutes} min read</div>
-  <img class="post-hero" src="../img/{img}" alt="{title}">
+  <img class="post-hero" src="../img/{img}" alt="{image_alt}"{image_attrs} decoding="async">
+  {image_caption}
   {body}
 </div></section>"""
     if slug in BLOG_FAQ:
@@ -2619,7 +2634,7 @@ blog_page("lax-airport-black-car-guide",
  "Airport Guides","blog-banner-la.jpg","5", f"""
   <p>LAX moves more origin-and-destination passengers than almost any airport on earth, and its ground transportation shows it. Rideshare pickups happen at the LAX-it lot — a shuttle ride or long walk from your terminal — where waits stretch past 30 minutes on busy evenings. Here's how travelers skip all of it.</p>
   <h2>How chauffeured pickup works at LAX</h2>
-  <p>Licensed chauffeured vehicles meet passengers in ways rideshares can't: your driver tracks your flight and is ready the moment you land, helps with your bags, and walks you to the car. No app-refreshing, no lot shuttle, no guessing which curb level. After a long-haul flight into Tom Bradley International, that difference is everything.</p>
+  <p>With a pre-booked chauffeur service, your chauffeur tracks your flight and coordinates the pickup described in your confirmation. Follow the provided instructions and contact your chauffeur when you are ready. The meeting point depends on the terminal and airport rules; do not assume the vehicle can wait at the curb while you collect bags.</p>
   <div class="callout"><p><strong>The math that surprises people:</strong> with surge pricing on weekend evenings, a rideshare to the Westside can exceed a flat-rate black car — while delivering a fraction of the experience.</p></div>
   <h2>Typical drive times from LAX</h2>
   <ul>
@@ -2644,7 +2659,7 @@ blog_page("chicago-ohare-midway-guide",
     <li><strong>Midway (MDW)</strong> — the sleeper pick: smaller, faster to clear, 25–40 minutes to the Loop. If a Midway flight matches your schedule, take it.</li>
   </ul>
   <h2>The winter factor</h2>
-  <p>From November to March, Chicago ground transportation is a different sport. Rideshare queues at O'Hare in a snowstorm are legendarily grim, and surge pricing peaks exactly when you least want to negotiate. A pre-booked car with flight tracking absorbs delays automatically — your driver knows your wheels-down time before you do, and free wait time means a customs line or de-icing delay costs you nothing.</p>
+  <p>From November to March, Chicago ground transportation is a different sport. Rideshare queues at O'Hare in a snowstorm are legendarily grim, and surge pricing peaks exactly when you least want to negotiate. A pre-booked car with flight tracking absorbs delays automatically — your driver knows your wheels-down time before you do, and the included waiting allowance gives you time to reach the pickup point. Additional waiting beyond that allowance can be charged; review your confirmation and Terms.</p>
   <div class="callout"><p><strong>Suburban tip:</strong> heading to Schaumburg, Naperville, or Evanston? Pre-booked flat rates beat metered options decisively on suburban runs, where rideshare driver availability gets thin.</p></div>
   <h2>Booking it</h2>
   <p>Flat-rate quotes for both airports at <a href="{BOOK}" style="color:var(--orange);font-weight:700">koastride.com</a> — with a professional who's driven the Kennedy in February more times than they can count.</p>""",
@@ -2749,10 +2764,10 @@ blog_page("chauffeur-terms-glossary",
   <p>Every industry has vocabulary that insiders stop noticing. Here's what chauffeured transportation terms actually mean — so you know exactly what you're booking.</p>
   <h2>The glossary</h2>
   <ul>
-    <li><strong>Flat rate</strong> — a fixed, all-inclusive price quoted before the ride. No meter, no surge. The price you see is the price you pay.</li>
+    <li><strong>Flat rate</strong> — a price quoted for an agreed itinerary, vehicle class and included services. Check the quote and terms for additional stops, extended time and waiting charges.</li>
     
     <li><strong>Curbside pickup</strong> — the lighter option: you text when you have your bags, the car pulls up to the curb. Faster if you're traveling light.</li>
-    <li><strong>Complimentary wait time</strong> — the included buffer after your flight lands (typically 30 minutes domestic, 60 international) before any waiting charges apply. Crucially, it starts at <em>actual</em> wheels-down, not scheduled arrival.</li>
+    <li><strong>Complimentary wait time</strong> — the included airport pickup allowance (30 minutes domestic, 60 international under Koast's published Terms) before additional waiting charges apply. The published Terms measure the allowance from the agreed airport pickup time; for delayed flights, the clock starts when the plane has landed.</li>
     <li><strong>Hourly charter (as-directed)</strong> — you book the vehicle and chauffeur by the hour; the route is whatever your day requires. The right structure for multi-stop days, events, and wine tours.</li>
     <li><strong>Transfer</strong> — a simple point-A-to-point-B ride, like an airport run. Priced flat by route.</li>
     <li><strong>Vehicle class</strong> — the tier you book (Business Sedan, First-Class SUV, Sprinter) rather than a specific car. A guaranteed standard, with a model from that class — and reputable operators only ever upgrade, never downgrade.</li>
@@ -3623,11 +3638,11 @@ SUPPORT_FAQS = [
  ]),
  ("Airport pickups", [
   ("Where does my chauffeur meet me?",
-   "Your chauffeur tracks your flight and is ready when you land, with pickup timed to your actual arrival. You'll receive your chauffeur's name, photo, phone number, and live location before you land."),
+   "Your chauffeur tracks your flight and coordinates pickup using the instructions in your confirmation. You'll receive your chauffeur's name, photo, phone number, and live location before you land."),
   ("What if my flight is early or delayed?",
-   "Nothing to do — we track your flight and adjust the pickup automatically, at no charge."),
+   "Provide the correct flight number so we can track arrival changes. Contact us if the flight number, airport or travel date changes. Pickup adjustments and any additional waiting are handled under your confirmation and Terms."),
   ("How much wait time is included?",
-   "30 minutes free on domestic arrivals and 60 minutes free on international arrivals, counted from wheels-down. After that, wait time is billed per minute by vehicle class — see our <a href='terms.html'>Terms</a> for exact rates."),
+   "30 minutes free for domestic airport pickups and 60 minutes for international pickups after the agreed pickup time. For delayed flights, pickup time starts when the plane has landed. Other pickups include 5 minutes. After the allowance, waiting is billed per minute by vehicle class — see our <a href='terms.html'>Terms</a> for exact rates."),
   ("Which airports do you serve?",
    "All three Bay Area airports (SFO, OAK, SJC) plus 25 major airports nationwide — JFK, LGA, EWR, LAX, ORD, ATL, and more. <a href='services/airport-transfers.html'>See the full list →</a>"),
  ]),
@@ -3810,7 +3825,7 @@ blog_page("jfk-black-car-guide",
     <li><strong>Upper East / West Side</strong> &mdash; 50&ndash;80 min through cross-town traffic</li>
   </ul>
   <h2>How pickup works at JFK</h2>
-  <p>Your chauffeur watches the flight. If you're early, they're early; if you're three hours late on a delayed red-eye, the price doesn't move &mdash; there's no surge, ever. JFK arrivals include complimentary wait time (30 minutes domestic, a full hour international), so there's room to clear customs and baggage without a meter running. The price you saw at booking is the price you pay, tolls and gratuity included.</p>
+  <p>Your chauffeur watches the flight. Provide your flight details so the chauffeur can coordinate pickup with arrival changes. JFK arrivals include complimentary wait time (30 minutes domestic, a full hour international), so there's room to clear customs and baggage without a meter running. The quoted price covers the agreed itinerary and listed inclusions. Additional waiting or itinerary changes may cost more.</p>
   <h2>JFK, LaGuardia or Newark?</h2>
   <p>If you're still choosing where to fly, each airport is practically a different commute. We broke down the trade-offs in <a href="../blog/nyc-ground-travel-guide.html" style="color:var(--teal-dark);font-weight:700">Getting Around New York &rarr;</a> &mdash; LaGuardia is closest to Midtown when traffic cooperates, Newark can win for the West Side, and JFK is the international gateway with the most predictable (if longest) ride.</p>
   <h2>Teams and business travel</h2>
@@ -3893,7 +3908,7 @@ blog_page("miami-airport-black-car-guide",
   <h2>Cruise-day logistics</h2>
   <p>MIA to PortMiami is a short hop on paper, but embarkation mornings turn the port into a parking lot. A pre-booked transfer with flight tracking gets you there with luggage handled and time to spare &mdash; and the return, after you disembark into a crowd of thousands, is the ride you'll be most glad you booked ahead.</p>
   <h2>How pickup works</h2>
-  <p>Your flight is tracked, international arrivals include a full hour of complimentary wait time for customs, and the fixed price holds no matter when you actually clear. Tolls and gratuity included.</p>
+  <p>Your flight is tracked, international arrivals include a full hour of complimentary wait time for customs, and waiting beyond the included allowance may be charged under your confirmation and Terms. Tolls and gratuity included.</p>
   <p><a href="../services/airport-transfers.html" style="color:var(--teal-dark);font-weight:700">Airport transfers &rarr;</a> &middot; <a href="../cities/miami.html" style="color:var(--teal-dark);font-weight:700">Koast in Miami &rarr;</a></p>
   <div class="faq" style="margin-top:36px">
     <details><summary>How much is a black car from MIA?</summary><p>A flat, all-inclusive price quoted before you book &mdash; tolls and gratuity included, no surge. Enter your pickup and drop-off for an instant quote.</p></details>
@@ -4015,7 +4030,7 @@ app += f"""
 <section class="sec"><div class="wrap">
   <div class="sec-head center"><span class="pill pill-orange">Why the app</span><h2>Everything about your ride, one screen away.</h2></div>
   <div class="grid-2">
-    {feat("price","o","Fixed fares, upfront","Your quote is your final price, locked at booking. No surge, no meter anxiety, itemized receipts on every trip.")}
+    {feat("price","o","Fixed fares, upfront","Your agreed itinerary is priced upfront. Extra stops, extended time or waiting beyond the included allowance may cost more; review your confirmation and terms.")}
     {feat("pin","t","Live trip tracking","Watch your chauffeur approach in real time, share your trip with family, and get flight-aware pickups that adjust when you're delayed.")}
     {feat("receipt","o","One-tap everything","Rebook your usual route in a tap, message your chauffeur in-app, and keep receipts, favorites, and saved places in one place.")}
     {feat("shield","t","Built for peace of mind","Verify your chauffeur by plate and PIN, share live trips with the people who care, and reach a real person 24/7.")}

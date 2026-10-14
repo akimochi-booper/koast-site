@@ -10,14 +10,14 @@ def load_posts(root):
     posts = []
     for path in sorted((Path(root) / "content" / "posts").glob("*.json")):
         post = json.loads(path.read_text(encoding="utf-8"))
-        required = ("slug", "title", "description", "category", "image", "minutes", "published", "modified", "body", "cta")
-        if any(not post.get(key) for key in required):
+        required = ("slug", "title", "description", "category", "image", "minutes", "published", "modified", "body", "cta", "image_alt", "image_width", "image_height", "image_generated")
+        if any(key not in post or post[key] in (None, "") for key in required):
             raise ValueError(f"{path}: missing required editorial field")
         if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", post["slug"]) or path.stem != post["slug"]:
             raise ValueError(f"{path}: invalid or mismatched slug")
         if post["category"] not in CATEGORIES:
             raise ValueError(f"{path}: unknown category")
-        if any(char in post[key] for key in ("title", "description", "category", "image", "cta") for char in ('<', '>', '"')):
+        if any(char in post[key] for key in ("title", "description", "category", "image", "cta", "image_alt") for char in ('<', '>', '"')):
             raise ValueError(f"{path}: metadata must be plain text without HTML quotes")
         published = date.fromisoformat(post["published"])
         modified = date.fromisoformat(post["modified"])
@@ -28,6 +28,12 @@ def load_posts(root):
         image = Path(post["image"])
         if image.name != post["image"] or not (Path(root)/"img"/image).is_file():
             raise ValueError(f"{path}: missing image")
+        if not isinstance(post["image_generated"], bool):
+            raise ValueError(f"{path}: image_generated must be a boolean")
+        if any(not isinstance(post[key], int) or post[key] < 1 for key in ("image_width", "image_height")):
+            raise ValueError(f"{path}: invalid image dimensions")
+        if post["image_width"] < 1200 or (Path(root)/"img"/image).stat().st_size > 350_000:
+            raise ValueError(f"{path}: editorial hero needs width >=1200px and file <=350KB")
         if re.search(r"<\s*(script|iframe|form|h1)\b|\bon[a-z]+\s*=|javascript:", post["body"], re.I):
             raise ValueError(f"{path}: unsupported active content or duplicate h1")
         posts.append(post)

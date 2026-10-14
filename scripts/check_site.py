@@ -57,6 +57,12 @@ for post in posts:
     import re
     schemas=[json.loads(block) for block in re.findall(r'<script type="application/ld\+json">(.*?)</script>',src,re.S)]
     article=next((block for block in schemas if block.get("@type")=="BlogPosting"),{})
+    image_url="https://koastride.com/img/"+post["image"]
+    checks["schema_image"]=article.get("image")==image_url
+    checks["social_image"]=f'<meta property="og:image" content="{image_url}">' in src
+    from html import escape
+    checks["image_alt"]=f'alt="{escape(post["image_alt"], quote=True)}"' in src
+    checks["image_dimensions"]=f'width="{post["image_width"]}" height="{post["image_height"]}"' in src
     checks["published"]=article.get("datePublished")==post["published"]
     checks["modified"]=article.get("dateModified")==post["modified"]
     for check,ok in checks.items():

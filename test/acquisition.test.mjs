@@ -69,7 +69,7 @@ test('every generated HTML page loads the tracker once and CSP permits collector
  const root=new URL('..',import.meta.url).pathname.replace(/^\/([A-Za-z]:)/,'$1');
  function html(dir){return readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()&&!e.name.startsWith('.')?html(join(dir,e.name)):e.isFile()&&e.name.endsWith('.html')?[join(dir,e.name)]:[])}
  const pages=html(root);assert.ok(pages.length>100,'Run python generate.py before this test');
- for(const p of pages){const text=readFileSync(p,'utf8');assert.equal((text.match(/src="\/koast-acquisition\.js\?v=1"/g)||[]).length,1,p);assert.equal(p.includes('care-rides.html'),false);}
+ for(const p of pages){const text=readFileSync(p,'utf8');assert.equal((text.match(/src="\/koast-acquisition\.js\?v=2"/g)||[]).length,1,p);assert.equal(p.includes('care-rides.html'),false);}
  const headers=readFileSync(new URL('../_headers',import.meta.url),'utf8');assert.match(headers,/connect-src[^;]*https:\/\/koast-platform\.euburaga\.workers\.dev/);
 });
 
