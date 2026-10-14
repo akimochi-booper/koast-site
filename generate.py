@@ -1016,12 +1016,18 @@ for slug, a in AIRPORTS.items():
     h = head(a.get('seo_title', f"{a['code']} Airport Black Car Service & Transfers | Koast"),
              a.get('seo_desc', f"Chauffeured airport transfers at {a['name']} ({a['code']}). Flight tracking, free wait time, flat rates. Book 24/7."), "../")
     h += nav("../", "airport")
+    _airport_h1 = a.get('hero_title', f"{a['code']} airport transfers, <span class='o'>handled.</span>")
+    _pickup_items = a.get('pickup_steps', [
+        "Live flight tracking — delays &amp; early arrivals handled",
+        a.get('pickup', 'Curbside pickup, timed to your landing'), a['wait'],
+        f"Serving {a['terminals']}", "Luggage handled by your chauffeur"])
+    _pickup_list = ''.join(f"<li>{item}</li>" for item in _pickup_items)
     h += f"""
 <header class="hero-dark"><div class="wrap">
   <div class="crumbs"><a href="../index.html">Home</a><span>/</span><a href="../services/airport-transfers.html">Airports</a><span>/</span>{a['code']}</div>
   <div class="hero-grid">
     <div class="hero-copy">
-      <h1>{a['code']} airport transfers, <span class="o">handled.</span></h1>
+      <h1>{_airport_h1}</h1>
       <p class="lede">{a['blurb']}</p>
       <ul class="check" style="color:#cdd3dc">
         <li>Live flight tracking — we adjust automatically</li>
@@ -1035,20 +1041,26 @@ for slug, a in AIRPORTS.items():
 <section class="tight"><div class="wrap grid-2" style="align-items:start;gap:60px">
   <div>
     <span class="pill">How pickup works</span>
-    <h2 style="font-size:32px;margin:14px 0 16px">We're there when you land</h2>
-    <ul class="check">
-      <li>Live flight tracking — delays &amp; early arrivals handled</li>
-      <li>{a.get('pickup', 'Curbside pickup, timed to your landing')}</li>
-      <li>{a['wait']}</li>
-      <li>Serving {a['terminals']}</li>
-      <li>Luggage handled by your chauffeur</li>
-    </ul>
+    <h2 style="font-size:32px;margin:14px 0 16px">{a.get('pickup_heading', "We're there when you land")}</h2>
+    <ul class="check">{_pickup_list}</ul>
   </div>
   <div>
     <img class="ap-photo" src="../img/{AP_IMG.get(slug,'hero-banner.jpg')}" alt="{a['name']} chauffeur service" loading="lazy">
     <h3 style="margin-bottom:16px">Popular {a['code']} routes</h3>
     {routes_table(a['routes'])}
+    {'<p class="muted">Approximate driving times only; traffic, baggage collection and pickup coordination can add time.</p>' if a.get('terminal_details') else ''}
   </div>
+</div></section>"""
+    if a.get('terminal_details'):
+        _terminal_cards = ''.join(f'<article class="card" style="padding:28px"><h3 style="margin:0 0 12px">{title}</h3><p style="margin:0">{body}</p></article>' for title, body in a['terminal_details'])
+        _source_links = ' · '.join(f'<a href="{url}">{label}</a>' for url, label in a['airport_sources'])
+        h += f"""
+<section class="tight" id="terminal-pickup"><div class="wrap">
+  <span class="pill">Terminal pickup guide</span>
+  <h2 style="font-size:32px;margin:14px 0 24px">Where to meet your car at {a['code']}</h2>
+  <div class="grid-{len(a['terminal_details'])}" style="align-items:stretch;gap:24px">{_terminal_cards}</div>
+  <p style="margin:20px 0 12px">{a['pickup_note']}</p>
+  <p class="muted" style="margin:0">Official airport guidance checked October 13, 2026: {_source_links}.</p>
 </div></section>"""
     if a.get('local_info'):
         _local = a['local_info']
@@ -1073,13 +1085,15 @@ for slug, a in AIRPORTS.items():
     ]
     if a.get('local_info'):
         _airport_faqs.append(a['local_info']['faq'])
+    _airport_faqs = a.get('faqs', _airport_faqs)
     h += faq_section(_airport_faqs, f"{a['code']} pickup questions")
     _city = AP_CITY.get(slug)
     h += plan_trip([
+      ("Popular transfers", [(f"../routes/{route}.html", label, "→") for route, label in a.get("route_links", [])]),
       ("Guides", [(f"../blog/{g}.html", GUIDE_TITLE[g], "✦") for g in AP_GUIDES.get(slug, DEFAULT_GUIDES[:1])]),
       ("City service", [(f"../cities/{_city}.html", f"Black car service in {CITIES[_city]['name']}", "→")] if _city else []),
     ])
-    h += cta_section(f"Land at {a['code']}. Leave in minutes.")
+    h += cta_section(a.get("cta", f"Land at {a['code']}. Leave in minutes."))
     h += footer("../")
     write(f"airports/{slug}.html", h)
 
