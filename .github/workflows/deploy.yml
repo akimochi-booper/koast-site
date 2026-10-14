@@ -24,7 +24,7 @@ jobs:
       - name: Verify acquisition tracking
         run: |
           node --check koast-acquisition.js
-          node --test test/acquisition.test.mjs
+          node --test test/*.test.mjs
       - name: Check generated site
         run: python scripts/check_site.py --today "$(TZ=America/Los_Angeles date +%F)"
       - name: Stage deploy directory
@@ -44,3 +44,4 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: 9481e14d6980f4de99bebe0097842362
           command: pages deploy dist --project-name=koast --branch=main
+

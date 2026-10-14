@@ -631,3 +631,10 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
 .kchat-thumb img{width:100%;height:100%;object-fit:cover;display:block}
 .kchat-thumb button{position:absolute;top:-7px;right:-7px;width:20px;height:20px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:#0e1013;color:#fff;font-size:12px;line-height:1;cursor:pointer}
 /* Mobile photo hero keeps the visible value proposition. */
+/* Native lazy images preserve the existing carousel artwork and overlays. */
+.area-track .area-card{position:relative;overflow:hidden}
+.carousel-backdrop{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.area-card::after,.svc-card::after{content:'';position:absolute;inset:0;pointer-events:none}
+.area-card::after{background:linear-gradient(rgba(10,12,15,.38),rgba(10,12,15,.5))}
+.svc-card::after{background:linear-gradient(180deg,rgba(10,12,15,.04) 32%,rgba(10,12,15,.82))}
+.area-card>span,.svc-card .svc-meta{position:relative;z-index:1}
