@@ -30,7 +30,7 @@ def head(title, desc, prefix="", extra=""):
 <meta name="description" content="{desc}">
 <link rel="preload" href="/fonts/plus-jakarta-sans-latin-v12.woff2" as="font" type="font/woff2" crossorigin>
 <style>@font-face{{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:200 800;font-display:swap;src:url('/fonts/plus-jakarta-sans-latin-v12.woff2') format('woff2')}}</style>
-<link rel="stylesheet" href="{prefix}css/main.css?v=18">
+<link rel="stylesheet" href="{prefix}css/main.css?v=19">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0e1013">
 <script src="/koast-acquisition.js?v=2" defer></script>
@@ -1071,18 +1071,28 @@ for slug, a in AIRPORTS.items():
         a.get('pickup', 'Curbside pickup, timed to your landing'), a['wait'],
         f"Serving {a['terminals']}", "Luggage handled by your chauffeur"])
     _pickup_list = ''.join(f"<li>{item}</li>" for item in _pickup_items)
+    _photo = a.get('hero_photo')
+    _hero_class = ' airport-photo-hero' if _photo else ''
+    _eyebrow = f'<p class="airport-eyebrow">{_photo["eyebrow"]}</p>' if _photo else ''
+    _hero_details = f'<ul class="check" style="color:#cdd3dc"><li>Live flight tracking — we adjust automatically</li><li>{a["wait"]}</li><li>{a.get("pickup", "Flight-tracked curbside pickup, timed to your landing")}</li></ul>'
+    _pickup_photo = f'<img class="ap-photo" src="../img/{AP_IMG.get(slug,"hero-banner.jpg")}" alt="{a["name"]} chauffeur service" loading="lazy">'
+    if _photo:
+        _hero_details = f'''<ul class="airport-benefits"><li>Fixed quotes</li><li>Flight tracking</li><li>Private chauffeur</li></ul>
+        <figure class="airport-hero-photo">
+          <img src="../img/{_photo['stem']}-1440.webp" srcset="../img/{_photo['stem']}-720.webp 720w, ../img/{_photo['stem']}-1440.webp 1440w" sizes="(max-width:900px) calc(100vw - 40px), (max-width:1320px) calc(100vw - 616px), 704px" width="1440" height="{_photo['height']}" alt="{_photo['alt']}" fetchpriority="high">
+          <figcaption>{_photo['caption']}</figcaption>
+        </figure>
+'''
+        _pickup_photo = ''
     h += f"""
-<header class="hero-dark"><div class="wrap">
+<header class="hero-dark{_hero_class}"><div class="wrap">
   <div class="crumbs"><a href="../index.html">Home</a><span>/</span><a href="../services/airport-transfers.html">Airports</a><span>/</span>{a['code']}</div>
   <div class="hero-grid">
     <div class="hero-copy">
+      {_eyebrow}
       <h1>{_airport_h1}</h1>
       <p class="lede">{a['blurb']}</p>
-      <ul class="check" style="color:#cdd3dc">
-        <li>Live flight tracking — we adjust automatically</li>
-        <li>{a['wait']}</li>
-        <li>{a.get('pickup', 'Flight-tracked curbside pickup, timed to your landing')}</li>
-      </ul>
+      {_hero_details}
     </div>
     {book_card()}
   </div>
@@ -1094,7 +1104,7 @@ for slug, a in AIRPORTS.items():
     <ul class="check">{_pickup_list}</ul>
   </div>
   <div>
-    <img class="ap-photo" src="../img/{AP_IMG.get(slug,'hero-banner.jpg')}" alt="{a['name']} chauffeur service" loading="lazy">
+    {_pickup_photo}
     <h3 style="margin-bottom:16px">Popular {a['code']} routes</h3>
     {routes_table(a['routes'])}
     {'<p class="muted">Approximate driving times only; traffic, baggage collection and pickup coordination can add time.</p>' if a.get('terminal_details') else ''}
