@@ -28,5 +28,6 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: 9481e14d6980f4de99bebe0097842362
+          wranglerVersion: "4.151.1"
           workingDirectory: workers/koast-chat
           command: deploy
