@@ -17,7 +17,7 @@ New guides live in `content/posts/<slug>.json`. The generator adds them to the e
 
 - Published 2026-10-13: Hourly Chauffeur or Separate Transfers? Planning a Day of Meetings.
 - Published 2026-10-14: Booking an Airport Ride for Someone Else: A Passenger Handoff Checklist. Includes a copyable traveler brief, change ownership and communications fallback; distinct from the broad EA guide.
-- SFO vs OAK vs SJC for a Silicon Valley business trip, with destination-based comparison and official links.
+- Published 2026-10-16: SFO, OAK or SJC? Choosing an Airport for a Silicon Valley Business Trip. Destination-based comparison, official flight resources and a complete-journey checklist; no fixed drive times or airport ranking.
 - Business SUV luggage planning: bags, strollers and child seats (confirm real configurations; avoid fixed fit guarantees).
 - Published 2026-10-15: Hotel Checkout Before an Evening Flight: A Luggage and Pickup Plan. Bag custody, retrieval detour, a clearly labeled backwards-planning example and pickup checklist.
 - Napa tasting reservations versus transportation reservations: what to arrange separately.
