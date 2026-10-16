@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import worker from '../worker.js';
 const request = (messages = [{role:'user',content:'Do you offer airport rides?'}]) => new Request('https://koast-chat.euburaga.workers.dev/',{method:'POST',headers:{Origin:'https://koastride.com','Content-Type':'application/json'},body:JSON.stringify({messages})});
 const facts='Verified Koast airport transfer facts. '.repeat(20);
-const success={status:'completed',model:'gpt-6-luna',output:[{type:'reasoning',summary:[]},{type:'message',content:[{type:'output_text',text:'Yes. Use the booking widget for a quote.'}]}]};
+const success={status:'completed',model:'gpt-6.1-sol',output:[{type:'reasoning',summary:[]},{type:'message',content:[{type:'output_text',text:'Yes. Use the booking widget for a quote.'}]}]};
 
 test('sends stateless OpenAI request and preserves public reply contract',async t=>{
   const seen=[];t.mock.method(globalThis,'fetch',async(url,init)=>{seen.push({url,init});return String(url).endsWith('/llms.txt')?new Response(facts):Response.json(success);});
@@ -13,7 +13,7 @@ test('sends stateless OpenAI request and preserves public reply contract',async 
   assert.equal(res.headers.get('X-Koast-AI-Provider'),'openai');
   assert.equal(seen[1].url,'https://api.openai.com/v1/responses');
   assert.equal(seen[1].init.headers.Authorization,'Bearer test-key');
-  const body=JSON.parse(seen[1].init.body);assert.equal(body.store,false);assert.equal(body.model,'gpt-6-luna');assert.equal(body.reasoning.effort,'low');assert.ok(body.instructions.includes(facts));assert.ok(body.instructions.includes('cannot make, change, or cancel bookings'));assert.equal(body.tools,undefined);
+  const body=JSON.parse(seen[1].init.body);assert.equal(body.store,false);assert.equal(body.model,'gpt-6.1-sol');assert.equal(body.reasoning.effort,'low');assert.ok(body.instructions.includes(facts));assert.ok(body.instructions.includes('cannot make, change, or cancel bookings'));assert.equal(body.tools,undefined);
 });
 test('history limits and model override are respected',async t=>{
  let sent;t.mock.method(globalThis,'fetch',async(url,init)=>{if(String(url).endsWith('/llms.txt'))return new Response(facts);sent=JSON.parse(init.body);return Response.json(success);});

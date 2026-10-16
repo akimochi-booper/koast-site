@@ -73,7 +73,7 @@ export default {
     const fallback = () => new Response(JSON.stringify({ error: "upstream", reply: "Sorry — I'm having trouble right now. Text us at (650) 880-6514 and a human will help right away." }),
       { status: 200, headers: { ...cors, "Content-Type": "application/json" } });
     if (!env.OPENAI_API_KEY) return fallback();
-    const model = env.OPENAI_CHAT_MODEL || "gpt-6-luna";
+    const model = env.OPENAI_CHAT_MODEL || "gpt-6.1-sol";
     try {
       const apiRes = await fetch("https://api.openai.com/v1/responses", {
         method: "POST",
