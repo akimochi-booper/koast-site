@@ -33,7 +33,7 @@ jobs:
           rsync -a \
             --exclude='.git' --exclude='.github' --exclude='dist' \
             --exclude='generate.py' --exclude='data.py' --exclude='editorial.py' \
-            --exclude='content' --exclude='scripts' \
+            --exclude='content' --exclude='scripts' --exclude='workers' \
             --exclude='wineries_extra.json' --exclude='__pycache__' \
             --exclude='README.md' --exclude='test' --exclude='docs' \
             --exclude='EDITORIAL.md' \
