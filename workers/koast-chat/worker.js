@@ -1,6 +1,6 @@
 // Koast AI Chat â€” Cloudflare Worker (v2: self-updating facts)
-// Proxies chat requests to the Claude API. The API key lives in a Worker
-// secret named ANTHROPIC_API_KEY (Settings â†’ Variables and Secrets).
+// Proxies chat requests to the OpenAI Responses API. The API key lives in a Worker
+// secret named OPENAI_API_KEY (Settings â†’ Variables and Secrets).
 //
 // v2: facts are no longer hardcoded. On every request the Worker pulls
 // https://koastride.com/llms.txt (cached at the edge for 1 hour) â€” that file
