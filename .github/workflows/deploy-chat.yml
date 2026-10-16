@@ -1,16 +1,16 @@
-name: Deploy website chat Worker
+name: Validate website chat Worker
 on:
   push:
     branches: [main]
     paths: ['workers/koast-chat/**', '.github/workflows/deploy-chat.yml']
   workflow_dispatch:
 concurrency:
-  group: deploy-koast-chat
+  group: validate-koast-chat
   cancel-in-progress: false
 permissions:
   contents: read
 jobs:
-  deploy:
+  validate:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -23,11 +23,3 @@ jobs:
           npm run check
           npm test
           npx --yes esbuild@0.25.0 worker.js --bundle --format=esm --outfile=/dev/null
-      - name: Deploy website chat
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: 9481e14d6980f4de99bebe0097842362
-          wranglerVersion: "4.151.1"
-          workingDirectory: workers/koast-chat
-          command: deploy
