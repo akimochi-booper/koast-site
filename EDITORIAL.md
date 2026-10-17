@@ -20,7 +20,7 @@ New guides live in `content/posts/<slug>.json`. The generator adds them to the e
 - Published 2026-10-16: SFO, OAK or SJC? Choosing an Airport for a Silicon Valley Business Trip. Destination-based comparison, official flight resources and a complete-journey checklist; no fixed drive times or airport ranking.
 - Business SUV luggage planning: bags, strollers and child seats (confirm real configurations; avoid fixed fit guarantees).
 - Published 2026-10-15: Hotel Checkout Before an Evening Flight: A Luggage and Pickup Plan. Bag custody, retrieval detour, a clearly labeled backwards-planning example and pickup checklist.
-- Napa tasting reservations versus transportation reservations: what to arrange separately.
+- Published 2026-10-17: Napa Wine Tours: Confirming Tastings and Transportation. Separate confirmation checklists, booking responsibility and a change-acknowledgment example; no standard tasting/drive-time or policy assumptions.
 - Wedding hotel shuttles: a pickup timeline and final-departure checklist, with no new capacity promises.
 - Completed 2026-10-13: clearly archive expired San Francisco summer 2026 guide; refreshed SFO pickup and waiting guidance.
 
