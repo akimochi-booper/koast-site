@@ -2683,7 +2683,6 @@ def blog_page(slug, title, desc, cat, img, minutes, body, cta):
         date_label += " · Updated " + display_date(LEGACY_MODIFIED[slug])
     image_alt = escape(post["image_alt"] if post else title, quote=True)
     image_attrs = f' width="{post["image_width"]}" height="{post["image_height"]}" style="height:auto"' if post else ""
-    image_caption = '<p class="meta">AI-generated editorial illustration.</p>' if post and post.get("image_generated") else ""
     p = head(title + " | Koast", desc, "../")
     p += nav("../", "blog")
     p += f"""
@@ -2692,7 +2691,6 @@ def blog_page(slug, title, desc, cat, img, minutes, body, cta):
   <h1>{title}</h1>
   <div class="meta">By the Koast Team · {date_label} · {minutes} min read</div>
   <img class="post-hero" src="../img/{img}" alt="{image_alt}"{image_attrs} decoding="async">
-  {image_caption}
   {body}
 </div></section>"""
     if slug in BLOG_FAQ:
