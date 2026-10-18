@@ -21,7 +21,7 @@ New guides live in `content/posts/<slug>.json`. The generator adds them to the e
 - Business SUV luggage planning: bags, strollers and child seats (confirm real configurations; avoid fixed fit guarantees).
 - Published 2026-10-15: Hotel Checkout Before an Evening Flight: A Luggage and Pickup Plan. Bag custody, retrieval detour, a clearly labeled backwards-planning example and pickup checklist.
 - Published 2026-10-17: Napa Wine Tours: Confirming Tastings and Transportation. Separate confirmation checklists, booking responsibility and a change-acknowledgment example; no standard tasting/drive-time or policy assumptions.
-- Wedding hotel shuttles: a pickup timeline and final-departure checklist, with no new capacity promises.
+- Published 2026-10-18: Wedding Guest Return Rides: Planning the Last Shuttle. Early returns, destination-specific counts, final-departure coordination and a copyable guest message; illustrative times only, no new capacity or service promises.
 - Completed 2026-10-13: clearly archive expired San Francisco summer 2026 guide; refreshed SFO pickup and waiting guidance.
 
 Daily cadence is a target, not permission to publish unsupported or repetitive content. Owner authorized automatic publishing after factual, quality and website checks on 2026-10-13.
