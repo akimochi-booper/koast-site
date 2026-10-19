@@ -18,7 +18,9 @@ New guides live in `content/posts/<slug>.json`. The generator adds them to the e
 - Published 2026-10-13: Hourly Chauffeur or Separate Transfers? Planning a Day of Meetings.
 - Published 2026-10-14: Booking an Airport Ride for Someone Else: A Passenger Handoff Checklist. Includes a copyable traveler brief, change ownership and communications fallback; distinct from the broad EA guide.
 - Published 2026-10-16: SFO, OAK or SJC? Choosing an Airport for a Silicon Valley Business Trip. Destination-based comparison, official flight resources and a complete-journey checklist; no fixed drive times or airport ranking.
-- Business SUV luggage planning: bags, strollers and child seats (confirm real configurations; avoid fixed fit guarantees).
+- Published 2026-10-19: Airport SUV Luggage: What to Confirm Before You Book. A measurement and passenger/luggage brief for provider configuration confirmation; no numeric vehicle capacity, fit guarantees or actual fleet demonstration. Specific vehicle fit claims remain dependent on verified fleet configurations.
+- Candidate: airport pickup after a flight-number or arrival-airport change; compare existing handoff and airport guides before choosing refresh versus a new article.
+- Candidate: transporting golf clubs or presentation equipment; verify distinct intent beyond the luggage guide and obtain actual configuration evidence for any fit claims.
 - Published 2026-10-15: Hotel Checkout Before an Evening Flight: A Luggage and Pickup Plan. Bag custody, retrieval detour, a clearly labeled backwards-planning example and pickup checklist.
 - Published 2026-10-17: Napa Wine Tours: Confirming Tastings and Transportation. Separate confirmation checklists, booking responsibility and a change-acknowledgment example; no standard tasting/drive-time or policy assumptions.
 - Published 2026-10-18: Wedding Guest Return Rides: Planning the Last Shuttle. Early returns, destination-specific counts, final-departure coordination and a copyable guest message; illustrative times only, no new capacity or service promises.
