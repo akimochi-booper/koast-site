@@ -15,6 +15,8 @@ New guides live in `content/posts/<slug>.json`. The generator adds them to the e
 
 ## Current topic queue
 
+- Published 2026-10-21: Airport Rides with Children: Confirming the Car Seat Plan. Restraint requirements, supplier/installation responsibility, vehicle compatibility and return-trip continuity. NHTSA guidance linked; no seat inventory, legal exemption or capacity promises.
+
 - Published 2026-10-13: Hourly Chauffeur or Separate Transfers? Planning a Day of Meetings.
 - Published 2026-10-14: Booking an Airport Ride for Someone Else: A Passenger Handoff Checklist. Includes a copyable traveler brief, change ownership and communications fallback; distinct from the broad EA guide.
 - Published 2026-10-16: SFO, OAK or SJC? Choosing an Airport for a Silicon Valley Business Trip. Destination-based comparison, official flight resources and a complete-journey checklist; no fixed drive times or airport ranking.
