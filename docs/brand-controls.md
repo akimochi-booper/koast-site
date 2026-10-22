@@ -16,3 +16,7 @@ The embedded Moovs booking widget is independently hosted and does not inherit w
 Owner clarified that the website headline and buttons looked different from the logo. Website controls now sample the visible `oast` region of the original SVG, y=477..730.5. Its gradient definition starts at y=357.5 on the taller K, so copying all five stops to a button made it too yellow. Use #f7a339 at0%, #f98b2b at29.37%, #fc6a1c at69.10%, #fd581a at100%. The original SVG stays unchanged.
 
 The home `easy.` span maps that ramp to its visible ink bounds, excluding the font's empty ascender space (at66px, font box84px; actual ink ascent37px/descent15px). Dark-surface headlines use font-relative stops. Small text on white retains its contrast-safe dark-orange role. Decorative borders, shadows and chat surfaces use the source-derived orange family. Website CSS version22.
+
+
+## Website text palette correction
+Marketing typography on white uses charcoal, including all statistic values. The orange wordmark ramp belongs on buttons, icon surfaces, active indicators and small decorative rules. Legacy teal template tokens resolve to charcoal text and warm orange tint. Dark-panel labels use orange-on-dark. This is website styling only; application operational/status colors are unchanged.
