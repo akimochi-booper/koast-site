@@ -30,7 +30,7 @@ def head(title, desc, prefix="", extra=""):
 <meta name="description" content="{desc}">
 <link rel="preload" href="/fonts/plus-jakarta-sans-latin-v12.woff2" as="font" type="font/woff2" crossorigin>
 <style>@font-face{{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:200 800;font-display:swap;src:url('/fonts/plus-jakarta-sans-latin-v12.woff2') format('woff2')}}</style>
-<link rel="stylesheet" href="{prefix}css/main.css?v=20">
+<link rel="stylesheet" href="{prefix}css/main.css?v=21">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0e1013">
 <script src="/koast-acquisition.js?v=2" defer></script>
@@ -1014,7 +1014,7 @@ def city_cards(region):
         <div class="card-img"><img src="../img/{img}" alt="{c['name']} chauffeur service" loading="lazy"></div>
         <h3>{c['name']}</h3>
         <div class="sub">{c['blurb'][:95]}…</div>
-        <div class="row"><span>{c['airports'].split('(')[0].strip()}</span><span style="color:var(--orange);font-weight:700">View →</span></div></a>"""
+        <div class="row"><span>{c['airports'].split('(')[0].strip()}</span><span style="color:var(--orange-text);font-weight:700">View →</span></div></a>"""
     return out
 
 ci = head("Cities We Serve | Koast Black Car Service Nationwide",
@@ -1165,7 +1165,7 @@ def airport_cards(group):
         out += f"""<a class="card city-card" href="../airports/{slug}.html">
         <div class="card-img"><img src="../img/{AP_IMG.get(slug,'hero-banner.jpg')}" alt="{a['name']} black car service" loading="lazy"><span class="ap-code">{a['code']}</span></div>
         <h3>{a['name']}</h3>
-        <div class="row"><span>Flight tracking &amp; free wait</span><span style="color:var(--orange);font-weight:700">View →</span></div></a>"""
+        <div class="row"><span>Flight tracking &amp; free wait</span><span style="color:var(--orange-text);font-weight:700">View →</span></div></a>"""
     return out
 
 
@@ -1388,7 +1388,7 @@ def route_section():
         cards += (f'<a class="card" href="../routes/{slug}.html" style="display:block">'
                   f'<h3 style="margin:0 0 6px">{d["navname"]}</h3>'
                   f'<div class="sub" style="color:var(--muted);font-size:13.5px">{d["miles"]} &middot; {d["time"]}</div>'
-                  f'<div class="row" style="margin-top:10px"><span>Flat-rate transfer</span><span style="color:var(--orange);font-weight:700">View &rarr;</span></div></a>')
+                  f'<div class="row" style="margin-top:10px"><span>Flat-rate transfer</span><span style="color:var(--orange-text);font-weight:700">View &rarr;</span></div></a>')
     return (f'<section class="tight"><div class="wrap">'
             f'<div class="sec-head"><span class="pill pill-orange">Popular routes</span><h2>Most-booked Bay Area routes</h2>'
             f'<p>Flat-rate, flight-tracked transfers on the runs we drive most — from SFO, OAK, and SJC.</p></div>'
@@ -1614,7 +1614,7 @@ def wine_card(slug, r):
     img = WINE_IMG.get(slug)
     has = img and _os.path.exists(_os.path.join(ROOT, "img", img))
     pic = f'<div class="card-img"><img src="../img/{img}" alt="{r["name"]} wine tours" loading="lazy"></div>' if has else ""
-    return f"""<a class="card wt-card city-card" href="../wine-tours/{slug}.html">{pic}<h3>{r['name']}</h3><div class="sub">{r['known'][:70]}…</div><div class="row"><span>{r['drive'].capitalize()}</span><span style="color:var(--orange);font-weight:700">Explore →</span></div></a>"""
+    return f"""<a class="card wt-card city-card" href="../wine-tours/{slug}.html">{pic}<h3>{r['name']}</h3><div class="sub">{r['known'][:70]}…</div><div class="row"><span>{r['drive'].capitalize()}</span><span style="color:var(--orange-text);font-weight:700">Explore →</span></div></a>"""
 
 ca_cards = "".join(wine_card(slug, r) for slug, r in WINE_REGIONS.items() if r["area"]=="ca")
 us_cards = "".join(wine_card(slug, r) for slug, r in WINE_REGIONS.items() if r["area"]=="us")
@@ -2006,7 +2006,7 @@ p += f"""
   <p>Two people: a Business Sedan feels right. Four to six: a First-Class SUV gives everyone a window and legroom for the nap home. Eight to twelve: the Executive Sprinter — the group stays together, and the ride between wineries becomes part of the party. Bigger celebrations ride the party buses.</p>
   <h2>Why hourly charter beats point-to-point</h2>
   <p>Wine tours are booked as one flat hourly rate: your chauffeur waits at every stop, the route flexes when you fall in love with a patio, and there's no app-refreshing in a parking lot with no cell signal. Most days run 6–8 hours door to door.</p>
-  <p><a href="../services/wine-tours.html" style="color:var(--orange);font-weight:700">See our wine tour service →</a></p>
+  <p><a href="../services/wine-tours.html" style="color:var(--orange-text);font-weight:700">See our wine tour service →</a></p>
 </div></section>"""
 p += cta_section("Plan your wine country day.")
 p += faq_section(BLOG_FAQ["napa-sonoma-chauffeur-day-trip"])
@@ -2037,7 +2037,7 @@ p += f"""
   <div class="callout"><p><strong>Hamptons &amp; weekend escapes:</strong> summer Fridays, Manhattan to the East End runs 2–3 hours. A chauffeured SUV with the whole group beats the Jitney and lets you start the weekend at pickup, not at arrival.</p></div>
   <h2>The bottom line</h2>
   <p>Use the subway when you're light and flexible. Book a car when you're carrying, gathering, or arriving — and book it ahead, because hailing in the rain at rush hour is a rookie move.</p>
-  <p><a href="../cities/new-york.html" style="color:var(--orange);font-weight:700">Koast in New York →</a></p>
+  <p><a href="../cities/new-york.html" style="color:var(--orange-text);font-weight:700">Koast in New York →</a></p>
 </div></section>"""
 p += cta_section("Ride easy in New York.")
 p += faq_section(BLOG_FAQ["nyc-ground-travel-guide"])
@@ -2075,7 +2075,7 @@ p += f"""
   <p>Account-based billing turns twenty ride receipts into one monthly invoice — itemized by rider, trip, and cost center. If you're reconciling individual rideshare receipts for a leadership team, you're doing work the vendor should be doing.</p>
   <h2>Build the relationship once</h2>
   <p>The real upgrade is a service that knows your principals — preferred vehicles, regular routes, standing preferences. First booking takes five minutes; every one after takes one.</p>
-  <p><a href="../services/corporate-travel.html" style="color:var(--orange);font-weight:700">Set up a corporate account →</a></p>
+  <p><a href="../services/corporate-travel.html" style="color:var(--orange-text);font-weight:700">Set up a corporate account →</a></p>
 </div></section>"""
 p += cta_section("Make ground travel the easy part.")
 p += faq_section(BLOG_FAQ["ea-guide-executive-ground-travel"])
@@ -2144,7 +2144,7 @@ p += f"""
   <h2>9. Final provisions</h2>
   <p>These T&amp;Cs constitute the entire agreement between Koast and the user for the contractually agreed services; there are no collateral agreements, and amendments must be made in writing. The user may only set off against Koast's claims or assert retention rights if counterclaims are legally established or undisputed, and may not assign claims to third parties without Koast's express written consent. The law of the United States of America applies to all legal relations between Koast and the user; the place of fulfillment is San Francisco, and the exclusive place of jurisdiction is San Francisco insofar as the user is a merchant or has no fixed place of residence in the USA. Koast is neither willing nor obliged to participate in dispute resolution proceedings before a consumer arbitration board. Should individual provisions of these T&amp;Cs be or become ineffective, the remaining provisions remain effective and shall be replaced by provisions most closely approximating the intended meaning and economic purpose.</p>
 
-  <p>Questions: <a href="mailto:{EMAIL}" style="color:var(--orange);font-weight:700">{EMAIL}</a></p>
+  <p>Questions: <a href="mailto:{EMAIL}" style="color:var(--orange-text);font-weight:700">{EMAIL}</a></p>
 </div></section>"""
 p += footer("")
 write("terms.html", p)
@@ -2278,7 +2278,7 @@ p += f"""
   <p>We may change this Privacy Policy from time to time. If we make significant changes in the way we treat your personal information, we will provide you notice through the Services or by some other means, such as email.</p>
 
   <h2>Contact us</h2>
-  <p>If you have any questions about this privacy statement, please contact us at <a href="mailto:{EMAIL}" style="color:var(--orange);font-weight:700">{EMAIL}</a> or by email.</p>
+  <p>If you have any questions about this privacy statement, please contact us at <a href="mailto:{EMAIL}" style="color:var(--orange-text);font-weight:700">{EMAIL}</a> or by email.</p>
 </div></section>"""
 p += footer("")
 write("privacy.html", p)
@@ -2716,7 +2716,7 @@ blog_page("lax-airport-black-car-guide",
   </ul>
   <p>LA traffic is the variable everything bends around. A pre-booked car with a professional who knows when Sepulveda beats the 405 saves real time, not just stress.</p>
   <h2>Booking it</h2>
-  <p>Enter your flight and drop-off at <a href="{BOOK}" style="color:var(--orange);font-weight:700">koastride.com</a> for a flat-rate quote — tolls, fees, and gratuity included, with free wait time on every arrival.</p>""",
+  <p>Enter your flight and drop-off at <a href="{BOOK}" style="color:var(--orange-text);font-weight:700">koastride.com</a> for a flat-rate quote — tolls, fees, and gratuity included, with free wait time on every arrival.</p>""",
  "Land at LAX. Leave like a local.")
 
 blog_page("chicago-ohare-midway-guide",
@@ -2733,7 +2733,7 @@ blog_page("chicago-ohare-midway-guide",
   <p>From November to March, Chicago ground transportation is a different sport. Rideshare queues at O'Hare in a snowstorm are legendarily grim, and surge pricing peaks exactly when you least want to negotiate. A pre-booked car with flight tracking absorbs delays automatically — your driver knows your wheels-down time before you do, and the included waiting allowance gives you time to reach the pickup point. Additional waiting beyond that allowance can be charged; review your confirmation and Terms.</p>
   <div class="callout"><p><strong>Suburban tip:</strong> heading to Schaumburg, Naperville, or Evanston? Pre-booked flat rates beat metered options decisively on suburban runs, where rideshare driver availability gets thin.</p></div>
   <h2>Booking it</h2>
-  <p>Flat-rate quotes for both airports at <a href="{BOOK}" style="color:var(--orange);font-weight:700">koastride.com</a> — with a professional who's driven the Kennedy in February more times than they can count.</p>""",
+  <p>Flat-rate quotes for both airports at <a href="{BOOK}" style="color:var(--orange-text);font-weight:700">koastride.com</a> — with a professional who's driven the Kennedy in February more times than they can count.</p>""",
  "Chicago winters are hard. Your ride shouldn't be.")
 
 blog_page("vegas-convention-transportation",
@@ -2750,7 +2750,7 @@ blog_page("vegas-convention-transportation",
     <li><strong>Evening shuttle loops</strong> — client dinners and after-events run on time when the ride is standing by, not summoned into a 60-deep queue.</li>
   </ul>
   <div class="callout"><p><strong>Book early:</strong> convention-week vehicle inventory in Vegas sells out weeks ahead. The teams that book with their hotel block, win.</p></div>
-  <p>One account, one invoice, every ride visible — <a href="../services/corporate-travel.html" style="color:var(--orange);font-weight:700">set up corporate billing</a> before the show and expense reporting becomes one line item.</p>""",
+  <p>One account, one invoice, every ride visible — <a href="../services/corporate-travel.html" style="color:var(--orange-text);font-weight:700">set up corporate billing</a> before the show and expense reporting becomes one line item.</p>""",
  "Bring the whole team. Move like one.")
 
 blog_page("miami-getting-around",
@@ -2768,7 +2768,7 @@ blog_page("miami-getting-around",
     <li><strong>Miami → Palm Beach</strong> — 1.5 hours up I-95 for the day trip</li>
   </ul>
   <div class="callout"><p><strong>Event weeks</strong> — Art Basel, Miami Grand Prix, music festival weekends — transform the whole equation. Surge pricing hits hard and street closures multiply. Those are precisely the weeks a pre-booked flat rate earns its keep.</p></div>
-  <p>Flat-rate rides across South Florida at <a href="{BOOK}" style="color:var(--orange);font-weight:700">koastride.com</a> — FLL and Palm Beach included.</p>""",
+  <p>Flat-rate rides across South Florida at <a href="{BOOK}" style="color:var(--orange-text);font-weight:700">koastride.com</a> — FLL and Palm Beach included.</p>""",
  "Miami, handled.")
 
 blog_page("denver-mountain-transfers",
@@ -2784,7 +2784,7 @@ blog_page("denver-mountain-transfers",
   </ul>
   <p>"Good conditions" is the operative phrase. I-70 ski traffic on weekend mornings is its own weather system, and chain laws turn rental sedans into roadside ornaments. A chauffeured SUV with a driver who reads CDOT conditions daily — and room for every ski bag — turns the transfer into the first relaxing hours of the vacation.</p>
   <div class="callout"><p><strong>The rental car math:</strong> a week of SUV rental, airport fees, resort parking ($30–50/night at Vail), and the white-knuckle factor — versus two flat-rate transfers and never touching a snow brush. Run it for your group size; it's closer than you'd think, and one of them includes naps.</p></div>
-  <p>Book mountain transfers with luggage and gear noted at <a href="{BOOK}" style="color:var(--orange);font-weight:700">koastride.com</a> — your chauffeur tracks the inbound flight and the mountain forecast.</p>""",
+  <p>Book mountain transfers with luggage and gear noted at <a href="{BOOK}" style="color:var(--orange-text);font-weight:700">koastride.com</a> — your chauffeur tracks the inbound flight and the mountain forecast.</p>""",
  "First chair, not first gear.")
 
 blog_page("black-car-vs-rideshare-cost",
@@ -2804,7 +2804,7 @@ blog_page("black-car-vs-rideshare-cost",
   <h2>The costs nobody prices in</h2>
   <p>Cancellation roulette before dawn flights. The 25-minute airport lot wait after a redeye. Standing in rain watching the car icon circle. Reimbursement paperwork for twelve separate receipts. Black car pricing is higher on average and dramatically more predictable — what you're buying is the variance.</p>
   <div class="callout"><p><strong>Honest bottom line:</strong> use rideshare for errands. Use a flat rate for anything where being late, wet, or stranded costs more than the fare difference.</p></div>
-  <p>See your flat rate in ten seconds at <a href="{BOOK}" style="color:var(--orange);font-weight:700">koastride.com</a>.</p>""",
+  <p>See your flat rate in ten seconds at <a href="{BOOK}" style="color:var(--orange-text);font-weight:700">koastride.com</a>.</p>""",
  "Predictable beats cheap-ish.")
 
 blog_page("choosing-corporate-car-service",
@@ -2825,7 +2825,7 @@ blog_page("choosing-corporate-car-service",
     <li><strong>9. Can we book for others easily?</strong> EAs and coordinators do most of the booking. Passenger profiles and book-for-guest flows should take seconds.</li>
   </ul>
   <div class="callout"><p><strong>The tell:</strong> ask question 3 and watch. Vendors with clean answers quote all-inclusive instantly. Vendors with asterisks start explaining.</p></div>
-  <p>Koast's answers to all nine: <a href="../services/corporate-travel.html" style="color:var(--orange);font-weight:700">corporate travel</a> — or email {EMAIL} and test how fast a human responds.</p>""",
+  <p>Koast's answers to all nine: <a href="../services/corporate-travel.html" style="color:var(--orange-text);font-weight:700">corporate travel</a> — or email {EMAIL} and test how fast a human responds.</p>""",
  "Nine questions. One decision.")
 
 blog_page("chauffeur-terms-glossary",
@@ -2845,7 +2845,7 @@ blog_page("chauffeur-terms-glossary",
     <li><strong>Gratuity included</strong> — standard tip is built into the quoted price. No awkward end-of-ride calculation.</li>
   </ul>
   <div class="callout"><p><strong>Why it matters:</strong> most billing surprises in this industry are vocabulary problems. Know these eight terms and no invoice will ever surprise you.</p></div>
-  <p>Test your new fluency: <a href="{BOOK}" style="color:var(--orange);font-weight:700">get an instant flat-rate quote</a>.</p>""",
+  <p>Test your new fluency: <a href="{BOOK}" style="color:var(--orange-text);font-weight:700">get an instant flat-rate quote</a>.</p>""",
  "Now you speak chauffeur.")
 
 # ============================ WINE REGION PAGES ============================
@@ -3478,7 +3478,7 @@ blog_page("austin-festival-season",
     <li><strong>Out-of-center stays.</strong> Staying by the Domain? A fixed-rate evening loop beats parking downtown twice over.</li>
   </ul>
   <div class="callout"><p><strong>Book early:</strong> festival-week vehicles in Austin sell out weeks ahead — reserve when you book the hotel, not the week of.</p></div>
-  <p>Flat-rate festival rides at <a href="{BOOK}" style="color:var(--orange);font-weight:700">koastride.com</a>.</p>""",
+  <p>Flat-rate festival rides at <a href="{BOOK}" style="color:var(--orange-text);font-weight:700">koastride.com</a>.</p>""",
  "Festival days, handled.")
 
 blog_page("boston-logan-guide",
@@ -3495,7 +3495,7 @@ blog_page("boston-logan-guide",
     <li><strong>Winter</strong> — Boston snow days break app-based dispatch first. Pre-booked cars with committed drivers keep showing up.</li>
   </ul>
   <div class="callout"><p><strong>Beyond the city:</strong> Cambridge runs add 10 minutes; Providence about an hour; Cape traffic is its own season. All flat-rate quoted upfront.</p></div>
-  <p>Flight-tracked Logan pickups at <a href="{BOOK}" style="color:var(--orange);font-weight:700">koastride.com</a>.</p>""",
+  <p>Flight-tracked Logan pickups at <a href="{BOOK}" style="color:var(--orange-text);font-weight:700">koastride.com</a>.</p>""",
  "Logan, minus the tunnel anxiety.")
 
 blog_page("seattle-getting-around",
@@ -3512,7 +3512,7 @@ blog_page("seattle-getting-around",
     <li><strong>Campus-to-campus days</strong> — investor and partner visits often hit both sides of the lake; an hourly charter absorbs the bridge variance</li>
   </ul>
   <div class="callout"><p><strong>Rain reality:</strong> Seattle drizzle barely slows traffic — but the first real downpour of fall reliably breaks it. Book ahead in October.</p></div>
-  <p>Flat rates across the Sound at <a href="{BOOK}" style="color:var(--orange);font-weight:700">koastride.com</a>.</p>""",
+  <p>Flat rates across the Sound at <a href="{BOOK}" style="color:var(--orange-text);font-weight:700">koastride.com</a>.</p>""",
  "Both sides of the lake, easy.")
 
 blog_page("dc-airport-decision",
@@ -3529,7 +3529,7 @@ blog_page("dc-airport-decision",
   <h2>Capital specifics</h2>
   <p>Government and contractor travel runs on punctuality and discretion — drivers who know which building entrance, invoices that survive an audit. Security perimeters and motorcades reroute traffic without notice; drivers who work D.C. daily route around them by habit.</p>
   <div class="callout"><p><strong>The Tysons factor:</strong> if your meetings are in Tysons or Reston, Dulles is actually the convenient airport — 25 minutes against National's 40 in traffic.</p></div>
-  <p>All three airports, flat-rate, at <a href="{BOOK}" style="color:var(--orange);font-weight:700">koastride.com</a>.</p>""",
+  <p>All three airports, flat-rate, at <a href="{BOOK}" style="color:var(--orange-text);font-weight:700">koastride.com</a>.</p>""",
  "Three airports. Zero guesswork.")
 
 blog_page("sonoma-first-timers",
@@ -3751,7 +3751,7 @@ sp += f"""
     <div class="ksearch"><input id="fsearch" type="search" placeholder="Search the FAQs — wait time, cancel, car seats…" aria-label="Search FAQs"></div>
   </div>
   <div id="faqwrap">{faq_html}</div>
-  <p id="fnone" style="display:none;text-align:center;color:var(--muted);margin-top:26px">No matches — try a different word, or <a href="mailto:reserve@koastride.com" style="color:var(--orange);font-weight:700">email us</a> and a human will answer.</p>
+  <p id="fnone" style="display:none;text-align:center;color:var(--muted);margin-top:26px">No matches — try a different word, or <a href="mailto:reserve@koastride.com" style="color:var(--orange-text);font-weight:700">email us</a> and a human will answer.</p>
 </div></section>
 <script>
 (function(){{

@@ -10,7 +10,9 @@
 :root{
   --ink:#0e1013; --ink-2:#171a1f; --text:#33363d; --muted:#697080;
   --bg:#ffffff; --bg-2:#f5f6f8; --line:#e6e8ec;
-  --orange:#ff5c1f; --orange-dark:#e64a10; --orange-text:#b93708; --orange-tint:#fff3ec;
+  --orange:#fd581a; --orange-dark:#c34511; --orange-text:#a63b10; --orange-tint:#fff3e8;
+  --orange-on-dark:#f6ab3e; --brand-ink:#241205;
+  --brand-gradient:linear-gradient(180deg,#f3b747 0%,#f6ab3e 25%,#f98b2b 52%,#fc6a1c 79%,#fd581a 100%);
   --teal:#0b7d72; --teal-dark:#08655d; --teal-tint:#e9f7f5;
   --radius:16px;
 }
@@ -279,10 +281,10 @@ nav.site-nav{background:#000;border-bottom:1px solid #1c1f24}
 .card .amen li::before{content:'✓';position:absolute;left:0;top:5px;width:16px;height:16px;border-radius:50%;background:var(--teal-tint);color:var(--teal-dark);font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center}
 
 /* ---------- v20: nicer book buttons ---------- */
-.btn-orange{background:linear-gradient(180deg,#ff6c35 0%,var(--orange) 60%,var(--orange-dark) 100%);box-shadow:0 4px 14px rgba(255,92,31,.35);transition:.2s}
-.btn-orange:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(255,92,31,.45);background:linear-gradient(180deg,#ff7a48 0%,var(--orange) 60%,var(--orange-dark) 100%)}
+.btn-orange{background:var(--brand-gradient);box-shadow:0 4px 14px rgba(255,92,31,.35);transition:.2s}
+.btn-orange:hover{transform:translateY(-1px);box-shadow:0 8px 22px rgba(255,92,31,.45);background:var(--brand-gradient)}
 .btn-orange:active{transform:translateY(0);box-shadow:0 3px 10px rgba(255,92,31,.35)}
-.card .row a.btn-book{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(180deg,#ff6c35 0%,var(--orange) 60%,var(--orange-dark) 100%);color:var(--ink);font-size:13.5px;font-weight:800;padding:10px 20px;border-radius:99px;box-shadow:0 4px 12px rgba(255,92,31,.3);transition:.2s}
+.card .row a.btn-book{display:inline-flex;align-items:center;gap:6px;background:var(--brand-gradient);color:var(--ink);font-size:13.5px;font-weight:800;padding:10px 20px;border-radius:99px;box-shadow:0 4px 12px rgba(255,92,31,.3);transition:.2s}
 .card .row a.btn-book:hover{color:var(--ink);transform:translateY(-1px);box-shadow:0 8px 18px rgba(255,92,31,.42)}
 
 /* ---------- v24: black footer + blog art ---------- */
@@ -331,7 +333,7 @@ footer.site-footer{background:#000;border-top:1px solid #1c1f24}
 .feat-card{background:#fff;border:1px solid var(--line);box-shadow:0 4px 16px rgba(15,17,21,.05);align-items:center}
 .feat-ic{min-width:46px;width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center}
 .feat-ic svg{width:23px;height:23px}
-.feat-ic.o{background:linear-gradient(135deg,#ff6c35,#e64a10)}
+.feat-ic.o{background:var(--brand-gradient)}
 .feat-ic.t{background:linear-gradient(135deg,#16b3a2,#0b7d72)}
 
 /* ---------- v32: count-up stats row ---------- */
@@ -419,8 +421,8 @@ footer.site-footer{background:#000;border-top:1px solid #1c1f24}
 /* ---------- nav typography (variant 8: editorial + orange active) ---------- */
 .nav-links{font-size:14px;font-weight:600;letter-spacing:-.005em}
 .nav-links a{color:#c8cdd6;opacity:1;transition:color .18s}
-.nav-links a:hover{color:#ff8c5c;opacity:1}
-.nav-links a.active{color:var(--orange);opacity:1}
+.nav-links a:hover{color:var(--orange-on-dark);opacity:1}
+.nav-links a.active{color:var(--orange-on-dark);opacity:1}
 
 /* ---------- interior strip scroll affordance ---------- */
 .int-wrap{position:relative;margin:-6px 0 16px}
@@ -449,7 +451,7 @@ body.kchat-open #kchat-fab{transform:scale(0)}
 body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transform:none;transition-delay:0s}
 .kchat-head{background:transparent;color:#fff;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.07)}
 .kchat-id{display:flex;align-items:center;gap:11px}
-.kcoin{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--orange),#ff8c5c);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:var(--ink);box-shadow:0 4px 14px rgba(255,92,31,.4);flex-shrink:0}
+.kcoin{width:34px;height:34px;border-radius:50%;background:var(--brand-gradient);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:15px;color:var(--ink);box-shadow:0 4px 14px rgba(255,92,31,.4);flex-shrink:0}
 .kchat-head strong{display:block;font-size:15.5px}
 .kchat-head span{font-size:11px;color:#7ee0d3;font-weight:600}
 .kchat-head span::before{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;background:#19c8b4;margin-right:5px;box-shadow:0 0 8px #19c8b4}
@@ -460,11 +462,11 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
 .kchat-msgs{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:11px;background:transparent}
 .km{max-width:84%;padding:10px 14px;border-radius:14px;font-size:13.5px;line-height:1.5}
 .km.bot{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.09);color:#e6e9ee;border-bottom-left-radius:4px;align-self:flex-start}
-.km.user{background:linear-gradient(135deg,#ff6c35,var(--orange));color:var(--ink);border-bottom-right-radius:4px;align-self:flex-end;box-shadow:0 6px 18px rgba(255,92,31,.3)}
+.km.user{background:var(--brand-gradient);color:var(--ink);border-bottom-right-radius:4px;align-self:flex-end;box-shadow:0 6px 18px rgba(255,92,31,.3)}
 .km.dots{color:#8a919e;letter-spacing:2px}
 .kchat-chips{display:flex;flex-direction:column;gap:7px;margin-top:2px}
 .kchat-chips button{border:1px solid #353b44;background:rgba(255,255,255,.05);border-radius:99px;padding:8px 14px;font-family:inherit;font-size:12.5px;font-weight:600;color:#dfe3e9;cursor:pointer;text-align:left;transition:.18s}
-.kchat-chips button:hover{border-color:var(--orange);color:#ff8c5c}
+.kchat-chips button:hover{border-color:var(--orange);color:var(--orange-on-dark)}
 .kchat-foot{display:flex;gap:8px;padding:12px;border-top:1px solid rgba(255,255,255,.07);background:transparent}
 #kchat-in{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#fff;border-radius:99px;padding:10px 16px;font-family:inherit;font-size:16px;min-width:0}
 #kchat-in::placeholder{color:#8a919e}
@@ -472,7 +474,7 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
 #kchat-send{width:42px;height:42px;border-radius:50%;border:none;background:var(--orange);color:var(--ink);font-size:17px;font-weight:700;cursor:pointer}
 #kchat-send:hover{background:var(--orange-dark)}
 .kchat-sms{display:block;text-align:center;font-size:12px;font-weight:700;color:#8a919e;padding:9px;background:transparent;border-top:1px solid rgba(255,255,255,.07)}
-.kchat-sms:hover{color:#ff8c5c}
+.kchat-sms:hover{color:var(--orange-on-dark)}
 @media(max-width:900px){#kchat{right:8px;bottom:8px;height:70vh}#kchat-fab{right:16px;bottom:16px}}
 
 /* ask our agent banner (support page) */
@@ -484,7 +486,7 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
 .aa-copy p{color:#aab1bd;font-size:15px;max-width:560px;line-height:1.6}
 .aa-chips{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}
 .aa-chips button{border:1px solid #353b44;background:rgba(255,255,255,.05);color:#dfe3e9;border-radius:99px;padding:9px 16px;font-family:inherit;font-size:12.5px;font-weight:600;cursor:pointer;transition:.18s}
-.aa-chips button:hover{border-color:var(--orange);color:#ff8c5c}
+.aa-chips button:hover{border-color:var(--orange);color:var(--orange-on-dark)}
 .aa-btn{position:relative;z-index:2;flex-shrink:0}
 @media(max-width:900px){.ask-agent{flex-direction:column;align-items:flex-start;padding:30px 24px;gap:22px}.aa-copy h2{font-size:24px}}
 
@@ -498,7 +500,7 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
 .mm-dd-list .mm-label{display:block;color:var(--teal);font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin:12px 0 4px}
 .related-label{text-align:center;font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin:22px 0 0;color:var(--muted)}
 .mm-dd-list a{border-bottom:none!important;padding:7px 0!important;font-size:14px!important;color:#c3c8d1!important;display:block}
-.mm-dd-list .mm-all{color:#ff8c5c!important;font-weight:700}
+.mm-dd-list .mm-all{color:var(--orange-on-dark)!important;font-weight:700}
 
 /* ---------- branded search (site-wide) ---------- */
 .ksearch{position:relative;max-width:640px;margin:0 auto}
@@ -513,7 +515,7 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
 .fleet-card .tag{border:1.5px solid #ffc4a3;background:#fff;border-radius:99px;padding:7px 14px;font-size:12px;font-weight:700;color:#3a3f49;box-shadow:0 2px 8px rgba(255,92,31,.08)}
 .fleet-card .amen{border-top:1px solid #f0e4dc}
 .fleet-card .amen li{font-weight:500;color:#4a505b;padding:5px 0 5px 27px}
-.fleet-card .amen li::before{width:17px;height:17px;top:7px;background:linear-gradient(135deg,var(--orange),#e64a10);color:#fff;font-size:10px;box-shadow:0 3px 8px rgba(255,92,31,.3)}
+.fleet-card .amen li::before{width:17px;height:17px;top:7px;background:var(--brand-gradient);color:#fff;font-size:10px;box-shadow:0 3px 8px rgba(255,92,31,.3)}
 
 /* ---------- teal review dots ---------- */
 .tdots{margin-top:18px}
@@ -673,4 +675,27 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
  .airport-benefits{gap:8px 14px;margin-bottom:22px;font-size:11px}
  .airport-hero-photo{aspect-ratio:1.7;border-radius:12px}
  .airport-hero-photo figcaption{font-size:12px;padding:36px 16px 15px}
+}
+
+/* Approved option E brand surfaces. Keep functional text colors solid. */
+.btn-orange,.btn-orange:hover,.card .row a.btn-book,.card .row a.btn-book:hover,
+#kchat-fab,#kchat-send,#kchat-send:hover,.kai-foot button,.kai-foot button:hover,
+#areas .car-arrow,#services .car-arrow,#areas .car-arrow:hover,#services .car-arrow:hover,
+.svc-card .svc-go,.car-arrow:hover,.klb .klb-a:hover,.int-nav:hover,.swipe-hint span:active{
+  background:var(--brand-gradient);color:var(--brand-ink);
+}
+.kcoin,.kchat-head span.kcoin,.km.user,.feat-ic.o{background:var(--brand-gradient);color:var(--brand-ink)}
+.feat-ic.o svg{stroke:var(--brand-ink)}
+.check-o li::before{background:var(--brand-gradient)!important;color:var(--brand-ink)!important}
+.fleet-card .amen li::before{background:var(--brand-gradient);color:var(--brand-ink)}
+.hero h1 .o,.hero-dark h1 .o{color:var(--orange-text)}
+.hero-photo h1 .o,.hero-dark h1 .o{color:var(--orange-on-dark)}
+@supports(background-clip:text){
+  .hero-photo h1 .o,.hero-dark h1 .o{background:var(--brand-gradient);background-clip:text;-webkit-background-clip:text;color:transparent}
+}
+.btn-orange:hover,.card .row a.btn-book:hover,#kchat-fab:hover,#kchat-send:hover,.kai-foot button:hover{filter:brightness(1.04)}
+.btn-orange:active,.card .row a.btn-book:active,#kchat-send:active,.kai-foot button:active{filter:brightness(.96)}
+.btn-orange:disabled,.btn-orange[aria-disabled="true"],#kchat-send:disabled,.kai-foot button:disabled{filter:none;opacity:.55;box-shadow:none;transform:none;cursor:not-allowed}
+@media(forced-colors:active){
+ .hero-photo h1 .o,.hero-dark h1 .o{background:none;color:CanvasText;-webkit-text-fill-color:CanvasText}
 }
