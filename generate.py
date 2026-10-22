@@ -30,7 +30,7 @@ def head(title, desc, prefix="", extra=""):
 <meta name="description" content="{desc}">
 <link rel="preload" href="/fonts/plus-jakarta-sans-latin-v12.woff2" as="font" type="font/woff2" crossorigin>
 <style>@font-face{{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:200 800;font-display:swap;src:url('/fonts/plus-jakarta-sans-latin-v12.woff2') format('woff2')}}</style>
-<link rel="stylesheet" href="{prefix}css/main.css?v=21">
+<link rel="stylesheet" href="{prefix}css/main.css?v=22">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0e1013">
 <script src="/koast-acquisition.js?v=2" defer></script>
@@ -722,7 +722,7 @@ home += nav("")
 home += f"""
 <header class="hero hero-split hero-photo"><div class="wrap hero-grid">
   <div class="hero-copy">
-    <h1>Ride <span class="o">easy.</span></h1>
+    <h1>Ride <span class="o brand-easy">easy.</span></h1>
     <p class="lede hide-m">Flat-rate chauffeured black car service — instant quotes, vetted professional drivers, flight tracking included. 24/7.</p>
     <ul class="check check-o hide-m" style="margin-bottom:0">
       <li>Fixed all-inclusive pricing — never surge</li>
@@ -4058,7 +4058,7 @@ app_css = """
 .arow{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:13px;padding:11px;font-size:11px}
 .arow b{display:block;font-size:11.5px}
 .arow span{color:#8b95a5;font-size:9.5px}
-.apill{align-self:center;background:linear-gradient(135deg,#ff9a3d,#ff7309);color:#2a1400;font-weight:800;border-radius:99px;padding:8px 22px;font-size:11px;margin-top:2px}
+.apill{align-self:center;background:var(--brand-gradient);color:var(--brand-ink);font-weight:800;border-radius:99px;padding:8px 22px;font-size:11px;margin-top:2px}
 .getapp{background:var(--ink);border-radius:28px;padding:64px 56px;color:#fff}
 .getapp h2{color:#fff}
 .getapp>p{color:#aab3c2}
