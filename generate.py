@@ -30,7 +30,7 @@ def head(title, desc, prefix="", extra=""):
 <meta name="description" content="{desc}">
 <link rel="preload" href="/fonts/plus-jakarta-sans-latin-v12.woff2" as="font" type="font/woff2" crossorigin>
 <style>@font-face{{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:200 800;font-display:swap;src:url('/fonts/plus-jakarta-sans-latin-v12.woff2') format('woff2')}}</style>
-<link rel="stylesheet" href="{prefix}css/main.css?v=19">
+<link rel="stylesheet" href="{prefix}css/main.css?v=20">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0e1013">
 <script src="/koast-acquisition.js?v=2" defer></script>
@@ -81,7 +81,7 @@ def nav(prefix="", active=""):
 
     return f"""
 <nav class="site-nav"><div class="wrap nav-inner">
-  <a class="logo" href="{prefix}index.html"><img src="{prefix}img/logo-transparent.png" alt="Koast" style="height:58px;width:auto"></a>
+  <a class="logo" href="{prefix}index.html"><img src="{prefix}img/koast-wordmark-orange-v1.svg" alt="Koast" class="site-wordmark" width="1472" height="454"></a>
   <div class="nav-links">{links}</div>
   <div class="nav-cta">
     <a class="btn btn-line" href="https://customer.moovs.app/koast/new/info">Log In</a>
@@ -272,7 +272,7 @@ def footer(prefix=""):
 <footer class="site-footer"><div class="wrap">
   <div class="foot-grid">
     <div>
-      <div class="foot-logo"><img src="{prefix}img/logo-transparent.png" alt="Koast" style="height:58px;width:auto;margin-bottom:8px"></div>
+      <div class="foot-logo"><img src="{prefix}img/koast-wordmark-orange-v1.svg" alt="Koast" style="height:58px;width:auto;margin-bottom:8px"></div>
       <p>Headquartered in San Francisco, California · Serving major cities nationwide</p>
       <p>{EMAIL}</p>
       <p style="margin-top:8px"><a href="mailto:{EMAIL}" style="color:#0e9d8e;font-weight:700">Email us anytime →</a></p>
@@ -2500,7 +2500,7 @@ def _schema_for(rel, src, url, title, desc):
     org = {"@context":"https://schema.org","@type":"LocalBusiness","@id":BASE_URL+"/#org",
         "name":"Koast","description":"Professional chauffeured black car service. Flat-rate pricing, vetted drivers, flight tracking. Bay Area based, serving major cities nationwide.",
         "url":BASE_URL,"email":EMAIL,
-        "logo":BASE_URL+"/img/logo-transparent.png","image":BASE_URL+"/img/hero-banner.jpg",
+        "logo":BASE_URL+"/img/koast-wordmark-orange-v1.png","image":BASE_URL+"/img/hero-banner.jpg",
         "slogan":"Ride easy.","priceRange":"$$$",
         "address":{"@type":"PostalAddress","addressLocality":"San Francisco","addressRegion":"CA","addressCountry":"US"},
         "areaServed":[c["name"] for c in CITIES.values()],
