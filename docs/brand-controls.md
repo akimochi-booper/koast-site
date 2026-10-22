@@ -17,6 +17,5 @@ Owner clarified that the website headline and buttons looked different from the 
 
 The home `easy.` span maps that ramp to its visible ink bounds, excluding the font's empty ascender space (at66px, font box84px; actual ink ascent37px/descent15px). Dark-surface headlines use font-relative stops. Small text on white retains its contrast-safe dark-orange role. Decorative borders, shadows and chat surfaces use the source-derived orange family. Website CSS version22.
 
-
-## Website text palette correction
-Marketing typography on white uses charcoal, including all statistic values. The orange wordmark ramp belongs on buttons, icon surfaces, active indicators and small decorative rules. Legacy teal template tokens resolve to charcoal text and warm orange tint. Dark-panel labels use orange-on-dark. This is website styling only; application operational/status colors are unchanged.
+## Owner correction: retain teal and orange
+Supersedes the rejected charcoal-only text revision. Preserve the existing teal/orange assignments. Teal feature icons, controls and badges use coordinated teal gradients. The 30+ statistic uses teal gradient; 3,100+ uses the approved orange gradient. Keep original unaccented numbers neutral. No added statistic rules. The review indicator is a small teal-gradient pill with a transparent button hit area, never a filled square.

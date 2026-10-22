@@ -1,6 +1,6 @@
 /* ============================================
    KOAST — Design System (complete v6)
-   Palette: Charcoal / White / Approved orange gradient
+   Palette: Black / White / Orange / Teal
    ============================================ */
 /* Accessibility: honor users who prefer reduced motion */
 @media(prefers-reduced-motion:reduce){
@@ -10,13 +10,14 @@
 :root{
   --ink:#0e1013; --ink-2:#171a1f; --text:#33363d; --muted:#697080;
   --bg:#ffffff; --bg-2:#f5f6f8; --line:#e6e8ec;
-  --orange:#f98b2b; --orange-dark:#c34511; --orange-text:var(--ink-2); --orange-tint:#fff3e8;
+  --orange:#f98b2b; --orange-dark:#c34511; --orange-text:#a63b10; --orange-tint:#fff3e8;
   --orange-on-dark:#f7a339; --brand-ink:#241205;
   /* Sample the visible oast contours, y=477..730.5, from the approved SVG.
      The original gradient starts above these letters at y=357.5 on the taller K. */
   --brand-gradient:linear-gradient(180deg,#f7a339 0%,#f98b2b 29.37%,#fc6a1c 69.10%,#fd581a 100%);
-  /* Legacy template names retained; marketing accents now share one palette. */
-  --teal:var(--ink-2); --teal-dark:var(--ink-2); --teal-tint:var(--orange-tint);
+  --teal:#0b7d72; --teal-dark:#08655d; --teal-tint:#e9f7f5;
+  --teal-gradient:linear-gradient(180deg,#21b9aa 0%,#0b9588 52%,#08756c 100%);
+  --teal-soft-gradient:linear-gradient(135deg,#edfafa,#d8f2ed);
   --radius:16px;
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -46,7 +47,7 @@ h1,h2,h3,h4{color:var(--ink);letter-spacing:-.02em;line-height:1.15}
 .btn-lg{padding:16px 34px;font-size:16px}
 
 /* Pills */
-.pill{display:inline-block;background:var(--teal-tint);border:1px solid #ffd9c6;border-radius:99px;padding:6px 16px;font-size:13px;font-weight:600;color:var(--teal-dark)}
+.pill{display:inline-block;background:var(--teal-tint);border:1px solid #c8e9e5;border-radius:99px;padding:6px 16px;font-size:13px;font-weight:600;color:var(--teal-dark)}
 .pill-orange{background:var(--orange-tint);border-color:#ffd9c6;color:var(--orange-text)}
 .pill b{color:var(--orange-text)}
 
@@ -75,7 +76,7 @@ body.nav-open .mobile-menu{display:block}
 
 /* Hero (dark) */
 .hero-dark{background:linear-gradient(160deg,var(--ink) 0%,#1b2027 100%);text-align:left;padding:72px 0 64px;position:relative;overflow:hidden}
-.hero-dark::after{content:'';position:absolute;right:-140px;top:-140px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(249,139,43,.16),transparent 65%)}
+.hero-dark::after{content:'';position:absolute;right:-140px;top:-140px;width:480px;height:480px;border-radius:50%;background:radial-gradient(circle,rgba(14,157,142,.22),transparent 65%)}
 .hero-dark::before{content:'';position:absolute;left:-120px;bottom:-180px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(249,139,43,.16),transparent 65%)}
 .hero-dark h1{color:#fff;font-size:clamp(34px,4.6vw,52px);font-weight:800;margin:22px 0 18px}
 .hero-dark h1 .o{color:var(--orange)}
@@ -149,7 +150,7 @@ section.tight{padding:64px 0}
 .steps{background:var(--ink);border-radius:28px;padding:72px 56px;color:#fff}
 .steps h2{color:#fff;font-size:34px;font-weight:800;margin-bottom:8px}
 .steps>p{color:#9ba1ad;margin-bottom:48px}
-.step .num{font-size:13px;font-weight:800;color:var(--orange-on-dark);margin-bottom:10px;letter-spacing:.08em}
+.step .num{font-size:13px;font-weight:800;color:var(--teal);margin-bottom:10px;letter-spacing:.08em}
 .step h3{color:#fff;font-size:18px;margin-bottom:8px}
 .step p{font-size:14.5px;color:#9ba1ad}
 
@@ -337,11 +338,10 @@ footer.site-footer{background:#000;border-top:1px solid #1c1f24}
 .feat-ic{min-width:46px;width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center}
 .feat-ic svg{width:23px;height:23px}
 .feat-ic.o{background:var(--brand-gradient)}
-.feat-ic.t{background:var(--brand-gradient);color:var(--brand-ink)}
-.feat-ic.t svg{stroke:var(--brand-ink)}
+.feat-ic.t{background:var(--teal-gradient)}
 
 /* ---------- v32: count-up stats row ---------- */
-.count-band{background:radial-gradient(95% 120% at 0% 0%, rgba(249,139,43,.22), transparent 60%),radial-gradient(95% 120% at 100% 100%, rgba(249,139,43,.10), transparent 60%),#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:48px 0;margin:8px 0 0}
+.count-band{background:radial-gradient(95% 120% at 0% 0%, rgba(249,139,43,.22), transparent 60%),radial-gradient(95% 120% at 100% 100%, rgba(14,157,142,.24), transparent 60%),#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:48px 0;margin:8px 0 0}
 .count-row{display:flex;justify-content:space-between;gap:14px;padding:0 10px}
 .count-row>div{border:1px solid rgba(14,16,19,.10);border-radius:16px;padding:22px 10px;background:rgba(255,255,255,.55);flex:1}
 .count-row>div{text-align:center;flex:1}
@@ -484,7 +484,7 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
 /* ask our agent banner (support page) */
 .ask-agent{background:linear-gradient(135deg,#15181d 0%,#0e1013 100%);border-radius:22px;padding:44px 48px;display:flex;align-items:center;gap:40px;position:relative;overflow:hidden}
 .ask-agent::before{content:'';position:absolute;right:-80px;top:-80px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(249,139,43,.25),transparent 65%)}
-.ask-agent::after{content:'';position:absolute;left:-70px;bottom:-110px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(249,139,43,.16),transparent 65%)}
+.ask-agent::after{content:'';position:absolute;left:-70px;bottom:-110px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(14,157,142,.22),transparent 65%)}
 .aa-copy{flex:1;position:relative;z-index:2}
 .aa-copy h2{color:#fff;font-size:30px;margin-bottom:10px}
 .aa-copy p{color:#aab1bd;font-size:15px;max-width:560px;line-height:1.6}
@@ -501,7 +501,7 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
 .mm-dd .mm-caret{color:var(--orange);transition:.2s}
 .mm-dd[open] .mm-caret{transform:rotate(180deg)}
 .mm-dd-list{padding:0 0 14px 14px}
-.mm-dd-list .mm-label{display:block;color:var(--orange-on-dark);font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin:12px 0 4px}
+.mm-dd-list .mm-label{display:block;color:var(--teal);font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;margin:12px 0 4px}
 .related-label{text-align:center;font-size:14px;letter-spacing:.08em;text-transform:uppercase;margin:22px 0 0;color:var(--muted)}
 .mm-dd-list a{border-bottom:none!important;padding:7px 0!important;font-size:14px!important;color:#c3c8d1!important;display:block}
 .mm-dd-list .mm-all{color:var(--orange-on-dark)!important;font-weight:700}
@@ -521,10 +521,10 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
 .fleet-card .amen li{font-weight:500;color:#4a505b;padding:5px 0 5px 27px}
 .fleet-card .amen li::before{width:17px;height:17px;top:7px;background:var(--brand-gradient);color:#fff;font-size:10px;box-shadow:0 3px 8px rgba(249,139,43,.3)}
 
-/* ---------- branded review dots ---------- */
+/* ---------- teal review dots ---------- */
 .tdots{margin-top:18px}
 .tdots button.on{background:transparent}
-.tdots button.on::before{background:var(--brand-gradient)}
+.tdots button.on::before{background:var(--teal-gradient)}
 
 /* ---------- swipe hint (mobile) ---------- */
 .swipe-hint{display:none}
@@ -588,7 +588,7 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
 .wmain p{margin:4px 0 0;font-size:13.5px;color:var(--muted);line-height:1.5}
 .wres{flex-shrink:0;font-size:11.5px;font-weight:700;padding:6px 13px;border-radius:99px;background:var(--bg-2);color:#4a505b;border:1px solid var(--line);white-space:nowrap}
 .wres.req{background:var(--orange-tint);border-color:#ffd9c6;color:var(--orange-text)}
-.wres.walk{background:var(--teal-tint);border-color:#ffd9c6;color:var(--teal-dark)}
+.wres.walk{background:var(--teal-tint);border-color:#c8e9e5;color:var(--teal-dark)}
 @media(max-width:900px){.wrow{flex-direction:column;align-items:flex-start;gap:10px}}
 
 /* Inline agent chat on support page */
@@ -710,12 +710,21 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
 
 /* Remaining orange decorative surfaces share the wordmark ramp. */
 .car-dots button.on::before{background:var(--brand-gradient)}
-.band strong.o,.band strong.t,.count-row strong.o,.count-row strong.t{color:var(--ink)}
+.band strong.o,.count-row strong.o{color:var(--orange-text)}
 .area-track .area-card span{border-image:var(--brand-gradient) 1}
 
-/* Marketing accents: clear typography, with color carried by surfaces and rules. */
-.btn-teal,.btn-teal:hover{background:var(--brand-gradient);color:var(--brand-ink)}
-.article .callout{border-left-color:var(--orange)}
-.chips button:hover{border-color:var(--orange);color:var(--ink)}
-.count-row>div::after{content:'';display:block;width:36px;height:3px;margin:16px auto 0;border-radius:99px;background:var(--brand-gradient)}
-@media(forced-colors:active){.count-row>div::after{background:CanvasText}}
+/* Owner correction: preserve orange/teal roles and use coordinated gradients. */
+.btn-teal,.btn-teal:hover{background:var(--teal-gradient);color:#072c28}
+.pill:not(.pill-orange),.tag.teal,.wres.walk{background:var(--teal-soft-gradient)}
+.check li::before,.card .amen li::before{background:var(--teal-soft-gradient)}
+.fleet-card .amen li::before{background:var(--brand-gradient)}
+.band strong.t,.count-row strong.t{color:var(--teal)}
+.band strong.o,.count-row strong.o{color:#e06419}
+@supports(background-clip:text){
+ .band strong.t,.count-row strong.t{background:linear-gradient(180deg,#21b9aa .4em,#0b9588 .8em,#08756c 1.2em);background-clip:text;-webkit-background-clip:text;color:transparent}
+ .band strong.o,.count-row strong.o{background:linear-gradient(180deg,#f7a339 .4em,#f98b2b .65em,#fc6a1c .95em,#fd581a 1.2em);background-clip:text;-webkit-background-clip:text;color:transparent}
+ .hero h1 .t{background:var(--teal-gradient);background-clip:text;-webkit-background-clip:text;color:transparent}
+}
+@media(forced-colors:active){
+ .band strong.t,.count-row strong.t,.band strong.o,.count-row strong.o,.hero h1 .t{background:none;color:CanvasText;-webkit-text-fill-color:CanvasText}
+}
