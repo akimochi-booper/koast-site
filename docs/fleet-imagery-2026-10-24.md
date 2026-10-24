@@ -1,8 +1,14 @@
 # Fleet scene imagery — 2026-10-24
 
-The public fleet carousel now uses scene photos instead of studio cutouts. The
-original images remain in `img/` for recovery. Class names, eligible-model copy,
-published specifications, rates, booking links and interior galleries are unchanged.
+**Superseded:** the owner clarified that the requested generic-photo replacement
+applies to the Google Business Profile album, not the website. The website's
+previous cutout images, rendering, fallback and CSS asset version have been
+restored. The scene files below are retained as unused assets for recovery and
+possible future review. This document records the withdrawn implementation;
+it is not the current website image specification.
+
+Class names, eligible-model copy, published specifications, rates, booking links
+and interior galleries were never changed.
 
 These are AI-generated illustrative marketing assets, not documentary images of
 specific assigned vehicles. Do not infer a vehicle's model year, trim, amenities or
@@ -20,7 +26,8 @@ availability from an image. All venues are fictional.
 Source masters and exact generation prompts are retained in the Koast project
 documents under `mockups/brand/`. Web copies are 1200×800 WebP, quality 84. Only
 resizing and format compression were applied; the approved image compositions
-were not edited. The fleet cards retain their existing 200px image region, with
-photo framing replacing the transparent-cutout shadow.
+were not edited. The withdrawn implementation used the existing 200px image
+region, with photo framing replacing the transparent-cutout shadow. Current
+fleet cards again use the original cutout framing and shadow.
 
 Never use the rejected winery SUV variants in place of the coastal SUV.
