@@ -30,7 +30,7 @@ def head(title, desc, prefix="", extra=""):
 <meta name="description" content="{desc}">
 <link rel="preload" href="/fonts/plus-jakarta-sans-latin-v12.woff2" as="font" type="font/woff2" crossorigin>
 <style>@font-face{{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:200 800;font-display:swap;src:url('/fonts/plus-jakarta-sans-latin-v12.woff2') format('woff2')}}</style>
-<link rel="stylesheet" href="{prefix}css/main.css?v=24">
+<link rel="stylesheet" href="{prefix}css/main.css?v=25">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0e1013">
 <script src="/koast-acquisition.js?v=2" defer></script>
@@ -342,6 +342,16 @@ def book_card():
   </script>
 </div>"""
 
+# Keep class keys stable for interior galleries; scene photos are presentation only.
+FLEET_SCENES = {
+ "fleet-sedan.jpg": "fleet-sedan-hotel-scene.webp",
+ "fleet-business-suv.jpg": "fleet-business-suv-airport-scene.webp",
+ "fleet-first-class-suv.jpg": "fleet-first-class-suv-coast-scene.webp",
+ "fleet-sprinter.jpg": "fleet-sprinter-wine-tour-scene.webp",
+ "fleet-mid-party-bus.jpg": "fleet-mid-party-bus-events-scene.webp",
+ "fleet-large-party-bus.jpg": "fleet-large-party-bus-events-scene.webp",
+}
+
 FLEET_INTERIORS = {
  "fleet-sedan.jpg": [("int-sedan-1.jpg","Rear seat"),("int-sedan-2.jpg","Passenger view"),("int-sedan-3.jpg","Front cabin"),("int-sedan-4.jpg","Trunk space")],
  "fleet-business-suv.jpg": [("int-bsuv-1.jpg","Second row"),("int-bsuv-2.jpg","Third row"),("int-bsuv-3.jpg","Front cabin"),("int-bsuv-4.jpg","Trunk space"),("int-bsuv-5.jpg","Seat map")],
@@ -363,7 +373,7 @@ def fleet_section(prefix=""):
                      f'<button class="int-nav inext" aria-label="More photos">›</button></div>')
         cards += f"""
     <div class="card fleet-card">
-      <div class="car-cut"><img src="{prefix}img/{v['img'].replace('.jpg','-cut.webp')}" alt="Koast {v['name']}" loading="lazy"></div>
+      <div class="car-cut fleet-scene"><img src="{prefix}img/{FLEET_SCENES[v['img']]}" alt="Koast {v['name']}" width="1200" height="800" loading="lazy" decoding="async"></div>
       {strip}<h3>{v['name']}</h3>
       <div class="sub">{v['sub']}</div>
       <div class="tags">{tags}</div>
@@ -671,7 +681,7 @@ def services_section(prefix=""):
     for name, sub, href, img in SERVICES_CAROUSEL:
         url = href if href.startswith("http") else prefix + href
         if not _sos.path.exists(os.path.join(ROOT, "img", img)):
-            img = "fleet-first-class-suv.jpg"
+            img = FLEET_SCENES["fleet-first-class-suv.jpg"]
         cards += f"""
     <a class="svc-card" href="{url}">
       <img class="carousel-backdrop" src="{prefix}img/{img}" alt="" loading="lazy" decoding="async">
