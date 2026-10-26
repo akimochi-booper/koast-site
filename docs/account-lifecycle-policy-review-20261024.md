@@ -1,6 +1,6 @@
-# Account lifecycle policy draft — owner review required
+# Account lifecycle policy — synchronized release review
 
-Status: unpublished source draft. Do not push this branch to production independently of the matching passenger-app release and owner legal approval. This is a product-policy draft, not a legal-compliance certification.
+Status: owner-approved policy package, as confirmed by the integrating agent on 2026-10-25. Ready for synchronized Site/Book deployment by the integrating owner; this lane does not deploy. Approval is not a legal-compliance certification.
 
 ## Proposed customer choices
 
@@ -12,7 +12,7 @@ Status: unpublished source draft. Do not push this branch to production independ
 
 `generate.py` adds Terms section9 (account security/closure) and Privacy sections account-deletion and security/signed-in sessions. Final provisions move from9 to10. Privacy has a direct public anchor and deletion-request mailto path so people can initiate a request outside the app. Generated terms.html/privacy.html are ignored build outputs.
 
-The source contains a draft publication gate comment. Customer-facing wording assumes the matching functionality ships; it is not safe to publish while implementation is incomplete.
+The source contains a synchronization comment. Publish with the matching passenger Security release, not independently before that behavior is available.
 
 ## Implementation facts to verify before publication
 
@@ -45,3 +45,13 @@ The source contains a draft publication gate comment. Customer-facing wording as
 ## Existing policy wording outside this change
 
 The inherited Privacy Policy includes broad device/contact/marketing collection language. This change does not verify all those existing practices; review the complete policy against the actual app data inventory before store submission. The new narrow session description does not validate unrelated inherited claims.
+
+
+## Integration review — 2026-10-25
+
+- Rebased onto Site origin/main `0eadddb` (Restore website fleet images after scope clarification); no conflicts. Latest fleet-image source and assets remain untouched by the policy diff.
+- Source behavior cross-checked in Book `54a2e0d66df7da34e4b4593104c931571b3cab6e`, modules `src/customer-security.js` and `src/customer-account-data.js`: closure is action-approved; access and sessions end immediately; recoverable mode persists a 90-day deadline; permanent mode starts processing without that hold; ordinary sign-in does not restore; explicit verified restoration leaves old passwords/sessions invalid; calendar authorizations are disconnected rather than silently reinstated.
+- Added the restoration password disclosure to match implementation and updated the legal-page dates to October25. No new layout or styling.
+- Purge is asynchronous and may require review/provider work. Copy continues to describe processing/status and lawful limited retention rather than promise instantaneous completed erasure. Phone-only completion communication still requires the operational support path; no claim that automatic SMS security notices exist.
+- The external email request channel and retained-record review remain operational obligations of the release owner. This policy lane does not mark provider deletion, legal retention schedules or public production behavior verified.
+- Prior parent-run desktop/phone policy preview may be reused because this integration changes text only, preserving layout and styling. This lane does not independently repeat or claim that browser QA.

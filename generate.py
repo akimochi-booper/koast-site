@@ -2084,14 +2084,14 @@ write("blog/ea-guide-executive-ground-travel.html", p)
 
 
 # ============================ TERMS (ported from koastride.com) ============================
-# DRAFT account-lifecycle terms: owner legal approval and matching Book release required before publication.
+# Owner-reviewed account-lifecycle policy; publish with the matching passenger Security release.
 p = head("Terms & Conditions | Koast", "Koast's Terms and Conditions: bookings, cancellations, payments, and liability for our chauffeured transportation services.", "")
 p += nav("")
 p += f"""
 <section class="tight"><div class="wrap article">
   <span class="pill">Legal</span>
   <h1>Terms &amp; Conditions</h1>
-  <div class="meta">Updated October 24, 2026 · Account security and closure choices</div>
+  <div class="meta">Updated October 25, 2026 · Account security and closure choices</div>
 
   <h2>1. General provisions</h2>
   <p>Koast is operated by Krujim Inc, headquartered in San Francisco, California. Koast provides chauffeured transportation directly and also arranges transportation with independent Transportation Service Providers ("TSPs"), depending on the reservation. Users may book through Koast's online platform, integrated third-party platforms, mobile applications or directly with Koast (collectively, the "Koast Tools").</p>
@@ -2144,7 +2144,7 @@ p += f"""
 
   <h2 id="account-closure">9. Account security, deactivation and deletion</h2>
   <p><strong>Account security.</strong> Keep your sign-in methods secure and your recovery contact details current. You can review signed-in sessions and end access from other sessions in the Koast passenger app under Settings &rarr; Security. We require identity verification before sensitive account changes. Browser and device descriptions help you recognize a session; they are not proof of the physical device's identity.</p>
-  <p><strong>Optional 90-day recovery period.</strong> If you choose <em>Deactivate with 90-day recovery</em>, access is disabled and existing sign-in sessions are ended immediately. We retain the account data needed for recovery for up to 90 days, rather than treating deactivation as completed deletion. You may request restoration before the displayed deadline after verifying that the account is yours. Signing in alone does not restore the account. If you do not restore it, it proceeds to permanent deletion after the recovery period.</p>
+  <p><strong>Optional 90-day recovery period.</strong> If you choose <em>Deactivate with 90-day recovery</em>, access is disabled and existing sign-in sessions are ended immediately. We retain the account data needed for recovery for up to 90 days, rather than treating deactivation as completed deletion. You may request restoration before the displayed deadline after verifying that the account is yours. Signing in alone does not restore the account. Restoration does not reactivate old passwords or sign-in sessions; you may need to set a new password through your verified recovery email. If you do not restore it, it proceeds to permanent deletion after the recovery period.</p>
   <p><strong>Permanent deletion without the recovery period.</strong> You can instead choose <em>Request permanent deletion now</em>. This option does not impose the optional 90-day recovery period. We verify your identity, disable account access and process deletion of the account and associated personal data, subject to lawful retention requirements. We tell you the processing status and confirm completion. Once permanent deletion is completed, the deleted account cannot be restored.</p>
   <p><strong>Reservations, charges and retained records.</strong> Deactivating or deleting an account does not cancel a reservation, request a refund or waive an amount owed. Use the reservation cancellation process or contact us about an existing ride. We retain only records needed for outstanding service or payment obligations, applicable legal and tax requirements, fraud prevention or the establishment, exercise or defense of legal claims, for as long as those purposes require. See the <a href="privacy.html#account-deletion">Privacy Policy</a> for request methods and retention details. These account choices do not limit any privacy rights available under applicable law.</p>
 
@@ -2218,7 +2218,7 @@ p += f"""
 <section class="tight"><div class="wrap article">
   <span class="pill">Legal</span>
   <h1>Privacy Policy</h1>
-  <div class="meta">Updated October 24, 2026 · Account security and closure choices</div>
+  <div class="meta">Updated October 25, 2026 · Account security and closure choices</div>
   <p>Koast wants you to know that we value the privacy of your information and will not sell or market your personal information to any other company. However, certain profile information may be used to create specific messages or advertising to you as described further in this privacy policy.</p>
   <p>Koast and/or its corporate affiliates and/or subsidiaries (collectively "Koast," "us," or "we") collects information about you when you use our mobile applications, websites, and other online products and services provided by Koast (collectively, the "Services"), and through other interactions and communications that you may have with us. This Privacy Policy describes how Koast collects and uses the personal information that you provide through the Services, the choices available to you regarding our use of your personal information, and how you can access and update this information.</p>
 
@@ -2267,7 +2267,7 @@ p += f"""
   <h2 id="account-deletion">Account deactivation, recovery and deletion</h2>
   <p>You have two separate choices in the Koast passenger app under Settings &rarr; Security. Both require identity verification and a deliberate confirmation.</p>
   <ul>
-    <li><strong>Deactivate with 90-day recovery:</strong> account access is disabled and existing sign-in sessions end immediately. We retain the account data needed for recovery for up to 90 days. The confirmation shows your restoration deadline. You can request restoration before that deadline after proving the account is yours; a sign-in attempt alone does not restore it. If you do not restore it, the account proceeds to permanent deletion after the recovery period. Deactivation is not completed deletion.</li>
+    <li><strong>Deactivate with 90-day recovery:</strong> account access is disabled and existing sign-in sessions end immediately. We retain the account data needed for recovery for up to 90 days. The confirmation shows your restoration deadline. You can request restoration before that deadline after proving the account is yours; a sign-in attempt alone does not restore it. Old passwords and sign-in sessions remain invalid after restoration; you may need to set a new password through your verified recovery email. If you do not restore it, the account proceeds to permanent deletion after the recovery period. Deactivation is not completed deletion.</li>
     <li><strong>Request permanent deletion now:</strong> this starts permanent account and associated personal-data deletion without the optional 90-day recovery hold. We disable access, verify and process the request, tell you its status, and confirm completion. We do not promise that every deletion task is instantaneous. Deleted account data cannot be restored after permanent deletion is completed.</li>
   </ul>
   <p><strong>Request without the app:</strong> email <a href="mailto:{EMAIL}?subject=Koast%20account%20deletion">{EMAIL}</a> with the subject <em>Koast account deletion</em> to request permanent deletion of your Koast passenger account and associated data. You do not need to reinstall the app or choose deactivation first. We may ask for information needed to verify that the request concerns your account. Do not send us a password, sign-in code or payment-card number. This is also a way to submit a privacy-rights request; the optional recovery period does not postpone deadlines that apply to that request under law.</p>
