@@ -1,0 +1,35 @@
+<div id="dsplash">
+<style>
+#dsplash{position:absolute;inset:0;height:100%;z-index:99999;background:#0b0d10;overflow:hidden;transition:opacity .45s ease}
+#dsplash.out{opacity:0;pointer-events:none}
+#dsplash .dsp-hero{position:absolute;left:0;right:0;top:24%;display:flex;flex-direction:column;align-items:center;z-index:2}
+#dsplash .dsp-hero img{width:58%;max-width:250px;display:block;opacity:0;transform:translateY(12px);animation:dspRise .8s .3s cubic-bezier(.2,.8,.2,1) forwards, dspBrth 4.2s 2.4s ease-in-out infinite}
+@keyframes dspRise{to{opacity:1;transform:none}}
+@keyframes dspBrth{50%{transform:scale(1.02)}}
+#dsplash .dsp-tag{font-weight:800;letter-spacing:-.02em;font-size:15px;margin-top:14px;color:#f4f5f7;opacity:0;animation:dspFin .5s 1.15s ease forwards}
+#dsplash .dsp-tag span{color:#2dd4bf}
+@keyframes dspFin{to{opacity:1}}
+#dsplash svg.dsp-fw{position:absolute;left:0;right:0;bottom:0;width:100%;height:62%}
+#dsplash .dsp-case{fill:none;stroke:#05070a;stroke-width:15;stroke-linecap:round}
+#dsplash .dsp-top{fill:none;stroke:#141920;stroke-width:11;stroke-linecap:round}
+#dsplash .dsp-rib{fill:none;stroke-width:3;stroke-linecap:round;opacity:.85;stroke-dasharray:80 440;animation:dspRun linear infinite}
+#dsplash .dsp-ribW{stroke-width:2;stroke-dasharray:46 474;opacity:.7}
+@keyframes dspRun{from{stroke-dashoffset:520}to{stroke-dashoffset:-520}}
+</style>
+<svg class="dsp-fw" viewBox="0 0 300 220" preserveAspectRatio="none" aria-hidden="true">
+<defs>
+<linearGradient id="dspGA" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="rgba(45,212,191,0)"/><stop offset="1" stop-color="#2dd4bf"/></linearGradient>
+<linearGradient id="dspGB" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="rgba(255,115,9,0)"/><stop offset="1" stop-color="#ff7309"/></linearGradient>
+</defs>
+<path class="dsp-case" d="M-10 160 C 90 150, 150 100, 200 98 S 300 120, 320 70"/>
+<path class="dsp-case" d="M320 180 C 240 170, 190 130, 130 128 S 30 140, -10 100"/>
+<path class="dsp-case" d="M-10 70 C 70 76, 210 50, 320 130"/>
+<path class="dsp-top" d="M-10 160 C 90 150, 150 100, 200 98 S 300 120, 320 70"/>
+<path class="dsp-top" d="M320 180 C 240 170, 190 130, 130 128 S 30 140, -10 100"/>
+<path class="dsp-top" d="M-10 70 C 70 76, 210 50, 320 130"/>
+<path class="dsp-rib" stroke="url(#dspGA)" style="animation-duration:3.2s;filter:drop-shadow(0 0 5px rgba(45,212,191,.5))" d="M-10 160 C 90 150, 150 100, 200 98 S 300 120, 320 70"/>
+<path class="dsp-rib" stroke="url(#dspGB)" style="animation-duration:3.8s;animation-delay:.9s;filter:drop-shadow(0 0 5px rgba(255,115,9,.5))" d="M320 180 C 240 170, 190 130, 130 128 S 30 140, -10 100"/>
+<path class="dsp-rib dsp-ribW" stroke="rgba(230,236,244,.65)" style="animation-duration:2.8s;animation-delay:.4s;filter:drop-shadow(0 0 4px rgba(255,255,255,.4))" d="M-10 70 C 70 76, 210 50, 320 130"/>
+</svg>
+<div class="dsp-hero"><img src="wordmark.svg" width="1472" height="454" style="height:auto" alt="Koast"><div class="dsp-tag">Drive <span>easy.</span></div></div>
+</div>
