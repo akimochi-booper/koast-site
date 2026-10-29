@@ -30,3 +30,7 @@
 /preview/driver-roadlight/*
   X-Robots-Tag: noindex, nofollow
   Cache-Control: no-store
+
+/preview/driver-cinematic/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store
