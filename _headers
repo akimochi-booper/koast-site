@@ -22,3 +22,7 @@
 /preview/driver-motion/*
   X-Robots-Tag: noindex, nofollow
   Cache-Control: no-store
+
+/preview/driver-wordmark/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store
