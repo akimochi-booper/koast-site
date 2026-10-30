@@ -34,3 +34,7 @@
 /preview/driver-cinematic/*
   X-Robots-Tag: noindex, nofollow
   Cache-Control: no-store
+
+/preview/dispatch-motion/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store
