@@ -1,9 +1,7 @@
-# Koast Connect option eight / coastal motion
+# Koast Connect option eight / splash to login
 
-EXPLORATORY PHONE PREVIEW. User selected displayed option8 and asked to see it animated over the coastal background. No live app splash/rename change.
+EXPLORATORY. User approved option8 motion and asked for the login panel immediately afterward. Extends the same public preview; no production app activation or auth changes.
 
-Exact option8 source raster retained unchanged as assets/option-eight-original.png. CSS displays only CONNECT (source viewport x158 y594 w1219 h158), screen blended over the dark brand area. The existing approved Koast source SVG remains separate and unchanged. No font reconstruction or new icon.
+Approved first2.1s retained. Brand moves to the login header2.15–2.95s; current-login-style panel fades2.38–3.12s over the continuous coastal scene. Full timeline4.4s. Inputs remain inert/hidden from accessibility until reveal completes; Replay disables them again. Reduced Motion opens in the final login state3.2s without forcing focus or keyboard. Preview fields stay local, no credential read, network request, persistence, OTP or OAuth. Visible disclosure and Open live sign in link. Existing live auth remains at dispatch.koastride.com.
 
-Coastal art is the exact Dispatch login asset. Existing road exposure is retained. Wordmark fades0.75–1.35s; CONNECT0.95–1.45s; restrained duplicate-letter light exposure1.15–1.95s. All motion settled2.1s. No transforms or letter movement. Reduced Motion initially settled, manual Replay opts in.
-
-Phone link: ?view=phone&focus=1. Opens expanded without opting out of Reduced Motion. Controls: Replay, Pause/Play, Close; Escape returns; layout, timeline, optional loop in review page. All images decode before animation starts. Hidden page suspends playback.
+Source lettering raster unchanged, exact approved KoastSVG, current coastal photo. Login visual reference downloaded anonymously2026-10-30; matches fields/buttons/colors, with selected Connect instead of Dispatch. Form inside scrollable preview viewport at small heights. Review controls move above the form after reveal.
