@@ -2091,10 +2091,11 @@ write("blog/ea-guide-executive-ground-travel.html", p)
 LEGAL_EFFECTIVE_DATE = "October 30, 2026"
 LEGAL_LINKS = [("/privacy", "Privacy Policy"), ("/terms/rider/", "Rider Terms"),
                ("/terms/driver/", "Driver App Terms"), ("/terms/connect/", "Connect Terms"),
+               ("/terms/standing-authorization/", "Standing booking &amp; payment authorization"),
                ("/sms-terms", "SMS Terms")]
 
-def legal_page(path, title, description, body, prefix=""):
-    effective = f'<div class="meta">Effective {LEGAL_EFFECTIVE_DATE}</div>'
+def legal_page(path, title, description, body, prefix="", effective_date=None):
+    effective = f'<div class="meta">Effective {effective_date or LEGAL_EFFECTIVE_DATE}</div>'
     links = ''.join(f'<a href="{href}"'+(' aria-current="page"' if href.rstrip('/') == ('/'+path.removesuffix('index.html').removesuffix('.html')).rstrip('/') else '')+f'>{label}</a>' for href, label in LEGAL_LINKS)
     section_links = ''.join(f'<a href="#{anchor}">{label}</a>' for anchor, label in __import__('re').findall(r'<h[23] id="([^"]+)">(.*?)</h[23]>', body))
     contents = '<nav class="legal-contents" aria-label="On this page">'+section_links+'</nav>' if section_links else ''
@@ -2116,10 +2117,13 @@ def legal_body(name):
         return f.read()
 
 # Preserve existing /terms and /terms.html as the rider agreement for old links.
-legal_page('terms.html', 'Terms &amp; Conditions', "Koast transportation terms for riders and bookers, with links to Driver and Connect agreements.", legal_body('rider'))
-legal_page('terms/rider/index.html', 'Rider Terms', "Terms for bookings, transportation, payment and rider accounts provided or arranged by Koast.", legal_body('rider'), '../../')
+legal_page('terms.html', 'Terms &amp; Conditions', "Koast transportation terms for riders and bookers, with links to Driver and Connect agreements.", legal_body('rider'), effective_date='October 31, 2026')
+legal_page('terms/rider/index.html', 'Rider Terms', "Terms for bookings, transportation, payment and rider accounts provided or arranged by Koast.", legal_body('rider'), '../../', effective_date='October 31, 2026')
 legal_page('terms/driver/index.html', 'Driver App Terms', "Terms for authorized chauffeur access, safe app use and passenger information in Koast Driver.", legal_body('driver'), '../../')
 legal_page('terms/connect/index.html', 'Connect Terms', "Terms for operator software access, staff permissions, business records and Koast Connect.", legal_body('connect'), '../../')
+legal_page('terms/standing-authorization/index.html', 'Standing Booking and Payment Authorization', "Authorization for requested transportation, designated bookers and saved-method payments within an agreed pricing and ride-policy framework.",
+    '<p class="meta">Version standing-booking-payment-v1-20261031</p><p>This authorization applies when you accept it for an identified account and Company with the accompanying pricing and ride-policy schedule. Viewing this page or saving a card alone does not establish acceptance. See the <a href="/terms/rider/">Rider Terms</a> and <a href="/privacy">Privacy Policy</a>.</p>'+legal_body('standing-authorization'),
+    '../../', effective_date='October 31, 2026')
 legal_page('legal/index.html', 'Policies and terms', "Koast's shared Privacy Policy and the agreements for Rider, Driver, Connect and text updates.", """
 <p>One privacy policy explains how Koast handles information across our products. Choose the terms for the service you use. If you have more than one role, the relevant agreements apply to those separate activities.</p>
 <h2 id="privacy">Privacy for all products</h2><p><a href="/privacy">Privacy Policy</a> — riders and bookers, chauffeurs, transportation-company owners and staff, and website visitors.</p>
@@ -2128,8 +2132,10 @@ legal_page('legal/index.html', 'Policies and terms', "Koast's shared Privacy Pol
 <li><a href="/terms/driver/">Driver App Terms</a> — authorized chauffeur access and safe use of the Driver app.</li>
 <li><a href="/terms/connect/">Connect Terms</a> — operator software and authorized company administration.</li>
 <li><a href="/sms-terms">SMS Terms</a> — optional transactional Koast Ride Updates.</li></ul>
+<h2 id="standing-authorization">Standing booking and payment authorization</h2>
+<p><a href="/terms/standing-authorization/">Standing Booking and Payment Authorization</a> — requested transportation and saved-method charges within an agreed company, account, service scope and pricing/ride-policy framework. This authorization requires separate acceptance; signing in, viewing a page or having a saved card does not establish it.</p>
 <h2 id="questions">Questions</h2><p>Contact <a href="mailto:reserve@koastride.com">reserve@koastride.com</a>. A separately executed employment, contractor, subscription or other business agreement may also apply.</p>
-""", '../')
+""", '../', effective_date='October 31, 2026')
 
 # ============================ SMS TERMS ============================
 p = head("SMS Terms | Koast", "Terms for Koast Ride Updates, our optional transactional text messaging program.", "")
@@ -2187,7 +2193,7 @@ p += footer("")
 write("sms-consent.html", p)
 
 # ============================ SHARED PRIVACY ============================
-legal_page('privacy.html', 'Privacy Policy', "How Koast handles rider, chauffeur, operator and website information, permissions and privacy requests.", legal_body('privacy'))
+legal_page('privacy.html', 'Privacy Policy', "How Koast handles rider, chauffeur, operator and website information, permissions and privacy requests.", legal_body('privacy'), effective_date='October 31, 2026')
 
 # ============================ SEO POST-PROCESSING ============================
 import re as _re, json as _json, glob as _glob, struct as _struct

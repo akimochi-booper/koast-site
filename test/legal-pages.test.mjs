@@ -4,12 +4,12 @@ import {readFileSync} from 'node:fs';
 const read=p=>readFileSync(new URL('../'+p,import.meta.url),'utf8').replace(/\r\n/g,'\n');
 
 test('published legal pages resolve every role and show the approved effective date',()=>{
-  for(const [path,title] of [['privacy.html','Privacy Policy'],['terms/rider/index.html','Rider Terms'],['terms/driver/index.html','Driver App Terms'],['terms/connect/index.html','Connect Terms'],['legal/index.html','Policies and terms']]){
+  for(const [path,title,date] of [['privacy.html','Privacy Policy','October 31, 2026'],['terms/rider/index.html','Rider Terms','October 31, 2026'],['terms/driver/index.html','Driver App Terms','October 30, 2026'],['terms/connect/index.html','Connect Terms','October 30, 2026'],['legal/index.html','Policies and terms','October 31, 2026'],['terms/standing-authorization/index.html','Standing Booking and Payment Authorization','October 31, 2026']]){
     const html=read(path);
     assert.ok(html.includes('<h1>'+title+'</h1>'),path);
-    assert.ok(html.includes('Effective October 30, 2026'),path);
+    assert.ok(html.includes('Effective '+date),path);
     assert.doesNotMatch(html,/Draft for owner review|Not effective or published|Existing published agreements remain in effect/);
-    for(const href of ['/privacy','/terms/rider/','/terms/driver/','/terms/connect/','/sms-terms'])assert.ok(html.includes('href="'+href+'"'),path+' -> '+href);
+    for(const href of ['/privacy','/terms/rider/','/terms/driver/','/terms/connect/','/terms/standing-authorization/','/sms-terms'])assert.ok(html.includes('href="'+href+'"'),path+' -> '+href);
     assert.doesNotMatch(html,/\{EMAIL\}|\{PHONE\}|TODO|PLACEHOLDER/);
   }
 });

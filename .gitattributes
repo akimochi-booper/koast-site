@@ -1,0 +1,2 @@
+# Keep the accepted contract text byte-stable across Windows and Linux checkouts.
+/content/legal/standing-authorization.txt text eol=lf
