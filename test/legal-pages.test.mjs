@@ -13,12 +13,21 @@ test('shared legal pages resolve every role and remain explicitly review drafts'
   }
 });
 
-test('legacy rider terms retain published ride provisions and privacy anchors work',()=>{
+test('legacy URL and role URL serve identical ride-specific terms and preserve privacy anchors',()=>{
   const current=read('terms.html'),rider=read('terms/rider/index.html');
   const body=read('content/legal/rider.inc');
-  for(const sentence of ['Between 12–24 hours before pickup, a 50% refund applies.','Business Class Sedan — $5.15 per mile','Request permanent deletion now'])assert.ok(body.includes(sentence),sentence);
+  for(const sentence of ['those accepted ride-specific terms take precedence','Each leg of a reservation may have different terms','do not retroactively change an accepted ride','Email is not the only accepted cancellation method.','These general terms do not create a universal cancellation window','Request permanent deletion now'])assert.ok(body.includes(sentence),sentence);
+  assert.doesNotMatch(body,/50% refund|more than 24 hours|Within 12 hours|each commenced half hour is rounded up|include 20 miles per hour|\$2\.08 per minute|\$5\.15 per mile|An effective cancellation can only/);
+  assert.ok(body.includes('id="cancellations"'));
   assert.ok(current.includes(body)&&rider.includes(body));
   assert.ok(read('privacy.html').includes('id="account-deletion"'));
+});
+
+test('public service copy no longer advertises the superseded universal ride schedules',()=>{
+  for(const file of ['generate.py','data.py']){
+    const body=read(file);
+    assert.doesNotMatch(body,/published Terms include 30 minutes|30 minutes (?:free|included) (?:on|for) domestic|30 minutes for domestic flights and 60 minutes for international|full schedule is in our|Terms<\/a> for exact rates/);
+  }
 });
 
 test('shared privacy covers actual safety, permissions and future feature boundaries',()=>{

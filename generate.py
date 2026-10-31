@@ -1666,7 +1666,7 @@ BLOG_FAQ = {
  "lax-airport-black-car-guide": [
   ("How much is a black car from LAX?", "A flat, all-inclusive rate quoted before you book — tolls and gratuity included, with no surge during peak arrivals. Enter your pickup and drop-off for an instant price."),
   ("How does pickup work with the LAX-it lot?", "Your chauffeur tracks your flight and coordinates pickup for your terminal. Follow your reservation instructions for the permitted pickup point; airport rules and traffic controls can affect access."),
-  ("How long will the chauffeur wait if my flight is late?", "LAX airport pickups include 30 minutes for domestic flights and 60 minutes for international flights after the agreed pickup time; for delayed flights, pickup time starts when the plane has landed. Additional waiting is charged by vehicle class under the Terms."),
+  ("How long will the chauffeur wait if my flight is late?", "Your accepted ride terms state the included airport waiting allowance, when its clock starts, how flight changes affect pickup, and any additional waiting charges. Check those details in your booking confirmation."),
  ],
  "chicago-ohare-midway-guide": [
   ("Is a black car cheaper from O'Hare or Midway?", "Pricing is by distance and flat-rate either way, with no surge. Midway is closer to downtown, so that ride is usually shorter; O'Hare serves more airlines and international routes."),
@@ -1745,7 +1745,7 @@ BLOG_FAQ = {
  ],
  "chauffeur-terms-glossary": [
   ("What does flat-rate or all-inclusive pricing mean?", "Your quote covers the agreed itinerary and lists included charges. Additional stops, extra time or waiting beyond the included allowance may incur charges under your confirmation and the Terms."),
-  ("What is complimentary wait time at the airport?", "Airport pickups include 30 minutes for domestic flights and 60 minutes for international flights after the agreed pickup time. For delayed flights, pickup time starts when the plane has landed. Waiting beyond the allowance may be charged; see the Terms."),
+  ("What is complimentary wait time at the airport?", "The included airport waiting allowance and any additional charges are stated in the terms accepted for your ride. Those terms also explain when the waiting clock starts and how flight changes are handled."),
   ("What's the difference between a transfer and an hourly booking?", "A transfer is point-to-point at a flat rate. An hourly booking keeps the same car and chauffeur on standby for a set number of hours — ideal for multiple stops or an as-directed day."),
  ],
  "sonoma-first-timers": [
@@ -1776,7 +1776,7 @@ BLOG_FAQ = {
  "sfo-to-san-francisco-black-car-guide": [
   ("How much is a black car from SFO to San Francisco?", "A flat, all-inclusive rate quoted before you book — tolls and gratuity included, no surge. Enter your pickup and drop-off for an instant price."),
   ("How long is SFO to downtown San Francisco?", "Travel time depends on the destination, traffic and terminal departure. Check current conditions and allow a buffer; no fixed drive time is guaranteed."),
-  ("How long will the chauffeur wait if my flight is delayed?", "SFO airport pickups include 30 minutes for domestic flights and 60 minutes for international flights after the agreed pickup time; for delayed flights, pickup time starts when the plane has landed. Additional waiting is charged by vehicle class under the Terms."),
+  ("How long will the chauffeur wait if my flight is delayed?", "Your accepted ride terms state the included airport waiting allowance, when its clock starts, how flight changes affect pickup, and any additional waiting charges. Check those details in your booking confirmation."),
  ],
  "san-francisco-summer-2026-events": [
   ("What's the best way to get around SF during a big summer event?", "A pre-scheduled black car skips the road closures and rideshare surge around World Cup matches, Outside Lands, and street festivals. Pickups are set in advance so you arrive on time."),
@@ -1935,7 +1935,7 @@ p += f"""
   <h2>How pickup works</h2>
   <p>Provide the flight number and arrival date when booking. Follow the pickup instructions in your confirmation and contact your chauffeur when you are ready. Terminal access and pickup locations can change; consult <a href="https://www.flysfo.com/to-from/ground-transportation">SFO's official ground transportation information</a> for current airport guidance.</p>
   <h2>Included waiting and extra time</h2>
-  <p>Koast's published Terms include 30 minutes for domestic airport pickups and 60 minutes for international airport pickups after the agreed pickup time. For delayed flights, pickup time starts when the plane has landed. Waiting beyond the allowance is charged by vehicle class. Review your confirmation and <a href="../terms.html">current Terms</a>; the allowance is not a guarantee that baggage or customs will take less time.</p>
+  <p>Your accepted ride terms specify the included airport waiting allowance, the timing basis, how flight delays are handled and any additional waiting rates. Review your confirmation and <a href="../terms.html">current Terms</a>; the allowance is not a guarantee that baggage or customs will take less time.</p>
   <h2>Compare the complete quote</h2>
   <p>Use the same date, route, vehicle class and passenger count when comparing options. Check which tolls, fees and gratuity are included. Your fixed quote covers the agreed itinerary; additional stops, extra time or waiting can change the total.</p>
   <h2>What to send when booking</h2>
@@ -2105,7 +2105,7 @@ def legal_page(path, title, description, body, prefix=""):
     .legal-products a,.legal-contents a{text-decoration:underline;text-underline-offset:3px}
     .legal-products a[aria-current=page]{color:var(--orange-text);font-weight:800}
     .legal-contents{display:grid;gap:8px;margin:24px 0 32px;font-size:14px;line-height:1.6}
-    .legal-article h2{scroll-margin-top:110px}.legal-article a{overflow-wrap:anywhere}.legal-article p,.legal-article li{line-height:1.8}
+    .legal-article h2,.legal-article [id]{scroll-margin-top:110px}.legal-article a{overflow-wrap:anywhere}.legal-article p,.legal-article li{line-height:1.8}
     .legal-article a:focus-visible{outline:2px solid var(--orange-text);outline-offset:4px;border-radius:2px}
     </style>"""
     p = head(title+" | Koast", description, prefix, style)+nav(prefix)
@@ -2746,7 +2746,7 @@ blog_page("chauffeur-terms-glossary",
     <li><strong>Flat rate</strong> — a price quoted for an agreed itinerary, vehicle class and included services. Check the quote and terms for additional stops, extended time and waiting charges.</li>
     
     <li><strong>Curbside pickup</strong> — the lighter option: you text when you have your bags, the car pulls up to the curb. Faster if you're traveling light.</li>
-    <li><strong>Complimentary wait time</strong> — the included airport pickup allowance (30 minutes domestic, 60 international under Koast's published Terms) before additional waiting charges apply. The published Terms measure the allowance from the agreed airport pickup time; for delayed flights, the clock starts when the plane has landed.</li>
+    <li><strong>Complimentary wait time</strong> — the waiting allowance specified in the terms accepted for your ride. Those terms identify the clock, any flight-based adjustment, and the charge for waiting beyond the allowance.</li>
     <li><strong>Hourly charter (as-directed)</strong> — you book the vehicle and chauffeur by the hour; the route is whatever your day requires. The right structure for multi-stop days, events, and wine tours.</li>
     <li><strong>Transfer</strong> — a simple point-A-to-point-B ride, like an airport run. Priced flat by route.</li>
     <li><strong>Vehicle class</strong> — the tier you book (Business Sedan, First-Class SUV, Sprinter) rather than a specific car. A guaranteed standard, with a model from that class — and reputable operators only ever upgrade, never downgrade.</li>
@@ -3621,7 +3621,7 @@ SUPPORT_FAQS = [
   ("What if my flight is early or delayed?",
    "Provide the correct flight number so we can track arrival changes. Contact us if the flight number, airport or travel date changes. Pickup adjustments and any additional waiting are handled under your confirmation and Terms."),
   ("How much wait time is included?",
-   "30 minutes free for domestic airport pickups and 60 minutes for international pickups after the agreed pickup time. For delayed flights, pickup time starts when the plane has landed. Other pickups include 5 minutes. After the allowance, waiting is billed per minute by vehicle class — see our <a href='terms.html'>Terms</a> for exact rates."),
+   "Your accepted ride terms specify the included waiting allowance, when its clock starts, how flight changes are handled and any additional waiting rate. Check your booking details; allowances and billing precision can vary by ride. Our <a href='terms.html'>Rider Terms</a> explain how ride-specific terms apply."),
   ("Which airports do you serve?",
    "All three Bay Area airports (SFO, OAK, SJC) plus 25 major airports nationwide — JFK, LGA, EWR, LAX, ORD, ATL, and more. <a href='services/airport-transfers.html'>See the full list →</a>"),
  ]),
@@ -3629,7 +3629,7 @@ SUPPORT_FAQS = [
   ("How do I change my pickup time or address?",
    f"Email {EMAIL} with your updated details, or use the rider portal. Changes are free when made with reasonable notice and subject to availability."),
   ("What's the cancellation policy?",
-   "Cancellation windows vary by vehicle class — sedans and SUVs have shorter windows, Sprinters and buses longer ones. The full schedule is in our <a href='terms.html'>Terms &amp; Conditions</a>. When in doubt, email us — we'll always tell you exactly where you stand before you decide."),
+   "Cancellation deadlines, charges, refunds and no-show conditions depend on the terms accepted for your particular ride. Review them in your booking details. Cancel in the app where available or use the support channels in your confirmation. See our <a href='terms.html#cancellations'>Rider Terms</a> for how those terms apply."),
   ("I left something in the vehicle — what do I do?",
    f"Email {EMAIL} with your trip date and pickup location. We'll contact your chauffeur immediately and arrange return of your item."),
  ]),
@@ -3804,7 +3804,7 @@ blog_page("jfk-black-car-guide",
     <li><strong>Upper East / West Side</strong> &mdash; 50&ndash;80 min through cross-town traffic</li>
   </ul>
   <h2>How pickup works at JFK</h2>
-  <p>Your chauffeur watches the flight. Provide your flight details so the chauffeur can coordinate pickup with arrival changes. JFK arrivals include complimentary wait time (30 minutes domestic, a full hour international), so there's room to clear customs and baggage without a meter running. The quoted price covers the agreed itinerary and listed inclusions. Additional waiting or itinerary changes may cost more.</p>
+  <p>Your chauffeur watches the flight. Provide your flight details so the chauffeur can coordinate pickup with arrival changes. The terms accepted for your ride specify your included waiting allowance and how the waiting clock handles flight changes. The quoted price covers the agreed itinerary and listed inclusions. Additional waiting or itinerary changes may cost more.</p>
   <h2>JFK, LaGuardia or Newark?</h2>
   <p>If you're still choosing where to fly, each airport is practically a different commute. We broke down the trade-offs in <a href="../blog/nyc-ground-travel-guide.html" style="color:var(--teal-dark);font-weight:700">Getting Around New York &rarr;</a> &mdash; LaGuardia is closest to Midtown when traffic cooperates, Newark can win for the West Side, and JFK is the international gateway with the most predictable (if longest) ride.</p>
   <h2>Teams and business travel</h2>
@@ -3813,7 +3813,7 @@ blog_page("jfk-black-car-guide",
     <details><summary>How much is a black car from JFK to Manhattan?</summary><p>You see a flat, all-inclusive price before you book &mdash; tolls and gratuity included, no surge. Enter your exact pickup and drop-off for an instant quote; the price holds even if your flight is delayed.</p></details>
     <details><summary>How long does JFK to Midtown take?</summary><p>Roughly 45&ndash;55 minutes off-peak and 75&ndash;90 minutes at rush hour or on a busy Friday. Your chauffeur chooses the fastest route for the conditions.</p></details>
     <details><summary>What happens if my flight is delayed?</summary><p>We track your flight and adjust the pickup automatically. There's no charge for the delay and no surge &mdash; your quoted fare doesn't change.</p></details>
-    <details><summary>How long will the chauffeur wait at the airport?</summary><p>JFK arrivals include complimentary wait time &mdash; 30 minutes for domestic flights and a full hour for international &mdash; so you have room to clear customs and collect bags.</p></details>
+    <details><summary>How long will the chauffeur wait at the airport?</summary><p>The terms accepted for your ride state the included airport waiting allowance, when its clock starts and any additional charges. Review those details in your confirmation.</p></details>
     <details><summary>Can I book a return ride to JFK?</summary><p>Yes. Book the return at the same time or whenever plans firm up. For departures we build in time for traffic and terminal drop-off so you're never cutting it close.</p></details>
   </div>""",
  "From the gate to the city. Ride easy.")
@@ -3834,7 +3834,7 @@ blog_page("atlanta-airport-black-car-guide",
   </ul>
   <p>Atlanta traffic is famously non-linear &mdash; a 20-minute ride at 10 a.m. is 45 at 5 p.m. A chauffeur who knows the surface-street workarounds beats a navigation app guessing at the Connector.</p>
   <h2>How pickup works</h2>
-  <p>Flight tracked, wait time included (30 minutes domestic, an hour international), and one flat price quoted before you fly. Conventions at the Georgia World Congress Center and games downtown spike demand and rideshare pricing &mdash; a pre-arranged pickup doesn't flinch.</p>
+  <p>Flight tracking, the waiting allowance stated in your ride terms, and an upfront price for the agreed itinerary before you fly. Conventions at the Georgia World Congress Center and games downtown spike demand and rideshare pricing &mdash; a pre-arranged pickup doesn't flinch.</p>
   <h2>For business &amp; conventions</h2>
   <p>Moving a team through a convention week or hosting clients in town? Account billing keeps every ride on one invoice. <a href="../services/corporate-travel.html" style="color:var(--teal-dark);font-weight:700">Koast for business &rarr;</a> &middot; <a href="../cities/atlanta.html" style="color:var(--teal-dark);font-weight:700">Koast in Atlanta &rarr;</a></p>
   <div class="faq" style="margin-top:36px">
@@ -3887,7 +3887,7 @@ blog_page("miami-airport-black-car-guide",
   <h2>Cruise-day logistics</h2>
   <p>MIA to PortMiami is a short hop on paper, but embarkation mornings turn the port into a parking lot. A pre-booked transfer with flight tracking gets you there with luggage handled and time to spare &mdash; and the return, after you disembark into a crowd of thousands, is the ride you'll be most glad you booked ahead.</p>
   <h2>How pickup works</h2>
-  <p>Your flight is tracked, international arrivals include a full hour of complimentary wait time for customs, and waiting beyond the included allowance may be charged under your confirmation and Terms. Tolls and gratuity included.</p>
+  <p>Your flight is tracked; your accepted ride terms identify the waiting allowance, flight-based timing and any additional waiting charges. Tolls and gratuity included.</p>
   <p><a href="../services/airport-transfers.html" style="color:var(--teal-dark);font-weight:700">Airport transfers &rarr;</a> &middot; <a href="../cities/miami.html" style="color:var(--teal-dark);font-weight:700">Koast in Miami &rarr;</a></p>
   <div class="faq" style="margin-top:36px">
     <details><summary>How much is a black car from MIA?</summary><p>A flat, all-inclusive price quoted before you book &mdash; tolls and gratuity included, no surge. Enter your pickup and drop-off for an instant quote.</p></details>
