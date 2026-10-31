@@ -301,6 +301,7 @@ def footer(prefix=""):
       <a href="{prefix}terms.html">Terms</a>
       <a href="{prefix}sms-terms.html">SMS Terms</a>
       <a href="{prefix}privacy.html">Privacy</a>
+      <a href="/legal/">All policies</a>
     </div>
   </div>
   <div class="foot-bottom">
@@ -2085,76 +2086,52 @@ write("blog/ea-guide-executive-ground-travel.html", p)
 
 # ============================ TERMS (ported from koastride.com) ============================
 # Owner-reviewed account-lifecycle policy; publish with the matching passenger Security release.
-p = head("Terms & Conditions | Koast", "Koast's Terms and Conditions: bookings, cancellations, payments, and liability for our chauffeured transportation services.", "")
-p += nav("")
-p += f"""
-<section class="tight"><div class="wrap article">
-  <span class="pill">Legal</span>
-  <h1>Terms &amp; Conditions</h1>
-  <div class="meta">Updated October 25, 2026 · Account security and closure choices</div>
+# Shared legal pages. Proposed text remains local until owner publication approval.
+# HTML bodies are repository-authored content, excluded from the deployed source directory.
+LEGAL_REVIEW_STATUS = "Draft for owner review · Not effective or published"
+LEGAL_REVIEW_DATE = "October 30, 2026"
+LEGAL_LINKS = [("/privacy", "Privacy Policy"), ("/terms/rider/", "Rider Terms"),
+               ("/terms/driver/", "Driver App Terms"), ("/terms/connect/", "Connect Terms"),
+               ("/sms-terms", "SMS Terms")]
 
-  <h2>1. General provisions</h2>
-  <p>Koast is operated by Krujim Inc, headquartered in San Francisco, California. Koast provides chauffeured transportation directly and also arranges transportation with independent Transportation Service Providers ("TSPs"), depending on the reservation. Users may book through Koast's online platform, integrated third-party platforms, mobile applications or directly with Koast (collectively, the "Koast Tools").</p>
-  <p>These General Terms and Conditions ("T&amp;Cs") apply to bookings for transportation provided directly by Krujim Inc and transportation arranged by Koast with an independent TSP. References to the TSP in the service provisions mean the operator providing the ride, including Krujim Inc for directly operated rides, as applicable.</p>
-  <p>Conflicting general terms and conditions of the user are hereby also contradicted in the case of confirmation letters and services accepted without condition. Any terms to the contrary shall only apply insofar as the management of Koast has expressly consented to this in writing.</p>
+def legal_page(path, title, description, body, prefix=""):
+    review = f'<aside class="legal-review" role="note"><strong>{LEGAL_REVIEW_STATUS}</strong><br>Prepared {LEGAL_REVIEW_DATE}. Existing published agreements remain in effect.</aside>'
+    links = ''.join(f'<a href="{href}"'+(' aria-current="page"' if href.rstrip('/') == ('/'+path.removesuffix('index.html').removesuffix('.html')).rstrip('/') else '')+f'>{label}</a>' for href, label in LEGAL_LINKS)
+    section_links = ''.join(f'<a href="#{anchor}">{label}</a>' for anchor, label in __import__('re').findall(r'<h2 id="([^"]+)">(.*?)</h2>', body))
+    contents = '<nav class="legal-contents" aria-label="On this page">'+section_links+'</nav>' if section_links else ''
+    style = """<style>
+    .legal-review{border:1px solid var(--orange-text,#ff9b57);border-radius:14px;padding:16px 18px;margin:22px 0;font-size:14px;line-height:1.6}
+    .legal-products{display:flex;flex-wrap:wrap;gap:8px 18px;margin:22px 0;padding:18px 0;border-block:1px solid var(--line,rgba(255,255,255,.15));font-size:14px}
+    .legal-products a,.legal-contents a{text-decoration:underline;text-underline-offset:3px}
+    .legal-products a[aria-current=page]{color:var(--orange-text);font-weight:800}
+    .legal-contents{display:grid;gap:8px;margin:24px 0 32px;font-size:14px;line-height:1.6}
+    .legal-article h2{scroll-margin-top:110px}.legal-article a{overflow-wrap:anywhere}.legal-article p,.legal-article li{line-height:1.8}
+    .legal-article a:focus-visible{outline:2px solid var(--orange-text);outline-offset:4px;border-radius:2px}
+    </style>"""
+    p = head(title+" | Koast", description, prefix, style)+nav(prefix)
+    p += '<section class="tight"><div class="wrap article legal-article"><span class="pill">Legal</span>'
+    p += '<p><a href="/legal/">All policies and terms</a></p><h1>'+title+'</h1>'+review+'<nav class="legal-products" aria-label="Koast legal documents">'+links+'</nav>'+contents+body+'</div></section>'
+    write(path, p+footer(prefix))
 
-  <h2>2. Contractual relationship and contract conclusion</h2>
-  <p><strong>2.1 Contractual relationship.</strong> For rides operated directly by Krujim Inc, Koast is the transportation service provider. For rides fulfilled by an independent TSP, Koast arranges the transportation and the independent TSP provides the ride. Contact Koast if you need to confirm which operator will fulfill your reservation.</p>
-  <p><strong>2.2 Conclusion of contract.</strong> By transmitting a completed booking form via the Koast Tools or by making arrangements by telephone with Koast, the user transmits an offer to book the requested transportation service ("ride request"). Koast first transmits an email confirmation of the details of the requested ride service it has received; in so doing, Koast only confirms receipt of the ride request. It is only by separate declaration ("booking confirmation") by email from Koast that the booking contract between Koast and the user is concluded for the desired ride service. The user is then directly entitled vis-à-vis the TSP to request the ride service and to assert further claims in respect of such ride service directly against the TSP.</p>
+def legal_body(name):
+    with open(os.path.join(ROOT, 'content', 'legal', name+'.inc'), encoding='utf-8') as f:
+        return f.read()
 
-  <h2>3. Registration obligation</h2>
-  <p>The user provides assurance to Koast that all information it transmits or has transmitted to Koast on its behalf by another person is complete and accurate. Registrations by automated processes are prohibited.</p>
-
-  <h2>4. Selected content of the transportation contract</h2>
-  <p><strong>4.1 Ride types, service changes.</strong> Depending on local availability, the user can select ride requests that include transfer rides, long-distance rides (transfer rides starting at 100 miles), rides on demand ("chauffeur hailing") and hourly bookings. If the ride actually carried out involves additional expenditure of effort due to requests that differ from the initially requested ride, the TSP will accommodate these requests to the extent possible; additional effort may result in additional costs (see Section 5). Subject to availability, changes may be requested even after conclusion of the contract but may result in additional charges.</p>
-  <p>For transfers, long-distance rides and rides on demand, the displayed price is determined on the basis of a start and a destination address; additional stopovers may incur an additional fee. An hourly booking always begins at the booked pickup time and ends in the city area of the pickup location; if the ride completes outside that area, or the booked miles or duration are exceeded, additional fees may apply.</p>
-  <p><strong>4.2 Pickup time.</strong> The agreed pickup time is the pickup time specified in the Koast booking confirmation. In the event of an airport pickup for which the user has provided a correct flight number, enabling Koast to track the arrival time, the agreed pickup time will be postponed if the flight is late.</p>
-  <p><strong>4.3 Vehicle class, upgrades.</strong> Depending on regional availability, the user can choose from different vehicle classes (for example "Business Class Sedan", "Business Class SUV", "First Class Sedan", "First Class SUV", or "Sprinter Class"). Vehicles shown in the Koast Tools are illustrative examples; there is no right to a particular vehicle model within a booked class. Koast may upgrade a booking to a higher vehicle class at any time at no additional cost, depending on availability: "Business Class Sedan" may be upgraded to "Business Class SUV", "First Class SUV", or "First Class Sedan"; "Business Class SUV" may be upgraded to "First Class SUV". Koast will never downgrade your vehicle to a cheaper vehicle type or a smaller one — for example, sending a Sedan if you reserved an SUV.</p>
-  <p><strong>4.4 Transport safety.</strong> The price in the booking confirmation includes the number of pieces of luggage specified in the booking form. Excess or bulky luggage (such as a wheelchair), weapons, or animals must be specified during booking; the TSP may refuse transport of items not agreed upon, including animals not housed in a closed, suitable transport box, except where local law requires accommodation. If the TSP permits carriage of additional items, surcharges may apply. The need for child restraints must be specified in the ride request, including the number and age of children and the type of restraints required. The transport of unaccompanied minors may be rejected by the TSP. The maximum number of passengers and luggage for a specific vehicle is set out in a binding luggage policy; the TSP may refuse transport where space and safety conditions do not permit it. If transport is refused because mandatory requirements were not correctly communicated by the user, Koast remains entitled to compensation.</p>
-  <p><strong>4.5 Delays.</strong> Exceptional situations such as air traffic control strikes or inclement weather can only be compensated to a limited extent; in these cases longer waiting times or short-notice cancellations must be accepted.</p>
-  <p><strong>4.6 Cancellations, rebookings and no-shows.</strong> For transfer rides, long-distance rides, and hourly bookings, cancellation is free if made more than 24 hours before the agreed pickup time. Between 12–24 hours before pickup, a 50% refund applies. Within 12 hours of pickup, the full price is payable. An effective cancellation can only be carried out by emailing us. Rebookings are generally treated as new bookings, and the cancellation rules apply to the originally agreed ride. A transfer ride is considered a no-show if the guest does not appear within 30 minutes after the agreed pickup time (60 minutes at airports); hourly bookings are a no-show if the guest does not appear by the end of the booked hours. No-show rides must be fully compensated unless a later pickup time was agreed with the TSP.</p>
-  <p><strong>4.7 Behavior in the vehicle.</strong> During the entire ride, applicable road traffic rules apply to all guests, particularly seat belt requirements. The TSP's instructions must be followed. Guests may not open doors during the ride, throw objects from the vehicle, extend any body part from or scream from the vehicle. Use of equipment in the vehicle requires the TSP's prior permission. Smoking is prohibited; violations bear the cost of vehicle cleaning and resulting loss of serviceability. Food is discouraged; alcoholic drinks only with prior consent.</p>
-
-  <h2>5. Remuneration and payment</h2>
-  <p><strong>5.1 General.</strong> The booking confirmation specifies Koast's remuneration claim. Key factors include the selected vehicle class, route, advance booking time, pickup time and location. Special requests (multilingual chauffeurs, vehicle marking, stopovers, bulky luggage, child seats, etc.) may increase the price.</p>
-  <p><strong>5.2 Ride changes.</strong> Ride requests may be changed after the contract concludes and, where possible for the TSP, after the ride begins. Upgrades or additional distance/hours are recalculated and charged per the applicable price schedule; for hourly bookings, each commenced half hour is rounded up. If the booked distance or hours are shortened, the agreed compensation remains unaffected.</p>
-  <p><strong>5.3 Waiting times (transfer rides).</strong> No surcharges apply for waiting up to 30 minutes (domestic flights) or 60 minutes (international flights) after the agreed pickup time at airports; for delayed flights, pickup time starts when the plane has landed. In all other cases, no surcharge for the first 5 minutes. Each additional minute is invoiced as follows, plus applicable sales tax:</p>
-  <ul>
-    <li>Business Class Sedan (Continental, CT5, 5 Series, E-Class, or similar) — $2.08 per minute</li>
-    <li>Business Class SUV (Suburban, Expedition, Yukon, or similar) — $2.50 per minute</li>
-    <li>First Class SUV with Captain Seats (Escalade, Navigator, or Denali) — $2.91 per minute</li>
-  </ul>
-  <p><strong>Additional miles for hourly bookings.</strong> Hourly bookings include 20 miles per hour. Additional miles are invoiced separately:</p>
-  <ul>
-    <li>Business Class Sedan — $5.15 per mile</li>
-    <li>Business Class SUV — $6.00 per mile</li>
-    <li>First Class SUV with Captain Seats — $7.00 per mile</li>
-  </ul>
-  <p><strong>5.4 Payment.</strong> Users can pay by credit card; credit card fees are borne by Koast. The user bears transaction fees for payments by transfer. For each payment warning notice Koast may charge a reasonable reminder fee; failed credit card debits may incur the resulting bank/processor expenses plus a reasonable processing fee. Invoices are made available electronically in the user account; credit card payments are due immediately. Vouchers are one-off, individually redeemable, may not be combined, and cannot be redeemed for cash.</p>
-
-  <h2>6. Liability</h2>
-  <p>Koast is liable for damages caused by Koast or its vicarious and service agents through intent or gross negligence. The TSP, including its chauffeurs, are neither vicarious nor service agents of Koast for the performance of transportation services. In the event of damages caused by simple negligence, Koast is liable only for the violation of a material contractual obligation and only for foreseeable and typical damages. Limitations of liability do not apply within the scope of warranties provided, in the event of injuries to life, body and health, or for claims arising from the Product Liability Act.</p>
-  <p>Koast is not liable for the correctness, reliability, completeness, and validity of content disseminated free of charge within the Koast Tools, except for damages caused intentionally or by gross negligence; nor for the availability and functionality of offered functions; nor for the content, freedom from error, legality, and functionality of third-party websites referred to by links. Koast accepts no responsibility for correct and complete transmission of information (excepting the content of the booking confirmation), nor for disruptions due to force majeure, including failure of communication networks and gateways. The user shall indemnify Koast for all claims and costs, including reasonable legal defense costs, asserted by third parties owing to non-contractual use of the Koast Tools or violation of these T&amp;Cs. No liability is assumed for objects forgotten in the vehicle.</p>
-
-  <h2>7. Amendment of the offer</h2>
-  <p>Koast reserves the right to change the Koast Tools at any time in a manner reasonable for the user in order to develop and improve them. Koast may temporarily or permanently terminate its offer for a material reason, even without separately informing the user.</p>
-
-  <h2>8. Protection of content</h2>
-  <p>The content within the Koast Tools is protected by copyright. Koast grants the user a revocable right to use the Koast Tools according to their intended purpose, conditioned on compliance with these T&amp;Cs. Any use beyond this scope — changes, copies, re-releases, transmission, dissemination, or other non-intended purposes — is prohibited.</p>
-
-  <h2 id="account-closure">9. Account security, deactivation and deletion</h2>
-  <p><strong>Account security.</strong> Keep your sign-in methods secure and your recovery contact details current. You can review signed-in sessions and end access from other sessions in the Koast passenger app under Settings &rarr; Security. We require identity verification before sensitive account changes. Browser and device descriptions help you recognize a session; they are not proof of the physical device's identity.</p>
-  <p><strong>Optional 90-day recovery period.</strong> If you choose <em>Deactivate with 90-day recovery</em>, access is disabled and existing sign-in sessions are ended immediately. We retain the account data needed for recovery for up to 90 days, rather than treating deactivation as completed deletion. You may request restoration before the displayed deadline after verifying that the account is yours. Signing in alone does not restore the account. Restoration does not reactivate old passwords or sign-in sessions; you may need to set a new password through your verified recovery email. If you do not restore it, it proceeds to permanent deletion after the recovery period.</p>
-  <p><strong>Permanent deletion without the recovery period.</strong> You can instead choose <em>Request permanent deletion now</em>. This option does not impose the optional 90-day recovery period. We verify your identity, disable account access and process deletion of the account and associated personal data, subject to lawful retention requirements. We tell you the processing status and confirm completion. Once permanent deletion is completed, the deleted account cannot be restored.</p>
-  <p><strong>Reservations, charges and retained records.</strong> Deactivating or deleting an account does not cancel a reservation, request a refund or waive an amount owed. Use the reservation cancellation process or contact us about an existing ride. We retain only records needed for outstanding service or payment obligations, applicable legal and tax requirements, fraud prevention or the establishment, exercise or defense of legal claims, for as long as those purposes require. See the <a href="privacy.html#account-deletion">Privacy Policy</a> for request methods and retention details. These account choices do not limit any privacy rights available under applicable law.</p>
-
-  <h2>10. Final provisions</h2>
-  <p>These T&amp;Cs constitute the entire agreement between Koast and the user for the contractually agreed services; there are no collateral agreements, and amendments must be made in writing. The user may only set off against Koast's claims or assert retention rights if counterclaims are legally established or undisputed, and may not assign claims to third parties without Koast's express written consent. The law of the United States of America applies to all legal relations between Koast and the user; the place of fulfillment is San Francisco, and the exclusive place of jurisdiction is San Francisco insofar as the user is a merchant or has no fixed place of residence in the USA. Koast is neither willing nor obliged to participate in dispute resolution proceedings before a consumer arbitration board. Should individual provisions of these T&amp;Cs be or become ineffective, the remaining provisions remain effective and shall be replaced by provisions most closely approximating the intended meaning and economic purpose.</p>
-
-  <p>Questions: <a href="mailto:{EMAIL}" style="color:var(--orange-text);font-weight:700">{EMAIL}</a></p>
-</div></section>"""
-p += footer("")
-write("terms.html", p)
+# Preserve existing /terms and /terms.html as the rider agreement for old links.
+legal_page('terms.html', 'Terms &amp; Conditions', "Koast transportation terms for riders and bookers, with links to Driver and Connect agreements.", legal_body('rider'))
+legal_page('terms/rider/index.html', 'Rider Terms', "Terms for bookings, transportation, payment and rider accounts provided or arranged by Koast.", legal_body('rider'), '../../')
+legal_page('terms/driver/index.html', 'Driver App Terms', "Terms for authorized chauffeur access, safe app use and passenger information in Koast Driver.", legal_body('driver'), '../../')
+legal_page('terms/connect/index.html', 'Connect Terms', "Terms for operator software access, staff permissions, business records and Koast Connect.", legal_body('connect'), '../../')
+legal_page('legal/index.html', 'Policies and terms', "Koast's shared Privacy Policy and the agreements for Rider, Driver, Connect and text updates.", """
+<p>One privacy policy explains how Koast handles information across our products. Choose the terms for the service you use. If you have more than one role, the relevant agreements apply to those separate activities.</p>
+<h2 id="privacy">Privacy for all products</h2><p><a href="/privacy">Privacy Policy</a> — riders and bookers, chauffeurs, transportation-company owners and staff, and website visitors.</p>
+<h2 id="terms">Terms for your role</h2><ul>
+<li><a href="/terms/rider/">Rider Terms</a> — booking and receiving transportation provided or arranged by Koast.</li>
+<li><a href="/terms/driver/">Driver App Terms</a> — authorized chauffeur access and safe use of the Driver app.</li>
+<li><a href="/terms/connect/">Connect Terms</a> — operator software and authorized company administration.</li>
+<li><a href="/sms-terms">SMS Terms</a> — optional transactional Koast Ride Updates.</li></ul>
+<h2 id="questions">Questions</h2><p>Contact <a href="mailto:reserve@koastride.com">reserve@koastride.com</a>. A separately executed employment, contractor, subscription or other business agreement may also apply.</p>
+""", '../')
 
 # ============================ SMS TERMS ============================
 p = head("SMS Terms | Koast", "Terms for Koast Ride Updates, our optional transactional text messaging program.", "")
@@ -2211,98 +2188,8 @@ p += f"""
 p += footer("")
 write("sms-consent.html", p)
 
-# ============================ PRIVACY (ported from koastride.com) ============================
-p = head("Privacy Policy | Koast", "How Koast collects, uses, and safeguards your personal information.", "")
-p += nav("")
-p += f"""
-<section class="tight"><div class="wrap article">
-  <span class="pill">Legal</span>
-  <h1>Privacy Policy</h1>
-  <div class="meta">Updated October 25, 2026 · Account security and closure choices</div>
-  <p>Koast wants you to know that we value the privacy of your information and will not sell or market your personal information to any other company. However, certain profile information may be used to create specific messages or advertising to you as described further in this privacy policy.</p>
-  <p>Koast and/or its corporate affiliates and/or subsidiaries (collectively "Koast," "us," or "we") collects information about you when you use our mobile applications, websites, and other online products and services provided by Koast (collectively, the "Services"), and through other interactions and communications that you may have with us. This Privacy Policy describes how Koast collects and uses the personal information that you provide through the Services, the choices available to you regarding our use of your personal information, and how you can access and update this information.</p>
-
-  <h2>Scope and application</h2>
-  <p>This Privacy Policy applies to persons who use our application or access our Services to request transportation, delivery, or other services ("Clients"). It does not apply to information that we collect from or about vehicle drivers, couriers, partner transportation companies, or any other persons or entities (collectively "Drivers"). If you interact with the Services as both a Client and a Driver, the applicable Privacy Policy applies to your different interactions respectively.</p>
-
-  <h2>Collection of information</h2>
-  <p><strong>Information you provide to us.</strong> We only collect information that you directly provide, such as when you create or modify your account, request on-demand services, contact customer support, or otherwise communicate with us. This may include: name, email, phone number, postal address, profile picture, payment method, and other information you choose to provide. You can choose not to provide certain information, but then you may not be able to take advantage of many features, including receiving pricing or making a reservation. To use the Services you must first create an account by providing your first and last name, email, and phone number. You may also supply information by participating in a contest or questionnaire, communicating with customer service, providing employer information for a corporate account, providing reviews, or using notification services. We use this information for our general commercial purposes, including responding to your requests, improving and customizing future Services, and communicating with you.</p>
-  <p><strong>Information we collect through your use of the Services:</strong></p>
-  <ul>
-    <li><strong>Location information:</strong> when you permit the Services to access location services, we typically collect the precise location of your trip via your device when the application or website is running. We may also derive approximate location from your IP address.</li>
-    <li><strong>Contacts information:</strong> when you permit access to your device address book, we may access and store names and contact information to facilitate social interactions through the Services.</li>
-    <li><strong>Transaction information:</strong> service type, date and time, amount charged, distance traveled, and related details. If someone uses your promo code, we may associate your name with that person.</li>
-    <li><strong>Usage and preference information:</strong> how you interact with our Services, preferences, and settings, in some cases via cookies, pixel tags, and similar technologies. The website may use cookies to track trip bookings, including abandoned bookings, used to determine when to send booking reminders via SMS and email.</li>
-    <li><strong>Device information:</strong> hardware model, operating system and version, software versions, language, unique device identifiers, advertising identifiers, serial number, motion data, and mobile network information.</li>
-    <li><strong>Call and SMS data:</strong> in facilitating communications between Clients and Drivers, we receive call data including date, time, the parties' phone numbers, and where applicable the content of SMS messages.</li>
-    <li><strong>Log information:</strong> server logs including device IP address, access dates and times, pages viewed, crashes and system activity, browser type, and referring sites or apps.</li>
-  </ul>
-  <p><strong>Information from other sources.</strong> We may receive information from other sources and combine it with information collected through the Services — for example, from a linked payment provider or social media service, from your employer if it uses one of our enterprise solutions, from Drivers who provide a user rating after a trip, or from your interactions with the Services in another capacity.</p>
-
-  <h2>Website measurement</h2>
-  <p>We use our own website measurement to understand which pages and campaign links lead to booking, phone, and email clicks. It records the public page, referring website, campaign labels, and the type of click. It does not collect form entries, the phone number or email address clicked, payment details, or the contents of your booking. A booking-link click does not tell us whether a reservation was completed. When a link contains an advertising click identifier, we record only which platform supplied it, not the identifier itself. We keep website measurement events for 90 days and remove older events through scheduled cleanup.</p>
-  <p>This measurement uses a random identifier in this browser tab's session storage, with a new session after 30 minutes of inactivity. It does not use an analytics cookie, a persistent visitor identifier, or device fingerprinting. We respect browser Do Not Track and Global Privacy Control signals for this measurement. You can also <a href="/?koast_tracking=off">turn off this measurement for this browser tab's session</a>. Booking providers and other services may have their own measurement practices.</p>
-
-  <h2>Use of information</h2>
-  <p>We may use the information we collect about you to: provide, maintain, and improve the Services (including facilitating payments, sending receipts, providing requested services, developing new and safety features, authenticating Clients, and sending product updates and administrative messages); perform internal operations (fraud prevention, troubleshooting, data analysis, testing, research, and monitoring usage trends); send or facilitate communications between you and a Driver (such as ETAs) or between you and your contacts at your direction; send you communications we think will interest you, including products, services, promotions, news, and events, where permissible under applicable law, and process promotion entries and awards; and personalize and improve the Services, including features, content, social connections, referrals, and advertisements.</p>
-  <p>We may transfer, process, and store information in the United States and other countries, some of which may have less protective data protection laws than your region. Where this is the case, we take appropriate measures to protect your personal information in accordance with this Privacy Policy.</p>
-
-  <h2>Sharing of information</h2>
-  <p>We may share your information: with Drivers to enable the transportation services you request (for example your name, photo if provided, average user rating, and pickup/drop-off locations); with other Clients if using a ride-sharing option, or with people you direct us to share with (such as ETA sharing or fare splitting); with third parties to provide a Service you requested through a partnership or promotional offering; with the general public if you submit content to a public forum; with third parties you authorize, such as apps integrating with our API; with third parties to display or manage advertising (you may opt out of interest-based use of your information on other websites; you will continue to receive generic advertisements); and with your employer and necessary third parties (such as expense management providers) if you participate in our enterprise solutions. Text messaging originator opt-in data and consent will not be shared with any third parties.</p>
-  <p>We may also share your information: with Koast affiliates and subsidiaries; with independent third-party transportation providers and logistics providers ("Transport Providers") providing services through the Services; with entities that conduct data processing on our behalf; with vendors, consultants, and marketing partners who need access to carry out work on our behalf; in response to a request by a competent authority where disclosure is in accordance with or required by law; with law enforcement or other parties if we believe your actions are inconsistent with our agreements or policies, or to protect the rights, property, or safety of Koast or others; in connection with any merger, sale of assets, consolidation, restructuring, financing, or acquisition; with your consent; and in aggregated and/or anonymized form which cannot reasonably be used to identify you.</p>
-
-  <h2>Social sharing features</h2>
-  <p>The Services may integrate with social sharing features that let you share actions you take on our Services with other apps, sites, or media. Use of such features enables sharing with your friends or the public depending on your settings with the social sharing service — refer to their privacy policies. Analytics and advertising services may use cookies, web beacons, SDKs, and other technologies to identify your device when you visit our site and other online services, for audience measurement and to serve and measure advertisements on our behalf.</p>
-
-  <h2>SMS/MMS mobile messaging</h2>
-  <p><strong>Koast Ride Updates is optional.</strong> We use a mobile number for recurring transactional text messages only after the number's owner gives express consent through our services. Consent is not a condition of purchase. Messages may include booking and quote notices, chauffeur assignment or arrival updates, pickup reminders, trip or flight changes, cancellation notices, payment and receipt notices, and support replies. Message frequency varies. Message and data rates may apply. Reply STOP to opt out or HELP for help. See our <a href="sms-terms.html">SMS Terms</a>.</p>
-  <p>We do not sell, rent, or share mobile numbers, SMS opt-in data, or SMS consent with third parties or affiliates for marketing or promotional purposes. We may disclose this information to service providers, mobile carriers, and vendors only as needed to deliver and support the messaging program, or when required by law; those parties may not use it for their own marketing. Opting out of text messages does not affect non-SMS communications needed to provide a requested service.</p>
-
-  <h2>Your choices</h2>
-  <p><strong>Account information:</strong> you may correct your account information in your Koast account. For deactivation, restoration or permanent deletion, see <a href="#account-deletion">Account deactivation, recovery and deletion</a> below. You can request permanent deletion without choosing the optional recovery period.</p>
-  <p><strong>Access rights:</strong> Koast will comply with individuals' requests regarding access, correction, objection, and/or deletion of the personal data it stores in accordance with applicable law.</p>
-  <p><strong>Location information:</strong> you can disable collection of precise location via your device settings, though this limits certain features and does not limit collection of trip location from a Driver's device or approximate location from your IP address.</p>
-  <p><strong>Promotional communications:</strong> opt out by following the "unsubscribe" instructions in those messages. We may still send non-promotional communications about your account, requested services, or ongoing business relations.</p>
-
-  <h2 id="account-deletion">Account deactivation, recovery and deletion</h2>
-  <p>You have two separate choices in the Koast passenger app under Settings &rarr; Security. Both require identity verification and a deliberate confirmation.</p>
-  <ul>
-    <li><strong>Deactivate with 90-day recovery:</strong> account access is disabled and existing sign-in sessions end immediately. We retain the account data needed for recovery for up to 90 days. The confirmation shows your restoration deadline. You can request restoration before that deadline after proving the account is yours; a sign-in attempt alone does not restore it. Old passwords and sign-in sessions remain invalid after restoration; you may need to set a new password through your verified recovery email. If you do not restore it, the account proceeds to permanent deletion after the recovery period. Deactivation is not completed deletion.</li>
-    <li><strong>Request permanent deletion now:</strong> this starts permanent account and associated personal-data deletion without the optional 90-day recovery hold. We disable access, verify and process the request, tell you its status, and confirm completion. We do not promise that every deletion task is instantaneous. Deleted account data cannot be restored after permanent deletion is completed.</li>
-  </ul>
-  <p><strong>Request without the app:</strong> email <a href="mailto:{EMAIL}?subject=Koast%20account%20deletion">{EMAIL}</a> with the subject <em>Koast account deletion</em> to request permanent deletion of your Koast passenger account and associated data. You do not need to reinstall the app or choose deactivation first. We may ask for information needed to verify that the request concerns your account. Do not send us a password, sign-in code or payment-card number. This is also a way to submit a privacy-rights request; the optional recovery period does not postpone deadlines that apply to that request under law.</p>
-  <p><strong>What may remain:</strong> account closure does not cancel an existing ride or erase a payment obligation. We may retain limited reservation, transaction, receipt and other records needed to complete outstanding services or payments, meet legal and tax requirements, prevent fraud, or establish, exercise or defend legal claims. We restrict retained information to those purposes and keep it only for as long as needed. Where identification is no longer required, we delete or deidentify the information. We do not retain an active marketing profile merely because a limited legal record must remain. Backup copies, if any, are handled under applicable retention and deletion requirements rather than used to restore a permanently deleted account.</p>
-  <p><strong>Connected services:</strong> account deactivation stops connected calendar syncing. Restoration does not reinstate old sign-in sessions or automatically reconnect a disconnected service. You may need to connect a service again. Permanent deletion includes account-linked service data and authorizations, subject to the limited exceptions above; we also request deletion from service providers where required.</p>
-
-  <h2>Security and signed-in sessions</h2>
-  <p>We use sign-in and session information to secure your account and let you review access in Settings &rarr; Security. A session entry may show the browser and operating-system description supplied by that browser, the sign-in time, the most recent recorded activity and whether it is the session you are using. These descriptions are approximate: one physical device can have more than one session, and older sessions may have incomplete details. Ending a session revokes its Koast account access; it does not erase information already saved on that device or sign you out of your Google account. Sensitive changes require identity verification. We use existing trusted contact details for security notices about account changes.</p>
-
-  <h2>Google user data (Calendar integration)</h2>
-  <p>If you choose to connect your Google Calendar to Koast, we access your Google user data only to provide the features you turn on, and in accordance with the <a href="https://developers.google.com/terms/api-services-user-data-policy" rel="noopener" target="_blank">Google API Services User Data Policy</a>, including its Limited Use requirements.</p>
-  <p><strong>What we access:</strong> with your permission, Koast reads your upcoming calendar events (title, time, and location) and can create or update calendar events for rides you book.</p>
-  <p><strong>How we use it:</strong> solely to show your schedule alongside your rides, to suggest and correctly time chauffeur pickups for events and flights on your calendar, and to keep ride events on your calendar up to date. We do not use Google user data for advertising, we do not sell it, and no humans read it except with your consent, for security purposes, or where required by law.</p>
-  <p><strong>Storage and sharing:</strong> your Google authorization token is stored encrypted; calendar event details are processed to render your schedule and are not shared with third parties. Google user data is never transferred to data brokers or used to build advertising profiles.</p>
-  <p><strong>Revoking access:</strong> you can disconnect Google Calendar at any time in the Koast app (Account &rarr; Calendar), which deletes our stored authorization, or via your <a href="https://myaccount.google.com/permissions" rel="noopener" target="_blank">Google account permissions</a>.</p>
-
-  <h2>How we protect your data</h2>
-  <p>We protect all personal information &mdash; and apply heightened safeguards to sensitive data, including Google user data &mdash; using the following mechanisms:</p>
-  <p><strong>Encryption in transit:</strong> all data moving between your device, our services, and Google's APIs is encrypted using TLS 1.2 or higher (HTTPS). We do not transmit personal or Google user data over unencrypted connections.</p>
-  <p><strong>Encryption at rest:</strong> all stored data is encrypted at rest on our infrastructure provider (Cloudflare). Google OAuth refresh tokens receive an additional layer of application-level encryption using AES-256-GCM before they are written to storage, so tokens are never stored in plaintext.</p>
-  <p><strong>Access controls and data minimization:</strong> access to production systems is restricted to authorized personnel on a least-privilege basis and protected by authentication. Google user data is processed by automated systems only; our staff do not read it except with your explicit consent, for security incident investigation, or where required by law. We request only the minimum OAuth scopes needed for the calendar features you enable, and each user's tokens grant access only to that user's own data.</p>
-  <p><strong>Retention and deletion:</strong> we retain Google user data only for as long as needed to provide the calendar features you have turned on. Disconnecting Google Calendar in the app immediately deletes our stored authorization tokens and synced event data. Account deactivation stops calendar syncing. For permanent deletion of your account and associated data without the optional recovery period, use the <a href="#account-deletion">account-deletion request methods above</a>. We honor applicable deletion requirements and do not use an optional recovery period to extend a legal deadline.</p>
-  <p><strong>Incident response:</strong> we monitor our systems for unauthorized access. If a breach affecting your personal or Google user data occurs, we will notify affected users and applicable authorities without undue delay, consistent with applicable law.</p>
-
-  <h2>Your California privacy rights</h2>
-  <p>California law permits residents of California to request certain details about how their information is shared with third parties for direct marketing purposes. Koast does not share your personally identifiable information with third parties for the third parties' direct marketing purposes unless you provide us with consent to do so.</p>
-
-  <h2>Changes to this policy</h2>
-  <p>We may change this Privacy Policy from time to time. If we make significant changes in the way we treat your personal information, we will provide you notice through the Services or by some other means, such as email.</p>
-
-  <h2>Contact us</h2>
-  <p>If you have any questions about this privacy statement, please contact us at <a href="mailto:{EMAIL}" style="color:var(--orange-text);font-weight:700">{EMAIL}</a> or by email.</p>
-</div></section>"""
-p += footer("")
-write("privacy.html", p)
+# ============================ SHARED PRIVACY ============================
+legal_page('privacy.html', 'Privacy Policy', "How Koast handles rider, chauffeur, operator and website information, permissions and privacy requests.", legal_body('privacy'))
 
 # ============================ SEO POST-PROCESSING ============================
 import re as _re, json as _json, glob as _glob, struct as _struct
