@@ -2086,21 +2086,19 @@ write("blog/ea-guide-executive-ground-travel.html", p)
 
 # ============================ TERMS (ported from koastride.com) ============================
 # Owner-reviewed account-lifecycle policy; publish with the matching passenger Security release.
-# Shared legal pages. Proposed text remains local until owner publication approval.
+# Shared legal pages. Owner approved publication on October 30, 2026.
 # HTML bodies are repository-authored content, excluded from the deployed source directory.
-LEGAL_REVIEW_STATUS = "Draft for owner review · Not effective or published"
-LEGAL_REVIEW_DATE = "October 30, 2026"
+LEGAL_EFFECTIVE_DATE = "October 30, 2026"
 LEGAL_LINKS = [("/privacy", "Privacy Policy"), ("/terms/rider/", "Rider Terms"),
                ("/terms/driver/", "Driver App Terms"), ("/terms/connect/", "Connect Terms"),
                ("/sms-terms", "SMS Terms")]
 
 def legal_page(path, title, description, body, prefix=""):
-    review = f'<aside class="legal-review" role="note"><strong>{LEGAL_REVIEW_STATUS}</strong><br>Prepared {LEGAL_REVIEW_DATE}. Existing published agreements remain in effect.</aside>'
+    effective = f'<div class="meta">Effective {LEGAL_EFFECTIVE_DATE}</div>'
     links = ''.join(f'<a href="{href}"'+(' aria-current="page"' if href.rstrip('/') == ('/'+path.removesuffix('index.html').removesuffix('.html')).rstrip('/') else '')+f'>{label}</a>' for href, label in LEGAL_LINKS)
     section_links = ''.join(f'<a href="#{anchor}">{label}</a>' for anchor, label in __import__('re').findall(r'<h[23] id="([^"]+)">(.*?)</h[23]>', body))
     contents = '<nav class="legal-contents" aria-label="On this page">'+section_links+'</nav>' if section_links else ''
     style = """<style>
-    .legal-review{border:1px solid var(--orange-text,#ff9b57);border-radius:14px;padding:16px 18px;margin:22px 0;font-size:14px;line-height:1.6}
     .legal-products{display:flex;flex-wrap:wrap;gap:8px 18px;margin:22px 0;padding:18px 0;border-block:1px solid var(--line,rgba(255,255,255,.15));font-size:14px}
     .legal-products a,.legal-contents a{text-decoration:underline;text-underline-offset:3px}
     .legal-products a[aria-current=page]{color:var(--orange-text);font-weight:800}
@@ -2110,7 +2108,7 @@ def legal_page(path, title, description, body, prefix=""):
     </style>"""
     p = head(title+" | Koast", description, prefix, style)+nav(prefix)
     p += '<section class="tight"><div class="wrap article legal-article"><span class="pill">Legal</span>'
-    p += '<p><a href="/legal/">All policies and terms</a></p><h1>'+title+'</h1>'+review+'<nav class="legal-products" aria-label="Koast legal documents">'+links+'</nav>'+contents+body+'</div></section>'
+    p += '<p><a href="/legal/">All policies and terms</a></p><h1>'+title+'</h1>'+effective+'<nav class="legal-products" aria-label="Koast legal documents">'+links+'</nav>'+contents+body+'</div></section>'
     write(path, p+footer(prefix))
 
 def legal_body(name):

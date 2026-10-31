@@ -3,11 +3,12 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 const read=p=>readFileSync(new URL('../'+p,import.meta.url),'utf8').replace(/\r\n/g,'\n');
 
-test('shared legal pages resolve every role and remain explicitly review drafts',()=>{
+test('published legal pages resolve every role and show the approved effective date',()=>{
   for(const [path,title] of [['privacy.html','Privacy Policy'],['terms/rider/index.html','Rider Terms'],['terms/driver/index.html','Driver App Terms'],['terms/connect/index.html','Connect Terms'],['legal/index.html','Policies and terms']]){
     const html=read(path);
     assert.ok(html.includes('<h1>'+title+'</h1>'),path);
-    assert.ok(html.includes('Draft for owner review · Not effective or published'),path);
+    assert.ok(html.includes('Effective October 30, 2026'),path);
+    assert.doesNotMatch(html,/Draft for owner review|Not effective or published|Existing published agreements remain in effect/);
     for(const href of ['/privacy','/terms/rider/','/terms/driver/','/terms/connect/','/sms-terms'])assert.ok(html.includes('href="'+href+'"'),path+' -> '+href);
     assert.doesNotMatch(html,/\{EMAIL\}|\{PHONE\}|TODO|PLACEHOLDER/);
   }
