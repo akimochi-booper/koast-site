@@ -10,7 +10,7 @@ class Markdown(HTMLParser):
         self.links = []
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
-        if tag == 'h2': self.out.append('\n\n## ')
+        if tag in ('h2','h3'): self.out.append('\n\n'+('## ' if tag == 'h2' else '### '))
         elif tag == 'p': self.out.append('\n\n')
         elif tag == 'li': self.out.append('\n- ')
         elif tag in ('strong', 'em'): self.out.append('**' if tag == 'strong' else '*')
@@ -21,7 +21,7 @@ class Markdown(HTMLParser):
     def handle_endtag(self, tag):
         if tag in ('strong', 'em'): self.out.append('**' if tag == 'strong' else '*')
         elif tag == 'a': self.out.append(']('+self.links.pop()+')')
-        elif tag in ('h2', 'ul'): self.out.append('\n')
+        elif tag in ('h2', 'h3', 'ul'): self.out.append('\n')
     def handle_data(self, text):
         text = ' '.join(text.split())
         if text:

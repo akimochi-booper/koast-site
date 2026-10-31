@@ -2097,7 +2097,7 @@ LEGAL_LINKS = [("/privacy", "Privacy Policy"), ("/terms/rider/", "Rider Terms"),
 def legal_page(path, title, description, body, prefix=""):
     review = f'<aside class="legal-review" role="note"><strong>{LEGAL_REVIEW_STATUS}</strong><br>Prepared {LEGAL_REVIEW_DATE}. Existing published agreements remain in effect.</aside>'
     links = ''.join(f'<a href="{href}"'+(' aria-current="page"' if href.rstrip('/') == ('/'+path.removesuffix('index.html').removesuffix('.html')).rstrip('/') else '')+f'>{label}</a>' for href, label in LEGAL_LINKS)
-    section_links = ''.join(f'<a href="#{anchor}">{label}</a>' for anchor, label in __import__('re').findall(r'<h2 id="([^"]+)">(.*?)</h2>', body))
+    section_links = ''.join(f'<a href="#{anchor}">{label}</a>' for anchor, label in __import__('re').findall(r'<h[23] id="([^"]+)">(.*?)</h[23]>', body))
     contents = '<nav class="legal-contents" aria-label="On this page">'+section_links+'</nav>' if section_links else ''
     style = """<style>
     .legal-review{border:1px solid var(--orange-text,#ff9b57);border-radius:14px;padding:16px 18px;margin:22px 0;font-size:14px;line-height:1.6}
