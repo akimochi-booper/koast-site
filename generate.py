@@ -6,6 +6,7 @@ from data import BOOK, PHONE, SMS, EMAIL, FLEET, CITIES, AIRPORTS, WINE_REGIONS
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 from editorial import load_posts, display_date
+from healdsburg_wine_tours import HEALDSBURG_TITLE, HEALDSBURG_DESCRIPTION, HEALDSBURG_FAQS, render_healdsburg_body
 EDITORIAL_POSTS = load_posts(ROOT)
 EDITORIAL_BY_SLUG = {post["slug"]: post for post in EDITORIAL_POSTS}
 LEGACY_MODIFIED = {slug: "2026-10-13" for slug in (
@@ -3036,7 +3037,33 @@ def winery_section(slug, nm):
             '</div></section>')
 
 
+def healdsburg_winery_tours_page():
+    """Compose the search-informed Healdsburg page using existing marketing components."""
+    import json
+    service = {"@context":"https://schema.org", "@type":"Service",
+        "name":"Healdsburg winery tour transportation", "serviceType":"Private chauffeured winery transportation",
+        "url":BASE_URL+"/wine-tours/healdsburg", "description":HEALDSBURG_DESCRIPTION,
+        "provider":{"@type":"Organization", "@id":BASE_URL+"/#org", "name":"Koast", "url":BASE_URL+"/"},
+        "areaServed":{"@type":"City", "name":"Healdsburg", "address":{"@type":"PostalAddress", "addressRegion":"CA", "addressCountry":"US"}}}
+    extra = '<script type="application/ld+json">' + json.dumps(service) + '</script>'
+    p = head(HEALDSBURG_TITLE, HEALDSBURG_DESCRIPTION, "../", extra=extra)
+    p += nav("../", "wine")
+    p += render_healdsburg_body(book_card())
+    p += faq_section(HEALDSBURG_FAQS, "Healdsburg winery tour questions")
+    p += plan_trip([
+        ("Guides", [("/blog/group-wine-tour-planning", "Group wine tour planning", "✦"),
+                    ("/blog/napa-tasting-and-transportation-reservations", "Tasting & transportation confirmations", "✦")]),
+        ("Nearby", [("/wine-tours/sonoma", "Sonoma wine tours", "→"), ("/wineries/", "Winery planning directory", "→")]),
+    ])
+    p += cta_section("Plan your Healdsburg winery tour.", "Send your date, pickup address, guest count and tasting plans so we can confirm the transportation arrangement.")
+    p += footer("../")
+    return p
+
+
 for slug, r in WINE_REGIONS.items():
+    if slug == "healdsburg":
+        write("wine-tours/healdsburg.html", healdsburg_winery_tours_page())
+        continue
     nm = r["name"]
     _wd = f"Private chauffeured wine tours in {nm} — {r['known']}. Your wineries, your pace, one fixed price. Book 24/7."
     if len(_wd) > 158: _wd = _wd[:155].rsplit(' ', 1)[0].rstrip(' ,—-') + "…"

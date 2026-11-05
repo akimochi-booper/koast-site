@@ -32,7 +32,7 @@ jobs:
           mkdir -p dist
           rsync -a \
             --exclude='.git' --exclude='.github' --exclude='dist' \
-            --exclude='generate.py' --exclude='data.py' --exclude='editorial.py' \
+            --exclude='generate.py' --exclude='data.py' --exclude='editorial.py' --exclude='healdsburg_wine_tours.py' \
             --exclude='content' --exclude='scripts' --exclude='workers' \
             --exclude='wineries_extra.json' --exclude='__pycache__' \
             --exclude='README.md' --exclude='test' --exclude='docs' \
