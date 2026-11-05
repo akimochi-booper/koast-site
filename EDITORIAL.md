@@ -15,6 +15,8 @@ New guides live in `content/posts/<slug>.json`. The generator adds them to the e
 
 ## Current topic queue
 
+- Published 2026-11-05: Flying with Golf Clubs: Plan Your Airport Transfer. Airline case checks, baggage-claim coordination, arrival-day golf timing, empty-case storage and repacking for the return; TSA, Delta and DOT resources. Distinct from general luggage measurement and vehicle fit. No airline price, vehicle capacity, storage availability or tee-time guarantees.
+
 - Published 2026-11-04: Airport Pickup Dates: Midnight Arrivals and Overnight Flights. Local arrival-date selection, midnight boundary, separate agreed pickup and a copyable confirmation brief; primary SFO/airline resources. Distinct from flight-disruption recovery and the general booker handoff. No universal buffer, waiting or automatic-adjustment promises.
 - Refreshed existing Healdsburg landing page 2026-11-04: exact-page Search Console review found 412 impressions and zero clicks for October 6-November 2, led by healdsburg winery tours (387 impressions). Updated private-tour intent, regional choices, estate reservations and pickup planning instead of adding a competing article. Evidence and release status: [Healdsburg search review](docs/healdsburg-search-20261104.md). Compare the same page and queries after recrawl before claiming an effect.
 
@@ -25,7 +27,7 @@ New guides live in `content/posts/<slug>.json`. The generator adds them to the e
 - Published 2026-10-16: SFO, OAK or SJC? Choosing an Airport for a Silicon Valley Business Trip. Destination-based comparison, official flight resources and a complete-journey checklist; no fixed drive times or airport ranking.
 - Published 2026-10-19: Airport SUV Luggage: What to Confirm Before You Book. A measurement and passenger/luggage brief for provider configuration confirmation; no numeric vehicle capacity, fit guarantees or actual fleet demonstration. Specific vehicle fit claims remain dependent on verified fleet configurations.
 - Published 2026-10-20: Flight Changed? How to Update Your Airport Ride. Disruption recovery for cancellations, missed connections, replacement flights and diversions; full-date checks, original-reservation status and a copyable amendment request. Distinct from routine passenger handoff; no change-fee, availability or flight-tracking automation promises.
-- Candidate: transporting golf clubs or presentation equipment; verify distinct intent beyond the luggage guide and obtain actual configuration evidence for any fit claims.
+- Candidate: transporting presentation equipment; verify a distinct reader question beyond the luggage guide and obtain actual configuration evidence for any fit claims. Golf-case handoffs are covered in the November 5 guide; do not duplicate that intent.
 - Published 2026-10-15: Hotel Checkout Before an Evening Flight: A Luggage and Pickup Plan. Bag custody, retrieval detour, a clearly labeled backwards-planning example and pickup checklist.
 - Published 2026-10-17: Napa Wine Tours: Confirming Tastings and Transportation. Separate confirmation checklists, booking responsibility and a change-acknowledgment example; no standard tasting/drive-time or policy assumptions.
 - Published 2026-10-18: Wedding Guest Return Rides: Planning the Last Shuttle. Early returns, destination-specific counts, final-departure coordination and a copyable guest message; illustrative times only, no new capacity or service promises.
