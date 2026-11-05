@@ -28,6 +28,7 @@ def head(title, desc, prefix="", extra=""):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <meta name="description" content="{desc}">
+<meta name="robots" content="max-image-preview:large">
 <link rel="preload" href="/fonts/plus-jakarta-sans-latin-v12.woff2" as="font" type="font/woff2" crossorigin>
 <style>@font-face{{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:200 800;font-display:swap;src:url('/fonts/plus-jakarta-sans-latin-v12.woff2') format('woff2')}}</style>
 <link rel="stylesheet" href="{prefix}css/main.css?v=24">
@@ -2395,6 +2396,8 @@ def _validate_indexing_contract(pages, sitemap):
             continue
         src = open(fp, encoding="utf-8").read()
         expected = _public_url_for_rel(rel)
+        if _re.search(r'<meta\b[^>]*\bname=["\']robots["\'][^>]*\bcontent=["\'][^"\']*\bnoindex\b', src, _re.I) and f"<loc>{expected}</loc>" in sitemap:
+            errors.append(f"{rel}: noindex page must not be in sitemap")
         canonical = _re.search(r'<link\s+rel="canonical"\s+href="([^"]+)"', src, _re.I)
         if not canonical or canonical.group(1) != expected:
             errors.append(f"{rel}: canonical must be {expected}")
@@ -2402,8 +2405,16 @@ def _validate_indexing_contract(pages, sitemap):
             parts = _urlsplit(href)
             if (not parts.netloc or parts.netloc.lower() in ("koastride.com", "www.koastride.com")) and parts.path.endswith(".html"):
                 errors.append(f"{rel}: redirected internal link {href}")
-    if ".html" in sitemap or "<lastmod>" in sitemap:
-        errors.append("sitemap.xml must contain only clean URLs and no synthetic lastmod values")
+    if ".html" in sitemap:
+        errors.append("sitemap.xml must contain only clean URLs")
+    # Only dated editorial records supply verified modification dates.
+    dated_urls = {BASE_URL+"/blog/"+post["slug"]: post["modified"] for post in EDITORIAL_POSTS}
+    for entry in _re.findall(r"<url>(.*?)</url>", sitemap, _re.S):
+        loc = _re.search(r"<loc>(.*?)</loc>", entry)
+        modified = _re.search(r"<lastmod>(.*?)</lastmod>", entry)
+        expected_date = dated_urls.get(loc.group(1)) if loc else None
+        if (modified.group(1) if modified else None) != expected_date:
+            errors.append("sitemap.xml: missing editorial date or synthetic lastmod")
     if errors:
         raise RuntimeError("Indexing contract failed:\n" + "\n".join(errors[:25]))
 
@@ -2442,8 +2453,10 @@ def _schema_for(rel, src, url, title, desc):
             "image":BASE_URL+"/"+img.group(1) if img else BASE_URL+"/img/hero-banner.jpg",
             "datePublished":EDITORIAL_BY_SLUG.get(os.path.basename(rel).removesuffix(".html"), {}).get("published", "2026-06-01"),
             "dateModified":EDITORIAL_BY_SLUG.get(os.path.basename(rel).removesuffix(".html"), {}).get("modified", LEGACY_MODIFIED.get(os.path.basename(rel).removesuffix(".html"), "2026-06-12")),
-            "author":{"@type":"Organization","name":"Koast"},
-            "publisher":{"@id":BASE_URL+"/#org"}})
+            "mainEntityOfPage":{"@type":"WebPage","@id":url},
+            "author":{"@type":"Organization","@id":BASE_URL+"/#org","name":"Koast","url":BASE_URL+"/"},
+            "publisher":{"@type":"Organization","@id":BASE_URL+"/#org","name":"Koast","url":BASE_URL+"/",
+                "logo":{"@type":"ImageObject","url":BASE_URL+"/img/koast-wordmark-orange-v1.png"}}})
     # BreadcrumbList for section pages
     _crumb_parents = {"cities":("Cities","/cities/index.html"),
                       "airports":("Airports","/services/airport-transfers.html"),
@@ -2470,8 +2483,10 @@ def enhance():
         rel = os.path.relpath(fp, ROOT).replace("\\","/")
         if not CARE_RIDES_LIVE and rel == "services/care-rides.html": continue
         url = _public_url_for_rel(rel)
-        urls.append(url)
         src = open(fp, encoding="utf-8").read()
+        # Shareable design previews retain access/noindex, but are not indexing candidates.
+        if not _re.search(r'<meta\b[^>]*\bname=["\']robots["\'][^>]*\bcontent=["\'][^"\']*\bnoindex\b', src, _re.I):
+            urls.append(url)
         src = _rewrite_site_links(src, rel, root_files)
         src = _rewrite_absolute_site_urls(src)
         src = _add_image_dimensions(src, fp)
@@ -2492,7 +2507,6 @@ def enhance():
 <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <meta property="og:type" content="{ogtype}">
 <meta property="og:locale" content="en_US">
-<meta property="og:site_name" content="Koast">
 <meta property="og:title" content="{title}">
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="{url}">
@@ -2510,8 +2524,10 @@ def enhance():
         print("enhanced", rel)
     # sitemap.xml
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    dated_urls = {BASE_URL+"/blog/"+post["slug"]: post["modified"] for post in EDITORIAL_POSTS}
     for u in urls:
-        sm += f"  <url><loc>{u}</loc></url>\n"
+        lastmod = f"<lastmod>{dated_urls[u]}</lastmod>" if u in dated_urls else ""
+        sm += f"  <url><loc>{u}</loc>{lastmod}</url>\n"
     sm += "</urlset>\n"
     open(os.path.join(ROOT,"sitemap.xml"),"w",encoding="utf-8",newline="\n").write(sm)
     _validate_indexing_contract(pages, sm)

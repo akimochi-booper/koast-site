@@ -7,6 +7,7 @@ from urllib.parse import urlsplit, unquote
 import argparse
 import json
 import sys
+import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -14,12 +15,14 @@ from editorial import load_posts
 
 class Page(HTMLParser):
     def __init__(self):
-        super().__init__(); self.refs=[]; self.title=""; self.desc=""; self.h1=0; self.in_title=False
+        super().__init__(); self.refs=[]; self.title=""; self.desc=""; self.h1=0; self.in_title=False; self.noindex=False; self.canonical=""
     def handle_starttag(self, tag, attrs):
         attrs=dict(attrs)
         if tag=="title": self.in_title=True
         if tag=="h1": self.h1+=1
         if tag=="meta" and attrs.get("name")=="description": self.desc=attrs.get("content", "")
+        if tag=="meta" and attrs.get("name", "").lower()=="robots" and "noindex" in attrs.get("content", "").lower(): self.noindex=True
+        if tag=="link" and attrs.get("rel")=="canonical": self.canonical=attrs.get("href", "")
         if tag in ("a","link","script","img"):
             ref=attrs.get("href") or attrs.get("src")
             if ref: self.refs.append(ref)
@@ -32,11 +35,12 @@ parser=argparse.ArgumentParser()
 parser.add_argument("--today", required=True, help="Current date in America/Los_Angeles")
 args=parser.parse_args()
 today=date.fromisoformat(args.today)
-errors=[]; titles=Counter(); descriptions=Counter(); page_count=0
+errors=[]; titles=Counter(); descriptions=Counter(); page_count=0; nonindexable=set()
 for path in sorted(ROOT.rglob("*.html")):
     if "dist" in path.relative_to(ROOT).parts: continue
     page_count+=1
     page=Page(); page.feed(path.read_text(encoding="utf-8"))
+    if page.noindex and page.canonical: nonindexable.add(page.canonical)
     titles[page.title]+=1; descriptions[page.desc]+=1
     if not page.title or not page.desc or page.h1!=1: errors.append(f"{path.name}: missing title/description or H1 count {page.h1}")
     for ref in page.refs:
@@ -49,6 +53,12 @@ for path in sorted(ROOT.rglob("*.html")):
 posts=load_posts(ROOT)
 index=(ROOT/"blog/index.html").read_text(encoding="utf-8")
 sitemap=(ROOT/"sitemap.xml").read_text(encoding="utf-8")
+ns={"s":"http://www.sitemaps.org/schemas/sitemap/0.9"}
+sitemap_dates={entry.findtext("s:loc",namespaces=ns):entry.findtext("s:lastmod",namespaces=ns) for entry in ET.fromstring(sitemap).findall("s:url",ns)}
+dated_urls={"https://koastride.com/blog/"+post["slug"] for post in posts}
+for url,modified in sitemap_dates.items():
+    if url in nonindexable: errors.append(f"{url}: noindex page listed in sitemap")
+    if modified is not None and url not in dated_urls: errors.append(f"{url}: unverified sitemap modification date")
 for post in posts:
     slug=post["slug"]; public="https://koastride.com/blog/"+slug
     src=(ROOT/"blog"/(slug+".html")).read_text(encoding="utf-8")
@@ -65,6 +75,11 @@ for post in posts:
     checks["image_dimensions"]=f'width="{post["image_width"]}" height="{post["image_height"]}"' in src
     checks["published"]=article.get("datePublished")==post["published"]
     checks["modified"]=article.get("dateModified")==post["modified"]
+    checks["sitemap_modified"]=sitemap_dates.get(public)==post["modified"]
+    checks["author_identity"]=article.get("author",{}).get("url")=="https://koastride.com/"
+    checks["publisher_identity"]=article.get("publisher",{}).get("name")=="Koast" and article.get("publisher",{}).get("url")=="https://koastride.com/"
+    checks["main_entity"]=article.get("mainEntityOfPage",{}).get("@id")==public
+    checks["large_image_preview"]='<meta name="robots" content="max-image-preview:large">' in src
     for check,ok in checks.items():
         if not ok: errors.append(f"{slug}: {check} failed")
 for kind,counts in (("title",titles),("description",descriptions)):

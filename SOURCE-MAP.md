@@ -1,0 +1,11 @@
+# Koast website source map
+
+Application authority: `akimochi-booper/koast-site`. Generated static public marketing; no D1/customer writer in the publication path. Shared engineering and preview rules live in the canonical Koast documents.
+
+| Responsibility | Owning source and interface | Effects/guards | Verification |
+|---|---|---|---|
+| Daily dated guides | `EDITORIAL.md`; `content/posts/<slug>.json`; `editorial.py` → `load_posts`, `display_date` | Repository-authored public content. Validated metadata, honest dates, image provenance; Care Rides/app holds. | `python generate.py`; `python scripts/check_site.py --today YYYY-MM-DD`; desktop/mobile article and index |
+| Site generation and public metadata | `generate.py`: `head`, `_schema_for`, `enhance`, `_validate_indexing_contract` | Writes ignored HTML/sitemap/robots and tracked `_redirects`; generates canonical links, article identity, dated-editorial-only lastmod. No provider/security-setting changes. | `scripts/check_site.py`; `node --test test/*.test.mjs`; live canonical/article/schema/sitemap readbacks |
+| Visual layout | `generate.py`: `post_card`, `blog_page` and blog index/category rendering; `css/main.css` | Existing marketing layout and responsive image rendering; not Passenger/Dispatch standards. | Desktop/mobile article hero, copy and blog card visuals |
+| Publication | `.github/workflows/deploy.yml` | Push main → checks → Cloudflare Pages; source/editorial/internal docs excluded. One release coordinator. | Successful Actions run and live page/assets/listing/sitemap |
+| Acquisition | `koast-acquisition.js`; `README.md` | Privacy-scoped opt-out-aware collector; no confirmed-booking inference from clicks. | `node --check koast-acquisition.js`; `test/acquisition.test.mjs` |

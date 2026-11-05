@@ -15,6 +15,8 @@ New guides live in `content/posts/<slug>.json`. The generator adds them to the e
 
 ## Current topic queue
 
+- November 4, 2026 release candidate: Airport Pickup Dates: Midnight Arrivals and Overnight Flights. Local arrival-date selection, midnight boundary, separate agreed pickup and a copyable confirmation brief; primary SFO/airline resources. Distinct from flight-disruption recovery and the general booker handoff. No universal buffer, waiting or automatic-adjustment promises.
+
 - Published 2026-10-21: Airport Rides with Children: Confirming the Car Seat Plan. Restraint requirements, supplier/installation responsibility, vehicle compatibility and return-trip continuity. NHTSA guidance linked; no seat inventory, legal exemption or capacity promises.
 
 - Published 2026-10-13: Hourly Chauffeur or Separate Transfers? Planning a Day of Meetings.
@@ -29,6 +31,18 @@ New guides live in `content/posts/<slug>.json`. The generator adds them to the e
 - Completed 2026-10-13: clearly archive expired San Francisco summer 2026 guide; refreshed SFO pickup and waiting guidance.
 
 Daily cadence is a target, not permission to publish unsupported or repetitive content. Owner authorized automatic publishing after factual, quality and website checks on 2026-10-13.
+
+## Google Search and AI search
+
+The owner restarted daily publishing in chat `01a1a8af-065e-79c1-bec5-cc172d6d0032` on November 4, 2026, at the original 9:00 AM America/Los_Angeles schedule. Check the live site and current main before every run; do not backfill missed dates or publish two guides for one Pacific date.
+
+- Prioritize original, useful answers to actual passenger/booker questions. Refresh existing coverage before creating overlapping articles. Research current facts using primary sources; use verified Search Console evidence when available and do not claim traffic or rankings without it.
+- Preserve readable HTML, unique accurate title/description, one main heading, clean canonical URLs, descriptive internal links, matching article/social images and truthful article identity/dates. The generator adds sitemap lastmod only from dated editorial records; do not bump modified solely for metadata or freshness.
+- The build checks article author/publisher identity, canonical/main entity, large image previews, sitemap dates, image metadata and links. Run these checks and visually inspect both article and index before and after release.
+- Google AI features use the same SEO foundations; special AI text files are not a Google ranking requirement. Existing llms.txt also supplies the site's assistant facts; keep that separate purpose accurate.
+- Check robots and public accessibility for search crawlers, including OAI-SearchBot. Search visibility and model-training permission are separate. Do not remove training opt-outs, change Cloudflare security/AI controls or claim verified-bot WAF access from an ordinary browser request. No keyword stuffing, fake reviews, fabricated expertise or ranking/citation guarantees.
+
+References: [Google AI-search guidance](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide), [Article markup](https://developers.google.com/search/docs/appearance/structured-data/article), [sitemap dates](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap), [OpenAI crawler roles](https://developers.openai.com/api/docs/bots).
 
 ## Image standards
 
