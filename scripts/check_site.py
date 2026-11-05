@@ -51,6 +51,16 @@ for path in sorted(ROOT.rglob("*.html")):
         if target.name and not target.suffix: candidates.append(target.with_suffix(".html"))
         if not any(candidate.is_file() for candidate in candidates): errors.append(f"{path.relative_to(ROOT)}: missing {ref}")
 posts=load_posts(ROOT)
+for line in (ROOT/"_redirects").read_text(encoding="utf-8").splitlines():
+    fields=line.split()
+    if len(fields)!=3 or line.startswith("#"): continue
+    source,destination,status=fields
+    url=urlsplit(destination)
+    if url.scheme or url.netloc: continue
+    target=ROOT/unquote(url.path).lstrip("/")
+    candidates=[target,target/"index.html"]
+    if target.name and not target.suffix: candidates.append(target.with_suffix(".html"))
+    if not any(candidate.is_file() for candidate in candidates): errors.append(f"{source}: redirect targets missing {destination}")
 index=(ROOT/"blog/index.html").read_text(encoding="utf-8")
 sitemap=(ROOT/"sitemap.xml").read_text(encoding="utf-8")
 ns={"s":"http://www.sitemaps.org/schemas/sitemap/0.9"}

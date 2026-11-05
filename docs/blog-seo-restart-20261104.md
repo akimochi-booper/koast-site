@@ -19,4 +19,14 @@ Owner requested moving the archived daily blog workflow into chat `01a1a8af-065e
 
 Final current-main integration, successful GitHub Actions deployment and live article/index/sitemap/desktop/mobile checks must be recorded in the shared review before reporting live.
 
+## Search Console follow-up and legacy routes
+
+Initial release `39556cb` deployed successfully in [Actions run 78](https://github.com/akimochi-booper/koast-site/actions/runs/41948880494), 37 seconds. The new article/schema/image and desktop/mobile rendering were verified live.
+
+Signed-in Search Console checks on November 4: sitemap status Success, last read November 3, 227 previously discovered URLs. Its indexing report is dated October 22: 211 indexed, 262 excluded; 234 exclusions are redirects. Five robots-blocked examples are app/API paths, not public marketing pages. The two crawled/not-indexed examples are a private unread-message API and the public Las Positas winery page; Google selection of the latter remains unproven. Core Web Vitals has insufficient data. These delayed reports are not evidence the new article has been indexed.
+
+All ten reported 404 examples were checked against current live HTTP responses. Nine have clear existing equivalents (malformed nested city/wine routes and privacy); exact permanent redirects added. The existing wine-tour index redirect incorrectly led to missing `/wine-tours/`; corrected to `/services/wine-tours`, with the former target also repaired. `/about-us` remains a retired 404 because no equivalent standalone About page was established; do not mass-redirect unrelated missing URLs to the homepage. The new build gate reproduced the bad redirect destination before the repair and passed after it. All site checks and 23 tests pass. No broad wildcard redirects or authentication/robots changes.
+
+Current Search Console overview also highlights impressions for `healdsburg winery tours`; added to the editorial queue for investigation, without claiming conversions or creating duplicate content. The daily publishing workflow must continue checking facts, search intent and existing coverage before choosing a new article.
+
 References: [Google AI-search guidance](https://developers.google.com/search/docs/fundamentals/ai-optimization-guide), [Article schema](https://developers.google.com/search/docs/appearance/structured-data/article), [sitemap dates](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap), [robots preview directives](https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag), [OpenAI search versus training crawlers](https://developers.openai.com/api/docs/bots).

@@ -13,7 +13,16 @@
 /privacy-policy /privacy 301
 /terms-conditions /terms 301
 /sedans/cities/san-jose.html /cities/san-jose 301
-/sedans/cities/wine-tours/index.html /wine-tours/ 301
+/sedans/cities/wine-tours/index.html /services/wine-tours 301
+/wine-tours/ /services/wine-tours 301
+/sedans/cities/wine-tours/wine-tours/willamette-valley.html /wine-tours/willamette-valley 301
+/sedans/cities/wine-tours/cities/detroit.html /cities/detroit 301
+/sedans/cities/cities/oakland.html /cities/oakland 301
+/sedans/cities/wine-tours/cities/tampa.html /cities/tampa 301
+/sedans/cities/wine-tours/cities/san-jose.html /cities/san-jose 301
+/sedans/cities/wine-tours/paso-robles.html /wine-tours/paso-robles 301
+/sedans/privacy.html /privacy 301
+/sedans/cities/wine-tours/livermore.html /wine-tours/livermore 301
 /sedans/cities/wine-tours/napa-valley.html /wine-tours/napa-valley 301
 /sedans/cities/wine-tours/sonoma.html /wine-tours/sonoma 301
 /sedans/cities/wine-tours/wine-tours/santa-ynez.html /wine-tours/santa-ynez 301

@@ -15,7 +15,8 @@ New guides live in `content/posts/<slug>.json`. The generator adds them to the e
 
 ## Current topic queue
 
-- November 4, 2026 release candidate: Airport Pickup Dates: Midnight Arrivals and Overnight Flights. Local arrival-date selection, midnight boundary, separate agreed pickup and a copyable confirmation brief; primary SFO/airline resources. Distinct from flight-disruption recovery and the general booker handoff. No universal buffer, waiting or automatic-adjustment promises.
+- Published 2026-11-04: Airport Pickup Dates: Midnight Arrivals and Overnight Flights. Local arrival-date selection, midnight boundary, separate agreed pickup and a copyable confirmation brief; primary SFO/airline resources. Distinct from flight-disruption recovery and the general booker handoff. No universal buffer, waiting or automatic-adjustment promises.
+- Demand to review next: Search Console's November 4 overview highlighted increased impressions for healdsburg winery tours (October 27–November 2 versus the prior week). Inspect the existing Healdsburg/winery pages and the actual query report before choosing a distinct improvement or new guide; this is a demand signal, not evidence of leads or permission to duplicate coverage.
 
 - Published 2026-10-21: Airport Rides with Children: Confirming the Car Seat Plan. Restraint requirements, supplier/installation responsibility, vehicle compatibility and return-trip continuity. NHTSA guidance linked; no seat inventory, legal exemption or capacity promises.
 
