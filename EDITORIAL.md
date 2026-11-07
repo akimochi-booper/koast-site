@@ -15,6 +15,9 @@ New guides live in `content/posts/<slug>.json`. The generator adds them to the e
 
 ## Current topic queue
 
+- Published 2026-11-07: Flying Home with Wine: Plan the Bottles and Airport Ride. A distinct wine-itinerary return question: screening versus airline acceptance, checked purchases versus separately confirmed winery shipping, collection/packing before airport pickup and a copyable return brief. FAA and airline primary sources checked November 7. No shipping availability, baggage-fee, bottle-protection or vehicle-fit promises. [Daily guide record](docs/daily-guide-20261107.md).
+- Next practical gaps to research: coordinating separate arrivals for a wine-country weekend (refresh group-airport coverage if it owns the intent), and preparing a winter meeting itinerary (refresh hourly-versus-transfers coverage if it already answers the question). Verify demand and primary facts before choosing; neither is a publication quota.
+
 - Published 2026-11-06: Flying with Presentation Equipment: Ride and Venue Handoffs. Resolves the queued equipment topic through airline battery checks, venue hand-carry/receiving access, case custody and a copyable event handoff. FAA and Moscone primary sources checked November 6. Distinct from the general luggage-measurement article; no vehicle fit, special handling, insurance, freight-service or arrival-time claims. Sources and release evidence: [daily guide record](docs/daily-guide-20261106.md).
 
 - Published 2026-11-05: Flying with Golf Clubs: Plan Your Airport Transfer. Airline case checks, baggage-claim coordination, arrival-day golf timing, empty-case storage and repacking for the return; TSA, Delta and DOT resources. Distinct from general luggage measurement and vehicle fit. No airline price, vehicle capacity, storage availability or tee-time guarantees.
