@@ -2334,6 +2334,7 @@ def _write_redirects(pages):
         ("/become-an-affiliate", "/support"),
         ("/privacy-policy", "/privacy"),
         ("/terms-conditions", "/terms"),
+        ("/sedans/cities/san-francisco.html", "/cities/san-francisco"),
         ("/sedans/cities/san-jose.html", "/cities/san-jose"),
         ("/sedans/cities/wine-tours/index.html", "/services/wine-tours"),
         ("/wine-tours/", "/services/wine-tours"),
