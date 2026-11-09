@@ -21,6 +21,8 @@ def load_posts(root):
             raise ValueError(f"{path}: metadata must be plain text without HTML quotes")
         published = date.fromisoformat(post["published"])
         modified = date.fromisoformat(post["modified"])
+        if post.get("published_precision", "day") not in ("day", "month"):
+            raise ValueError(f"{path}: invalid publication precision")
         if modified < published:
             raise ValueError(f"{path}: modified date predates publication")
         if not isinstance(post["minutes"], int) or post["minutes"] < 1:
@@ -42,3 +44,9 @@ def load_posts(root):
 def display_date(value):
     parsed = date.fromisoformat(value)
     return f"{parsed.strftime('%B')} {parsed.day}, {parsed.year}"
+
+def display_publication_date(post):
+    """Keep a legacy month-only public date at its recorded precision."""
+    if post.get("published_precision") == "month":
+        return date.fromisoformat(post["published"]).strftime("%B %Y")
+    return display_date(post["published"])

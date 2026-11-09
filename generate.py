@@ -5,7 +5,7 @@ from html import escape
 from data import BOOK, PHONE, SMS, EMAIL, FLEET, CITIES, AIRPORTS, WINE_REGIONS
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
-from editorial import load_posts, display_date
+from editorial import load_posts, display_date, display_publication_date
 from healdsburg_wine_tours import HEALDSBURG_TITLE, HEALDSBURG_DESCRIPTION, HEALDSBURG_FAQS, render_healdsburg_body
 EDITORIAL_POSTS = load_posts(ROOT)
 EDITORIAL_BY_SLUG = {post["slug"]: post for post in EDITORIAL_POSTS}
@@ -1836,7 +1836,6 @@ BLOG = [
  ("dfw-black-car-guide.html","blog-dfw.jpg","Airport Guides","DFW Black Car Service: Five Terminals, One Easy Pickup","DFW vs. Love Field, drive times across the Metroplex, and why pre-booked beats wandering a city-sized airport."),
  ("miami-airport-black-car-guide.html","blog-mia.jpg","Airport Guides","MIA Black Car Service: Arrivals to South Beach, Brickell & the Port","Causeway timing, real drive times, and cruise-day logistics from Miami International."),
  ("investor-roadshow-ground-travel.html","blog-roadshow.jpg","Corporate","The Investor Roadshow Ground-Travel Playbook","One account across cities, on time between back-to-back meetings, and a single invoice at the end."),
- ("group-airport-transfers.html","blog-group.jpg","Corporate","Group Airport Transfers: Moving a Team Through Arrivals","Staggered flights, one vehicle vs. several, and keeping a whole team moving on arrival."),
 ]
 
 for post in EDITORIAL_POSTS:
@@ -1846,7 +1845,7 @@ BLOG = [(p["slug"] + ".html", p["image"], p["category"], p["title"], p["descript
 
 def post_card(href, img, cat, title, excerpt):
     post = EDITORIAL_BY_SLUG.get(href.removesuffix(".html"))
-    date_label = display_date(post["published"]) if post else "June 2026"
+    date_label = display_publication_date(post) if post else "June 2026"
     if href.removesuffix(".html") in ARCHIVED_GUIDES:
         date_label += " · Seasonal archive"
     if not post and href.removesuffix(".html") in LEGACY_MODIFIED:
@@ -2614,7 +2613,7 @@ Key pages:
 # ============================ BLOG BATCH 2 ============================
 def blog_page(slug, title, desc, cat, img, minutes, body, cta):
     post = EDITORIAL_BY_SLUG.get(slug)
-    date_label = display_date(post["published"]) if post else "June 2026"
+    date_label = display_publication_date(post) if post else "June 2026"
     if post and post["modified"] != post["published"]:
         date_label += " · Updated " + display_date(post["modified"])
     if not post and slug in LEGACY_MODIFIED:
@@ -3973,28 +3972,6 @@ blog_page("investor-roadshow-ground-travel",
     <details><summary>Who can book and manage the rides?</summary><p>An EA, chief of staff, or travel manager can book for anyone, see driver details before each pickup, and make changes from one place &mdash; ideal for coordinating principals across time zones.</p></details>
   </div>""",
  "Every city. One standard.")
-
-blog_page("group-airport-transfers",
- "Group Airport Transfers: Moving a Team Through Arrivals",
- "How to coordinate airport transfers for a whole team — staggered flights, one vehicle vs. several, Sprinter vs. SUVs, and keeping everyone moving on arrival.",
- "Corporate","blog-group.jpg","5", """
-  <p>Moving one executive from the airport is easy. Moving twelve people arriving on six flights into one offsite is a different sport. The mistake is treating it like twelve separate bookings &mdash; the fix is treating it like one coordinated operation.</p>
-  <h2>One vehicle or several?</h2>
-  <p>The first decision is the vehicle math. A team that lands together rides better in one cabin: an Executive Sprinter keeps up to twelve people and their bags together, which means one drop-off, one headcount, and a group that arrives as a group. When flights are scattered across the day, two or three SUVs staged to match arrival waves beats one van waiting four hours for the last straggler. <a href="../index.html#fleet" style="color:var(--teal-dark);font-weight:700">See the fleet &rarr;</a></p>
-  <h2>Staggered flights, one plan</h2>
-  <p>The real work is the schedule. Collect everyone's flight numbers, group the arrivals into waves, and assign vehicles to waves rather than to individuals. Each pickup is flight-tracked, so a delayed connection doesn't strand a car or the people waiting in it. A dispatcher who has the whole manifest can shuffle in real time when one flight slips.</p>
-  <h2>Give it to one point of contact</h2>
-  <p>Group travel goes sideways when ten people each text the driver. Route it through one coordinator and one dispatcher relationship: the booker holds the manifest, drivers' details go out before pickup, and changes happen in one place. That's the difference between a calm arrivals curb and a parking-lot group text.</p>
-  <h2>One invoice for the whole move</h2>
-  <p>Account billing rolls every vehicle and every leg into a single invoice instead of a pile of receipts to reconcile. <a href="../services/corporate-travel.html" style="color:var(--teal-dark);font-weight:700">Koast for business &rarr;</a> &middot; <a href="../services/airport-transfers.html" style="color:var(--teal-dark);font-weight:700">Airport transfers &rarr;</a></p>
-  <div class="faq" style="margin-top:36px">
-    <details><summary>Should a group ride together or split across vehicles?</summary><p>If everyone lands together, one Executive Sprinter (up to twelve with luggage) keeps the group together. If flights are staggered, several SUVs matched to arrival waves usually beats one vehicle waiting hours for the last arrival.</p></details>
-    <details><summary>How do you handle a team arriving on different flights?</summary><p>We group arrivals into waves and assign vehicles to each wave, with every pickup flight-tracked so delays don't strand a car. A dispatcher with the full manifest adjusts in real time.</p></details>
-    <details><summary>Can one person book and manage the whole group?</summary><p>Yes. A single coordinator holds the manifest and makes changes in one place, with driver details sent before each pickup &mdash; no group text with the drivers.</p></details>
-    <details><summary>How is a group transfer billed?</summary><p>Through a corporate account, every vehicle and leg lands on one consolidated invoice rather than separate receipts to reconcile.</p></details>
-  </div>""",
- "The whole team, moving as one.")
-
 
 # ============================ /APP — the Koast app page (concepts A+D) ============================
 APP_URL = "get-app"  # stable redirect (_redirects -> the live app); QR encodes koastride.com/get-app
