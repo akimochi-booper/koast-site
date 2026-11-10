@@ -7,5 +7,26 @@
     "required": [
       "OPENAI_API_KEY"
     ]
-  }
+  },
+  "images": {
+    "binding": "IMAGES"
+  },
+  "ratelimits": [
+    {
+      "name": "PHOTO_RATE_LIMITER",
+      "namespace_id": "2026111001",
+      "simple": {
+        "limit": 4,
+        "period": 60
+      }
+    },
+    {
+      "name": "PHOTO_GLOBAL_LIMITER",
+      "namespace_id": "2026111002",
+      "simple": {
+        "limit": 30,
+        "period": 60
+      }
+    }
+  ]
 }
