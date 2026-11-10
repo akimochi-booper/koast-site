@@ -32,7 +32,7 @@ def head(title, desc, prefix="", extra=""):
 <meta name="robots" content="max-image-preview:large">
 <link rel="preload" href="/fonts/plus-jakarta-sans-latin-v12.woff2" as="font" type="font/woff2" crossorigin>
 <style>@font-face{{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:200 800;font-display:swap;src:url('/fonts/plus-jakarta-sans-latin-v12.woff2') format('woff2')}}</style>
-<link rel="stylesheet" href="{prefix}css/main.css?v=25">
+<link rel="stylesheet" href="{prefix}css/main.css?v=26">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0e1013">
 <script src="/koast-acquisition.js?v=2" defer></script>
@@ -166,11 +166,16 @@ CHAT_WIDGET = r"""
     </section>
   </div>
   <div class="kchat-compose">
+    <div id="kchat-photo-tray" class="kchat-photo-tray" aria-label="Attached photos" hidden></div>
+    <p id="kchat-photo-notice" class="kchat-photo-notice" role="status"></p>
     <div class="kchat-foot">
+      <button id="kchat-attach" class="kchat-tool" type="button" aria-label="Add photos" title="Add up to 2 photos" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 13 7-7a3 3 0 0 1 4 4L9 20a5 5 0 0 1-7-7L13 2"/></svg></button>
+      <input id="kchat-photo-input" type="file" accept="image/jpeg,image/png,image/webp" multiple hidden aria-label="Choose photos">
       <input id="kchat-in" type="text" aria-label="Message Kopilot" placeholder="Message Kopilot…" maxlength="1000" autocomplete="off" enterkeyhint="send">
       <button id="kchat-mic" class="kchat-tool" type="button" aria-label="Dictate a message" title="Dictate a message" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3m-4 0h8"/></svg></button>
       <button id="kchat-send" type="button" aria-label="Send message" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
     </div>
+    <p class="kchat-photo-privacy" id="kchat-photo-privacy" hidden>Photos are sent to our AI provider when you press Send. Avoid IDs and payment details.</p>
     <span id="kchat-status" class="sr-only" role="status" aria-live="polite"></span>
   </div>
   <div class="kchat-actions"><a href="__QUOTE_URL__" class="kchat-quote">Get a quote</a><a class="kchat-human" href="mailto:reserve@koastride.com">Email our team</a></div>
@@ -183,8 +188,10 @@ CHAT_WIDGET = r"""
   var input=document.getElementById('kchat-in'),sendButton=document.getElementById('kchat-send');
   var microphone=document.getElementById('kchat-mic'),status=document.getElementById('kchat-status');
   var launcher=document.getElementById('kchat-fab'),closeButton=panel.querySelector('.kchat-x');
+  var photos=null,photoBubbles=[];
   var history=[],busy=false,failedRequest=null,failureNode=null,listening=false,recognition=null,acceptDictationResults=false;
-  function syncControls(){sendButton.disabled=busy||!input.value.trim();microphone.disabled=busy;messages.setAttribute('aria-busy',String(busy));}
+  function syncControls(){sendButton.disabled=busy||(photos&&photos.processing)||(!input.value.trim()&&!(photos&&photos.items.length));microphone.disabled=busy;messages.setAttribute('aria-busy',String(busy));if(photos){photos.setBusy(busy);document.getElementById('kchat-photo-privacy').hidden=!photos.items.length;}}
+  if(window.KoastPhotoComposer){photos=new window.KoastPhotoComposer({button:document.getElementById('kchat-attach'),picker:document.getElementById('kchat-photo-input'),tray:document.getElementById('kchat-photo-tray'),notice:document.getElementById('kchat-photo-notice'),onChange:syncControls});}
   function stopDictation(discard){if(discard)acceptDictationResults=false;if(recognition){try{recognition.stop();}catch(error){}}}
   function fitViewport(){
     var viewport=window.visualViewport;if(!viewport)return;
@@ -196,11 +203,11 @@ CHAT_WIDGET = r"""
     window.koastModalBackground(panel,open);
     launcher.setAttribute('aria-expanded',String(open));
     if(open){
-      panel.removeAttribute('inert');panel.setAttribute('aria-hidden','false');fitViewport();
+      panel.removeAttribute('inert');panel.setAttribute('aria-hidden','false');fitViewport();if(photos)photos.load(endpoint);
       if(window.visualViewport){window.visualViewport.addEventListener('resize',fitViewport);window.visualViewport.addEventListener('scroll',fitViewport);}
       document.getElementById('kchat-title').focus();
     }else{
-      stopDictation(true);
+      stopDictation(true);if(photos)photos.cancelPreparation();
       if(window.visualViewport){window.visualViewport.removeEventListener('resize',fitViewport);window.visualViewport.removeEventListener('scroll',fitViewport);}
       launcher.focus();panel.setAttribute('inert','');panel.setAttribute('aria-hidden','true');
     }
@@ -226,24 +233,27 @@ CHAT_WIDGET = r"""
     var thinking=appendMessage('bot dots','…');thinking.setAttribute('aria-hidden','true');
     var controller=new AbortController();var timeout=setTimeout(function(){controller.abort();},40000);
     fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:payload}),signal:controller.signal})
-      .then(function(response){if(!response.ok)throw new Error('request_failed');return response.json();})
+      .then(function(response){return response.json().then(function(data){if(!response.ok){var error=new Error(data&&data.reply||'I couldn’t connect. Try again, or email our team below.');error.requestStatus=response.status;throw error;}return data;});})
       .then(function(data){
-        if(!data||typeof data.reply!=='string'||!data.reply.trim())throw new Error('empty_reply');
+        if(!data||typeof data.reply!=='string'||!data.reply.trim())throw new Error('empty_reply');if(data.error)throw new Error(data.reply);
         appendMessage('bot',data.reply);history.push({role:'assistant',content:data.reply});
       })
-      .catch(function(){
+      .catch(function(error){
         failedRequest=payload;
-        failureNode=appendMessage('bot kchat-error','I couldn’t connect. Try again, or email our team below.');
+        failureNode=appendMessage('bot kchat-error',error.requestStatus?error.message:'I couldn’t connect. Try again, or email our team below.');
         var retry=document.createElement('button');retry.type='button';retry.className='kchat-retry';retry.textContent='Try again';
         retry.addEventListener('click',function(){if(failedRequest&&!busy){requestReply(failedRequest);input.focus();}});failureNode.appendChild(retry);
+        if(payload.some(function(message){return message.images&&message.images.length;})){var textOnly=document.createElement('button');textOnly.type='button';textOnly.className='kchat-retry';textOnly.textContent='Continue without photos';textOnly.addEventListener('click',function(){if(busy)return;history.forEach(function(message){delete message.images;});photoBubbles.forEach(function(image){image.remove();});photoBubbles=[];if(photos)photos.take();clearFailure();appendMessage('bot','Photos cleared. Describe them in your message instead.');syncControls();input.focus();});failureNode.appendChild(textOnly);}
       })
       .finally(function(){clearTimeout(timeout);thinking.remove();busy=false;syncControls();status.textContent='';messages.scrollTop=messages.scrollHeight;});
   }
   function send(){
-    var question=input.value.trim();if(!question||busy)return;
+    var question=input.value.trim();if(busy||(photos&&photos.processing)||(!question&&!(photos&&photos.items.length)))return;
+    var attached=photos?photos.take():[];if(!question)question='Can you help me plan my ride using these photos?';
+    if(attached.length){history.forEach(function(message){delete message.images;});photoBubbles.forEach(function(image){image.remove();});photoBubbles=[];}
     stopDictation(true);
     var welcome=messages.querySelector('.kchat-welcome');if(welcome)welcome.remove();
-    input.value='';appendMessage('user',question);history.push({role:'user',content:question});
+    input.value='';var bubble=appendMessage('user',question),message={role:'user',content:question};if(attached.length){message.images=attached;attached.forEach(function(url,index){var image=document.createElement('img');image.src=url;image.alt='Sent photo '+(index+1);image.className='kchat-sent-photo';bubble.appendChild(image);photoBubbles.push(image);});}history.push(message);history=history.slice(-12);
     requestReply(history.slice(-12));input.focus();
   }
   window.kchatAsk=function(question){if(busy)return;input.value=question;send();input.focus();};
@@ -270,7 +280,7 @@ import re as _re0
 _sm = _re0.search(r"<script>(.*?)</script>", CHAT_WIDGET, _re0.S)
 if _sm:
     open(os.path.join(ROOT, "koast-chat.js"), "w", encoding="utf-8").write(_sm.group(1).strip())
-    CHAT_WIDGET = CHAT_WIDGET.replace(_sm.group(0), '<script src="/koast-chat.js?v=2" defer></script>')
+    CHAT_WIDGET = CHAT_WIDGET.replace(_sm.group(0), '<script src="/koast-chat-photos.js?v=1" defer></script><script src="/koast-chat.js?v=3" defer></script>')
 
 def footer(prefix=""):
     return f"""

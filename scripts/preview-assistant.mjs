@@ -10,12 +10,14 @@ createServer(async(req,res)=>{
  const url=new URL(req.url,'http://127.0.0.1:'+port);
  const send=(status,type,body)=>{res.writeHead(status,{'Content-Type':type,'Cache-Control':'no-store'});res.end(body);};
  if(url.pathname==='/__preview_booking')return send(200,'text/html','<html style="background:#f8f5ef"><body style="font:14px system-ui;color:#777;padding:24px">Booking widget is inactive in this local preview.</body></html>');
+ if(url.pathname==='/__preview_chat/capabilities')return send(200,'application/json',JSON.stringify({photos:true,maxPhotos:2,maxFileBytes:8388608}));
  if(url.pathname==='/__preview_chat'){
-  let raw='';for await(const chunk of req){raw+=chunk;if(raw.length>16000)return send(413,'application/json','{}');}
+  let raw='';for await(const chunk of req){raw+=chunk;if(raw.length>1153434)return send(413,'application/json','{}');}
   let body;try{body=JSON.parse(raw);}catch{return send(400,'application/json','{}');}
   const question=String(body.messages?.at(-1)?.content||'');
   if(question.toLowerCase().includes('retry preview')&&!failed.has(question)){failed.add(question);return send(503,'application/json','{}');}
-  const reply=question.toLowerCase().includes('vehicle')?'I can help you compare vehicle classes. How many people are traveling, and how much luggage will you have? For the final price and availability, use Get a quote below.':question.toLowerCase().includes('wine')?'Start with your pickup location, group size, and preferred wineries. I can help you think through the itinerary. Our team confirms your route, availability, and fixed price in the quote.':'For an airport pickup, include your flight details when requesting your ride. Which airport are you arriving at, and how many people are traveling?';
+  const count=(body.messages||[]).reduce((n,m)=>n+(m.images?.length||0),0);
+  const reply=count?'I can see '+count+' attached sample photo'+(count>1?'s':'')+' in this local test. For a ride, tell me your passenger count and luggage details; our team confirms vehicle fit and availability.':question.toLowerCase().includes('vehicle')?'I can help you compare vehicle classes. How many people are traveling, and how much luggage will you have? For the final price and availability, use Get a quote below.':question.toLowerCase().includes('wine')?'Start with your pickup location, group size, and preferred wineries. I can help you think through the itinerary. Our team confirms your route, availability, and fixed price in the quote.':'For an airport pickup, include your flight details when requesting your ride. Which airport are you arriving at, and how many people are traveling?';
   return setTimeout(()=>send(200,'application/json',JSON.stringify({reply})),question.toLowerCase().includes('pending preview')?2500:650);
  }
  let relative=decodeURIComponent(url.pathname).replace(/^\/+/,''),file=resolve(root,relative||'index.html');
