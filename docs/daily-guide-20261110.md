@@ -1,0 +1,13 @@
+# November 10, 2026 — airport mobility handoff
+
+New guide: https://koastride.com/blog/airport-pickup-mobility-needs
+
+Question from the existing editorial queue: how do airline/terminal assistance, the actual road vehicle and companions/equipment connect at airport pickup? Inventory reviewed; existing luggage coverage owns measurements/fit but only mentions boarding arrangements briefly. This guide owns the distinct handoff and confirmation question and links to that measurement guide, passenger-booker handoff and flight-change coverage. No competing measurement article or backfill. Published/modified November10.
+
+Primary sources checked November10: SFO accessibility https://www.flysfo.com/passengers/services-amenities/accessibility (airline assistance requests and vehicle-pickup handoff); DOT https://www.transportation.gov/individuals/aviation-consumer-protection/wheelchair-and-guided-assistance (airline assistance and identifying the passenger to staff); DOT https://www.transportation.gov/resources/individuals/aviation-consumer-protection/assistive-device-guides/assistive-device-stowage (device information/return/damage reference); SFO https://www.flysfo.com/passengers/ground-transportation (provider-specific transport/pickup context). No new legal interpretation, medical/transfer technique, battery handling, timing or regulatory guarantee. Illustrative confirmation example and copyable brief are original.
+
+Verified signed-in Search Console: domain koastride.com, Web(text), August9–November8 three months; query regex wheelchair|mobility|accessible. Zero reported impressions/clicks, No data query table; filter totals may be partial. This does not establish demand or absence of market demand. Topic is justified by the practical editorial queue, not claimed search volume or impact. Evidence in shared audits/2026-11-10-daily-guide.
+
+General passenger planning only: explicitly no wheelchair-accessible fleet/assistance availability claim, no held Care Rides features/branding, medical service, private customer material, pricing/policy/security/training change or prelaunch app. Provider must confirm the actual requirement; no meet-and-greet advertising. Marketing template/CSS and the newer website Kopilot preserved.
+
+New generic monochrome architectural image1600×900134864B, accurate alt/dimensions/social/schema and internal prompt/provenance. No actual equipment/fleet demonstration or automatic visible generated caption. Required factual, build, source/diff, fresh-main, coordination, preview and live gates apply before reporting publication. Shared release record: audits/2026-11-10-daily-guide/REPORT.md.
