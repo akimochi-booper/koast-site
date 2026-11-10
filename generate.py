@@ -32,7 +32,7 @@ def head(title, desc, prefix="", extra=""):
 <meta name="robots" content="max-image-preview:large">
 <link rel="preload" href="/fonts/plus-jakarta-sans-latin-v12.woff2" as="font" type="font/woff2" crossorigin>
 <style>@font-face{{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:200 800;font-display:swap;src:url('/fonts/plus-jakarta-sans-latin-v12.woff2') format('woff2')}}</style>
-<link rel="stylesheet" href="{prefix}css/main.css?v=26">
+<link rel="stylesheet" href="{prefix}css/main.css?v=27">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0e1013">
 <script src="/koast-acquisition.js?v=2" defer></script>
@@ -222,7 +222,8 @@ CHAT_WIDGET = r"""
     else if(!event.shiftKey&&document.activeElement===controls[controls.length-1]){event.preventDefault();controls[0].focus();}
   });
   function appendMessage(kind,text){
-    var node=document.createElement('div');node.className='km '+kind;node.textContent=text;
+    var node=document.createElement('div');node.className='km '+kind;
+    if(kind==='bot'&&window.KoastReplyLinks)window.KoastReplyLinks.render(node,text);else node.textContent=text;
     messages.appendChild(node);messages.scrollTop=messages.scrollHeight;return node;
   }
   function clearFailure(){if(failureNode){failureNode.remove();failureNode=null;}failedRequest=null;}
@@ -279,7 +280,7 @@ import re as _re0
 _sm = _re0.search(r"<script>(.*?)</script>", CHAT_WIDGET, _re0.S)
 if _sm:
     open(os.path.join(ROOT, "koast-chat.js"), "w", encoding="utf-8").write(_sm.group(1).strip())
-    CHAT_WIDGET = CHAT_WIDGET.replace(_sm.group(0), '<script src="/koast-chat-photos.js?v=1" defer></script><script src="/koast-chat.js?v=3" defer></script>')
+    CHAT_WIDGET = CHAT_WIDGET.replace(_sm.group(0), '<script src="/koast-chat-photos.js?v=1" defer></script><script src="/koast-chat-links.js?v=1" defer></script><script src="/koast-chat.js?v=4" defer></script>')
 
 def footer(prefix=""):
     return f"""

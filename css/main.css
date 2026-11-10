@@ -475,6 +475,7 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
 #kchat .kchat-chips button:hover{color:var(--assistant-accent)}
 #kchat .km{max-width:88%;padding:12px 14px;border-radius:14px;font-size:15px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
 #kchat .km.bot{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.09);color:#e6e9ee;border-bottom-left-radius:4px;align-self:flex-start}
+#kchat .km.bot a{color:inherit;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
 #kchat .km.user{background:var(--assistant-fill) border-box no-repeat;color:var(--assistant-ink);border:0;border-bottom-right-radius:4px;align-self:flex-end;box-shadow:inset 0 1px 0 #ffffff24}
 #kchat .km.dots{color:var(--assistant-accent);letter-spacing:3px;font-size:20px;line-height:1}
 #kchat .kchat-compose{flex:none;padding:8px 14px 0}

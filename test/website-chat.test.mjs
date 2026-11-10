@@ -22,12 +22,13 @@ function fixture({voice=false,lateVoice=false,photos=false,preparePhoto=async()=
  const panel=elements.kchat,messages=elements['kchat-msgs'],input=elements['kchat-in'],send=elements['kchat-send'],mic=elements['kchat-mic'],close=new Element('close'),starter=new Element('starter'),quote=new Element('quote'),email=new Element('email');
  starter.setAttribute('data-question','How does airport pickup work?');panel.querySelector=selector=>selector==='.kchat-x'?close:null;
  const welcome=new Element();welcome.className='kchat-welcome';messages.appendChild(welcome);
- doc={body:new Element('body'),activeElement:null,getElementById:id=>elements[id],createElement:()=>new Element()};
+ doc={body:new Element('body'),activeElement:null,getElementById:id=>elements[id],createElement:()=>new Element(),createTextNode:text=>{const node=new Element();node.textContent=text;return node;}};
  const viewport={height:844,offsetTop:0,addEventListener:(name,fn)=>viewportListeners.set(name,fn),removeEventListener:name=>viewportListeners.delete(name)};
  const window={innerHeight:844,visualViewport:viewport,koastModalBackground:(element,open)=>background.push(open)};
  if(voice)window.SpeechRecognition=class{constructor(){recognition=this;this.stops=0;}start(){this.onstart();}stop(){this.stops++;if(!lateVoice)this.onend();}};
  const context={window,document:doc,DataView,Uint8Array,AbortSignal,createImageBitmap:()=>{},AbortController,fetch:(url,options)=>new Promise((resolve,reject)=>{if(String(url).endsWith('/capabilities'))return resolve({ok:true,json:async()=>({photos:true})});const request={url,options,resolve,reject};requests.push(request);options.signal.addEventListener('abort',()=>reject(new Error('aborted')));}),setTimeout:fn=>{timers.set(++timer,fn);return timer;},clearTimeout:id=>timers.delete(id)};
  if(photos){vm.runInNewContext(readFileSync(new URL('../koast-chat-photos.js',import.meta.url),'utf8'),context);const Actual=window.KoastPhotoComposer;window.KoastPhotoComposer=function(o){photoComposer=new Actual({...o,prepare:preparePhoto});return photoComposer;};}
+ vm.runInNewContext(readFileSync(new URL('../koast-chat-links.js',import.meta.url),'utf8'),context);
  vm.runInNewContext(source,context);
  return {elements,panel,messages,input,send,mic,close,starter,doc,requests,background,viewportListeners,recognition:()=>recognition,photos:()=>photoComposer,timeout:()=>[...timers.values()].forEach(fn=>fn()),write:text=>{input.value=text;input.emit('input');},reply:async(index,text)=>{requests[index].resolve({ok:true,json:async()=>({reply:text})});await settle();}};
 }
@@ -43,6 +44,13 @@ test('quick question uses text-only API; busy blocks duplicates and keeps a newl
  h.write('A new draft while waiting');h.starter.click();h.send.click();assert.equal(h.requests.length,1);
  await h.reply(0,'<b>This remains literal text</b>');assert.equal(h.input.value,'A new draft while waiting');assert.equal(h.send.disabled,false);
  assert.equal(h.messages.children.at(-1).textContent,'<b>This remains literal text</b>');assert.equal(h.messages.children.at(-1).children.length,0);
+});
+test('only assistant replies gain approved links; user URLs remain literal',async()=>{
+ const h=fixture();h.write('https://koastride.com/');h.send.click();
+ const user=h.messages.children.find(node=>node.className==='km user');assert.equal(user.children.length,0);
+ await h.reply(0,'Get a quote: https://customer.moovs.app/koast/request/new.');
+ const reply=h.messages.children.at(-1),link=reply.children.find(node=>node.href);
+ assert.equal(link.href,'https://customer.moovs.app/koast/request/new');assert.equal(link.textContent,link.href);
 });
 test('failed request retries the same payload without duplicating the user message or clearing a draft',async()=>{
  const h=fixture();h.write('Compare vehicles');h.send.click();h.requests[0].reject(new Error('offline'));await settle();
