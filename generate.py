@@ -145,13 +145,12 @@ CHAT_WORKER_URL = "https://koast-chat.euburaga.workers.dev"
 
 CHAT_WIDGET = r"""
 <button id="kchat-fab" type="button" aria-label="Ask Kopilot, Koast's AI assistant" aria-controls="kchat" aria-expanded="false">
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 2.5c.5 4.1 3.4 7 7.5 7.5-4.1.5-7 3.4-7.5 7.5-.5-4.1-3.4-7-7.5-7.5 4.1-.5 7-3.4 7.5-7.5zM18.5 14.5c.2 1.7 1.3 2.8 3 3-1.7.2-2.8 1.3-3 3-.2-1.7-1.3-2.8-3-3 1.7-.2 2.8-1.3 3-3z"/></svg>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 4H7a3 3 0 0 0-3 3v14l4-3h9a3 3 0 0 0 3-3v-3"/><path d="M16.5 2.5c.3 2.9 2.1 4.7 5 5-2.9.3-4.7 2.1-5 5-.3-2.9-2.1-4.7-5-5 2.9-.3 4.7-2.1 5-5Z" fill="currentColor" stroke="none"/></svg>
   <span>Ask Kopilot</span>
 </button>
-<div class="kchat-shade" aria-hidden="true"></div>
 <div id="kchat" role="dialog" aria-modal="true" aria-labelledby="kchat-title" aria-describedby="kchat-description" aria-hidden="true" inert>
   <div class="kchat-head">
-    <div class="kchat-id"><span class="kchat-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 2.5c.5 4.1 3.4 7 7.5 7.5-4.1.5-7 3.4-7.5 7.5-.5-4.1-3.4-7-7.5-7.5 4.1-.5 7-3.4 7.5-7.5zM18.5 14.5c.2 1.7 1.3 2.8 3 3-1.7.2-2.8 1.3-3 3-.2-1.7-1.3-2.8-3-3 1.7-.2 2.8-1.3 3-3z"/></svg></span><div><strong id="kchat-title" tabindex="-1">Kopilot</strong><span id="kchat-description">Koast's AI ride assistant</span></div></div>
+    <div class="kchat-id"><span class="kchat-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 4H7a3 3 0 0 0-3 3v14l4-3h9a3 3 0 0 0 3-3v-3"/><path d="M16.5 2.5c.3 2.9 2.1 4.7 5 5-2.9.3-4.7 2.1-5 5-.3-2.9-2.1-4.7-5-5 2.9-.3 4.7-2.1 5-5Z" fill="currentColor" stroke="none"/></svg></span><div><strong id="kchat-title" tabindex="-1">Kopilot</strong><span id="kchat-description">Koast's AI ride assistant</span></div></div>
     <button class="kchat-x" type="button" aria-label="Close assistant"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
   </div>
   <div class="kchat-msgs" id="kchat-msgs" role="log" aria-label="Conversation with Kopilot" aria-live="polite" aria-relevant="additions text">
@@ -174,7 +173,7 @@ CHAT_WIDGET = r"""
     </div>
     <span id="kchat-status" class="sr-only" role="status" aria-live="polite"></span>
   </div>
-  <div class="kchat-actions"><a href="__QUOTE_URL__" class="kchat-quote">Get a quote <span aria-hidden="true">↗</span></a><a class="kchat-human" href="mailto:reserve@koastride.com">Email our team <span aria-hidden="true">↗</span></a></div>
+  <div class="kchat-actions"><a href="__QUOTE_URL__" class="kchat-quote">Get a quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a><a class="kchat-human" href="mailto:reserve@koastride.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>Email our team</a></div>
 </div>
 <script>
 (function(){
