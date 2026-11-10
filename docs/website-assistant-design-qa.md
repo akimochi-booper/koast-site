@@ -1,0 +1,21 @@
+# Website Kopilot popup — November9,2026
+
+Decision: owner-requested app-inspired update; local working proposal for review. Implementation: isolated branch codex/website-ai-chat-20261109 on d2ecc77; not published. Source authority: koast-site. Passenger Kopilot teal roles and satin controls are visual references; the public website assistant remains separate from account-aware Passenger Kopilot.
+
+## Source and visual contract
+
+The actual current website popup was captured at390x844 before editing. Existing dialog/controller owners reused in generate.py CHAT_WIDGET and scoped css/main.css, with generated koast-chat.js kept generated. Deep teal canonical fill (155deg #00d8e0 / #008a9d25% / #00758d48% / #00465f) paints once across border-box/no-repeat on launcher and spark identity; flat mint marks small controls/edges. Same app-native spark,44px/12px satin Close/Send and restrained neutral canvas. Chat is an adaptive408x620 desktop popup and mobile sheet with page context retained. The website orange brand and booking shell remain unchanged. Main CSS assetv25/chat runtimev2 avoid stale markup/script pairing.
+
+Kopilot is explicitly Koast's AI ride assistant; no online/instant-response badge. Welcome offers airport pickup, vehicle selection and wine-country planning. Existing quote URL from BOOK and existing email fallback remain native manual links. Unsupported photo upload removed because the current Worker is text-only. Dictation remains an explicit browser speech-to-text action; microphone is hidden when unsupported. No new provider/model/integration, account access, booking/price/availability tool or human transfer is claimed. Worker/prompt/policies remain unchanged.
+
+The popup opens on its title to show the welcome without forcing the phone keyboard. Typing/sending and retries retain composer focus; safe plain text response rendering, busy/empty-send guards,40-second abort and manual retry preserve new drafts. Retry reuses the failed payload without adding another user bubble. History requests retain only the last12messages and1000-character input bound. Escape restores launcher/background, modal Tab/ShiftTab wraps including initial backward navigation from title. VisualViewport subscriptions are removed on close; active/pending dictation is fenced on send/close, while explicit Stop accepts its final result. No permanent conversation storage introduced.
+
+## Validation
+
+36 site tests plus8 existing Worker tests pass, including8 new popup interaction regressions.232 generated pages/46 blog posts/14 dated editorial posts pass check_site with client date2026-11-09. Runtime syntax and14 unique generated inline scripts parse. No backend/provider requests used for QA. Local fixture scripts/preview-assistant.mjs serves actual generated UI with labelled sample replies; quote iframe is inert and chat requests terminate locally.
+
+App-browser390x844: welcome, safe quick prompt, conversation rendering, native quote/email destinations, empty/busy Send, failure/manual retry, no duplicate user bubble, draft survives retry and close/reopen, Escape restoration and both focus loops pass.320x450: panel top24/bottom442,44px input, no horizontal overflow; native wheel scroll reaches the last54px starter above the composer/footer.1440x1000 desktop:408x620 popup, no overflow. Forced-colors removes decorative gradients; reduced-motion disables visible transition. Actual native microphone permission/provider recognition and installed-phone keyboard behavior remain physical acceptance, not inferred from emulation.
+
+Read-only review found two P2 issues, both corrected and covered: late dictation result ownership and initial Shift+Tab from the title. Final review reported no remaining concrete P1/P2 concerns. Original application/Worker/source controls are retained in owning contracts.
+
+Private evidence: website-chat-before-390.png, website-assistant-welcome-390.png, website-assistant-conversation-390.png, website-assistant-short-320.png and website-assistant-desktop-1440.png under C:/Users/eubur/.codex/visualizations/2026/11/05/01a1a9bf-44f4-7680-9110-402b0f79dc8c/. Current local preview55249, lease50dc1272-f628-4bf6-9829-a64a2d7743a2, ownerwebsite-ai-chat-01a1a9bf. No main push, site deployment or Worker deployment.

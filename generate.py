@@ -32,7 +32,7 @@ def head(title, desc, prefix="", extra=""):
 <meta name="robots" content="max-image-preview:large">
 <link rel="preload" href="/fonts/plus-jakarta-sans-latin-v12.woff2" as="font" type="font/woff2" crossorigin>
 <style>@font-face{{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:200 800;font-display:swap;src:url('/fonts/plus-jakarta-sans-latin-v12.woff2') format('woff2')}}</style>
-<link rel="stylesheet" href="{prefix}css/main.css?v=24">
+<link rel="stylesheet" href="{prefix}css/main.css?v=25">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0e1013">
 <script src="/koast-acquisition.js?v=2" defer></script>
@@ -143,130 +143,135 @@ def nav(prefix="", active=""):
 # After deploying the Worker, set its URL here and re-run generate.py
 CHAT_WORKER_URL = "https://koast-chat.euburaga.workers.dev"
 
-CHAT_WIDGET = """
-<button id="kchat-fab" aria-label="Chat with Koast" aria-controls="kchat" aria-expanded="false">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+CHAT_WIDGET = r"""
+<button id="kchat-fab" type="button" aria-label="Ask Kopilot, Koast's AI assistant" aria-controls="kchat" aria-expanded="false">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M10 2.5c.5 4.1 3.4 7 7.5 7.5-4.1.5-7 3.4-7.5 7.5-.5-4.1-3.4-7-7.5-7.5 4.1-.5 7-3.4 7.5-7.5zM18.5 14.5c.2 1.7 1.3 2.8 3 3-1.7.2-2.8 1.3-3 3-.2-1.7-1.3-2.8-3-3 1.7-.2 2.8-1.3 3-3z"/></svg>
+  <span>Ask Kopilot</span>
 </button>
-<div id="kchat" role="dialog" aria-modal="true" aria-label="Koast assistant" aria-hidden="true" inert>
+<div class="kchat-shade" aria-hidden="true"></div>
+<div id="kchat" role="dialog" aria-modal="true" aria-labelledby="kchat-title" aria-describedby="kchat-description" aria-hidden="true" inert>
   <div class="kchat-head">
-    <div class="kchat-id"><span class="kcoin">K</span><div><strong>Koast Agent</strong><span>Online — answers in seconds</span></div></div>
-    <button class="kchat-x" type="button" aria-label="Close assistant">&times;</button>
+    <div class="kchat-id"><span class="kchat-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 2.5c.5 4.1 3.4 7 7.5 7.5-4.1.5-7 3.4-7.5 7.5-.5-4.1-3.4-7-7.5-7.5 4.1-.5 7-3.4 7.5-7.5zM18.5 14.5c.2 1.7 1.3 2.8 3 3-1.7.2-2.8 1.3-3 3-.2-1.7-1.3-2.8-3-3 1.7-.2 2.8-1.3 3-3z"/></svg></span><div><strong id="kchat-title" tabindex="-1">Kopilot</strong><span id="kchat-description">Koast's AI ride assistant</span></div></div>
+    <button class="kchat-x" type="button" aria-label="Close assistant"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
   </div>
-  <div class="kchat-msgs" id="kchat-msgs" role="log" aria-label="Conversation with Koast" aria-live="polite" aria-relevant="additions text">
-    <div class="km bot">Hi! Ask me anything about booking, airports, the fleet, or wine tours. For exact prices, the instant-quote widget is the way.</div>
-    <div class="kchat-chips">
-      <button onclick="kchatAsk(this.textContent)">How does airport pickup work?</button>
-      <button onclick="kchatAsk(this.textContent)">Do you have car seats?</button>
-      <button onclick="kchatAsk(this.textContent)">What's included in the price?</button>
+  <div class="kchat-msgs" id="kchat-msgs" role="log" aria-label="Conversation with Kopilot" aria-live="polite" aria-relevant="additions text">
+    <section class="kchat-welcome">
+      <p class="kchat-eyebrow">A little help, every step.</p>
+      <h2>Let's plan your ride.</h2>
+      <p>Ask about airport pickups, compare vehicle options, or plan a day in wine country.</p>
+      <div class="kchat-chips" aria-label="Suggested questions">
+        <button type="button" data-question="How does airport pickup work?"><span>Airport pickup</span><span aria-hidden="true">↗</span></button>
+        <button type="button" data-question="Help me choose a vehicle for my group."><span>Find the right vehicle</span><span aria-hidden="true">↗</span></button>
+        <button type="button" data-question="How can I plan a chauffeured wine tour?"><span>Plan a wine-country day</span><span aria-hidden="true">↗</span></button>
+      </div>
+    </section>
+  </div>
+  <div class="kchat-compose">
+    <div class="kchat-foot">
+      <input id="kchat-in" type="text" aria-label="Message Kopilot" placeholder="Message Kopilot…" maxlength="1000" autocomplete="off" enterkeyhint="send">
+      <button id="kchat-mic" class="kchat-tool" type="button" aria-label="Dictate a message" title="Dictate a message" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3m-4 0h8"/></svg></button>
+      <button id="kchat-send" type="button" aria-label="Send message" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
     </div>
+    <span id="kchat-status" class="sr-only" role="status" aria-live="polite"></span>
   </div>
-  <div id="kchat-att" class="kchat-att"></div>
-  <div class="kchat-foot">
-    <button id="kchat-mic" class="kchat-tool" type="button" aria-label="Speak" title="Speak"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg></button>
-    <button id="kchat-attach" class="kchat-tool" type="button" aria-label="Attach a photo" title="Attach a photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg></button>
-    <input id="kchat-in" type="text" aria-label="Message the Koast assistant" placeholder="Type, speak, or attach a photo…" maxlength="500">
-    <button id="kchat-send" aria-label="Send">→</button>
-    <input id="kchat-file" type="file" accept="image/*" multiple hidden>
-  </div>
-  <a class="kchat-sms" href="mailto:reserve@koastride.com">Prefer a human? Email us →</a>
+  <div class="kchat-actions"><a href="__QUOTE_URL__" class="kchat-quote">Get a quote <span aria-hidden="true">↗</span></a><a class="kchat-human" href="mailto:reserve@koastride.com">Email our team <span aria-hidden="true">↗</span></a></div>
 </div>
 <script>
 (function(){
-  var URL_="__CHAT_URL__";
-  var IMG_LIVE=false; /* flip to true once the booking system handles photos/itineraries */
-  var msgs=document.getElementById('kchat-msgs'),inp=document.getElementById('kchat-in'),btn=document.getElementById('kchat-send');
-  var mic=document.getElementById('kchat-mic'),attBtn=document.getElementById('kchat-attach'),fileIn=document.getElementById('kchat-file'),attWrap=document.getElementById('kchat-att'),panel=document.getElementById('kchat');
-  var fab=document.getElementById('kchat-fab'),closeBtn=panel.querySelector('.kchat-x');
-  var hist=[],busy=false,atts=[];
+  'use strict';
+  var endpoint='__CHAT_URL__';
+  var panel=document.getElementById('kchat'),messages=document.getElementById('kchat-msgs');
+  var input=document.getElementById('kchat-in'),sendButton=document.getElementById('kchat-send');
+  var microphone=document.getElementById('kchat-mic'),status=document.getElementById('kchat-status');
+  var launcher=document.getElementById('kchat-fab'),closeButton=panel.querySelector('.kchat-x');
+  var history=[],busy=false,failedRequest=null,failureNode=null,listening=false,recognition=null,acceptDictationResults=false;
+  function syncControls(){sendButton.disabled=busy||!input.value.trim();microphone.disabled=busy;messages.setAttribute('aria-busy',String(busy));}
+  function stopDictation(discard){if(discard)acceptDictationResults=false;if(recognition){try{recognition.stop();}catch(error){}}}
+  function fitViewport(){
+    var viewport=window.visualViewport;if(!viewport)return;
+    panel.style.setProperty('--kchat-visible-height',viewport.height+'px');
+    panel.style.setProperty('--kchat-keyboard',Math.max(0,window.innerHeight-viewport.height-viewport.offsetTop)+'px');
+  }
   function setChat(open){
     document.body.classList.toggle('kchat-open',open);
     window.koastModalBackground(panel,open);
-    if(open){panel.removeAttribute('inert');panel.setAttribute('aria-hidden','false');inp.focus()}
-    else{fab.focus();panel.setAttribute('inert','');panel.setAttribute('aria-hidden','true')}
-    fab.setAttribute('aria-expanded',String(open));
-  }
-  fab.addEventListener('click',function(){setChat(true)});
-  closeBtn.addEventListener('click',function(){setChat(false)});
-  panel.addEventListener('keydown',function(e){
-    if(e.key==='Escape'){e.preventDefault();setChat(false);return;}
-    if(e.key!=='Tab')return;
-    var f=[].slice.call(panel.querySelectorAll('button:not([disabled]),a[href],input:not([disabled])')).filter(function(x){return x.offsetParent!==null});
-    if(!f.length)return;
-    if(e.shiftKey&&document.activeElement===f[0]){e.preventDefault();f[f.length-1].focus()}
-    else if(!e.shiftKey&&document.activeElement===f[f.length-1]){e.preventDefault();f[0].focus()}
-  });
-  function add(cls,text){var d=document.createElement('div');d.className='km '+cls;if(cls.indexOf('dots')!==-1)d.setAttribute('aria-hidden','true');if(text)d.textContent=text;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}
-  window.kchatAsk=function(q){inp.value=q;send();inp.focus();};
-
-  /* image attach + drag-and-drop */
-  function renderAtts(){
-    attWrap.innerHTML='';attWrap.style.display=atts.length?'flex':'none';
-    atts.forEach(function(a,i){
-      var t=document.createElement('div');t.className='kchat-thumb';
-      var im=document.createElement('img');im.src=a.url;t.appendChild(im);
-      var x=document.createElement('button');x.type='button';x.setAttribute('aria-label','Remove');x.innerHTML='&times;';
-      x.addEventListener('click',function(){atts.splice(i,1);renderAtts();});
-      t.appendChild(x);attWrap.appendChild(t);
-    });
-  }
-  function addFiles(files){
-    for(var i=0;i<files.length;i++){(function(f){
-      if(!f.type||f.type.indexOf('image/')!==0)return;
-      if(atts.length>=4)return;
-      var rd=new FileReader();rd.onload=function(){atts.push({name:f.name,url:rd.result});renderAtts();};rd.readAsDataURL(f);
-    })(files[i]);}
-  }
-  attBtn.addEventListener('click',function(){fileIn.click();});
-  fileIn.addEventListener('change',function(){addFiles(fileIn.files);fileIn.value='';});
-  ['dragover','dragenter'].forEach(function(ev){panel.addEventListener(ev,function(e){e.preventDefault();panel.classList.add('drag');});});
-  ['dragleave','dragend'].forEach(function(ev){panel.addEventListener(ev,function(e){e.preventDefault();panel.classList.remove('drag');});});
-  panel.addEventListener('drop',function(e){e.preventDefault();panel.classList.remove('drag');if(e.dataTransfer&&e.dataTransfer.files)addFiles(e.dataTransfer.files);});
-
-  /* voice to text (Web Speech API) */
-  var SR=window.SpeechRecognition||window.webkitSpeechRecognition,rec=null,listening=false;
-  if(SR){
-    rec=new SR();rec.lang='en-US';rec.interimResults=true;rec.continuous=false;
-    rec.onstart=function(){listening=true;mic.classList.add('rec');};
-    rec.onend=function(){listening=false;mic.classList.remove('rec');};
-    rec.onerror=function(){listening=false;mic.classList.remove('rec');};
-    rec.onresult=function(e){var t='';for(var i=0;i<e.results.length;i++)t+=e.results[i][0].transcript;inp.value=t;};
-    mic.addEventListener('click',function(){if(listening){rec.stop();return;}try{rec.start();}catch(err){}});
-  } else { mic.style.display='none'; }
-
-  function send(){
-    var q=inp.value.trim();var imgs=atts.slice();
-    if((!q && !imgs.length)||busy)return;
-    if(listening&&rec){try{rec.stop();}catch(e){}}
-    inp.value='';busy=true;
-    var chips=msgs.querySelector('.kchat-chips');if(chips)chips.remove();
-    var ud=add('user',q||'');
-    if(imgs.length){var g=document.createElement('div');g.className='km-imgs';imgs.forEach(function(a){var im=document.createElement('img');im.src=a.url;g.appendChild(im);});ud.appendChild(g);}
-    atts=[];renderAtts();
-    if(imgs.length && !IMG_LIVE){
-      add('bot',"Thanks for the photo! Reading itineraries and screenshots is coming soon with our new booking system. For now, tell me what you need in a message, or email us at reserve@koastride.com and a human will help.");
-      if(!q){hist.push({role:'user',content:'(photo attached)'});busy=false;return;}
-      hist.push({role:'user',content:q});
-    } else {
-      hist.push(imgs.length?{role:'user',content:q,images:imgs.map(function(a){return a.url;})}:{role:'user',content:q});
+    launcher.setAttribute('aria-expanded',String(open));
+    if(open){
+      panel.removeAttribute('inert');panel.setAttribute('aria-hidden','false');fitViewport();
+      if(window.visualViewport){window.visualViewport.addEventListener('resize',fitViewport);window.visualViewport.addEventListener('scroll',fitViewport);}
+      document.getElementById('kchat-title').focus();
+    }else{
+      stopDictation(true);
+      if(window.visualViewport){window.visualViewport.removeEventListener('resize',fitViewport);window.visualViewport.removeEventListener('scroll',fitViewport);}
+      launcher.focus();panel.setAttribute('inert','');panel.setAttribute('aria-hidden','true');
     }
-    var dots=add('bot dots','…');
-    fetch(URL_,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:hist})})
-      .then(function(r){return r.json()})
-      .then(function(d){dots.remove();var a=d.reply||"Sorry — something went wrong. Email us at reserve@koastride.com and a human will help.";add('bot',a);hist.push({role:'assistant',content:a});busy=false;})
-      .catch(function(){dots.remove();add('bot',"I can't connect right now — email us at reserve@koastride.com and a real person will answer.");busy=false;});
   }
-  btn.addEventListener('click',send);
-  inp.addEventListener('keydown',function(e){if(e.key==='Enter')send();});
+  launcher.addEventListener('click',function(){setChat(true);});
+  closeButton.addEventListener('click',function(){setChat(false);});
+  panel.addEventListener('keydown',function(event){
+    if(event.key==='Escape'){event.preventDefault();setChat(false);return;}
+    if(event.key!=='Tab')return;
+    var controls=[].slice.call(panel.querySelectorAll('button:not([disabled]),a[href],input:not([disabled])')).filter(function(control){return !control.hidden&&control.offsetParent!==null;});
+    if(!controls.length)return;
+    if(event.shiftKey&&(document.activeElement===controls[0]||document.activeElement===document.getElementById('kchat-title'))){event.preventDefault();controls[controls.length-1].focus();}
+    else if(!event.shiftKey&&document.activeElement===controls[controls.length-1]){event.preventDefault();controls[0].focus();}
+  });
+  function appendMessage(kind,text){
+    var node=document.createElement('div');node.className='km '+kind;node.textContent=text;
+    messages.appendChild(node);messages.scrollTop=messages.scrollHeight;return node;
+  }
+  function clearFailure(){if(failureNode){failureNode.remove();failureNode=null;}failedRequest=null;}
+  function requestReply(payload){
+    if(busy)return;
+    clearFailure();busy=true;syncControls();status.textContent='Kopilot is replying.';
+    var thinking=appendMessage('bot dots','…');thinking.setAttribute('aria-hidden','true');
+    var controller=new AbortController();var timeout=setTimeout(function(){controller.abort();},40000);
+    fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:payload}),signal:controller.signal})
+      .then(function(response){if(!response.ok)throw new Error('request_failed');return response.json();})
+      .then(function(data){
+        if(!data||typeof data.reply!=='string'||!data.reply.trim())throw new Error('empty_reply');
+        appendMessage('bot',data.reply);history.push({role:'assistant',content:data.reply});
+      })
+      .catch(function(){
+        failedRequest=payload;
+        failureNode=appendMessage('bot kchat-error','I couldn’t connect. Try again, or email our team below.');
+        var retry=document.createElement('button');retry.type='button';retry.className='kchat-retry';retry.textContent='Try again';
+        retry.addEventListener('click',function(){if(failedRequest&&!busy){requestReply(failedRequest);input.focus();}});failureNode.appendChild(retry);
+      })
+      .finally(function(){clearTimeout(timeout);thinking.remove();busy=false;syncControls();status.textContent='';messages.scrollTop=messages.scrollHeight;});
+  }
+  function send(){
+    var question=input.value.trim();if(!question||busy)return;
+    stopDictation(true);
+    var welcome=messages.querySelector('.kchat-welcome');if(welcome)welcome.remove();
+    input.value='';appendMessage('user',question);history.push({role:'user',content:question});
+    requestReply(history.slice(-12));input.focus();
+  }
+  window.kchatAsk=function(question){if(busy)return;input.value=question;send();input.focus();};
+  [].forEach.call(panel.querySelectorAll('[data-question]'),function(button){button.addEventListener('click',function(){window.kchatAsk(button.getAttribute('data-question'));});});
+  sendButton.addEventListener('click',send);
+  input.addEventListener('input',syncControls);
+  input.addEventListener('keydown',function(event){if(event.key==='Enter'&&!event.isComposing){event.preventDefault();send();}});
+  var Speech=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(Speech){
+    recognition=new Speech();recognition.lang='en-US';recognition.interimResults=true;recognition.continuous=false;
+    recognition.onstart=function(){if(!acceptDictationResults){stopDictation(true);return;}listening=true;microphone.classList.add('rec');microphone.setAttribute('aria-pressed','true');microphone.setAttribute('aria-label','Stop dictation');status.textContent='Listening for your message.';};
+    recognition.onend=function(){acceptDictationResults=false;listening=false;microphone.classList.remove('rec');microphone.setAttribute('aria-pressed','false');microphone.setAttribute('aria-label','Dictate a message');if(!busy)status.textContent='';};
+    recognition.onerror=function(){acceptDictationResults=false;status.textContent='Dictation is unavailable. You can type your message.';};
+    recognition.onresult=function(event){if(!acceptDictationResults)return;var text='';for(var i=0;i<event.results.length;i++)text+=event.results[i][0].transcript;input.value=text;syncControls();};
+    microphone.addEventListener('click',function(){if(busy)return;if(listening){stopDictation(false);return;}acceptDictationResults=true;try{recognition.start();}catch(error){acceptDictationResults=false;status.textContent='Dictation is unavailable. You can type your message.';}});
+  }else{microphone.hidden=true;}
+  syncControls();
 })();
 </script>
-""".replace("__CHAT_URL__", CHAT_WORKER_URL)
+""".replace("__CHAT_URL__", CHAT_WORKER_URL).replace("__QUOTE_URL__", escape(BOOK, quote=True))
 
 # Externalize the chat script to one file (smaller pages, cached once across the site)
 import re as _re0
 _sm = _re0.search(r"<script>(.*?)</script>", CHAT_WIDGET, _re0.S)
 if _sm:
     open(os.path.join(ROOT, "koast-chat.js"), "w", encoding="utf-8").write(_sm.group(1).strip())
-    CHAT_WIDGET = CHAT_WIDGET.replace(_sm.group(0), '<script src="/koast-chat.js" defer></script>')
+    CHAT_WIDGET = CHAT_WIDGET.replace(_sm.group(0), '<script src="/koast-chat.js?v=2" defer></script>')
 
 def footer(prefix=""):
     return f"""

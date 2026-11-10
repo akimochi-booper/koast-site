@@ -19,3 +19,8 @@ The home `easy.` span maps that ramp to its visible ink bounds, excluding the fo
 
 ## Owner correction: retain teal and orange
 Supersedes the rejected charcoal-only text revision. Preserve the existing teal/orange assignments. Teal feature icons, controls and badges use coordinated teal gradients. The 30+ statistic uses teal gradient; 3,100+ uses the approved orange gradient. Keep original unaccented numbers neutral. No added statistic rules. The review indicator is a small teal-gradient pill with a transparent button hit area, never a filled square.
+
+
+## Website Kopilot — November9 local proposal
+
+Owner requested the website popup adopt the newly selected Passenger Kopilot style and read clearly as an AI assistant. Local candidate uses Passenger deep teal155deg action stops for the launcher/identity and flat#2dd4bf for small accents. Neutral charcoal canvas, satin44px square Close/Send,16px message input and scoped welcome/conversation states replace the older orange chat treatment. Other website orange controls and source wordmark remain owned by the existing palette. This is a website-scoped proposed adaptation, not a new cross-app standard or a production release. Geometry, interaction and verification: website-assistant-design-qa.md.
