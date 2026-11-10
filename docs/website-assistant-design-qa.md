@@ -60,3 +60,7 @@ Owner requested removing the note below the photo composer. Removed the provider
 Owner identified misaligned X. Replaced the font multiplication glyph with the existing symmetric Close SVG geometry centered in a14px square. Removed native button padding, retained44px hit area and24px visual disc, and made the76px thumbnail border-box so overlay placement shares its actual bounds. Local visual correction only.
 
 App-browser390px verification: SVG center offset0,0 inside44x44target; screenshotwebsite-photo-x-centered-390.png. Native Remove clearsattachmentandrestoresAddphotosfocus.22owningchecks,helper syntax/whitespace pass. Notdeployed.
+
+### Photo publication approved
+
+Owner explicitly approved shipping the photo feature, then safe links/follow-up/phone-flow improvements. Current main0effea2 fetched/rebased cleanly;50site38Workerchecks,233pages47posts15dated guides valid andsyntax/15.3KBESM pass. Own ACTIVE D1sl-site-photo-publish-20261110-01a1a9bf inserted/readback after no conflicting site action. Existing encryptedOpenAIkey and GitBuild settings verified. Images raw-byte Worker binding uses existingfree transformations rather than public storage/zoneURLoptimization; no planpurchase or zonechange requested/performed. Limiter namespace strings are derived from taskUUID+bindingname for accountcollisionavoidance. Git publication/live proof follows in shared audit.
