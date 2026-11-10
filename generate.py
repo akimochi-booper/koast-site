@@ -2496,6 +2496,16 @@ def _schema_for(rel, src, url, title, desc):
             {"@type":"ListItem","position":3,"name":leaf,"item":url}]})
     return blocks
 
+FAVICON_LINKS = '''<link rel="shortcut icon" href="/favicon-v2.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/koast-favicon-v2-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/koast-favicon-v2-32.png">
+<link rel="icon" type="image/svg+xml" sizes="any" href="/img/koast-favicon-v2.svg">'''
+
+def _update_favicon_links(src):
+    # Canonical preview pages also pass through here; retain their Apple/PWA icons.
+    src = _re.sub(r'<link\b(?=[^>]*\brel=["\'](?:shortcut\s+)?icon["\'])[^>]*>\s*', '', src, flags=_re.I)
+    return src.replace('</head>', FAVICON_LINKS + '\n</head>', 1)
+
 def enhance():
     pages = sorted(
         fp for fp in _glob.glob(os.path.join(ROOT,"**","*.html"), recursive=True)
@@ -2514,6 +2524,7 @@ def enhance():
         src = _rewrite_site_links(src, rel, root_files)
         src = _rewrite_absolute_site_urls(src)
         src = _add_image_dimensions(src, fp)
+        src = _update_favicon_links(src)
         if 'rel="canonical"' in src:
             src = _re.sub(r'<link\s+rel="canonical"\s+href="[^"]*"\s*/?>', f'<link rel="canonical" href="{url}">', src, count=1, flags=_re.I)
             open(fp,"w",encoding="utf-8",newline="\n").write(src)
@@ -2527,7 +2538,6 @@ def enhance():
         ogtype = "article" if rel.startswith("blog/") and rel != "blog/index.html" else "website"
         ogdims = '\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">' if ogimg.endswith("og-image.jpg") else ""
         inject = f"""<link rel="canonical" href="{url}">
-<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
 <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <meta property="og:type" content="{ogtype}">
 <meta property="og:locale" content="en_US">
@@ -4117,6 +4127,7 @@ not_found = head(
     "Page Not Found | Koast",
     "That Koast page could not be found. Return home, explore service areas, or contact support.",
 )
+not_found = _update_favicon_links(not_found)
 not_found = not_found.replace("</head>", '<meta name="robots" content="noindex,follow">\n</head>', 1)
 not_found += nav("")
 not_found += """

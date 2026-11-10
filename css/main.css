@@ -460,6 +460,7 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
 #kchat .kchat-mark{width:42px;height:42px;flex:none;border-radius:50%;display:grid;place-items:center;background:var(--assistant-fill) border-box no-repeat;color:var(--assistant-ink);box-shadow:inset 0 1px 0 #ffffff35}
 #kchat .kchat-mark svg{width:24px;height:24px}
 #kchat .kchat-id strong{display:block;font-size:17px;line-height:1.4;letter-spacing:-.02em;font-weight:750;color:#f4f4f6}
+#kchat #kchat-title:focus{outline:none;box-shadow:none}
 #kchat .kchat-id div>span{display:block;margin-top:2px;font-size:12px;line-height:1.4;color:#b6c0c9}
 #kchat .kchat-x,#kchat #kchat-send{width:44px;height:44px;min-width:44px;flex:none;display:grid;place-items:center;padding:0;box-sizing:border-box;border:1px solid #ffffff32;border-radius:12px;background:var(--assistant-face) border-box no-repeat;color:var(--assistant-accent);box-shadow:inset 0 1px 0 #ffffff13;cursor:pointer}
 #kchat .kchat-x svg,#kchat #kchat-send svg{width:20px;height:20px}
