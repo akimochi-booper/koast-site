@@ -18,7 +18,7 @@ function fixture({voice=false,lateVoice=false,photos=false,preparePhoto=async()=
   querySelector(selector){return this.children.find(x=>x.className.split(' ').includes(selector.slice(1)))||null;}
   querySelectorAll(selector){if(selector==='[data-question]')return [starter];return [close,input,mic,send,quote,email].filter(x=>!x.disabled);}
  }
- for(const id of ['kchat','kchat-msgs','kchat-in','kchat-send','kchat-mic','kchat-status','kchat-fab','kchat-title','kchat-attach','kchat-photo-input','kchat-photo-tray','kchat-photo-notice','kchat-photo-privacy'])elements[id]=new Element(id);
+ for(const id of ['kchat','kchat-msgs','kchat-in','kchat-send','kchat-mic','kchat-status','kchat-fab','kchat-title','kchat-attach','kchat-photo-input','kchat-photo-tray','kchat-photo-notice'])elements[id]=new Element(id);
  const panel=elements.kchat,messages=elements['kchat-msgs'],input=elements['kchat-in'],send=elements['kchat-send'],mic=elements['kchat-mic'],close=new Element('close'),starter=new Element('starter'),quote=new Element('quote'),email=new Element('email');
  starter.setAttribute('data-question','How does airport pickup work?');panel.querySelector=selector=>selector==='.kchat-x'?close:null;
  const welcome=new Element();welcome.className='kchat-welcome';messages.appendChild(welcome);

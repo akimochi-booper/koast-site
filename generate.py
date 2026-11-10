@@ -175,7 +175,6 @@ CHAT_WIDGET = r"""
       <button id="kchat-mic" class="kchat-tool" type="button" aria-label="Dictate a message" title="Dictate a message" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3m-4 0h8"/></svg></button>
       <button id="kchat-send" type="button" aria-label="Send message" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
     </div>
-    <p class="kchat-photo-privacy" id="kchat-photo-privacy" hidden>Photos are sent to our AI provider when you press Send. Avoid IDs and payment details.</p>
     <span id="kchat-status" class="sr-only" role="status" aria-live="polite"></span>
   </div>
   <div class="kchat-actions"><a href="__QUOTE_URL__" class="kchat-quote">Get a quote</a><a class="kchat-human" href="mailto:reserve@koastride.com">Email our team</a></div>
@@ -190,7 +189,7 @@ CHAT_WIDGET = r"""
   var launcher=document.getElementById('kchat-fab'),closeButton=panel.querySelector('.kchat-x');
   var photos=null,photoBubbles=[];
   var history=[],busy=false,failedRequest=null,failureNode=null,listening=false,recognition=null,acceptDictationResults=false;
-  function syncControls(){sendButton.disabled=busy||(photos&&photos.processing)||(!input.value.trim()&&!(photos&&photos.items.length));microphone.disabled=busy;messages.setAttribute('aria-busy',String(busy));if(photos){photos.setBusy(busy);document.getElementById('kchat-photo-privacy').hidden=!photos.items.length;}}
+  function syncControls(){sendButton.disabled=busy||(photos&&photos.processing)||(!input.value.trim()&&!(photos&&photos.items.length));microphone.disabled=busy;messages.setAttribute('aria-busy',String(busy));if(photos)photos.setBusy(busy);}
   if(window.KoastPhotoComposer){photos=new window.KoastPhotoComposer({button:document.getElementById('kchat-attach'),picker:document.getElementById('kchat-photo-input'),tray:document.getElementById('kchat-photo-tray'),notice:document.getElementById('kchat-photo-notice'),onChange:syncControls});}
   function stopDictation(discard){if(discard)acceptDictationResults=false;if(recognition){try{recognition.stop();}catch(error){}}}
   function fitViewport(){
