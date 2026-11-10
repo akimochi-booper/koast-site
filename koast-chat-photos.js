@@ -53,7 +53,7 @@
   };
   Composer.prototype.render=function(){
     var self=this,o=this.options;o.tray.textContent='';o.tray.hidden=!this.items.length;
-    this.items.forEach(function(url,index){var tile=document.createElement('div');tile.className='kchat-photo';var image=document.createElement('img');image.src=url;image.alt='Attached photo '+(index+1);var remove=document.createElement('button');remove.type='button';remove.className='kchat-photo-remove';remove.setAttribute('aria-label','Remove photo '+(index+1));remove.textContent='×';remove.disabled=self.busy||self.processing;remove.addEventListener('click',function(){self.items.splice(index,1);self.render();o.button.focus();});tile.appendChild(image);tile.appendChild(remove);o.tray.appendChild(tile);});
+    this.items.forEach(function(url,index){var tile=document.createElement('div');tile.className='kchat-photo';var image=document.createElement('img');image.src=url;image.alt='Attached photo '+(index+1);var remove=document.createElement('button');remove.type='button';remove.className='kchat-photo-remove';remove.setAttribute('aria-label','Remove photo '+(index+1));remove.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>';remove.disabled=self.busy||self.processing;remove.addEventListener('click',function(){self.items.splice(index,1);self.render();o.button.focus();});tile.appendChild(image);tile.appendChild(remove);o.tray.appendChild(tile);});
     o.button.disabled=this.busy||this.processing||this.items.length>=2;o.onChange();
   };
   Composer.prototype.take=function(){var result=this.items.slice();this.items=[];this.options.notice.textContent='';this.render();return result;};

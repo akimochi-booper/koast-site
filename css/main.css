@@ -746,8 +746,9 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
 #kchat .kchat-photo-tray{display:flex;gap:10px;padding:0 0 8px}
 #kchat .kchat-photo-tray[hidden],#kchat #kchat-photo-input{display:none}
 #kchat .kchat-photo{position:relative;width:76px;height:76px}
-#kchat .kchat-photo img{width:76px;height:76px;object-fit:cover;border-radius:12px;border:1px solid #ffffff30}
-#kchat .kchat-photo-remove{position:absolute;top:-6px;right:-6px;width:44px;height:44px;border:0;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,#181b20 0 12px,transparent 13px);color:#fff;font-family:inherit;font-size:22px;line-height:1;cursor:pointer}
+#kchat .kchat-photo img{box-sizing:border-box;display:block;width:76px;height:76px;object-fit:cover;border-radius:12px;border:1px solid #ffffff30}
+#kchat .kchat-photo-remove{position:absolute;top:-6px;right:-6px;box-sizing:border-box;width:44px;height:44px;padding:0;border:0;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,#181b20 0 12px,transparent 13px);color:#fff;line-height:0;cursor:pointer}
+#kchat .kchat-photo-remove svg{display:block;width:14px;height:14px;pointer-events:none}
 #kchat .kchat-photo-notice{margin:0;color:#f6ab3e;font-size:12px;line-height:1.5}
 #kchat .kchat-photo-notice:not(:empty){padding:0 0 8px}
 #kchat .kchat-sent-photo{display:block;width:150px;max-width:100%;max-height:120px;object-fit:cover;border-radius:8px;margin-top:8px}

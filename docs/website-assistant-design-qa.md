@@ -54,3 +54,9 @@ Status: built/tested local, not published. Before any production release verify 
 ### Owner refinement — remove composer disclaimer
 
 Owner requested removing the note below the photo composer. Removed the provider-sharing/sensitive-details paragraph and its visibility/CSS bindings from this local candidate. Existing site privacy policy remains the disclosure owner; file validation, resizing/rebuilding, metadata removal, rate guards, explicit Send and fallback behavior stay intact. No provider or upload-security change.
+
+### Photo remove glyph alignment
+
+Owner identified misaligned X. Replaced the font multiplication glyph with the existing symmetric Close SVG geometry centered in a14px square. Removed native button padding, retained44px hit area and24px visual disc, and made the76px thumbnail border-box so overlay placement shares its actual bounds. Local visual correction only.
+
+App-browser390px verification: SVG center offset0,0 inside44x44target; screenshotwebsite-photo-x-centered-390.png. Native Remove clearsattachmentandrestoresAddphotosfocus.22owningchecks,helper syntax/whitespace pass. Notdeployed.
