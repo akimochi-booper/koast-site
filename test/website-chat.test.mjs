@@ -4,7 +4,7 @@ import vm from 'node:vm';
 import {readFileSync} from 'node:fs';
 const source=readFileSync(new URL('../koast-chat.js',import.meta.url),'utf8');
 const settle=()=>new Promise(resolve=>setImmediate(resolve));
-function fixture({voice=false,lateVoice=false,photos=false}={}){
+function fixture({voice=false,lateVoice=false,photos=false,preparePhoto=async()=> 'data:image/jpeg;base64,cGhvdG8='}={}){
  const elements={},requests=[],timers=new Map(),background=[],viewportListeners=new Map();let timer=0,doc,recognition,photoComposer;
  class Element{
   constructor(id=''){this.id=id;this.children=[];this.attributes={};this.listeners={};this.value='';this.disabled=false;this.hidden=false;this.textContent='';this.className='';this.offsetParent={};this.style={setProperty(){}};const classes=new Set();this.classList={add:k=>classes.add(k),remove:k=>classes.delete(k),toggle:(k,on)=>on?classes.add(k):classes.delete(k),contains:k=>classes.has(k)};}
@@ -27,7 +27,7 @@ function fixture({voice=false,lateVoice=false,photos=false}={}){
  const window={innerHeight:844,visualViewport:viewport,koastModalBackground:(element,open)=>background.push(open)};
  if(voice)window.SpeechRecognition=class{constructor(){recognition=this;this.stops=0;}start(){this.onstart();}stop(){this.stops++;if(!lateVoice)this.onend();}};
  const context={window,document:doc,DataView,Uint8Array,AbortSignal,createImageBitmap:()=>{},AbortController,fetch:(url,options)=>new Promise((resolve,reject)=>{if(String(url).endsWith('/capabilities'))return resolve({ok:true,json:async()=>({photos:true})});const request={url,options,resolve,reject};requests.push(request);options.signal.addEventListener('abort',()=>reject(new Error('aborted')));}),setTimeout:fn=>{timers.set(++timer,fn);return timer;},clearTimeout:id=>timers.delete(id)};
- if(photos){vm.runInNewContext(readFileSync(new URL('../koast-chat-photos.js',import.meta.url),'utf8'),context);const Actual=window.KoastPhotoComposer;window.KoastPhotoComposer=function(o){photoComposer=new Actual({...o,prepare:async()=> 'data:image/jpeg;base64,cGhvdG8='});return photoComposer;};}
+ if(photos){vm.runInNewContext(readFileSync(new URL('../koast-chat-photos.js',import.meta.url),'utf8'),context);const Actual=window.KoastPhotoComposer;window.KoastPhotoComposer=function(o){photoComposer=new Actual({...o,prepare:preparePhoto});return photoComposer;};}
  vm.runInNewContext(source,context);
  return {elements,panel,messages,input,send,mic,close,starter,doc,requests,background,viewportListeners,recognition:()=>recognition,photos:()=>photoComposer,timeout:()=>[...timers.values()].forEach(fn=>fn()),write:text=>{input.value=text;input.emit('input');},reply:async(index,text)=>{requests[index].resolve({ok:true,json:async()=>({reply:text})});await settle();}};
 }
@@ -86,4 +86,8 @@ test('photo retry retains the exact attachment payload and a newer typed draft',
 
 test('photo failure can explicitly clear image context and continue with text without an automatic send',async()=>{
  const h=fixture({photos:true});h.elements['kchat-fab'].click();await settle();await h.photos().select([{}]);h.write('See my luggage');h.send.click();h.requests[0].reject(Error('unavailable'));await settle();h.write('There are two suitcases');const failure=h.messages.children.at(-1);assert.equal(failure.children[1].textContent,'Continue without photos');failure.children[1].click();assert.equal(h.requests.length,1);assert.equal(h.input.value,'There are two suitcases');h.send.click();assert.equal(JSON.parse(h.requests[1].options.body).messages.some(m=>m.images?.length),false);
+});
+
+test('continuing with text also cancels a new photo still being prepared',async()=>{
+ let calls=0,release;const h=fixture({photos:true,preparePhoto:()=>++calls===1?Promise.resolve('data:image/jpeg;base64,Zmlyc3Q='):new Promise(r=>release=r)});h.elements['kchat-fab'].click();await settle();await h.photos().select([{}]);h.send.click();h.requests[0].reject(Error('offline'));await settle();const failure=h.messages.children.at(-1);const pending=h.photos().select([{}]);h.write('Two suitcases');failure.children[1].click();release('data:image/jpeg;base64,bGF0ZQ==');await pending;assert.equal(h.photos().items.length,0);h.send.click();assert.equal(JSON.parse(h.requests[1].options.body).messages.some(m=>m.images?.length),false);
 });
