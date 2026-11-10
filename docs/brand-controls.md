@@ -29,3 +29,12 @@ Owner requested the website popup adopt the newly selected Passenger Kopilot sty
 ## Website Kopilot — retain orange and existing material
 
 Latest owner direction supersedes the teal website proposal: retain the original source-derived orange gradient rim and165deg translucent charcoal/14pxblur surface. Refresh the composer, name/icon, floating AskKopilot control and quote/team actions. Passenger teal adoption remains Passenger-only. The current local website revision uses existing website orange/ink tokens, an authored chat-and-spark mark, a restrained warm composer/Send rim, quiet neutral text links for quote and email beneath the composer (superseding the earlier prominent buttons). No page-wide recoloring or artificial new texture. Local review only, not published; current evidence in website-assistant-design-qa.md.
+
+
+## Website favicon — approved K source, November10,2026
+
+The versioned favicon family crops only the two-path K group from `img/koast-wordmark-orange-v1.svg`, the approved optionE source. Both path `d` attributes, original group translate/scale, inherited evenodd fill rule and five-stop `gold-k` gradient are retained exactly. Only the outer square viewport changes; the artwork is centered with6.25percent clear space on each limiting edge. No AI redraw or path approximation. The source SVG SHA256 is `14a2ebe3781072ef04bfd1b04ad886b8fea5a7938d04a239c6e76586a9fc5198`.
+
+Assets: `img/koast-favicon-v2.svg`, `img/koast-favicon-v2-16.png`, `img/koast-favicon-v2-32.png`, `img/koast-favicon-v2-48.png` and root `favicon-v2.ico` containing those three PNG resolutions. PNG alpha padding/dimensions and ICO entry dimensions/byte ranges are asserted during generation; source versus output paths, transform and gradient must match. Existing square app/PWA/apple assets and the full header wordmark are untouched.
+
+Rebuild explicitly with optional isolated tooling: `npm install --prefix .favicon-tools --no-save @resvg/resvg-js@2.6.2 @xmldom/xmldom@0.9.12`, then `node scripts/build-favicon.mjs`. The script uses the current repository vector asset and emits deterministic committed assets; it is not required by `generate.py` or the production publication workflow. Keep `.favicon-tools/` ignored locally. `KOAST_FAVICON_TOOLS` may point to an existing equivalent tooling prefix. A256px visual preview is written only to that ignored tooling folder for inspection. Head-tag wiring and final live verification belong to the integrating publisher; asset creation alone is not a deployment claim.
