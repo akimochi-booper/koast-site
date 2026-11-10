@@ -490,19 +490,16 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
 #kchat #kchat-send{border-color:transparent;background:var(--assistant-face) padding-box no-repeat,var(--assistant-fill) border-box no-repeat;color:var(--assistant-accent)}
 #kchat #kchat-send:disabled{opacity:.38;cursor:default;filter:none;transform:none;box-shadow:none}
 #kchat .kchat-tool:disabled{opacity:.4;cursor:default}
-#kchat .kchat-actions{display:flex;align-items:center;gap:10px;flex:none;padding:12px 14px 14px}
-#kchat .kchat-actions a{display:inline-flex;align-items:center;justify-content:center;gap:6px;flex:1;min-width:0;min-height:44px;box-sizing:border-box;padding:9px 8px;border:1px solid transparent;border-radius:12px;text-decoration:none;font-size:12.5px;line-height:20px;font-weight:650;white-space:nowrap;box-shadow:inset 0 1px 0 #ffffff22}
-#kchat .kchat-actions svg{width:16px;height:16px;flex:none}
-#kchat .kchat-actions .kchat-quote{background:var(--assistant-fill) border-box no-repeat;color:var(--assistant-ink)}
-#kchat .kchat-actions .kchat-human{background:var(--assistant-face) padding-box no-repeat,var(--assistant-fill) border-box no-repeat;color:var(--assistant-accent)}
-#kchat .kchat-actions a:hover{filter:brightness(1.08)}
+#kchat .kchat-actions{display:flex;align-items:center;justify-content:center;gap:20px;flex:none;padding:2px 14px 8px}
+#kchat .kchat-actions a{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;box-sizing:border-box;padding:4px 6px;border-radius:6px;color:#b9bdc7;text-decoration:none;font-size:12px;line-height:20px;font-weight:450;white-space:nowrap}
+#kchat .kchat-actions a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
 #kchat .kchat-retry{display:block;min-height:44px;margin-top:8px;padding:7px 13px;background:transparent;color:var(--assistant-accent);border:1px solid #8d6845;border-radius:10px;font:inherit;font-weight:600;font-size:14px;line-height:1.5;cursor:pointer}
 #kchat button:focus-visible,#kchat a:focus-visible,body #kchat-fab:focus-visible{outline:2px solid var(--assistant-accent,#f6ab3e);outline-offset:3px}
 #kchat .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 @media(max-width:600px){#kchat{right:8px;bottom:calc(max(8px,env(safe-area-inset-bottom)) + var(--kchat-keyboard,0px));width:calc(100vw - 16px);max-width:none;height:690px;max-height:calc(var(--kchat-visible-height,100dvh) - 32px);border-radius:22px}body #kchat-fab{right:16px;bottom:max(16px,env(safe-area-inset-bottom))}#kchat .kchat-head{padding:14px 16px}#kchat .kchat-actions{padding-bottom:max(8px,env(safe-area-inset-bottom))}}
 @media(max-width:350px){#kchat .kchat-id div>span{font-size:11px}#kchat .kchat-head{gap:7px;padding-inline:12px}#kchat .kchat-msgs{padding-inline:14px}#kchat .kchat-welcome h2{font-size:25px}}
 @media(prefers-reduced-motion:reduce){#kchat,body #kchat-fab,body #kchat-fab:hover{transition:none;transform:none}}
-@media(forced-colors:active){#kchat::before{display:none}#kchat .kchat-actions .kchat-quote,#kchat .kchat-actions .kchat-human{background:ButtonFace;color:ButtonText;border-color:ButtonText;box-shadow:none}#kchat,body #kchat-fab,#kchat .kchat-mark,#kchat .km.bot,#kchat .km.user{background:Canvas;color:CanvasText;box-shadow:none;border:1px solid CanvasText}#kchat .kchat-x,#kchat #kchat-send,#kchat .kchat-tool,#kchat .kchat-foot{background:ButtonFace;color:ButtonText;border:1px solid ButtonText;box-shadow:none}#kchat .kchat-id strong,#kchat .kchat-id div>span,#kchat .kchat-welcome>p,#kchat .kchat-welcome h2,#kchat .kchat-chips button,#kchat .kchat-actions a{color:CanvasText}#kchat button:focus-visible,#kchat a:focus-visible,body #kchat-fab:focus-visible{outline-color:Highlight}}
+@media(forced-colors:active){#kchat::before{display:none}#kchat .kchat-actions a{color:LinkText;text-decoration:underline}#kchat,body #kchat-fab,#kchat .kchat-mark,#kchat .km.bot,#kchat .km.user{background:Canvas;color:CanvasText;box-shadow:none;border:1px solid CanvasText}#kchat .kchat-x,#kchat #kchat-send,#kchat .kchat-tool,#kchat .kchat-foot{background:ButtonFace;color:ButtonText;border:1px solid ButtonText;box-shadow:none}#kchat .kchat-id strong,#kchat .kchat-id div>span,#kchat .kchat-welcome>p,#kchat .kchat-welcome h2,#kchat .kchat-chips button{color:CanvasText}#kchat button:focus-visible,#kchat a:focus-visible,body #kchat-fab:focus-visible{outline-color:Highlight}}
 
 
 /* ask our agent banner (support page) */

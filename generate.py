@@ -173,7 +173,7 @@ CHAT_WIDGET = r"""
     </div>
     <span id="kchat-status" class="sr-only" role="status" aria-live="polite"></span>
   </div>
-  <div class="kchat-actions"><a href="__QUOTE_URL__" class="kchat-quote">Get a quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a><a class="kchat-human" href="mailto:reserve@koastride.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>Email our team</a></div>
+  <div class="kchat-actions"><a href="__QUOTE_URL__" class="kchat-quote">Get a quote</a><a class="kchat-human" href="mailto:reserve@koastride.com">Email our team</a></div>
 </div>
 <script>
 (function(){
