@@ -2,7 +2,7 @@
 
 ## November 10, 2026 — teal support assistant candidate
 
-Decision: owner-requested teal direction, local candidate ready for review. This request supersedes the earlier orange-only website Kopilot treatment for this popup. It does not adopt a new standard for other marketing components or apps. Implementation: branch `fix/site-kopilot-teal-support` in the isolated `site-kopilot-01a1c802` clone; not published.
+Decision: Approved deployment target. Owner explicitly authorized publication on November 10 after reviewing the teal candidate. This request supersedes the earlier orange-only website Kopilot treatment for this popup. It does not adopt a new standard for other marketing components or apps. Implementation: branch `fix/site-kopilot-teal-support` in the isolated `site-kopilot-01a1c802` clone. Release status and live evidence are owned by the shared `audits/2026-11-09-website-kopilot/RELEASE.md` entry.
 
 The launcher, identity mark, rim, composer accent, Send and authored SVG starter arrows now use teal. Rider bubbles retain the website orange gradient; Kopilot replies use a dark teal gradient with light text. The existing charcoal material, typography, native quote/email links, protected photo handling, dictation, draft ownership and modal controller remain. Four starters cover existing bookings, changes/cancellations, contacting support and planning a ride; the welcome asks "How can I help?". Mobile width uses the available containing block so classic scrollbars cannot push the sheet past its left edge. CSS29/chat5 version the generated references.
 
@@ -12,7 +12,7 @@ Validation: 91 site tests and 40 Worker tests pass; 233 generated pages / 47 pos
 
 Actual Chrome preview at 390x844, 320x450 and 1440x1000: orange rider / teal reply gradients, native safe links, 44px composer controls, 16px input, contained panel, Escape launcher restoration, retained draft and initial backward focus loop checked. Local replies are explicitly synthetic and no upstream chat/booking request is made. Screenshots in `C:/Users/eubur/.codex/visualizations/2026/11/11/01a1c802-7b06-7551-956a-ace43135fd15/`: `kopilot-welcome-390.png`, `kopilot-conversation-390.png`, `kopilot-small-320.png`, `kopilot-desktop-1440.png`. Physical Safari/keyboard and live support-answer acceptance remain unverified.
 
-Publication still needs current site/Worker coordinator verification through D1 (connector unavailable in this chat), owner release authorization, fresh main integration, both Pages and chat Worker builds, and served-version/live model/mobile checks. Care Rides remains held.
+Publication uses the existing authenticated Git main/Pages and chat Worker Builds paths. D1 MCP is unavailable; the signed-in Cloudflare console handles the release coordination check, guarded claim and readback. Fresh main integration, both builds and served-version/live model/mobile checks remain mandatory. Care Rides remains held.
 
 ## Previous November 9 direction and release history
 
