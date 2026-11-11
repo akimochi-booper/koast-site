@@ -484,20 +484,30 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
 #kchat .km.user{background:var(--brand-gradient) border-box no-repeat;color:var(--brand-ink);border:0;border-bottom-right-radius:4px;align-self:flex-end;box-shadow:inset 0 1px 0 #ffffff24}
 #kchat .km.dots{color:var(--website-assistant-reply-ink);letter-spacing:3px;font-size:20px;line-height:1}
 #kchat .kchat-compose{flex:none;padding:8px 14px 0}
-#kchat .kchat-foot{display:flex;align-items:flex-end;gap:4px;box-sizing:border-box;min-height:56px;padding:5px;border:1.5px solid #388e83;border-radius:18px;background:var(--website-composer-fill);box-shadow:none}
-#kchat .kchat-foot:focus-within{border-color:transparent;background:linear-gradient(var(--website-composer-fill),var(--website-composer-fill)) padding-box,var(--website-composer-rim) border-box;box-shadow:none}
-#kchat #kchat-in{flex:1;min-width:0;width:100%;height:44px;box-sizing:border-box;margin:0;padding:10px 6px;border:0;border-radius:0;outline:none;background:transparent;color:#f4f4f6;font-family:inherit;font-size:16px;line-height:24px;box-shadow:none}
-#kchat #kchat-in::placeholder{color:#aeb5be;opacity:1}
+#kchat .kchat-foot{position:relative;isolation:isolate;display:flex;align-items:flex-end;gap:4px;box-sizing:border-box;min-height:56px;padding:5px;border:1.5px solid #388e83;border-radius:18px;background:var(--website-composer-fill);box-shadow:none}
+/* Paint a real two-pixel gradient instead of a subpixel border that reads as flat teal. */
+#kchat .kchat-foot::before{content:"";position:absolute;inset:-1px;z-index:1;border-radius:inherit;padding:2px;background:var(--website-composer-rim);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;pointer-events:none;opacity:0;transition:opacity .15s}
+#kchat .kchat-foot:focus-within{border-color:transparent;box-shadow:none}
+#kchat .kchat-foot:focus-within::before{opacity:1}
+#kchat #kchat-in{flex:1;min-width:0;width:100%;min-height:44px;max-height:160px;height:44px;resize:none;display:block;box-sizing:border-box;margin:0;padding:10px 6px;border:0;border-radius:0;outline:none;background:transparent;color:#f4f4f6;font-family:inherit;font-weight:400;font-size:16px;line-height:24px;letter-spacing:normal;white-space:pre-wrap;overflow-wrap:anywhere;overflow-x:hidden;box-shadow:none}
+#kchat #kchat-in::placeholder{color:#f4f4f6;opacity:.84}
 #kchat #kchat-in:focus-visible{outline:none}
 #kchat .kchat-tool{width:44px;height:44px;min-width:44px;flex:none;display:grid;place-items:center;border:0;border-radius:12px;background:transparent;color:#d8dde5;cursor:pointer;padding:0}
 #kchat .kchat-tool[hidden]{display:none}
-#kchat .kchat-tool svg{width:20px;height:20px}
+#kchat .kchat-tool svg{width:21px;height:21px}
 #kchat .kchat-tool.rec{color:#ff9187;background:#ff65651a}
 #kchat #kchat-send,.kai #kai-send{position:relative;touch-action:manipulation;width:44px;height:44px;min-width:44px;flex:0 0 44px;display:grid;place-items:center;box-sizing:border-box;margin:0;padding:0;border:1px solid transparent;border-radius:12px;background:var(--website-send-face) padding-box,var(--website-composer-rim) border-box;color:#f4f4f6;box-shadow:inset 0 1px 0 #ffffff14;cursor:pointer}
 #kchat #kchat-send:hover:not(:disabled),.kai #kai-send:hover:not(:disabled){background:var(--website-send-hover) padding-box,var(--website-composer-rim) border-box;filter:none}
 #kchat #kchat-send svg,.kai #kai-send svg{width:20px;height:20px;display:block;pointer-events:none}
 #kchat #kchat-send:disabled,.kai #kai-send:disabled{opacity:.42;cursor:default;filter:none;transform:none;box-shadow:none}
 #kchat .kchat-tool:disabled{opacity:.4;cursor:default}
+#kchat #kchat-send[aria-busy="true"]{opacity:.7}
+#kchat #kchat-send[aria-busy="true"] svg{visibility:hidden}
+#kchat #kchat-send[aria-busy="true"]::after{content:"";position:absolute;width:17px;height:17px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:kchat-send-spin .8s linear infinite}
+@keyframes kchat-send-spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){#kchat .kchat-foot::before{transition:none}#kchat #kchat-send[aria-busy="true"]::after{animation:none;border-style:dotted}}
+@media(forced-colors:active){#kchat .kchat-foot::before{display:none}}
+
 #kchat .kchat-actions{display:flex;align-items:center;justify-content:center;gap:20px;flex:none;padding:2px 14px 8px}
 #kchat .kchat-actions a{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;box-sizing:border-box;padding:4px 6px;border-radius:6px;color:#b9bdc7;text-decoration:none;font-size:12px;line-height:20px;font-weight:450;white-space:nowrap}
 #kchat .kchat-actions a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}

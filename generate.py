@@ -32,7 +32,7 @@ def head(title, desc, prefix="", extra=""):
 <meta name="robots" content="max-image-preview:large">
 <link rel="preload" href="/fonts/plus-jakarta-sans-latin-v12.woff2" as="font" type="font/woff2" crossorigin>
 <style>@font-face{{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:200 800;font-display:swap;src:url('/fonts/plus-jakarta-sans-latin-v12.woff2') format('woff2')}}</style>
-<link rel="stylesheet" href="{prefix}css/main.css?v=31">
+<link rel="stylesheet" href="{prefix}css/main.css?v=32">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0e1013">
 <script src="/koast-acquisition.js?v=2" defer></script>
@@ -169,12 +169,12 @@ CHAT_WIDGET = r"""
   <div class="kchat-compose">
     <div id="kchat-photo-tray" class="kchat-photo-tray" aria-label="Attached photos" hidden></div>
     <p id="kchat-photo-notice" class="kchat-photo-notice" role="status"></p>
-    <div class="kchat-foot">
-      <button id="kchat-attach" class="kchat-tool" type="button" aria-label="Add photos" title="Add up to 2 photos" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 13 7-7a3 3 0 0 1 4 4L9 20a5 5 0 0 1-7-7L13 2"/></svg></button>
+    <div class="kchat-foot" data-composer-row>
+      <button id="kchat-attach" class="kchat-tool" type="button" aria-label="Add photos" title="Add up to 2 photos" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m8 12 7-7a3.5 3.5 0 0 1 5 5L9 21a5 5 0 0 1-7-7L13 3"/></svg></button>
       <input id="kchat-photo-input" type="file" accept="image/jpeg,image/png,image/webp" multiple hidden aria-label="Choose photos">
-      <input id="kchat-in" type="text" aria-label="Message Kopilot" placeholder="Message Kopilot…" maxlength="1000" autocomplete="off" enterkeyhint="send">
+      <textarea id="kchat-in" rows="1" data-composer-input aria-label="Message Kopilot" placeholder="Message" maxlength="1000" autocomplete="off" enterkeyhint="send"></textarea>
       <button id="kchat-mic" class="kchat-tool" type="button" aria-label="Dictate a message" title="Dictate a message" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3m-4 0h8"/></svg></button>
-      <button id="kchat-send" type="button" aria-label="Send message" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+      <button id="kchat-send" type="button" data-composer-action="send" aria-label="Send message" aria-busy="false" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
     </div>
     <span id="kchat-status" class="sr-only" role="status" aria-live="polite"></span>
   </div>
@@ -190,11 +190,13 @@ CHAT_WIDGET = r"""
   var launcher=document.getElementById('kchat-fab'),closeButton=panel.querySelector('.kchat-x');
   var photos=null,photoBubbles=[];
   var history=[],busy=false,failedRequest=null,failureNode=null,listening=false,recognition=null,acceptDictationResults=false;
-  function syncControls(){sendButton.disabled=busy||(photos&&photos.processing)||(!input.value.trim()&&!(photos&&photos.items.length));microphone.disabled=busy;messages.setAttribute('aria-busy',String(busy));if(photos)photos.setBusy(busy);}
+  // Keep the native website adapters; match the app's growing message field and Send lifecycle.
+  function growComposer(){var cap=window.visualViewport&&window.visualViewport.height<520?96:160;input.style.height='auto';var content=input.scrollHeight||44;input.style.height=Math.max(44,Math.min(content,cap))+'px';input.style.overflowY=content>cap?'auto':'hidden';}
+  function syncControls(){growComposer();sendButton.disabled=busy||(photos&&photos.processing)||(!input.value.trim()&&!(photos&&photos.items.length));sendButton.setAttribute('aria-busy',String(busy));microphone.disabled=busy;messages.setAttribute('aria-busy',String(busy));if(photos)photos.setBusy(busy);}
   if(window.KoastPhotoComposer){photos=new window.KoastPhotoComposer({button:document.getElementById('kchat-attach'),picker:document.getElementById('kchat-photo-input'),tray:document.getElementById('kchat-photo-tray'),notice:document.getElementById('kchat-photo-notice'),onChange:syncControls});}
   function stopDictation(discard){if(discard)acceptDictationResults=false;if(recognition){try{recognition.stop();}catch(error){}}}
   function fitViewport(){
-    var viewport=window.visualViewport;if(!viewport)return;
+    var viewport=window.visualViewport;growComposer();if(!viewport)return;
     panel.style.setProperty('--kchat-visible-height',viewport.height+'px');
     panel.style.setProperty('--kchat-keyboard',Math.max(0,window.innerHeight-viewport.height-viewport.offsetTop)+'px');
   }
@@ -217,7 +219,7 @@ CHAT_WIDGET = r"""
   panel.addEventListener('keydown',function(event){
     if(event.key==='Escape'){event.preventDefault();setChat(false);return;}
     if(event.key!=='Tab')return;
-    var controls=[].slice.call(panel.querySelectorAll('button:not([disabled]),a[href],input:not([disabled])')).filter(function(control){return !control.hidden&&control.offsetParent!==null;});
+    var controls=[].slice.call(panel.querySelectorAll('button:not([disabled]),a[href],input:not([disabled]),textarea:not([disabled])')).filter(function(control){return !control.hidden&&control.offsetParent!==null;});
     if(!controls.length)return;
     if(event.shiftKey&&(document.activeElement===controls[0]||document.activeElement===document.getElementById('kchat-title'))){event.preventDefault();controls[controls.length-1].focus();}
     else if(!event.shiftKey&&document.activeElement===controls[controls.length-1]){event.preventDefault();controls[0].focus();}
@@ -255,13 +257,16 @@ CHAT_WIDGET = r"""
     stopDictation(true);
     var welcome=messages.querySelector('.kchat-welcome');if(welcome)welcome.remove();
     input.value='';var bubble=appendMessage('user',question),message={role:'user',content:question};if(attached.length){message.images=attached;attached.forEach(function(url,index){var image=document.createElement('img');image.src=url;image.alt='Sent photo '+(index+1);image.className='kchat-sent-photo';bubble.appendChild(image);photoBubbles.push(image);});}history.push(message);history=history.slice(-12);
-    requestReply(history.slice(-12));input.focus();
+    requestReply(history.slice(-12));input.focus();return true;
   }
   window.kchatAsk=function(question){if(busy)return;input.value=question;send();input.focus();};
   [].forEach.call(panel.querySelectorAll('[data-question]'),function(button){button.addEventListener('click',function(){window.kchatAsk(button.getAttribute('data-question'));});});
-  sendButton.addEventListener('click',send);
+  function preserveSendPress(event){if((event.button!=null&&event.button!==0)||event.isPrimary===false||sendButton.disabled||document.activeElement!==input)return;event.preventDefault();}
+  sendButton.addEventListener('pointerdown',preserveSendPress);
+  sendButton.addEventListener('mousedown',preserveSendPress);
+  sendButton.addEventListener('click',function(){var editing=document.activeElement===input;if(send()&&editing)input.blur();});
   input.addEventListener('input',syncControls);
-  input.addEventListener('keydown',function(event){if(event.key==='Enter'&&!event.isComposing){event.preventDefault();send();}});
+  input.addEventListener('keydown',function(event){if(event.key==='Enter'&&!event.shiftKey&&!event.isComposing&&event.keyCode!==229){event.preventDefault();send();}});
   var Speech=window.SpeechRecognition||window.webkitSpeechRecognition;
   if(Speech){
     recognition=new Speech();recognition.lang='en-US';recognition.interimResults=true;recognition.continuous=false;
@@ -281,7 +286,7 @@ import re as _re0
 _sm = _re0.search(r"<script>(.*?)</script>", CHAT_WIDGET, _re0.S)
 if _sm:
     open(os.path.join(ROOT, "koast-chat.js"), "w", encoding="utf-8").write(_sm.group(1).strip())
-    CHAT_WIDGET = CHAT_WIDGET.replace(_sm.group(0), '<script src="/koast-chat-photos.js?v=1" defer></script><script src="/koast-chat-links.js?v=1" defer></script><script src="/koast-chat.js?v=5" defer></script>')
+    CHAT_WIDGET = CHAT_WIDGET.replace(_sm.group(0), '<script src="/koast-chat-photos.js?v=1" defer></script><script src="/koast-chat-links.js?v=1" defer></script><script src="/koast-chat.js?v=6" defer></script>')
 
 def footer(prefix=""):
     return f"""

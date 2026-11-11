@@ -13,6 +13,7 @@ function fixture({voice=false,lateVoice=false,photos=false,preparePhoto=async()=
   emit(k,event={}){this.listeners[k]?.(event);}
   click(){if(!this.disabled)this.emit('click');}
   focus(){doc.activeElement=this;}
+  blur(){if(doc.activeElement===this)doc.activeElement=null;}
   appendChild(child){child.parent=this;this.children.push(child);return child;}
   remove(){if(this.parent)this.parent.children=this.parent.children.filter(x=>x!==this);}
   querySelector(selector){return this.children.find(x=>x.className.split(' ').includes(selector.slice(1)))||null;}
@@ -98,4 +99,22 @@ test('photo failure can explicitly clear image context and continue with text wi
 
 test('continuing with text also cancels a new photo still being prepared',async()=>{
  let calls=0,release;const h=fixture({photos:true,preparePhoto:()=>++calls===1?Promise.resolve('data:image/jpeg;base64,Zmlyc3Q='):new Promise(r=>release=r)});h.elements['kchat-fab'].click();await settle();await h.photos().select([{}]);h.send.click();h.requests[0].reject(Error('offline'));await settle();const failure=h.messages.children.at(-1);const pending=h.photos().select([{}]);h.write('Two suitcases');failure.children[1].click();release('data:image/jpeg;base64,bGF0ZQ==');await pending;assert.equal(h.photos().items.length,0);h.send.click();assert.equal(JSON.parse(h.requests[1].options.body).messages.some(m=>m.images?.length),false);
+});
+
+
+test('multiline composer keeps Shift+Enter and IME, grows within bounds and resets after native Send',async()=>{
+ const h=fixture();Object.defineProperty(h.input,'scrollHeight',{get:()=>h.input.value.includes('\n')?220:44});
+ h.write('First line');h.input.emit('keydown',{key:'Enter',shiftKey:true,preventDefault(){throw Error('Shift+Enter must remain native');}});
+ h.input.emit('keydown',{key:'Enter',keyCode:229,preventDefault(){throw Error('IME must remain native');}});assert.equal(h.requests.length,0);
+ h.write('First line\nSecond line');assert.equal(h.input.style.height,'160px');assert.equal(h.input.style.overflowY,'auto');h.viewport.height=400;h.input.emit('input');assert.equal(h.input.style.height,'96px');h.viewport.height=844;h.input.focus();h.send.click();
+ assert.equal(h.requests.length,1);assert.equal(JSON.parse(h.requests[0].options.body).messages[0].content,'First line\nSecond line');assert.equal(h.input.style.height,'44px');assert.equal(h.doc.activeElement,null);assert.equal(h.send.getAttribute('aria-busy'),'true');
+ h.write('Keep this next draft');await h.reply(0,'Reply');assert.equal(h.input.value,'Keep this next draft');assert.equal(h.send.getAttribute('aria-busy'),'false');assert.equal(h.send.disabled,false);
+});
+
+test('Send preserves focused input through press, sends only on click and ignores disabled/nonprimary presses',()=>{
+ const h=fixture();h.write('Send once');h.input.focus();let prevented=0;
+ h.send.emit('pointerdown',{button:0,isPrimary:true,preventDefault(){prevented++;}});assert.equal(prevented,1);assert.equal(h.requests.length,0);assert.equal(h.doc.activeElement,h.input);
+ h.send.emit('pointercancel');assert.equal(h.requests.length,0);h.send.emit('pointerdown',{button:1,preventDefault(){throw Error('nonprimary');}});
+ h.send.click();h.send.click();assert.equal(h.requests.length,1);assert.equal(h.doc.activeElement,null);
+ h.send.emit('pointerdown',{button:0,preventDefault(){throw Error('disabled');}});
 });
