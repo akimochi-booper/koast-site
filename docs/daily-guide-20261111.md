@@ -1,6 +1,6 @@
-# November 11 cost-comparison refresh — held candidate
+# November 11 cost-comparison refresh
 
-Status: local candidate, not published. Existing URL: https://koastride.com/blog/black-car-vs-rideshare-cost.
+Authorized publication candidate; final deployment/live status is recorded in the shared audit. Existing URL: https://koastride.com/blog/black-car-vs-rideshare-cost.
 
 The live blog returned HTTP200 with November10 as the latest visible dated guide and no November11 entry. The existing comparison returned HTTP200 with schema publication 2026-06-01 and modification 2026-10-13. Current main at clone time was 50f1581. This is an existing-intent refresh, not another overlapping article.
 
@@ -17,12 +17,12 @@ The draft replaces unsupported claims about typical price gaps, driver acceptanc
 
 ## Dates, source and image
 
-Migrates this single legacy article/card into content/posts/black-car-vs-rideshare-cost.json, removing its old inline body/card and legacy-modified entry. Existing renderer and month-precision support are reused. June2026 visible publication and original 2026-06-01 schema publication are retained. Draft substantive modification is November11; if released later, set modification to the actual substantive publication date and rerun checks.
+Migrates this single legacy article/card into content/posts/black-car-vs-rideshare-cost.json, removing its old inline body/card and legacy-modified entry. Existing renderer and month-precision support are reused. June2026 visible publication and original 2026-06-01 schema publication are retained. Substantive modification is November11; publication date is preserved.
 
 Image: img/airport-ride-quote-comparison.jpg, 1600×900, 231681bytes. Built-in image generation; generic editorial folio scene, not documentary service/fleet evidence. Full prompt/master/export details are in docs/image-provenance.md. No visible generated caption.
 
-## Gates still open
+## Publication checks
 
-Required desktop/mobile article and blog-card inspection and D1 open-handoff/coordinator read/claim have not passed. The only advertised Chrome instance is reserved by trip-change-release-01a1c379; no lease was taken or displaced. The built-in browser reports unavailable. No D1 connector was advertised. No push, deployment, security/crawler setting or service-policy change was made.
+On owner-authorized resumption, the chat-owned built-in browser worked with the signed-in Cloudflare account. Relevant open D1 handoffs were read; guarded site publisher claim sl-site-daily-guide-active-20261111-01a1a8af was inserted and read back. Composer and favicon chats were informed under Eugene's new standing routine-handoff authority. No shared Chrome reservation was displaced.
 
-Local generated-site/test results and eventual release status belong in the shared audit: audits/2026-11-11-daily-guide/REPORT.md. Before any release, reread current coordination, check the Pacific-date publication inventory, fetch/rebase main, validate and inspect the rendered candidate, and publish only after all gates pass.
+The generator and site check pass: 233pages, 47posts, 16dated records, zero errors. Acquisition JavaScript parses and all91 repository tests pass. Desktop1280 and mobile390 article/image and blog-card checks use the current marketing layout; FAQ interaction and no horizontal overflow were checked. Final fetch/rebase, integrated checks and Git push follow the normal release flow. Deployment and actual live article/index/sitemap/schema/desktop/mobile results are recorded in the existing shared audit: audits/2026-11-11-daily-guide/REPORT.md.
