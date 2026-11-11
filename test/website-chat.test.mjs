@@ -31,7 +31,7 @@ function fixture({voice=false,lateVoice=false,photos=false,preparePhoto=async()=
  if(photos){vm.runInNewContext(readFileSync(new URL('../koast-chat-photos.js',import.meta.url),'utf8'),context);const Actual=window.KoastPhotoComposer;window.KoastPhotoComposer=function(o){photoComposer=new Actual({...o,prepare:preparePhoto});return photoComposer;};}
  vm.runInNewContext(readFileSync(new URL('../koast-chat-links.js',import.meta.url),'utf8'),context);
  vm.runInNewContext(source,context);
- return {elements,panel,messages,input,send,mic,close,starter,doc,requests,background,viewportListeners,recognition:()=>recognition,photos:()=>photoComposer,timeout:()=>[...timers.values()].forEach(fn=>fn()),write:text=>{input.value=text;input.emit('input');},reply:async(index,text)=>{requests[index].resolve({ok:true,json:async()=>({reply:text})});await settle();}};
+ return {elements,panel,messages,input,send,mic,close,starter,doc,requests,background,viewport,viewportListeners,recognition:()=>recognition,photos:()=>photoComposer,timeout:()=>[...timers.values()].forEach(fn=>fn()),write:text=>{input.value=text;input.emit('input');},reply:async(index,text)=>{requests[index].resolve({ok:true,json:async()=>({reply:text})});await settle();}};
 }
 test('welcome opens without a software-keyboard focus and Escape restores launcher/background',()=>{
  const h=fixture();assert.equal(h.send.disabled,true);assert.equal(h.mic.hidden,true);
