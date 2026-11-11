@@ -447,6 +447,7 @@ footer.site-footer{background:#000;border-top:1px solid #1c1f24}
 }
 
 /* ---------- Koast AI chat widget ---------- */
+#kchat,.kai{--website-composer-fill:#0d0f12;--website-composer-rim:linear-gradient(155deg,#84e8da 0%,#35c4b3 48%,#169e94 100%);--website-send-face:linear-gradient(165deg,#34353a,#292a2f 48%,#202125);--website-send-hover:linear-gradient(165deg,#404146,#292a2f 48%,#202125)}
 /* Website Kopilot: teal AI identity, orange rider messages, retained charcoal material. */
 body #kchat-fab,#kchat{--assistant-fill:linear-gradient(155deg,#84e8da 0%,#35c4b3 48%,#169e94 100%);--assistant-accent:#84e8da;--assistant-ink:#062c29;--assistant-reply:var(--website-assistant-reply);--assistant-bg:#15181d;--assistant-face:linear-gradient(165deg,#34353a,#292a2f 48%,#202125)}
 body #kchat-fab{position:fixed;right:22px;bottom:22px;min-height:52px;padding:0 18px;border:1px solid #ffffff30;border-radius:16px;background:var(--assistant-fill) border-box no-repeat;color:var(--assistant-ink);cursor:pointer;z-index:900;box-shadow:0 7px 24px -12px #169e9480,inset 0 1px 0 #ffffff35;display:flex;gap:9px;align-items:center;justify-content:center;font:700 14px/1.2 'Plus Jakarta Sans',sans-serif;transition:opacity .18s,transform .18s}
@@ -483,17 +484,19 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
 #kchat .km.user{background:var(--brand-gradient) border-box no-repeat;color:var(--brand-ink);border:0;border-bottom-right-radius:4px;align-self:flex-end;box-shadow:inset 0 1px 0 #ffffff24}
 #kchat .km.dots{color:var(--website-assistant-reply-ink);letter-spacing:3px;font-size:20px;line-height:1}
 #kchat .kchat-compose{flex:none;padding:8px 14px 0}
-#kchat .kchat-foot{display:flex;align-items:center;gap:2px;box-sizing:border-box;min-height:56px;padding:5px;border:1px solid #388e83;border-radius:18px;background:linear-gradient(165deg,rgba(14,16,19,.7),rgba(10,12,15,.8));box-shadow:inset 0 1px 0 #ffffff08}
-#kchat .kchat-foot:focus-within{border-color:var(--assistant-accent);box-shadow:0 0 0 1px var(--assistant-accent)}
-#kchat #kchat-in{flex:1;min-width:0;width:100%;height:44px;margin:0;padding:0 9px;border:0;border-radius:0;outline:none;background:transparent;color:#f4f4f6;font-family:inherit;font-size:16px;line-height:1.5;box-shadow:none}
+#kchat .kchat-foot{display:flex;align-items:flex-end;gap:4px;box-sizing:border-box;min-height:56px;padding:5px;border:1.5px solid #388e83;border-radius:18px;background:var(--website-composer-fill);box-shadow:none}
+#kchat .kchat-foot:focus-within{border-color:transparent;background:linear-gradient(var(--website-composer-fill),var(--website-composer-fill)) padding-box,var(--website-composer-rim) border-box;box-shadow:none}
+#kchat #kchat-in{flex:1;min-width:0;width:100%;height:44px;box-sizing:border-box;margin:0;padding:10px 6px;border:0;border-radius:0;outline:none;background:transparent;color:#f4f4f6;font-family:inherit;font-size:16px;line-height:24px;box-shadow:none}
 #kchat #kchat-in::placeholder{color:#aeb5be;opacity:1}
 #kchat #kchat-in:focus-visible{outline:none}
 #kchat .kchat-tool{width:44px;height:44px;min-width:44px;flex:none;display:grid;place-items:center;border:0;border-radius:12px;background:transparent;color:#d8dde5;cursor:pointer;padding:0}
 #kchat .kchat-tool[hidden]{display:none}
 #kchat .kchat-tool svg{width:20px;height:20px}
 #kchat .kchat-tool.rec{color:#ff9187;background:#ff65651a}
-#kchat #kchat-send{border-color:transparent;background:var(--assistant-fill) border-box no-repeat;color:var(--assistant-ink)}
-#kchat #kchat-send:disabled{opacity:.38;cursor:default;filter:none;transform:none;box-shadow:none}
+#kchat #kchat-send,.kai #kai-send{position:relative;touch-action:manipulation;width:44px;height:44px;min-width:44px;flex:0 0 44px;display:grid;place-items:center;box-sizing:border-box;margin:0;padding:0;border:1px solid transparent;border-radius:12px;background:var(--website-send-face) padding-box,var(--website-composer-rim) border-box;color:#f4f4f6;box-shadow:inset 0 1px 0 #ffffff14;cursor:pointer}
+#kchat #kchat-send:hover:not(:disabled),.kai #kai-send:hover:not(:disabled){background:var(--website-send-hover) padding-box,var(--website-composer-rim) border-box;filter:none}
+#kchat #kchat-send svg,.kai #kai-send svg{width:20px;height:20px;display:block;pointer-events:none}
+#kchat #kchat-send:disabled,.kai #kai-send:disabled{opacity:.42;cursor:default;filter:none;transform:none;box-shadow:none}
 #kchat .kchat-tool:disabled{opacity:.4;cursor:default}
 #kchat .kchat-actions{display:flex;align-items:center;justify-content:center;gap:20px;flex:none;padding:2px 14px 8px}
 #kchat .kchat-actions a{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;box-sizing:border-box;padding:4px 6px;border-radius:6px;color:#b9bdc7;text-decoration:none;font-size:12px;line-height:20px;font-weight:450;white-space:nowrap}
@@ -626,12 +629,12 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
 .kai-head small{display:block;font-size:11px;color:#7ee0d3;font-weight:600}
 .kai-head small::before{content:'';display:inline-block;width:7px;height:7px;border-radius:50%;background:#19c8b4;margin-right:5px;box-shadow:0 0 8px #19c8b4}
 .kai-msgs{flex:1;min-height:240px;max-height:320px;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:11px;background:transparent}
-.kai-foot{display:flex;gap:8px;padding:12px;border-top:1px solid rgba(255,255,255,.07);background:transparent}
-.kai-foot input{flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);color:#fff;border-radius:11px;padding:10px 14px;font-family:inherit;font-size:16px;min-width:0}
-.kai-foot input::placeholder{color:#8a919e}
-.kai-foot input:focus{border-color:var(--orange)}
-.kai-foot button{width:44px;border-radius:10px;border:none;background:var(--orange);color:var(--ink);font-size:17px;font-weight:800;cursor:pointer;transition:.15s}
-.kai-foot button:hover{background:var(--orange-dark)}
+.kai-foot{display:flex;align-items:flex-end;gap:4px;box-sizing:border-box;min-height:56px;margin:8px 14px 0;padding:5px;border:1.5px solid #388e83;border-radius:18px;background:var(--website-composer-fill);box-shadow:none}
+.kai-foot:focus-within{border-color:transparent;background:linear-gradient(var(--website-composer-fill),var(--website-composer-fill)) padding-box,var(--website-composer-rim) border-box;box-shadow:none}
+.kai-foot input{flex:1;min-width:0;width:0;height:44px;box-sizing:border-box;margin:0;padding:10px 6px;border:0;border-radius:0;outline:none;background:transparent;box-shadow:none;color:#f4f4f6;font-family:inherit;font-size:16px;line-height:24px}
+.kai-foot input::placeholder{color:#aeb5be;opacity:1}
+.kai-foot input:focus-visible{outline:none}
+.kai #kai-send:focus-visible{outline:2px solid #84e8da;outline-offset:2px}
 .kai-sms{display:block;text-align:center;font-size:12.5px;color:#8a919e;padding:9px 0 12px;background:transparent;font-weight:600;border-top:1px solid rgba(255,255,255,.07)}
 .kai-sms:hover{color:var(--orange)}
 @media(max-width:900px){.kai{max-width:100%;min-width:0;width:100%}}
@@ -671,7 +674,7 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
 
 /* Keep prose links identifiable and keyboard focus clear without changing card layouts. */
 .article p a,.article li a,.faq p a{color:var(--orange-text);text-decoration:underline;text-underline-offset:3px}
-.ksearch input:focus-visible,#kchat-in:focus-visible,.kai-foot input:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+.ksearch input:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
 .kchat-x{width:44px;height:44px;flex:0 0 auto;display:flex;align-items:center;justify-content:center}
 .klb .klb-x{display:flex;align-items:center;justify-content:center}
 #terminal-pickup p a,.card p a{color:var(--orange-text);text-decoration:underline;text-underline-offset:3px}
@@ -759,3 +762,5 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
 #kchat .kchat-sent-photo{display:block;width:150px;max-width:100%;max-height:120px;object-fit:cover;border-radius:8px;margin-top:8px}
 #kchat #kchat-in{min-width:0}
 @media(forced-colors:active){#kchat .kchat-photo-remove{background:ButtonFace;color:ButtonText;border:1px solid ButtonText}}
+
+@media(forced-colors:active){#kchat .kchat-foot,.kai .kai-foot,#kchat #kchat-send,.kai #kai-send{background:ButtonFace;color:ButtonText;border:1px solid ButtonText;box-shadow:none}.kai-foot input{color:CanvasText}.kai #kai-send:focus-visible{outline-color:Highlight}}

@@ -32,7 +32,7 @@ def head(title, desc, prefix="", extra=""):
 <meta name="robots" content="max-image-preview:large">
 <link rel="preload" href="/fonts/plus-jakarta-sans-latin-v12.woff2" as="font" type="font/woff2" crossorigin>
 <style>@font-face{{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:200 800;font-display:swap;src:url('/fonts/plus-jakarta-sans-latin-v12.woff2') format('woff2')}}</style>
-<link rel="stylesheet" href="{prefix}css/main.css?v=30">
+<link rel="stylesheet" href="{prefix}css/main.css?v=31">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0e1013">
 <script src="/koast-acquisition.js?v=2" defer></script>
@@ -174,7 +174,7 @@ CHAT_WIDGET = r"""
       <input id="kchat-photo-input" type="file" accept="image/jpeg,image/png,image/webp" multiple hidden aria-label="Choose photos">
       <input id="kchat-in" type="text" aria-label="Message Kopilot" placeholder="Message Kopilot…" maxlength="1000" autocomplete="off" enterkeyhint="send">
       <button id="kchat-mic" class="kchat-tool" type="button" aria-label="Dictate a message" title="Dictate a message" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3m-4 0h8"/></svg></button>
-      <button id="kchat-send" type="button" aria-label="Send message" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+      <button id="kchat-send" type="button" aria-label="Send message" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
     </div>
     <span id="kchat-status" class="sr-only" role="status" aria-live="polite"></span>
   </div>
@@ -3608,7 +3608,7 @@ sp += f"""
       </div>
       <div class="kai-foot">
         <input id="kai-in" type="text" aria-label="Ask the Koast agent" placeholder="Type a question…" maxlength="500">
-        <button id="kai-send" aria-label="Send">→</button>
+        <button id="kai-send" type="button" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
       </div>
       <a class="kai-sms" href="mailto:reserve@koastride.com">Prefer a human? Email us →</a>
     </div>
