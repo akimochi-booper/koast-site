@@ -11,7 +11,7 @@ EDITORIAL_POSTS = load_posts(ROOT)
 EDITORIAL_BY_SLUG = {post["slug"]: post for post in EDITORIAL_POSTS}
 LEGACY_MODIFIED = {slug: "2026-10-13" for slug in (
     "san-francisco-summer-2026-events", "sfo-to-san-francisco-black-car-guide",
-    "lax-airport-black-car-guide", "chicago-ohare-midway-guide", "black-car-vs-rideshare-cost",
+    "lax-airport-black-car-guide", "chicago-ohare-midway-guide",
     "chauffeur-terms-glossary", "jfk-black-car-guide", "miami-airport-black-car-guide")}
 ARCHIVED_GUIDES = {"san-francisco-summer-2026-events"}
 
@@ -1786,9 +1786,9 @@ BLOG_FAQ = {
   ("Does a chauffeured wine tour solve the designated-driver problem?", "Yes — that's the point. Everyone tastes, the chauffeur drives, and there's no parking, no navigation, and no one drawing the short straw."),
  ],
  "black-car-vs-rideshare-cost": [
-  ("Is a black car actually more expensive than rideshare?", "Once you add surge, airport fees, tips, and the occasional cancellation, the gap narrows — and a flat, all-inclusive black car price removes the uncertainty rideshare can't."),
-  ("Does a black car ever beat rideshare on price?", "During surge — airport peaks, bad weather, big events — a flat-rate black car can come in lower than a surged rideshare, while always being more predictable."),
-  ("What's included in a Koast flat rate?", "Review the written quote for included tolls, fees and gratuity. The fixed price covers the agreed itinerary; extra stops, extended time and waiting beyond the included allowance may cost more."),
+  ("Is a black car always more expensive than rideshare?", "Neither service is always cheaper. Compare current quotes for the same itinerary, passengers and luggage, including only charges not already included in each price."),
+  ("What should I check about airport waiting and extra stops?", "Confirm any included waiting, when its clock starts, additional waiting charges and how flight delays affect pickup. Ask the provider to acknowledge planned stops and their price before accepting the arrangement."),
+  ("What should a black-car quote confirm?", "Ask for the total for the agreed itinerary, included or excluded fees and gratuity, waiting and change terms, cancellation rules, pickup instructions and reservation status. Save the accepted terms with the quote."),
  ],
  "sfo-to-san-francisco-black-car-guide": [
   ("How much is a black car from SFO to San Francisco?", "A flat, all-inclusive rate quoted before you book — tolls and gratuity included, no surge. Enter your pickup and drop-off for an instant price."),
@@ -1833,7 +1833,6 @@ BLOG = [
  ("denver-mountain-transfers.html","blog-banner-denver.jpg","Trips","Denver to the Slopes: The Mountain Transfer Guide","Vail, Breck, Keystone — what the I-70 drive really takes and why skiers skip the rental car."),
  ("napa-sonoma-chauffeur-day-trip.html","blog-banner-napa.jpg","Wine Country","Napa & Sonoma by Chauffeur: A Day-Trip Playbook","Wine country without a designated driver problem — routes, timing, and vehicle picks."),
  ("nyc-ground-travel-guide.html","blog-banner-nyc.jpg","City Guides","Getting Around New York Without Losing Your Mind","JFK vs. LGA vs. EWR, when the subway wins, and when a black car is worth every penny."),
- ("black-car-vs-rideshare-cost.html","blog-banner-rideshare.jpg","Industry","Black Car vs. Rideshare: The Real Cost Math","Surge, airport fees, tips, cancellations — what the price comparison looks like when you count everything."),
  ("choosing-corporate-car-service.html","blog-banner-corporate.jpg","Corporate","How to Choose a Corporate Car Service: 9 Questions to Ask","The vetting checklist travel managers use — insurance, billing, coverage, and the questions vendors dodge."),
  ("chauffeur-terms-glossary.html","blog-banner-glossary.jpg","Industry","Wait Time, Hourly & Flat Rate: Chauffeur Terms, Explained","The industry's vocabulary decoded, so you know exactly what you're booking."),
  ("sfo-to-san-francisco-black-car-guide.html","blog-banner-sfo.jpg","Airport Guides","SFO to San Francisco: The Complete Black Car Guide","Pickup preparation, included waiting, quote comparisons and a practical airport booking checklist."),
@@ -2762,26 +2761,6 @@ blog_page("denver-mountain-transfers",
   <div class="callout"><p><strong>The rental car math:</strong> a week of SUV rental, airport fees, resort parking ($30–50/night at Vail), and the white-knuckle factor — versus two flat-rate transfers and never touching a snow brush. Run it for your group size; it's closer than you'd think, and one of them includes naps.</p></div>
   <p>Book mountain transfers with luggage and gear noted at <a href="{BOOK}" style="color:var(--orange-text);font-weight:700">koastride.com</a> — your chauffeur tracks the inbound flight and the mountain forecast.</p>""",
  "First chair, not first gear.")
-
-blog_page("black-car-vs-rideshare-cost",
- "Black Car vs. Rideshare: The Real Cost Math",
- "Surge pricing, airport fees, tips, cancellations — an honest cost comparison between rideshare and flat-rate black car service.",
- "Industry","blog-banner-rideshare.jpg","5", f"""
-  <p>The sticker price comparison everyone makes — rideshare app quote versus black car rate — misses most of the real math. Here's the honest version, including the cases where rideshare genuinely wins.</p>
-  <h2>Where rideshare wins</h2>
-  <p>Short, flexible, solo trips in off-peak hours: rideshare is cheaper, full stop. A two-mile hop to dinner on a Tuesday doesn't need a chauffeur. We'd rather tell you that than pretend otherwise.</p>
-  <h2>Where the math flips</h2>
-  <ul>
-    <li><strong>Airport runs at peak times.</strong> Surge multipliers, airport pickup fees, and tip stack onto the quote. A 5 PM Friday airport rideshare routinely lands within a few dollars of a flat-rate black car — and sometimes above it.</li>
-    <li><strong>Early-morning critical rides.</strong> The rideshare quote assumes a driver accepts. At 4:30 AM in the suburbs, that's a coin flip — and the cost of a missed flight makes the comparison absurd.</li>
-    <li><strong>Groups.</strong> Two rideshare XLs versus one Sprinter: the Sprinter usually wins on price and always wins on the experience of arriving together.</li>
-    <li><strong>Multi-stop days.</strong> Four separate rideshares with four waits, versus one hourly charter where the car is simply there each time you walk out.</li>
-  </ul>
-  <h2>The costs nobody prices in</h2>
-  <p>Cancellation roulette before dawn flights. The 25-minute airport lot wait after a redeye. Standing in rain watching the car icon circle. Reimbursement paperwork for twelve separate receipts. Black car pricing is higher on average and dramatically more predictable — what you're buying is the variance.</p>
-  <div class="callout"><p><strong>Honest bottom line:</strong> use rideshare for errands. Use a flat rate for anything where being late, wet, or stranded costs more than the fare difference.</p></div>
-  <p>See your flat rate in ten seconds at <a href="{BOOK}" style="color:var(--orange-text);font-weight:700">koastride.com</a>.</p>""",
- "Predictable beats cheap-ish.")
 
 blog_page("choosing-corporate-car-service",
  "How to Choose a Corporate Car Service: 9 Questions to Ask",

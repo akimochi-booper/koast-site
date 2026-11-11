@@ -1,5 +1,12 @@
 # Editorial image provenance
 
+## Cost-comparison refresh candidate — 2026-11-11
+
+- Status: local candidate, not published. Tool: built-in image generation. Asset: `img/airport-ride-quote-comparison.jpg`, 1600×900, 231681 bytes; full composition scaled with high-quality bicubic interpolation and JPEG quality83 using System.Drawing. Master retained outside public deployment: `C:/Users/eubur/.codex/generated_images/01a1a8af-065e-79c1-bec5-cc172d6d0032/exec-75d297f1-b2f9-4771-82c9-f81b9afb985a.png`.
+- Generic editorial still life: blank sheets in a blue-grey folio, pen, glasses, flowers, cup and a suitcase beside a window. Reviewed for artifacts, readable text, invented brands and misleading fleet claims. No real operator, service, traveler, equipment, vehicle or location is documented. Alt text describes the actual image; no automatic visible generated caption. Original legacy asset retained.
+- Exact prompt: Create one realistic premium travel-editorial photograph-style conceptual illustration, 16:9 wide landscape. Subject: a neatly arranged travel-planning folio on a light oak writing desk beside a large softly lit window, with two overlapping plain ivory unmarked sheets, a simple dark pen, a pair of reading glasses and the edge of a closed cream carry-on suitcase on the floor beyond the desk. Soft natural morning light and believable fine material textures; warm ivory, muted blue-grey and natural wood. The two blank papers suggest comparing travel arrangements without showing any prices, numbers, charts, text or UI. Tighter editorial still-life framing, premium magazine photography, restrained and authentic, not a dark tabletop or CGI scene. No phones, floating cards, checkmarks, maps, location pins, logos, branding, people, vehicle or airport signage. No rendered text of any kind. This is a generic conceptual travel scene, not documentary evidence of any real operator, service, location or equipment. Landscape composition must remain legible as a small blog card.
+
+
 ## Meeting planning — October 13, 2026
 
 Asset: img/hourly-chauffeur-meeting-plan.webp. Built-in image generation tool. Final output 1600 by 900, WebP, approximately 106 KB. Original PNG retained outside the public deployment. Reviewed for vehicle geometry, missing branding, misleading fleet representation and full mobile composition.

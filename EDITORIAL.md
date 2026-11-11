@@ -15,6 +15,8 @@ New guides live in `content/posts/<slug>.json`. The generator adds them to the e
 
 ## Current topic queue
 
+- Held local candidate 2026-11-11: refresh the existing Black Car vs. Rideshare cost guide for matching airport quotes, included fees, waiting and extra stops. Primary Uber/Lyft and current Koast terms checked; unsupported legacy price/reliability claims removed in the candidate. Desktop/mobile verification and D1 release coordination remain open because the available browser is reserved and the built-in browser is unavailable. Not published; do not count as a completed daily guide. [Candidate record](docs/daily-guide-20261111.md).
+
 - Published 2026-11-10: Airport Pickup with Mobility Needs: Confirming the Handoff. Resolves the queued accessibility handoff question through separate airline and road confirmations, equipment/companion details, exact pickup connection, delay owner and a copyable brief. Distinct from general luggage measurement; no accessible-fleet or assistance availability claim, held Care Rides content or medical/handling advice. Primary SFO/DOT sources checked November10. [Daily record](docs/daily-guide-20261110.md).
 
 - Refreshed 2026-11-09: Group Airport Transfers: Moving a Team Through Arrivals. The queued separate arrivals for a wine-country weekend now lives in the existing group-airport guide: arrival waves, airport-specific pickup, confirmed luggage/host handoff and delay decision ownership. Legacy June publication display and original schema publication date preserved; substantive modification November9. New generic lobby editorial image has internal provenance. [Daily record](docs/daily-guide-20261109.md).
