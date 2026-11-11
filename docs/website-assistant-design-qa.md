@@ -1,5 +1,13 @@
 # Website Kopilot popup
 
+## November11,2026 — Passenger-matched response gradient candidate
+
+Decision: owner explicitly requests the website responses use the approved Passenger light mint-to-teal reply gradient. Implementation: local candidate on `feat/site-kopilot-gradient-20261111-01a1a5a4`, based on `9d23103`; no main push or deployment by this agent.
+
+The existing popup and inline Support AI response backgrounds share `--website-assistant-reply`: `linear-gradient(180deg,#82f3e7,#32d2c0 45%,#19adac)`, with dark `#123a35` ink. This supersedes the popup's dark-teal/light-text response surface only. Popup links inherit the new ink, typing dots stay readable and forced-colors remains native. Current launcher/selector, identity mark, composer, Send, orange rider bubbles, geometry and all runtime/provider/photo/security contracts stay unchanged. Main CSS reference advances29→30; chat5 stays unchanged. Care Rides remains held.
+
+Validation: `python generate.py`;91/91 existing site tests; generated/helper syntax and whitespace checks pass. `python scripts/check_site.py --today2026-11-11`:233pages/47posts/15dated guides, zero errors. No extra implementation-mirroring test for a reversible palette-only change. No upstream provider/chat request, D1 change or backend edit. Live D1 connector unavailable; final release coordination, desktop/mobile visual acceptance, native link/focus and live CSS30 readback remain with the root release coordinator. Existing `scripts/preview-assistant.mjs` serves explicitly synthetic popup replies with `PORT` from the shared allocator; `/` for popup, `/support.html` for inline Support.
+
 ## November 10, 2026 — teal support assistant candidate
 
 Decision: Approved deployment target. Owner explicitly authorized publication on November 10 after reviewing the teal candidate. This request supersedes the earlier orange-only website Kopilot treatment for this popup. It does not adopt a new standard for other marketing components or apps. Implementation: branch `fix/site-kopilot-teal-support` in the isolated `site-kopilot-01a1c802` clone. Release status and live evidence are owned by the shared `audits/2026-11-09-website-kopilot/RELEASE.md` entry.

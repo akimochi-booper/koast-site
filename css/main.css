@@ -12,6 +12,7 @@
   --bg:#ffffff; --bg-2:#f5f6f8; --line:#e6e8ec;
   --orange:#f98b2b; --orange-dark:#c34511; --orange-text:#a63b10; --orange-tint:#fff3e8;
   --orange-on-dark:#f7a339; --brand-ink:#241205;
+  --website-assistant-reply:linear-gradient(180deg,#82f3e7,#32d2c0 45%,#19adac); --website-assistant-reply-ink:#123a35;
   /* Sample the visible oast contours, y=477..730.5, from the approved SVG.
      The original gradient starts above these letters at y=357.5 on the taller K. */
   --brand-gradient:linear-gradient(180deg,#f7a339 0%,#f98b2b 29.37%,#fc6a1c 69.10%,#fd581a 100%);
@@ -447,7 +448,7 @@ footer.site-footer{background:#000;border-top:1px solid #1c1f24}
 
 /* ---------- Koast AI chat widget ---------- */
 /* Website Kopilot: teal AI identity, orange rider messages, retained charcoal material. */
-body #kchat-fab,#kchat{--assistant-fill:linear-gradient(155deg,#84e8da 0%,#35c4b3 48%,#169e94 100%);--assistant-accent:#84e8da;--assistant-ink:#062c29;--assistant-reply:linear-gradient(145deg,#145e57 0%,#104a45 52%,#103a38 100%);--assistant-bg:#15181d;--assistant-face:linear-gradient(165deg,#34353a,#292a2f 48%,#202125)}
+body #kchat-fab,#kchat{--assistant-fill:linear-gradient(155deg,#84e8da 0%,#35c4b3 48%,#169e94 100%);--assistant-accent:#84e8da;--assistant-ink:#062c29;--assistant-reply:var(--website-assistant-reply);--assistant-bg:#15181d;--assistant-face:linear-gradient(165deg,#34353a,#292a2f 48%,#202125)}
 body #kchat-fab{position:fixed;right:22px;bottom:22px;min-height:52px;padding:0 18px;border:1px solid #ffffff30;border-radius:16px;background:var(--assistant-fill) border-box no-repeat;color:var(--assistant-ink);cursor:pointer;z-index:900;box-shadow:0 7px 24px -12px #169e9480,inset 0 1px 0 #ffffff35;display:flex;gap:9px;align-items:center;justify-content:center;font:700 14px/1.2 'Plus Jakarta Sans',sans-serif;transition:opacity .18s,transform .18s}
 body #kchat-fab svg{width:23px;height:23px;flex:none}
 body #kchat-fab:hover{transform:translateY(-2px)}
@@ -476,10 +477,11 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
 #kchat .kchat-starter-arrow svg{display:block;width:17px;height:17px}
 #kchat .kchat-chips button:hover{color:var(--assistant-accent)}
 #kchat .km{max-width:88%;padding:12px 14px;border-radius:14px;font-size:15px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
-#kchat .km.bot{background:var(--assistant-reply) border-box no-repeat;border:1px solid #84e8da38;color:#e3fff9;border-bottom-left-radius:4px;align-self:flex-start}
+.kai .km.bot{background:var(--website-assistant-reply) border-box no-repeat;color:var(--website-assistant-reply-ink)}
+#kchat .km.bot{background:var(--assistant-reply) border-box no-repeat;border:1px solid transparent;color:var(--website-assistant-reply-ink);border-bottom-left-radius:4px;align-self:flex-start}
 #kchat .km.bot a{color:inherit;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
 #kchat .km.user{background:var(--brand-gradient) border-box no-repeat;color:var(--brand-ink);border:0;border-bottom-right-radius:4px;align-self:flex-end;box-shadow:inset 0 1px 0 #ffffff24}
-#kchat .km.dots{color:#e3fff9;letter-spacing:3px;font-size:20px;line-height:1}
+#kchat .km.dots{color:var(--website-assistant-reply-ink);letter-spacing:3px;font-size:20px;line-height:1}
 #kchat .kchat-compose{flex:none;padding:8px 14px 0}
 #kchat .kchat-foot{display:flex;align-items:center;gap:2px;box-sizing:border-box;min-height:56px;padding:5px;border:1px solid #388e83;border-radius:18px;background:linear-gradient(165deg,rgba(14,16,19,.7),rgba(10,12,15,.8));box-shadow:inset 0 1px 0 #ffffff08}
 #kchat .kchat-foot:focus-within{border-color:var(--assistant-accent);box-shadow:0 0 0 1px var(--assistant-accent)}
@@ -502,7 +504,7 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
 @media(max-width:600px){#kchat{right:8px;bottom:calc(max(8px,env(safe-area-inset-bottom)) + var(--kchat-keyboard,0px));width:calc(100% - 16px);max-width:none;height:690px;max-height:calc(var(--kchat-visible-height,100dvh) - 32px);border-radius:22px}body #kchat-fab{right:16px;bottom:max(16px,env(safe-area-inset-bottom))}#kchat .kchat-head{padding:14px 16px}#kchat .kchat-actions{padding-bottom:max(8px,env(safe-area-inset-bottom))}}
 @media(max-width:350px){#kchat .kchat-id div>span{font-size:11px}#kchat .kchat-head{gap:7px;padding-inline:12px}#kchat .kchat-msgs{padding-inline:14px}#kchat .kchat-welcome h2{font-size:25px}}
 @media(prefers-reduced-motion:reduce){#kchat,body #kchat-fab,body #kchat-fab:hover{transition:none;transform:none}}
-@media(forced-colors:active){#kchat::before{display:none}#kchat .kchat-actions a{color:LinkText;text-decoration:underline}#kchat,body #kchat-fab,#kchat .kchat-mark,#kchat .km.bot,#kchat .km.user{background:Canvas;color:CanvasText;box-shadow:none;border:1px solid CanvasText}#kchat .kchat-x,#kchat #kchat-send,#kchat .kchat-tool,#kchat .kchat-foot{background:ButtonFace;color:ButtonText;border:1px solid ButtonText;box-shadow:none}#kchat .kchat-id strong,#kchat .kchat-id div>span,#kchat .kchat-welcome>p,#kchat .kchat-welcome h2,#kchat .kchat-chips button{color:CanvasText}#kchat button:focus-visible,#kchat a:focus-visible,body #kchat-fab:focus-visible{outline-color:Highlight}}
+@media(forced-colors:active){#kchat::before{display:none}#kchat .kchat-actions a{color:LinkText;text-decoration:underline}#kchat,body #kchat-fab,#kchat .kchat-mark,#kchat .km.bot,#kchat .km.user,.kai .km.bot{background:Canvas;color:CanvasText;box-shadow:none;border:1px solid CanvasText}#kchat .kchat-x,#kchat #kchat-send,#kchat .kchat-tool,#kchat .kchat-foot{background:ButtonFace;color:ButtonText;border:1px solid ButtonText;box-shadow:none}#kchat .kchat-id strong,#kchat .kchat-id div>span,#kchat .kchat-welcome>p,#kchat .kchat-welcome h2,#kchat .kchat-chips button{color:CanvasText}#kchat button:focus-visible,#kchat a:focus-visible,body #kchat-fab:focus-visible{outline-color:Highlight}}
 
 
 /* ask our agent banner (support page) */
