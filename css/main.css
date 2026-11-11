@@ -496,8 +496,13 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
 #kchat .kchat-tool[hidden]{display:none}
 #kchat .kchat-tool svg{width:21px;height:21px}
 #kchat .kchat-tool.rec{color:#ff9187;background:#ff65651a}
-#kchat #kchat-send,.kai #kai-send{position:relative;touch-action:manipulation;width:44px;height:44px;min-width:44px;flex:0 0 44px;display:grid;place-items:center;box-sizing:border-box;margin:0;padding:0;border:1px solid transparent;border-radius:12px;background:var(--website-send-face) padding-box,var(--website-composer-rim) border-box;color:#f4f4f6;box-shadow:inset 0 1px 0 #ffffff14;cursor:pointer}
-#kchat #kchat-send:hover:not(:disabled),.kai #kai-send:hover:not(:disabled){background:var(--website-send-hover) padding-box,var(--website-composer-rim) border-box;filter:none}
+/* Approved Satin Corner: the teal glint ends at the upper-left corner. */
+#kchat #kchat-send{--website-send-rim:linear-gradient(135deg,#84e8da 0%,#35c4b3 15%,#256c63 29%,#ffffff26 49%)}
+#kchat #kchat-send::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(ellipse at 0 0,#84e8da40 0%,#35c4b31f 28%,transparent 64%)}
+#kchat #kchat-send svg{position:relative;z-index:1}
+@media(forced-colors:active){#kchat #kchat-send::before{display:none}}
+#kchat #kchat-send,.kai #kai-send{position:relative;touch-action:manipulation;width:44px;height:44px;min-width:44px;flex:0 0 44px;display:grid;place-items:center;box-sizing:border-box;margin:0;padding:0;border:1px solid transparent;border-radius:12px;background:var(--website-send-face) padding-box,var(--website-send-rim,var(--website-composer-rim)) border-box;color:#f4f4f6;box-shadow:inset 0 1px 0 #ffffff14;cursor:pointer}
+#kchat #kchat-send:hover:not(:disabled),.kai #kai-send:hover:not(:disabled){background:var(--website-send-hover) padding-box,var(--website-send-rim,var(--website-composer-rim)) border-box;filter:none}
 #kchat #kchat-send svg,.kai #kai-send svg{width:20px;height:20px;display:block;pointer-events:none}
 #kchat #kchat-send:disabled,.kai #kai-send:disabled{opacity:.42;cursor:default;filter:none;transform:none;box-shadow:none}
 #kchat .kchat-tool:disabled{opacity:.4;cursor:default}
