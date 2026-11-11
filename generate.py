@@ -32,7 +32,7 @@ def head(title, desc, prefix="", extra=""):
 <meta name="robots" content="max-image-preview:large">
 <link rel="preload" href="/fonts/plus-jakarta-sans-latin-v12.woff2" as="font" type="font/woff2" crossorigin>
 <style>@font-face{{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:200 800;font-display:swap;src:url('/fonts/plus-jakarta-sans-latin-v12.woff2') format('woff2')}}</style>
-<link rel="stylesheet" href="{prefix}css/main.css?v=28">
+<link rel="stylesheet" href="{prefix}css/main.css?v=29">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0e1013">
 <script src="/koast-acquisition.js?v=2" defer></script>
@@ -150,18 +150,19 @@ CHAT_WIDGET = r"""
 </button>
 <div id="kchat" role="dialog" aria-modal="true" aria-labelledby="kchat-title" aria-describedby="kchat-description" aria-hidden="true" inert>
   <div class="kchat-head">
-    <div class="kchat-id"><span class="kchat-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 4H7a3 3 0 0 0-3 3v14l4-3h9a3 3 0 0 0 3-3v-3"/><path d="M16.5 2.5c.3 2.9 2.1 4.7 5 5-2.9.3-4.7 2.1-5 5-.3-2.9-2.1-4.7-5-5 2.9-.3 4.7-2.1 5-5Z" fill="currentColor" stroke="none"/></svg></span><div><strong id="kchat-title" tabindex="-1">Kopilot</strong><span id="kchat-description">Koast's AI ride assistant</span></div></div>
+    <div class="kchat-id"><span class="kchat-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 4H7a3 3 0 0 0-3 3v14l4-3h9a3 3 0 0 0 3-3v-3"/><path d="M16.5 2.5c.3 2.9 2.1 4.7 5 5-2.9.3-4.7 2.1-5 5-.3-2.9-2.1-4.7-5-5 2.9-.3 4.7-2.1 5-5Z" fill="currentColor" stroke="none"/></svg></span><div><strong id="kchat-title" tabindex="-1">Kopilot</strong><span id="kchat-description">Koast's AI support assistant</span></div></div>
     <button class="kchat-x" type="button" aria-label="Close assistant"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
   </div>
   <div class="kchat-msgs" id="kchat-msgs" role="log" aria-label="Conversation with Kopilot" aria-live="polite" aria-relevant="additions text">
     <section class="kchat-welcome">
       <p class="kchat-eyebrow">A little help, every step.</p>
-      <h2>Let's plan your ride.</h2>
-      <p>Ask about airport pickups, compare vehicle options, or plan a day in wine country.</p>
+      <h2>How can I help?</h2>
+      <p>Questions about a ride, a policy, or planning your next trip? Start here.</p>
       <div class="kchat-chips" aria-label="Suggested questions">
-        <button type="button" data-question="How does airport pickup work?"><span>Airport pickup</span><span aria-hidden="true">↗</span></button>
-        <button type="button" data-question="Help me choose a vehicle for my group."><span>Find the right vehicle</span><span aria-hidden="true">↗</span></button>
-        <button type="button" data-question="How can I plan a chauffeured wine tour?"><span>Plan a wine-country day</span><span aria-hidden="true">↗</span></button>
+        <button type="button" data-question="How can I get help with an existing booking?"><span>Help with my booking</span><span class="kchat-starter-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></button>
+        <button type="button" data-question="What should I know about changes, cancellations, and refunds?"><span>Changes & cancellations</span><span class="kchat-starter-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></button>
+        <button type="button" data-question="How can I contact the Koast support team?"><span>Contact support</span><span class="kchat-starter-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></button>
+        <button type="button" data-question="Can you help me plan a ride and choose a vehicle?"><span>Plan a ride</span><span class="kchat-starter-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></button>
       </div>
     </section>
   </div>
@@ -280,7 +281,7 @@ import re as _re0
 _sm = _re0.search(r"<script>(.*?)</script>", CHAT_WIDGET, _re0.S)
 if _sm:
     open(os.path.join(ROOT, "koast-chat.js"), "w", encoding="utf-8").write(_sm.group(1).strip())
-    CHAT_WIDGET = CHAT_WIDGET.replace(_sm.group(0), '<script src="/koast-chat-photos.js?v=1" defer></script><script src="/koast-chat-links.js?v=1" defer></script><script src="/koast-chat.js?v=4" defer></script>')
+    CHAT_WIDGET = CHAT_WIDGET.replace(_sm.group(0), '<script src="/koast-chat-photos.js?v=1" defer></script><script src="/koast-chat-links.js?v=1" defer></script><script src="/koast-chat.js?v=5" defer></script>')
 
 def footer(prefix=""):
     return f"""
@@ -2618,6 +2619,15 @@ Key facts:
 - Payment: all major credit/debit cards via the secure booking portal
 - Contact: {EMAIL}
 
+Support guidance:
+- Existing bookings: use the rider portal at https://customer.moovs.app/koast/new/info or the support channels in your confirmation. This public assistant cannot access private bookings or accounts.
+- Changes, cancellations, refunds and no-shows: the terms accepted for your particular ride control deadlines, fees and eligibility. Review your booking details and contact the team for a specific case; no universal cancellation window or refund promise.
+- Pickup help: follow the pickup instructions and chauffeur contact details in your confirmation. If you cannot reach your chauffeur, contact the team through your confirmation or email {EMAIL}. This public assistant has no live chauffeur location or dispatch access.
+- Receipts and billing questions: contact {EMAIL} for help with your particular ride. Never share card details or account credentials in this public chat.
+- Lost property: email {EMAIL}; the team can coordinate with the chauffeur. Do not send private trip details in this public chat.
+- Complaints and service issues: contact {EMAIL} so a person can review your situation. This chat does not create a support ticket, contact staff or guarantee a response time.
+- General policies and privacy: https://koastride.com/terms and https://koastride.com/privacy. Ride-specific accepted terms take precedence over general examples.
+
 Fleet:
 {fleet_lines}
 
@@ -2631,6 +2641,10 @@ Key pages:
 - [Wine tours]({BASE_URL}/services/wine-tours)
 - [All cities]({BASE_URL}/cities/)
 - [Blog]({BASE_URL}/blog/)
+- [Support]({BASE_URL}/support)
+- [Rider Terms]({BASE_URL}/terms)
+- [Privacy Policy]({BASE_URL}/privacy)
+- [Existing bookings](https://customer.moovs.app/koast/new/info)
 """)
     print("sitemap.xml, robots.txt, llms.txt written")
 

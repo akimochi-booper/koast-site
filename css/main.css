@@ -446,9 +446,9 @@ footer.site-footer{background:#000;border-top:1px solid #1c1f24}
 }
 
 /* ---------- Koast AI chat widget ---------- */
-/* Website Kopilot: retained orange rim / blurred charcoal, refreshed native controls. */
-body #kchat-fab,#kchat{--assistant-fill:var(--brand-gradient);--assistant-accent:var(--orange-on-dark,#f6ab3e);--assistant-ink:var(--brand-ink,#241205);--assistant-bg:#15181d;--assistant-face:linear-gradient(165deg,#34353a,#292a2f 48%,#202125)}
-body #kchat-fab{position:fixed;right:22px;bottom:22px;min-height:52px;padding:0 18px;border:1px solid #ffffff30;border-radius:16px;background:var(--assistant-fill) border-box no-repeat;color:var(--assistant-ink);cursor:pointer;z-index:900;box-shadow:0 7px 24px -12px #f98b2b80,inset 0 1px 0 #ffffff35;display:flex;gap:9px;align-items:center;justify-content:center;font:700 14px/1.2 'Plus Jakarta Sans',sans-serif;transition:opacity .18s,transform .18s}
+/* Website Kopilot: teal AI identity, orange rider messages, retained charcoal material. */
+body #kchat-fab,#kchat{--assistant-fill:linear-gradient(155deg,#84e8da 0%,#35c4b3 48%,#169e94 100%);--assistant-accent:#84e8da;--assistant-ink:#062c29;--assistant-reply:linear-gradient(145deg,#145e57 0%,#104a45 52%,#103a38 100%);--assistant-bg:#15181d;--assistant-face:linear-gradient(165deg,#34353a,#292a2f 48%,#202125)}
+body #kchat-fab{position:fixed;right:22px;bottom:22px;min-height:52px;padding:0 18px;border:1px solid #ffffff30;border-radius:16px;background:var(--assistant-fill) border-box no-repeat;color:var(--assistant-ink);cursor:pointer;z-index:900;box-shadow:0 7px 24px -12px #169e9480,inset 0 1px 0 #ffffff35;display:flex;gap:9px;align-items:center;justify-content:center;font:700 14px/1.2 'Plus Jakarta Sans',sans-serif;transition:opacity .18s,transform .18s}
 body #kchat-fab svg{width:23px;height:23px;flex:none}
 body #kchat-fab:hover{transform:translateY(-2px)}
 body.kchat-open #kchat-fab{opacity:0;pointer-events:none;transform:translateY(8px)}
@@ -472,15 +472,16 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
 #kchat .kchat-welcome>p:not(.kchat-eyebrow){font-size:14px;line-height:1.65;color:#b6c0c9;margin:0;max-width:32ch}
 #kchat .kchat-chips{display:flex;flex-direction:column;gap:0;margin-top:24px;border-top:1px solid #ffffff10}
 #kchat .kchat-chips button{display:flex;align-items:center;justify-content:space-between;gap:12px;box-sizing:border-box;min-height:54px;padding:12px 0;border:0;border-bottom:1px solid #ffffff10;border-radius:0;background:transparent;color:#e8eaee;font:inherit;font-weight:600;font-size:14px;line-height:1.5;text-align:left;cursor:pointer}
-#kchat .kchat-chips button span:last-child{font-size:19px;color:var(--assistant-accent)}
+#kchat .kchat-starter-arrow{display:grid;place-items:center;flex:none;width:30px;height:30px;border:1px solid #84e8da35;border-radius:50%;background:linear-gradient(145deg,#35c4b322,#169e940a);color:var(--assistant-accent)}
+#kchat .kchat-starter-arrow svg{display:block;width:17px;height:17px}
 #kchat .kchat-chips button:hover{color:var(--assistant-accent)}
 #kchat .km{max-width:88%;padding:12px 14px;border-radius:14px;font-size:15px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
-#kchat .km.bot{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.09);color:#e6e9ee;border-bottom-left-radius:4px;align-self:flex-start}
+#kchat .km.bot{background:var(--assistant-reply) border-box no-repeat;border:1px solid #84e8da38;color:#e3fff9;border-bottom-left-radius:4px;align-self:flex-start}
 #kchat .km.bot a{color:inherit;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
-#kchat .km.user{background:var(--assistant-fill) border-box no-repeat;color:var(--assistant-ink);border:0;border-bottom-right-radius:4px;align-self:flex-end;box-shadow:inset 0 1px 0 #ffffff24}
-#kchat .km.dots{color:var(--assistant-accent);letter-spacing:3px;font-size:20px;line-height:1}
+#kchat .km.user{background:var(--brand-gradient) border-box no-repeat;color:var(--brand-ink);border:0;border-bottom-right-radius:4px;align-self:flex-end;box-shadow:inset 0 1px 0 #ffffff24}
+#kchat .km.dots{color:#e3fff9;letter-spacing:3px;font-size:20px;line-height:1}
 #kchat .kchat-compose{flex:none;padding:8px 14px 0}
-#kchat .kchat-foot{display:flex;align-items:center;gap:2px;box-sizing:border-box;min-height:56px;padding:5px;border:1px solid #8d6845;border-radius:18px;background:linear-gradient(165deg,rgba(14,16,19,.7),rgba(10,12,15,.8));box-shadow:inset 0 1px 0 #ffffff08}
+#kchat .kchat-foot{display:flex;align-items:center;gap:2px;box-sizing:border-box;min-height:56px;padding:5px;border:1px solid #388e83;border-radius:18px;background:linear-gradient(165deg,rgba(14,16,19,.7),rgba(10,12,15,.8));box-shadow:inset 0 1px 0 #ffffff08}
 #kchat .kchat-foot:focus-within{border-color:var(--assistant-accent);box-shadow:0 0 0 1px var(--assistant-accent)}
 #kchat #kchat-in{flex:1;min-width:0;width:100%;height:44px;margin:0;padding:0 9px;border:0;border-radius:0;outline:none;background:transparent;color:#f4f4f6;font-family:inherit;font-size:16px;line-height:1.5;box-shadow:none}
 #kchat #kchat-in::placeholder{color:#aeb5be;opacity:1}
@@ -489,16 +490,16 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
 #kchat .kchat-tool[hidden]{display:none}
 #kchat .kchat-tool svg{width:20px;height:20px}
 #kchat .kchat-tool.rec{color:#ff9187;background:#ff65651a}
-#kchat #kchat-send{border-color:transparent;background:var(--assistant-face) padding-box no-repeat,var(--assistant-fill) border-box no-repeat;color:var(--assistant-accent)}
+#kchat #kchat-send{border-color:transparent;background:var(--assistant-fill) border-box no-repeat;color:var(--assistant-ink)}
 #kchat #kchat-send:disabled{opacity:.38;cursor:default;filter:none;transform:none;box-shadow:none}
 #kchat .kchat-tool:disabled{opacity:.4;cursor:default}
 #kchat .kchat-actions{display:flex;align-items:center;justify-content:center;gap:20px;flex:none;padding:2px 14px 8px}
 #kchat .kchat-actions a{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;box-sizing:border-box;padding:4px 6px;border-radius:6px;color:#b9bdc7;text-decoration:none;font-size:12px;line-height:20px;font-weight:450;white-space:nowrap}
 #kchat .kchat-actions a:hover{color:#fff;text-decoration:underline;text-underline-offset:3px}
-#kchat .kchat-retry{display:block;min-height:44px;margin-top:8px;padding:7px 13px;background:transparent;color:var(--assistant-accent);border:1px solid #8d6845;border-radius:10px;font:inherit;font-weight:600;font-size:14px;line-height:1.5;cursor:pointer}
-#kchat button:focus-visible,#kchat a:focus-visible,body #kchat-fab:focus-visible{outline:2px solid var(--assistant-accent,#f6ab3e);outline-offset:3px}
+#kchat .kchat-retry{display:block;min-height:44px;margin-top:8px;padding:7px 13px;background:transparent;color:var(--assistant-accent);border:1px solid #388e83;border-radius:10px;font:inherit;font-weight:600;font-size:14px;line-height:1.5;cursor:pointer}
+#kchat button:focus-visible,#kchat a:focus-visible,body #kchat-fab:focus-visible{outline:2px solid var(--assistant-accent,#84e8da);outline-offset:3px}
 #kchat .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-@media(max-width:600px){#kchat{right:8px;bottom:calc(max(8px,env(safe-area-inset-bottom)) + var(--kchat-keyboard,0px));width:calc(100vw - 16px);max-width:none;height:690px;max-height:calc(var(--kchat-visible-height,100dvh) - 32px);border-radius:22px}body #kchat-fab{right:16px;bottom:max(16px,env(safe-area-inset-bottom))}#kchat .kchat-head{padding:14px 16px}#kchat .kchat-actions{padding-bottom:max(8px,env(safe-area-inset-bottom))}}
+@media(max-width:600px){#kchat{right:8px;bottom:calc(max(8px,env(safe-area-inset-bottom)) + var(--kchat-keyboard,0px));width:calc(100% - 16px);max-width:none;height:690px;max-height:calc(var(--kchat-visible-height,100dvh) - 32px);border-radius:22px}body #kchat-fab{right:16px;bottom:max(16px,env(safe-area-inset-bottom))}#kchat .kchat-head{padding:14px 16px}#kchat .kchat-actions{padding-bottom:max(8px,env(safe-area-inset-bottom))}}
 @media(max-width:350px){#kchat .kchat-id div>span{font-size:11px}#kchat .kchat-head{gap:7px;padding-inline:12px}#kchat .kchat-msgs{padding-inline:14px}#kchat .kchat-welcome h2{font-size:25px}}
 @media(prefers-reduced-motion:reduce){#kchat,body #kchat-fab,body #kchat-fab:hover{transition:none;transform:none}}
 @media(forced-colors:active){#kchat::before{display:none}#kchat .kchat-actions a{color:LinkText;text-decoration:underline}#kchat,body #kchat-fab,#kchat .kchat-mark,#kchat .km.bot,#kchat .km.user{background:Canvas;color:CanvasText;box-shadow:none;border:1px solid CanvasText}#kchat .kchat-x,#kchat #kchat-send,#kchat .kchat-tool,#kchat .kchat-foot{background:ButtonFace;color:ButtonText;border:1px solid ButtonText;box-shadow:none}#kchat .kchat-id strong,#kchat .kchat-id div>span,#kchat .kchat-welcome>p,#kchat .kchat-welcome h2,#kchat .kchat-chips button{color:CanvasText}#kchat button:focus-visible,#kchat a:focus-visible,body #kchat-fab:focus-visible{outline-color:Highlight}}
@@ -751,7 +752,7 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
 #kchat .kchat-photo img{box-sizing:border-box;display:block;width:76px;height:76px;object-fit:cover;border-radius:12px;border:1px solid #ffffff30}
 #kchat .kchat-photo-remove{position:absolute;top:-6px;right:-6px;box-sizing:border-box;width:44px;height:44px;padding:0;border:0;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle,#181b20 0 12px,transparent 13px);color:#fff;line-height:0;cursor:pointer}
 #kchat .kchat-photo-remove svg{display:block;width:14px;height:14px;pointer-events:none}
-#kchat .kchat-photo-notice{margin:0;color:#f6ab3e;font-size:12px;line-height:1.5}
+#kchat .kchat-photo-notice{margin:0;color:var(--assistant-accent);font-size:12px;line-height:1.5}
 #kchat .kchat-photo-notice:not(:empty){padding:0 0 8px}
 #kchat .kchat-sent-photo{display:block;width:150px;max-width:100%;max-height:120px;object-fit:cover;border-radius:8px;margin-top:8px}
 #kchat #kchat-in{min-width:0}

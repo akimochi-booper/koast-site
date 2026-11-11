@@ -1,4 +1,20 @@
-# Website Kopilot popup — November9,2026
+# Website Kopilot popup
+
+## November 10, 2026 — teal support assistant candidate
+
+Decision: owner-requested teal direction, local candidate ready for review. This request supersedes the earlier orange-only website Kopilot treatment for this popup. It does not adopt a new standard for other marketing components or apps. Implementation: branch `fix/site-kopilot-teal-support` in the isolated `site-kopilot-01a1c802` clone; not published.
+
+The launcher, identity mark, rim, composer accent, Send and authored SVG starter arrows now use teal. Rider bubbles retain the website orange gradient; Kopilot replies use a dark teal gradient with light text. The existing charcoal material, typography, native quote/email links, protected photo handling, dictation, draft ownership and modal controller remain. Four starters cover existing bookings, changes/cancellations, contacting support and planning a ride; the welcome asks "How can I help?". Mobile width uses the available containing block so classic scrollbars cannot push the sheet past its left edge. CSS29/chat5 version the generated references.
+
+`INTRO`/`RULES` now frame Kopilot as a support and planning assistant. The generated `llms.txt` includes public guidance for existing rides, pickup help, accepted ride terms, billing/receipts, lost property, complaints and privacy, with support/terms/privacy/portal destinations. General questions receive a useful answer before a handoff; support questions should not start a trip-planning interview. No private account lookup, booking/refund actions, staff-contact/ticket creation, new integration, provider/configuration changes or automatic human transfer. Ride-specific accepted terms remain authoritative.
+
+Validation: 91 site tests and 40 Worker tests pass; 233 generated pages / 47 posts / 15 dated guides pass metadata checks. Generated/helper/Worker syntax, 21 unique inline scripts and 17.8 KB ESM bundle pass. Current Cloudflare Workers best-practices reference and types 5.20261110.1 retrieved; only prompt strings change in the Worker. The support regression checks context/facts/instructions at the model boundary and the unchanged stateless, tool-less reply contract; it does not prove live model adherence.
+
+Actual Chrome preview at 390x844, 320x450 and 1440x1000: orange rider / teal reply gradients, native safe links, 44px composer controls, 16px input, contained panel, Escape launcher restoration, retained draft and initial backward focus loop checked. Local replies are explicitly synthetic and no upstream chat/booking request is made. Screenshots in `C:/Users/eubur/.codex/visualizations/2026/11/11/01a1c802-7b06-7551-956a-ace43135fd15/`: `kopilot-welcome-390.png`, `kopilot-conversation-390.png`, `kopilot-small-320.png`, `kopilot-desktop-1440.png`. Physical Safari/keyboard and live support-answer acceptance remain unverified.
+
+Publication still needs current site/Worker coordinator verification through D1 (connector unavailable in this chat), owner release authorization, fresh main integration, both Pages and chat Worker builds, and served-version/live model/mobile checks. Care Rides remains held.
+
+## Previous November 9 direction and release history
 
 Decision: Approved deployment target. Owner corrected the first proposal to retain website orange and existing material, then requested deployment of the quieter-link revision on November9. Original teal proposal1b3e7e6 is superseded for the website. Implementation: isolated branch codex/website-ai-chat-20261109 on d2ecc77; publication requested. Final deployment and live evidence are recorded in the shared Koast audit audits/2026-11-09-website-kopilot/RELEASE.md. Source authority: koast-site. Passenger Kopilot teal roles and satin controls are visual references; the public website assistant remains separate from account-aware Passenger Kopilot.
 
