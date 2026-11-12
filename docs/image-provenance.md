@@ -1,5 +1,11 @@
 # Editorial image provenance
 
+## Hotel pickup entrance refresh — 2026-11-12
+
+- Tool: built-in image generation. Asset: `img/hotel-pickup-entrance.jpg`,1600×900,245213bytes; full composition resized with high-quality bicubic interpolation and JPEG quality78 using System.Drawing. Master outside public deploy: `C:/Users/eubur/.codex/generated_images/01a1a8af-065e-79c1-bec5-cc172d6d0032/exec-f99d1777-20d4-43e0-b869-f884a09ddbc8.png`. Original older article illustration retained for any other references.
+- Generic fictional entrance architecture, not an actual hotel, Koast service/fleet, legal loading area, step-free route or accessibility certification. Reviewed for artifacts, misleading signs/brands and fabricated documentary claims. No people/vehicles/logos/text. Accurate descriptive alt text; no automatic visible generated caption.
+- Exact prompt: Create a realistic premium travel-editorial architectural photograph-style image in wide 16:9 landscape. A close street-level view of the recessed entrance of a fictional small city hotel: pale limestone facade, tall bronze-framed glass double doors with simple vertical handles, a restrained dark overhang, softly glowing interior beyond the glass, and a small climbing green vine at the edge. Warm natural late-afternoon light, believable reflections and refined stone texture; quiet, welcoming, unposed magazine photography. Show enough of the doorway and threshold that the entrance reads clearly at thumbnail size. Natural cream, bronze and deep green palette. No car, person, suitcase, actual known hotel, real identifiable location, logos, signs, address numbers, readable text, icons, maps, checkmarks, floating UI or documentary claim. Do not depict or imply a designated legal loading zone, accessibility certification or actual Koast service. Generic conceptual imagery for a practical guide about confirming the correct hotel pickup entrance. Photographic realism, not CGI.
+
 ## Cost-comparison refresh — 2026-11-11
 
 - Tool: built-in image generation. Asset: `img/airport-ride-quote-comparison.jpg`, 1600×900, 231681 bytes; full composition scaled with high-quality bicubic interpolation and JPEG quality83 using System.Drawing. Master retained outside public deployment: `C:/Users/eubur/.codex/generated_images/01a1a8af-065e-79c1-bec5-cc172d6d0032/exec-75d297f1-b2f9-4771-82c9-f81b9afb985a.png`.
