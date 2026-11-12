@@ -285,7 +285,7 @@ if _sm:
     _voice_function = _voice_source[_voice_source.index("export function ") + len("export "):_voice_source.index("\nexport const CHAT_VOICE_JS")]
     open(os.path.join(ROOT, "koast-chat-voice.js"), "w", encoding="utf-8").write("(function(){var __name=function(fn){return fn;};(" + _voice_function + ")(window);})();")
     open(os.path.join(ROOT, "koast-chat.js"), "w", encoding="utf-8").write(_sm.group(1).strip())
-    CHAT_WIDGET = CHAT_WIDGET.replace(_sm.group(0), '<script src="/koast-chat-photos.js?v=1" defer></script><script src="/koast-chat-links.js?v=1" defer></script><script src="/koast-chat-voice.js?v=1" defer></script><script src="/koast-chat.js?v=7" defer></script>')
+    CHAT_WIDGET = CHAT_WIDGET.replace(_sm.group(0), '<script src="/koast-chat-photos.js?v=1" defer></script><script src="/koast-chat-links.js?v=1" defer></script><script src="/koast-chat-voice.js?v=2" defer></script><script src="/koast-chat.js?v=8" defer></script>')
 
 def footer(prefix=""):
     return f"""
