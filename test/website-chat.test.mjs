@@ -7,29 +7,36 @@ const settle=()=>new Promise(resolve=>setImmediate(resolve));
 function fixture({voice=false,lateVoice=false,photos=false,preparePhoto=async()=> 'data:image/jpeg;base64,cGhvdG8='}={}){
  const elements={},requests=[],timers=new Map(),background=[],viewportListeners=new Map();let timer=0,doc,recognition,photoComposer;
  class Element{
-  constructor(id=''){this.id=id;this.children=[];this.attributes={};this.listeners={};this.value='';this.disabled=false;this.hidden=false;this.textContent='';this.className='';this.offsetParent={};this.style={setProperty(){}};const classes=new Set();this.classList={add:k=>classes.add(k),remove:k=>classes.delete(k),toggle:(k,on)=>on?classes.add(k):classes.delete(k),contains:k=>classes.has(k)};}
+  constructor(id=''){this.id=id;this.children=[];this.attributes={};this.dataset={};this.listeners={};this.value='';this.disabled=false;this.hidden=false;this.textContent='';this.className='';this.offsetParent={};this.style={setProperty(){}};const classes=new Set();this.classList={add:k=>classes.add(k),remove:k=>classes.delete(k),toggle:(k,on)=>on?classes.add(k):classes.delete(k),contains:k=>classes.has(k)};}
   setAttribute(k,v){this.attributes[k]=v;}getAttribute(k){return this.attributes[k];}removeAttribute(k){delete this.attributes[k];}
-  addEventListener(k,fn){this.listeners[k]=fn;}
-  emit(k,event={}){this.listeners[k]?.(event);}
+  addEventListener(k,fn){(this.listeners[k]??=[]).push(fn);}
+  removeEventListener(k,fn){this.listeners[k]=(this.listeners[k]||[]).filter(x=>x!==fn);}
+  emit(k,event={}){for(const fn of [...(this.listeners[k]||[])])fn(event);}
+  dispatchEvent(event){this.emit(event.type,event);return true;}
   click(){if(!this.disabled)this.emit('click');}
   focus(){doc.activeElement=this;}
   blur(){if(doc.activeElement===this)doc.activeElement=null;}
   appendChild(child){child.parent=this;this.children.push(child);return child;}
+  insertBefore(child){child.parent=this;this.children.unshift(child);}
+  contains(child){return this===child||this.children.some(x=>x.contains(child));}
+  get firstChild(){return this.children[0];}
+  getContext(){return null;}
   remove(){if(this.parent)this.parent.children=this.parent.children.filter(x=>x!==this);}
   querySelector(selector){return this.children.find(x=>x.className.split(' ').includes(selector.slice(1)))||null;}
   querySelectorAll(selector){if(selector==='[data-question]')return [starter];return [close,input,mic,send,quote,email].filter(x=>!x.disabled);}
  }
  for(const id of ['kchat','kchat-msgs','kchat-in','kchat-send','kchat-mic','kchat-status','kchat-fab','kchat-title','kchat-attach','kchat-photo-input','kchat-photo-tray','kchat-photo-notice'])elements[id]=new Element(id);
- const panel=elements.kchat,messages=elements['kchat-msgs'],input=elements['kchat-in'],send=elements['kchat-send'],mic=elements['kchat-mic'],close=new Element('close'),starter=new Element('starter'),quote=new Element('quote'),email=new Element('email');
- starter.setAttribute('data-question','How does airport pickup work?');panel.querySelector=selector=>selector==='.kchat-x'?close:null;
+ const panel=elements.kchat,messages=elements['kchat-msgs'],input=elements['kchat-in'],send=elements['kchat-send'],mic=elements['kchat-mic'],close=new Element('close'),starter=new Element('starter'),quote=new Element('quote'),email=new Element('email'),compose=new Element('compose');
+ starter.setAttribute('data-question','How does airport pickup work?');panel.querySelector=selector=>selector==='.kchat-x'?close:selector==='.kchat-compose'?compose:null;
  const welcome=new Element();welcome.className='kchat-welcome';messages.appendChild(welcome);
- doc={body:new Element('body'),activeElement:null,getElementById:id=>elements[id],createElement:()=>new Element(),createTextNode:text=>{const node=new Element();node.textContent=text;return node;}};
+ doc={body:new Element('body'),head:new Element('head'),addEventListener(){},activeElement:null,getElementById:id=>elements[id],createElement:()=>new Element(),createTextNode:text=>{const node=new Element();node.textContent=text;return node;}};
  const viewport={height:844,offsetTop:0,addEventListener:(name,fn)=>viewportListeners.set(name,fn),removeEventListener:name=>viewportListeners.delete(name)};
- const window={innerHeight:844,visualViewport:viewport,koastModalBackground:(element,open)=>background.push(open)};
- if(voice)window.SpeechRecognition=class{constructor(){recognition=this;this.stops=0;}start(){this.onstart();}stop(){this.stops++;if(!lateVoice)this.onend();}};
+ const window={innerHeight:844,visualViewport:viewport,koastModalBackground:(element,open)=>background.push(open),document:doc,Event,addEventListener(){},getComputedStyle:()=>({display:'flex',flexDirection:'column'}),setInterval:()=>1,clearInterval(){},setTimeout:fn=>{timers.set(++timer,fn);return timer;},clearTimeout:id=>timers.delete(id)};
+ if(voice)window.SpeechRecognition=class{constructor(){recognition=this;this.stops=0;}start(){this.onstart();}stop(){this.stops++;if(!lateVoice)this.onend?.();}abort(){this.stops++;}};
  const context={window,document:doc,DataView,Uint8Array,AbortSignal,createImageBitmap:()=>{},AbortController,fetch:(url,options)=>new Promise((resolve,reject)=>{if(String(url).endsWith('/capabilities'))return resolve({ok:true,json:async()=>({photos:true})});const request={url,options,resolve,reject};requests.push(request);options.signal.addEventListener('abort',()=>reject(new Error('aborted')));}),setTimeout:fn=>{timers.set(++timer,fn);return timer;},clearTimeout:id=>timers.delete(id)};
  if(photos){vm.runInNewContext(readFileSync(new URL('../koast-chat-photos.js',import.meta.url),'utf8'),context);const Actual=window.KoastPhotoComposer;window.KoastPhotoComposer=function(o){photoComposer=new Actual({...o,prepare:preparePhoto});return photoComposer;};}
  vm.runInNewContext(readFileSync(new URL('../koast-chat-links.js',import.meta.url),'utf8'),context);
+ vm.runInNewContext(readFileSync(new URL('../koast-chat-voice.js',import.meta.url),'utf8'),context);
  vm.runInNewContext(source,context);
  return {elements,panel,messages,input,send,mic,close,starter,doc,requests,background,viewport,viewportListeners,recognition:()=>recognition,photos:()=>photoComposer,timeout:()=>[...timers.values()].forEach(fn=>fn()),write:text=>{input.value=text;input.emit('input');},reply:async(index,text)=>{requests[index].resolve({ok:true,json:async()=>({reply:text})});await settle();}};
 }
@@ -75,13 +82,13 @@ test('closing the assistant stops active dictation and restores its accessible s
 test('late dictation results after send or close cannot replace a newer draft',async()=>{
  const h=fixture({voice:true,lateVoice:true});h.elements['kchat-fab'].click();h.mic.click();
  h.recognition().onresult({results:[[{transcript:'Original spoken message'}]]});h.send.click();h.write('Keep this new draft');
- h.recognition().onresult({results:[[{transcript:'A late final result'}]]});assert.equal(h.input.value,'Keep this new draft');
- await h.reply(0,'Reply');h.close.click();h.recognition().onresult({results:[[{transcript:'Another late result'}]]});assert.equal(h.input.value,'Keep this new draft');
+ h.recognition().onresult?.({results:[[{transcript:'A late final result'}]]});assert.equal(h.input.value,'Keep this new draft');
+ await h.reply(0,'Reply');h.close.click();h.recognition().onresult?.({results:[[{transcript:'Another late result'}]]});assert.equal(h.input.value,'Keep this new draft');
 });
 test('explicitly stopping dictation still accepts its final result before ending',()=>{
  const h=fixture({voice:true,lateVoice:true});h.elements['kchat-fab'].click();h.mic.click();h.mic.click();
  h.recognition().onresult({results:[[{transcript:'Final intentional dictation'}]]});assert.equal(h.input.value,'Final intentional dictation');
- h.recognition().onend();h.recognition().onresult({results:[[{transcript:'Expired result'}]]});assert.equal(h.input.value,'Final intentional dictation');
+ h.recognition().onend();h.recognition().onresult?.({results:[[{transcript:'Expired result'}]]});assert.equal(h.input.value,'Final intentional dictation');
 });
 
 test('image-only send sends the prepared attachment and keeps previews out of ordinary text',async()=>{

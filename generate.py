@@ -189,12 +189,12 @@ CHAT_WIDGET = r"""
   var microphone=document.getElementById('kchat-mic'),status=document.getElementById('kchat-status');
   var launcher=document.getElementById('kchat-fab'),closeButton=panel.querySelector('.kchat-x');
   var photos=null,photoBubbles=[];
-  var history=[],busy=false,failedRequest=null,failureNode=null,listening=false,recognition=null,acceptDictationResults=false;
+  var history=[],busy=false,failedRequest=null,failureNode=null;
   // Keep the native website adapters; match the app's growing message field and Send lifecycle.
   function growComposer(){var cap=window.visualViewport&&window.visualViewport.height<520?96:160;input.style.height='auto';var content=input.scrollHeight||44;input.style.height=Math.max(44,Math.min(content,cap))+'px';input.style.overflowY=content>cap?'auto':'hidden';}
   function syncControls(){growComposer();sendButton.disabled=busy||(photos&&photos.processing)||(!input.value.trim()&&!(photos&&photos.items.length));sendButton.setAttribute('aria-busy',String(busy));microphone.disabled=busy;messages.setAttribute('aria-busy',String(busy));if(photos)photos.setBusy(busy);}
   if(window.KoastPhotoComposer){photos=new window.KoastPhotoComposer({button:document.getElementById('kchat-attach'),picker:document.getElementById('kchat-photo-input'),tray:document.getElementById('kchat-photo-tray'),notice:document.getElementById('kchat-photo-notice'),onChange:syncControls});}
-  function stopDictation(discard){if(discard)acceptDictationResults=false;if(recognition){try{recognition.stop();}catch(error){}}}
+  function stopDictation(){if(window.KoastVoice)window.KoastVoice.finish(document.getElementById('kchat-in'));}
   function fitViewport(){
     var viewport=window.visualViewport;growComposer();if(!viewport)return;
     panel.style.setProperty('--kchat-visible-height',viewport.height+'px');
@@ -267,14 +267,9 @@ CHAT_WIDGET = r"""
   sendButton.addEventListener('click',function(){var editing=document.activeElement===input;if(send()&&editing)input.blur();});
   input.addEventListener('input',syncControls);
   input.addEventListener('keydown',function(event){if(event.key==='Enter'&&!event.shiftKey&&!event.isComposing&&event.keyCode!==229){event.preventDefault();send();}});
-  var Speech=window.SpeechRecognition||window.webkitSpeechRecognition;
-  if(Speech){
-    recognition=new Speech();recognition.lang='en-US';recognition.interimResults=true;recognition.continuous=false;
-    recognition.onstart=function(){if(!acceptDictationResults){stopDictation(true);return;}listening=true;microphone.classList.add('rec');microphone.setAttribute('aria-pressed','true');microphone.setAttribute('aria-label','Stop dictation');status.textContent='Listening for your message.';};
-    recognition.onend=function(){acceptDictationResults=false;listening=false;microphone.classList.remove('rec');microphone.setAttribute('aria-pressed','false');microphone.setAttribute('aria-label','Dictate a message');if(!busy)status.textContent='';};
-    recognition.onerror=function(){acceptDictationResults=false;status.textContent='Dictation is unavailable. You can type your message.';};
-    recognition.onresult=function(event){if(!acceptDictationResults)return;var text='';for(var i=0;i<event.results.length;i++)text+=event.results[i][0].transcript;input.value=text;syncControls();};
-    microphone.addEventListener('click',function(){if(busy)return;if(listening){stopDictation(false);return;}acceptDictationResults=true;try{recognition.start();}catch(error){acceptDictationResults=false;status.textContent='Dictation is unavailable. You can type your message.';}});
+  var voiceCopy={voice:'Dictate a message',stop:'Stop dictation',cancel:'Cancel dictation',requesting:'Starting microphone',listening:'Listening',speaking:'Listening',stopping:'Finishing',unavailable:'Dictation is unavailable. You can type your message.',permissionDenied:'Microphone access is blocked. You can type your message.',noSpeech:'No speech detected. You can try again or type your message.'};
+  if(window.KoastVoice&&(window.SpeechRecognition||window.webkitSpeechRecognition)){
+    microphone.addEventListener('click',function(){if(busy)return;window.KoastVoice.start({input:input,button:microphone,root:panel.querySelector('.kchat-compose'),lang:'en-US',continuous:true,isCurrent:function(){return !busy&&panel.getAttribute('aria-hidden')==='false'&&document.getElementById('kchat-in')===input;},copy:function(key){return voiceCopy[key];},onError:function(key){if(panel.getAttribute('aria-hidden')==='false'&&!busy)status.textContent=voiceCopy[key];}});});
   }else{microphone.hidden=true;}
   syncControls();
 })();
@@ -285,8 +280,12 @@ CHAT_WIDGET = r"""
 import re as _re0
 _sm = _re0.search(r"<script>(.*?)</script>", CHAT_WIDGET, _re0.S)
 if _sm:
+    # Same authored controller as the app Workers; generated browser asset is not hand edited.
+    _voice_source = open(os.path.join(ROOT, "src", "chat-voice.mjs"), encoding="utf-8").read()
+    _voice_function = _voice_source[_voice_source.index("export function ") + len("export "):_voice_source.index("\nexport const CHAT_VOICE_JS")]
+    open(os.path.join(ROOT, "koast-chat-voice.js"), "w", encoding="utf-8").write("(function(){var __name=function(fn){return fn;};(" + _voice_function + ")(window);})();")
     open(os.path.join(ROOT, "koast-chat.js"), "w", encoding="utf-8").write(_sm.group(1).strip())
-    CHAT_WIDGET = CHAT_WIDGET.replace(_sm.group(0), '<script src="/koast-chat-photos.js?v=1" defer></script><script src="/koast-chat-links.js?v=1" defer></script><script src="/koast-chat.js?v=6" defer></script>')
+    CHAT_WIDGET = CHAT_WIDGET.replace(_sm.group(0), '<script src="/koast-chat-photos.js?v=1" defer></script><script src="/koast-chat-links.js?v=1" defer></script><script src="/koast-chat-voice.js?v=1" defer></script><script src="/koast-chat.js?v=7" defer></script>')
 
 def footer(prefix=""):
     return f"""

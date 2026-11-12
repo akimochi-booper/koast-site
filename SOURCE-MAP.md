@@ -1,5 +1,7 @@
 # Koast website source map
 
+Voice dictation: `src/chat-voice.mjs` exports `installChatVoice`/`CHAT_VOICE_JS`; `generate.py` externalizes the same controller as ignored `koast-chat-voice.js` before the popup adapter. One current session owns browser SpeechRecognition, optional getUserMedia/Web Audio samples, timers and cleanup; no persistence, provider request or automatic Send. Adapters fence exact visible field/scope and preserve drafts. `stop` drains final recognition, `finish` immediately fences while retaining visible text, `cancel` restores the starting draft. `test/chat-voice.test.mjs` and `test/website-chat.test.mjs` cover measured waveform, late stream/results, permissions, Stop/Cancel, manual input, close and Send. `scripts/preview-assistant.mjs?voice=1` uses labelled synthetic speech/audio, never hardware capture. Selected shared Voice Shelf3 November12; existing neutral composer/Satin Corner Send and photo limits retained.
+
 Application authority: `akimochi-booper/koast-site`. Generated static public marketing; no D1/customer writer in the publication path. Shared engineering and preview rules live in the canonical Koast documents.
 
 | Responsibility | Owning source and interface | Effects/guards | Verification |

@@ -33,7 +33,7 @@ jobs:
           rsync -a \
             --exclude='.git' --exclude='.github' --exclude='dist' \
             --exclude='generate.py' --exclude='data.py' --exclude='editorial.py' --exclude='healdsburg_wine_tours.py' \
-            --exclude='content' --exclude='scripts' --exclude='workers' \
+            --exclude='content' --exclude='scripts' --exclude='workers' --exclude='src' \
             --exclude='wineries_extra.json' --exclude='__pycache__' \
             --exclude='README.md' --exclude='test' --exclude='docs' \
             --exclude='EDITORIAL.md' --exclude='SOURCE-MAP.md' \
