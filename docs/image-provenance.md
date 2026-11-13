@@ -1,5 +1,11 @@
 # Editorial image provenance
 
+## Airport-choice refresh — 2026-11-13
+
+- Tool: built-in image generation. Asset:`img/bay-area-airport-trip-planning.jpg`,1600×900,135712bytes. Entire composition resized using high-quality bicubic interpolation, JPEG quality83 via System.Drawing. Master outside deployment:`C:/Users/eubur/.codex/generated_images/01a1a8af-065e-79c1-bec5-cc172d6d0032/exec-979bf459-b88c-4ff8-b6fb-dadd3fb609f2.png`.
+- Generic fictional unbranded aircraft-wing/coast view, not a real flight, airport, location, airline or Koast vehicle/service photograph. Reviewed for aircraft geometry, invented brands/text and misleading documentary claims. No logos/people/readable lettering. Accurate descriptive alt and matching article/card/social/schema image; no automatic visible generated caption. Previous illustration and its historical provenance retained.
+- Exact prompt: Create one realistic premium travel-editorial photograph-style image in wide 16:9 landscape. View through an airliner window toward a single elegant unbranded white aircraft wing above calm blue coastal water and a soft distant shoreline, with thin morning cloud layers and a pale blue-lavender sky. The wing extends naturally from the lower left toward the center-right, with believable aircraft geometry and subtle metal reflections. Quiet cool daylight, restrained natural color, gentle atmospheric depth, polished magazine travel photography rather than CGI. The wing and coastline should remain recognizable at small blog-card size. Do not show an airline logo, livery, lettering, tail number, readable text, signs, maps, icons, checkmarks, people, floating UI or famous identifiable landmark. This is a fictional generic travel scene, not a photograph documenting a real airport, flight, location, Koast vehicle or service. No inset frames or collage.
+
 ## Hotel pickup entrance refresh — 2026-11-12
 
 - Tool: built-in image generation. Asset: `img/hotel-pickup-entrance.jpg`,1600×900,245213bytes; full composition resized with high-quality bicubic interpolation and JPEG quality78 using System.Drawing. Master outside public deploy: `C:/Users/eubur/.codex/generated_images/01a1a8af-065e-79c1-bec5-cc172d6d0032/exec-f99d1777-20d4-43e0-b869-f884a09ddbc8.png`. Original older article illustration retained for any other references.
