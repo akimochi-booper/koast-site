@@ -6,6 +6,7 @@ canonical identity and FAQ remain owned by the generator/route renderers.
 from html import escape
 from html.parser import HTMLParser
 import re
+from src.wine_designs import reference_nav, render_reference_top
 
 
 def group_vehicle_options(email):
@@ -123,46 +124,54 @@ def _hero(source, image, image_alt, family, quote_url):
     return source[:header["start"]] + hero + source[header["end"]:]
 
 
-def _compact_wine_planning(source, quote_url):
-    """Keep detailed practical content available after the visual discovery cards."""
+def renew_reference_page(source, context, variant, quote_url, email):
+    """Compose one complete approved design, retaining SEO and detailed planning."""
     nodes = _Elements(source)
-    sections = [n for n in sorted(nodes.elements, key=lambda n:n['start'])
-                if n['tag'] == 'section' and 'renewal-section' in n['attrs'].get('class', '').split()]
-    # The first winery-discovery section stays open and image-led.
-    for section in reversed(sections[1:]):
-        inner = nodes.html(section, inner=True)
-        pieces = _Elements(inner)
-        heading = pieces.first(tag='h2')
-        if not heading:
-            continue
-        label = re.sub('<[^>]+>', '', pieces.html(heading, inner=True))
-        if section['attrs'].get('id') == 'reserve-ride':
-            label = 'Get a quote for your wine day'
-        content = f'<details class="renewal-planning"><summary>{label}</summary>{inner}</details>'
-        source = source[:section['inner_start']] + content + source[section['inner_end']:]
-    # One scenic conversion band is enough; retain the same quote destination.
-    updated = _Elements(source)
-    for section in sorted((n for n in updated.elements if n['tag'] == 'section'), key=lambda n:n['start'], reverse=True):
-        if _Elements(updated.html(section)).first(cls='cta'):
+    header = nodes.first(tag='header')
+    sections = sorted((n for n in nodes.elements if n['tag']=='section'),key=lambda n:n['start'])
+    faq = next((n for n in sections if _Elements(nodes.html(n)).first(cls='faq')),None)
+    if not header or not faq:
+        return source
+    extras = source[header['end']:faq['start']]
+    # The reference discovery owns this anchor; preserve old details separately.
+    extras = extras.replace('id="plan-your-tastings"','id="detailed-tastings"',1)
+    extras = extras.replace('id="choose-your-route"','id="detailed-routes"',1)
+    hero_parts = _Elements(nodes.html(header))
+    booking = hero_parts.first(cls='book-card')
+    if booking:
+        extras += '<section id="reserve-ride"><div class="reference-wrap">' + hero_parts.html(booking) + '</div></section>'
+    route_link = '<a href="#plan-your-tastings">Plan your winery stops</a>'
+    route_link += f' · <a href="{quote_url}">Get a transportation quote</a>'
+    if context['slug'] == 'healdsburg':
+        route_link += ' · <a href="#choose-your-route">Compare winery routes</a>'
+    supplement = '<div class="reference-wrap reference-planning-link">'+route_link+'</div><details class="reference-more"><summary>Detailed winery, pickup and return planning</summary><div>'+extras+'</div></details>'
+    top = render_reference_top(context,variant,quote_url,email)
+    if context['slug'] == 'healdsburg':
+        top = top.replace('<h2>Discover your next stop.</h2>','<span id="choose-your-route"></span><h2>Discover your next stop.</h2>',1)
+    source = source[:header['start']] + top + supplement + source[faq['start']:]
+    # Replace inherited repeated conversion bands, keeping the complete design's band.
+    nodes = _Elements(source)
+    for section in sorted((n for n in nodes.elements if n['tag']=='section'),key=lambda n:n['start'],reverse=True):
+        if _Elements(nodes.html(section)).first(cls='cta'):
             source = source[:section['start']] + source[section['end']:]
-    # Real booking handoff, not an unconnected form drawn to resemble the mockup.
-    band = f'''<section class="renewal-journey-band"><div class="wrap"><div class="cta">
-      <h2>Your stops.<br>One private ride.</h2><p>Hotel pickup. Your chosen tastings. A confirmed return.</p>
-      <a class="btn btn-orange" href="{escape(quote_url, quote=True)}">Plan my ride</a>
-      </div></div></section>'''
     nodes = _Elements(source)
-    first = next((n for n in sorted(nodes.elements,key=lambda n:n['start'])
-                  if n['tag']=='section' and 'renewal-section' in n['attrs'].get('class','').split()), None)
-    if first:
-        source = source[:first['end']] + band + source[first['end']:]
-    return source.replace('</body>', '<script src="/marketing-design.js?v=1" defer></script>\n</body>', 1)
+    nav = nodes.first(tag='nav',cls='site-nav')
+    if nav:
+        source = source[:nav['start']] + reference_nav(variant,quote_url) + source[nav['end']:]
+    source = source.replace('<body>',f'<body class="renewal-site renewal-wine wine-reference reference-{variant}">',1)
+    source = source.replace('</head>','<link rel="stylesheet" href="/css/marketing-design.css?v=2">\n<link rel="stylesheet" href="/css/wine-reference.css?v=1">\n</head>',1)
+    return source.replace('</body>','<script src="/marketing-design.js?v=2" defer></script>\n</body>',1)
 
 
-def renew_page(source, path, image, image_alt, quote_url, group_quote_url=None):
+def renew_page(source, path, image, image_alt, quote_url, group_quote_url=None, wine_context=None):
     """Apply shared visual language to an existing generated public page."""
     if (path.startswith("preview/") or 'name="robots" content="noindex' in source
             or re.search(r'<body\b[^>]*\bclass="[^"]*\brenewal-site\b', source)):
         return source
+    if wine_context:
+        variant = wine_context.get('design_variant') or {'healdsburg':'journal','napa-valley':'gallery'}.get(wine_context['slug'],'cinema')
+        email = (group_quote_url or 'mailto:reserve@koastride.com').removeprefix('mailto:')
+        return renew_reference_page(source,wine_context,variant,quote_url,email)
     folder = path.split('/')[0]
     family = {"wine-tours":"wine", "wineries":"winery", "cities":"city",
               "airports":"airport", "routes":"route", "services":"service"}.get(folder, "general")
@@ -186,9 +195,7 @@ def renew_page(source, path, image, image_alt, quote_url, group_quote_url=None):
             family = "event"
             quote_url = group_quote_url or quote_url
     source = source.replace('<body>', f'<body class="renewal-site renewal-{family}">', 1)
-    source = source.replace('</head>', '<link rel="stylesheet" href="/css/marketing-design.css?v=1">\n</head>', 1)
+    source = source.replace('</head>', '<link rel="stylesheet" href="/css/marketing-design.css?v=2">\n</head>', 1)
     if family != "general":
         source = _hero(source, image, image_alt, family, quote_url)
-    if path in {'wine-tours/livermore.html', 'wine-tours/healdsburg.html'}:
-        source = _compact_wine_planning(source, quote_url)
     return source

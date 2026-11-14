@@ -31,8 +31,9 @@ test('all searchable FAQ answers are exactly the answers presented to visitors',
 
 test('private-driver search intent leads to existing quote and local planning destinations',()=>{
   assert.match(page,/<title>Healdsburg Winery Tours with a Private Driver \| Koast<\/title>/);
-  assert.match(page,/<h1>Healdsburg winery tours /);
-  assert.match(page,/href="mailto:reserve@koastride\.com">Email for a wine-tour quote<\/a>/);
+  assert.match(page,/<p class="reference-eyebrow">Healdsburg · Private wine tours<\/p>/);
+  assert.match(page,/<h1>A little<br>closer\.<br>A world<br>away\.<\/h1>/);
+  assert.match(page,/data-email="reserve@koastride\.com"/);
   assert.match(page,/href="#choose-your-route">Compare winery routes<\/a>/);
   assert.match(page,/id="quote-details"/);
   assert.match(page,/address in each tasting confirmation/);

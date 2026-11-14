@@ -11,7 +11,8 @@ from src.palo_alto_car_service import PALO_ALTO_TITLE, PALO_ALTO_DESCRIPTION, PA
 from src.sacramento_car_service import SACRAMENTO_TITLE, SACRAMENTO_DESCRIPTION, SACRAMENTO_FAQS, render_sacramento_body
 from src.stags_leap_transport import STAGS_LEAP_TITLE, STAGS_LEAP_DESCRIPTION, STAGS_LEAP_FAQS, render_body as render_stags_leap_body
 from src.livermore_wine_tours import LIVERMORE_TITLE, LIVERMORE_DESCRIPTION, LIVERMORE_FAQS, render_livermore_body
-from src.marketing_design import renew_page, group_vehicle_options
+from src.marketing_design import renew_page, renew_reference_page, group_vehicle_options
+from src.wine_designs import wine_context
 EDITORIAL_POSTS = load_posts(ROOT)
 EDITORIAL_BY_SLUG = {post["slug"]: post for post in EDITORIAL_POSTS}
 LEGACY_MODIFIED = {slug: "2026-10-13" for slug in (
@@ -2580,7 +2581,20 @@ def enhance():
         src = _rewrite_site_links(src, rel, root_files)
         src = _rewrite_absolute_site_urls(src)
         visual_image, visual_alt = _social_image(rel, src)
-        src = renew_page(src, rel, visual_image, visual_alt, BOOK, 'mailto:' + EMAIL)
+        wine_slug = rel.removeprefix('wine-tours/').removesuffix('.html') if rel.startswith('wine-tours/') else None
+        context = wine_context(wine_slug, WINE_REGIONS[wine_slug]['name'], WINERIES.get(wine_slug, []), WINERY_DETAIL, wyslug) if wine_slug in WINE_REGIONS else None
+        if context and wine_slug not in ('livermore','healdsburg','napa-valley'):
+            context.update(hero_image='/' + visual_image,hero_alt=WINE_REGIONS[wine_slug]['name']+' wine-country scene')
+        winery_slug = rel.removeprefix('wineries/').removesuffix('.html') if rel.startswith('wineries/') else None
+        if winery_slug in WINERY_DETAIL:
+            destination = WINERY_DETAIL[winery_slug]
+            region_slug = destination['region']
+            current_stop = dict(name=destination['name'],area=destination['area'],res=destination['res'],known=destination['known'])
+            nearby = [w for w in WINERIES.get(region_slug,[]) if w['name'] != destination['name']]
+            context = wine_context(winery_slug,destination['name'],[current_stop]+nearby,WINERY_DETAIL,wyslug)
+            context.update(slug=winery_slug,design_variant='journal')
+            context['wineries'][0]['href'] = destination['website']
+        src = renew_page(src, rel, visual_image, visual_alt, BOOK, 'mailto:' + EMAIL, context)
         src = _add_image_dimensions(src, fp)
         src = _update_favicon_links(src)
         if 'rel="canonical"' in src:
@@ -4221,6 +4235,18 @@ for post in EDITORIAL_POSTS:
               post["image"], post["minutes"], post["body"], post["cta"])
 
 # SEO enhance — must run last
+# Side-by-side owner review of the three complete approved designs. These
+# previews retain noindex and do not replace the public page's canonical URL.
+for _variant in ('cinema','journal','gallery'):
+    _preview = head('Livermore '+_variant.title()+' Design Preview | Koast',
+        'Private visual review of the approved Livermore '+_variant+' wine-tour design, with quote planning and the existing booking destination.',
+        '/', extra='<meta name="robots" content="noindex, nofollow">') + nav('/', 'wine')
+    _preview += render_livermore_body(book_card(), BOOK)
+    _preview += faq_section(LIVERMORE_FAQS, 'Livermore wine-tour transportation questions') + footer('/')
+    _context = wine_context('livermore',WINE_REGIONS['livermore']['name'],WINERIES['livermore'],WINERY_DETAIL,wyslug)
+    _preview = renew_reference_page(_preview,_context,_variant,BOOK,EMAIL)
+    write('preview/wine-designs/'+_variant+'.html',_preview)
+
 enhance()
 
 # A branded noindex fallback prevents unknown retired URLs from being indexed as copies of the homepage.

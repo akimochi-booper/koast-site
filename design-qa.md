@@ -2,45 +2,46 @@
 
 final result: passed
 
-Scope: approved public-website adaptation of Vineyard Cinema, Wine Journal and Afterglow Gallery. Eugene explicitly approved using all directions in different destinations, favored1/2 and allowed creative vehicle scenarios; no Passenger/Driver/operations/booking-app redesign. Implementation is a local candidate, not a published redesign.
+Local candidate only; the redesign is not published. This report supersedes the earlier adaptation report after Eugene rejected the visual drift and explicitly requested that each original mockup remain its own complete design. Approved scope is the public marketing website, excluding booking, Passenger, Driver and operations apps.
 
-Visual truth: shared `mockups/livermore-visual-directions/2026-11-14/option-1-vineyard-cinema.png` (946×1663) and `option-2-wine-journal.png` (973×1616), plus option3 for event-gallery mood. Approved scope and image provenance are in that folder's README and `docs/marketing-imagery-20261114.md`.
+## Visual truth and comparison
 
-Implementation: http://127.0.0.1:59399, retained allocated loopback preview. Browser-rendered JPEG evidence is in the same shared folder's `implementation/`: cinema hero/discovery comparisons, editorial hero comparison, full Livermore capture, desktop and mobile route-family captures, `browser-qa-metrics.json`. Source and actual images were opened together as composite boards; these are comparison artifacts, not product UI. Actual screenshots946px wide at CSSviewport961 and973px wide at CSSviewport988, matching source-content widths after the browser's scrollbar/capture area. Both board columns use original pixel dimensions (no text/image stretching). Desktop acceptance also used1280×900; phone checks390×844 and320×800. Source mockups are desktop compositions; mobile is the responsive implementation, with no claimed physical-device acceptance.
+Exact targets in the shared Koast folder, `mockups/livermore-visual-directions/2026-11-14/`:
 
-State: public marketing, initial hero/cards with closed planning and FAQ disclosures; separate interactive checks of menu, filters, open FAQ and booking disclosure. Existing booking widget uses the repository's clearly synthetic local fixture during preview; production booking URL and widget initializer are preserved in generated source.
+- `option-1-vineyard-cinema.png`, 946×1663: transparent navigation, sunset hero, white/gradient headline, floating pickup/date/party quote bar, cream discovery cards, scenic SUV conversion band and three planning disclosures.
+- `option-2-wine-journal.png`, 973×1616: cream navigation, large stacked black display type, italic serif accents, portrait vineyard with overlapping wine image, horizontal winery rows and full-width scenic conversion band.
+- `option-3-afterglow-gallery.png`, 973×1616: charcoal navigation/gallery, three-line white/gradient hero, journey steps, square winery images and cream pickup/party planner.
 
-## Comparison history and findings resolved
+Opened each original beside the final browser rendering in `implementation/final-{cinema,journal,gallery}-comparison.jpg`. Sources are on the left, implementation on the right. Comparisons retain native pixel dimensions; browser CSS viewports961/988 produce screenshot content widths946/973 respectively after scrollbar/capture area. Final full-page and hero screenshots use the same filename prefix. Comparisons use the initial closed-disclosure state. The production footer and preserved SEO/planning material extend below the concept composition rather than replacing it.
 
-- P1 first cinema pass: inherited dark heading color on a dark scenic image. Fixed scoped white cinema/gallery/CTA headings. New rendered hero and conversion-band captures confirm readable text.
-- P2 first cinema pass: the custom hero's width was centered/narrowed by overlapping selectors. Fixed full-width wrap and left-aligned content, then reduced navigation/hero geometry to the selected visual rhythm. Matching-width hero board confirms the post-fix composition.
-- P1 review: generic no-hero-copy transformation dropped Corporate Account Inquiry and secondary ride links. Preserved the complete authored functional content; focused regression checks cover both actions and nested booking markup.
-- P2 discovery pass: oversized duplicate prose, plain reservation labels and two repeated scenic CTAs weakened the visual hierarchy. Condensed winery-card copy, added readable reservation badges, kept one scenic conversion band and placed detailed planning/booking in native disclosures. Preserved official sources, addresses and FAQ/schema equality.
-- P2 editorial pass: inset photo intruded into the text-column gap at intermediate width. Reduced its left offset; recaptured desktop and320px view without overlap or horizontal overflow.
-- Inherited group-copy risk: replaced generic bus/Sprinter seat claims in renewed planning/event sections with tailored-quote guidance and actual seating/luggage/access confirmation. Event primary and group CTAs now use existing email inquiry; fleet-card cutouts/specifications are retained.
+The original mockups are desktop references. Responsive implementation was also opened at390px and320px; physical-device acceptance is not claimed. Final mobile screenshots and `final-browser-metrics.json` are alongside the comparison boards. Preview remains at http://127.0.0.1:59399.
 
-No actionable P0/P1/P2 finding remains in the checked states.
+## Findings corrected
 
-## Required fidelity surfaces
+- P1: flat orange headline and inherited cream navigation changed Cinema's character. Restored clipped orange gradient, transparent dark header and bright vineyard palette; matched header/hero geometry.
+- P1: original pickup/date/party quote bar was absent. Added real inputs, validation, a review dialog and an explicit email-draft handoff. All entered values survive into the draft. Existing online booking remains available.
+- P2: the first implementation blended the concepts. Added three independent compositions, not one shared visual wrapper. Journal restores oversized stacked typography, serif text and overlapping photography; Gallery restores dark cards, journey steps and cream planner.
+- P2: reused imagery did not fill the reference roles. Generated and inspected six separate people-free atmosphere assets directly against the original references; exported whole compositions for their measured slots. Original wordmark remains unchanged. Real Tabler3.20.0 icons and MIT license are included.
+- P2: card/badge padding and conversion-band height shifted Cinema's section rhythm. Reduced those dimensions and recaptured the combined comparison. Journal lede/photo overlap was corrected before final capture.
+- P1 regression caught by existing Stag's Leap test: replacing the conversion band hid the existing transportation-quote link. Restored the original explicit action below the reference composition; the unmodified Stag's Leap action assertion now passes.
+- P2 content mapping: individual Livermore wineries initially inherited the region's first winery. Corrected the context key so each estate leads its own page, followed by two nearby wineries. Browser checked Wente and Stag's Leap; current estate links to its official website.
 
-- Typography: existing self-hosted Plus Jakarta Sans retained, heavy tightly spaced display headings, clear hierarchy, readable minimum16px inputs. Large desktop headings and natural phone wrapping checked. Destination-specific SEO/service copy replaces mock placeholder wording.
-- Layout/rhythm: full-width scenic wine heroes, warm cream discovery cards, split editorial city/winery heroes with winery inset photography, dark event gallery. Matching-width boards reviewed for radii, image frames and section proportions. Compact native disclosures preserve practical detail without long open prose sections.
-- Colors/tokens: original approved orange-gradient wordmark/buttons retained; cream/charcoal editorial palette scoped to public marketing. Contrast fixes verified in screenshots; focus rings and reduced-motion behavior retained. Original site navigation uses the cream editorial treatment across the new families.
-- Images: original logo SVG reused. Three individually generated scenic assets plus one people-free edit are original raster assets; whole-composition JPEG exports/provenance documented. Regional mapping is kept; no generic picture claims to document a named winery or assigned fleet. Generated people absent from the four new assets. Existing fleet cutouts remain on the fleet carousel.
-- Copy/content: named winery addresses, reservation/walk-in guidance and official links remain useful. Tasting fees/reservations stay separate; group vehicles require quotes. No new ratings/reviews/service statistics/prices/capacities introduced. Homepage unsourced testimonial/performance blocks withheld pending evidence. Existing canonical, structured-data, sitemap, privacy, acquisition and prelaunch/Care Rides gates pass their checks.
+No actionable P0/P1/P2 issue remains in the checked states. Remaining P3 differences: exact generated photo subjects/crops, outline icon glyphs and minor type metrics. These do not require another fidelity loop. Verified estate photography can replace illustrative ambience when appropriately sourced.
 
-Intentional adaptations: existing navigation and exact original wordmark; region-appropriate imagery in place of fictional named-estate photos; native quote/booking handoffs and disclosures rather than unconnected mock form fields; searchable FAQ answers, related planning links and the actual site footer extend beyond the concept image. These preserve the approved visual direction while making the page useful and functional.
+## Five fidelity surfaces
 
-## Functional and technical evidence
+- Typography: retained self-hosted Plus Jakarta Sans, matched large bold display scale, separate serif Journal accents and natural phone wrapping. Inputs remain at least16px.
+- Layout: separate complete compositions, matched navigation/hero/discovery proportions, correct photo frames, overlapping Journal images and distinct quote placement. Practical details remain available through disclosures.
+- Color: gradient headline and CTAs, Cinema's warm cream, Journal's pale editorial background and Gallery's charcoal/cream split. Forced-color fallback, focus rings and reduced-motion behavior are retained.
+- Imagery: original SVG logo, six measured new raster exports and existing scenic vehicle/hero masters. Fictional ambience is described in alt text; it does not claim to depict a named estate or assigned vehicle. No generated people added.
+- Content: winery locations and reservation/walk-in guidance, official links, separate tasting fees, quote-only group vehicles, established metadata/schema/FAQ and related planning links. No invented rates, capacities, reviews or performance statistics.
 
-- Installed full validation:183tests passed;233HTML pages,47posts,16dated editorial posts; zero generated-site errors. Focused parser/booking/action/idempotence tests also pass after final review.
--12desktop destination/family observations;10narrow320px checks and additional390px route/support/privacy checks. No horizontal overflow; requested images load. Final Stag's Leap inset verified at320px; people-free Palo Alto art verified after export.
-- Winery search filters to Wente and one correct region; reset works.
-- Mobile menu opens, Escape closes and focus returns to Open menu.
-- Keyboard Enter opens a FAQ; answer visible. Planning fragment #quote-details reveals its disclosure. Quote disclosure opens the retained iframe (synthetic local endpoint only in preview).
-- Browser error/warning readbacks empty in checked final states. No native desktop input or physical-device testing.
-- Independent source review completed; identified corporate-action regression fixed and covered. Main refreshed to f2c4ba444f877f8039baf608016d42cf7f31414b before final integration; no publisher claimed for this local redesign.
+## Functional and technical checks
 
-## Follow-up polish
-
-P3: replace regional/illustrative winery ambience with properly sourced estate photography when available. Current image captions/alt avoid estate-identity claims. Responsive device emulation is complete; physical-device acceptance remains separate.
+- Installed full validation: `node scripts/check-pr.mjs --today 2026-11-14`;186tests passed, zero failures/skips;236HTML pages,47posts,16dated editorial posts; zero generated-site errors. Full output is `implementation/fidelity-final-checks.log`. Required gate names and assertions remain intact.
+- Quote browser checks: Cinema pickup/date/4guests, Journal pickup/date/7+group and Gallery pickup/5guests. Reviews and encoded email drafts contain entered values; Gallery shows date as “To be confirmed.” No email draft was sent and no production booking created.
+- The quote planner does not persist or transmit input, call a backend, calculate a fare or confirm availability. The visitor explicitly opens and sends an email draft. Existing native booking URL is preserved; no unsupported provider prefill is claimed. Local booking iframe remains the repository's synthetic preview fixture.
+- Escape closes quote review and returns focus to the invoking control. Mobile menu opens, Escape closes it and focus returns to Open menu. Form errors use a live status and focus the invalid input. Native keyboard date/select semantics are preserved.
+- Three final matching-width desktop renders: no horizontal overflow. Lazy images inside closed supplemental disclosures are unrequested rather than broken. Ten additional final mobile observations cover Livermore, Healdsburg, Napa, Stag's Leap and Wente at390/320px with no overflow or broken eager images. Earlier unchanged route-family smoke checks remain applicable to the broader candidate.
+- Existing canonical, schema/visible-FAQ equality, sitemap, acquisition/privacy, prelaunch and Care Rides gates pass. Preview comparisons are noindex/nofollow and outside the sitemap.
+- Final browser warning/error readback empty in checked states. No native desktop input used. D1 coordination was read through the authenticated Cloudflare console; no Site publisher claimed for this local candidate.

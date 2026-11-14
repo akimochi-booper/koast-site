@@ -44,7 +44,7 @@ test('generated public families preserve identity and quote-only groups',()=>{
     const page=readFileSync(new URL('../'+path,import.meta.url),'utf8');
     assert.equal((page.match(/<h1\b/g)||[]).length,1,path);
     assert.match(page,/koast-acquisition\.js\?v=3/,path);
-    assert.match(page,/marketing-design\.css\?v=1/,path);
+    assert.match(page,/marketing-design\.css\?v=2/,path);
     assert.match(page,/rel="canonical"/,path);
   }
   for(const path of ['wine-tours/napa-valley.html','wineries/wente-vineyards.html']){
