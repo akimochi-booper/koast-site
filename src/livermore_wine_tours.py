@@ -80,24 +80,24 @@ def render_livermore_body(booking_markup, quote_url):
       <h3>Wente Vineyards</h3>
       <p class="renewal-kicker">Arroyo Road</p><p><span class="pill">Reservations encouraged</span></p>
       <p><strong>5050 Arroyo Road, Livermore.</strong><br>Seated tastings. Confirm the experience and time.</p>
-      <p><a href="https://wentevineyards.com/visit/">Plan your visit</a> · <a href="https://wentevineyards.com/contact-us/">Address &amp; contact</a></p>
+      <p><a href="/wineries/wente-vineyards">Explore Wente Vineyards</a></p>
     </article>
     <article class="renewal-winery-card card">
       <figure class="renewal-card-photo"><img src="/img/renewal-wine-terrace.jpg" alt="Illustrative wine-country terrace, not Concannon Vineyard" loading="lazy"><figcaption>Wine-country ambience &middot; Illustration</figcaption></figure>
       <h3>Concannon Vineyard</h3>
       <p class="renewal-kicker">Tesla Road</p><p><span class="pill">Walk-ins subject to seating</span></p>
       <p><strong>4590 Tesla Road, Livermore.</strong><br>Reservations are encouraged. Ask about larger parties.</p>
-      <p><a href="https://concannon.wine/experiences/">Explore winery experiences</a></p>
+      <p><a href="/wineries/concannon-vineyard">Explore Concannon Vineyard</a></p>
     </article>
     <article class="renewal-winery-card card">
       <figure class="renewal-card-photo"><img src="/img/wt-livermore.jpg" alt="Livermore Valley regional landscape" style="object-position:80% center" loading="lazy"><figcaption>Livermore Valley &middot; Regional image</figcaption></figure>
       <h3>Murrieta's Well</h3>
       <p class="renewal-kicker">Mines Road</p><p><span class="pill">Seated reservations recommended</span></p>
       <p><strong>3005 Mines Road, Livermore.</strong><br>Patio and walk-up options vary by date.</p>
-      <p><a href="https://murrietaswell.com/visit/">Explore winery experiences</a></p>
+      <p><a href="/wineries/murrietas-well">Explore Murrieta’s Well</a></p>
     </article>
   </div>
-  <p style="margin-top:24px">More stops? Explore the <a href="https://www.lvwine.org/itinerary-planner.php">Livermore Valley itinerary planner</a> and <a href="https://www.lvwine.org/maps.php">winery maps</a>. Tasting reservations and fees are separate from transportation.</p>
+  <p style="margin-top:24px">More stops? Explore <a href="/wineries/">our winery planning directory</a> or <a href="/blog/group-wine-tour-planning">plan your group wine tour</a>. Tasting reservations and fees are separate from transportation.</p>
 </div></section>
 
 <section class="tight renewal-section"><div class="wrap grid-2 renewal-split">

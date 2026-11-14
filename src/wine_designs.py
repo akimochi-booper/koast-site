@@ -18,9 +18,9 @@ def wine_context(slug, region, wineries, winery_details, slug_for):
                           href='/wineries/'+key if detail else '/wineries/'))
     if slug == 'livermore':
         stops = [
-            dict(name='Wente Vineyards',area='Arroyo Road',res='Reservations encouraged',description='Seated tastings. Confirm your experience and time.',href='https://wentevineyards.com/visit/'),
-            dict(name='Concannon Vineyard',area='Tesla Road',res='Walk-ins subject to seating',description='Reservations encouraged. Check space for your party.',href='https://concannon.wine/experiences/'),
-            dict(name="Murrieta’s Well",area='Mines Road',res='Seated tastings: reservations recommended',description='Patio and walk-up options vary by date.',href='https://murrietaswell.com/visit/'),
+            dict(name='Wente Vineyards',area='Arroyo Road',res='Reservations encouraged',description='Seated tastings. Confirm your experience and time.',href='/wineries/wente-vineyards'),
+            dict(name='Concannon Vineyard',area='Tesla Road',res='Walk-ins subject to seating',description='Reservations encouraged. Check space for your party.',href='/wineries/concannon-vineyard'),
+            dict(name="Murrieta’s Well",area='Mines Road',res='Seated tastings: reservations recommended',description='Patio and walk-up options vary by date.',href='/wineries/murrietas-well'),
         ]
     return dict(slug=slug,region=region,wineries=stops)
 
@@ -94,11 +94,12 @@ def _cards(context, variant):
     result = ''
     for index, winery in enumerate(context['wineries'][:3]):
         w = {key:escape(str(value),quote=True) for key,value in winery.items()}
+        action = 'About this winery' if winery['href'] == '#winery-details' else 'Explore winery'
         result += f'''<article class="reference-winery reference-winery-{index+1}">
           <img class="reference-winery-photo" src="/img/reference-{pictures[index]}.jpg" alt="Illustrative wine-country ambience" loading="lazy">
           <div class="reference-winery-copy"><h3>{w['name']}</h3><div class="reference-winery-meta"><span class="reference-location">{icon('map-pin')}{w['area']}</span>
           <span class="reference-reservation reference-reservation-{index+1}">{icon('users' if index == 1 else 'calendar' if index == 0 else 'glass')}{w['res']}</span></div>
-          <p>{w['description']}</p><a class="reference-explore" href="{w['href']}">Explore winery{arrow()}</a></div></article>'''
+          <p>{w['description']}</p><a class="reference-explore" href="{w['href']}">{action}{arrow()}</a></div></article>'''
     return result
 
 

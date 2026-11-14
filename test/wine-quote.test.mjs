@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync} from 'node:fs';
+import {readFileSync,readdirSync} from 'node:fs';
 import vm from 'node:vm';
 
 const source=readFileSync(new URL('../marketing-design.js',import.meta.url),'utf8');
@@ -40,5 +40,25 @@ test('three design previews stay separate, noindex, and outside the sitemap',()=
     assert.equal((page.match(/<form\b/g)||[]).length,1);
     assert.match(page,/data-wine-quote/);
     assert.doesNotMatch(sitemap,new RegExp('/preview/wine-designs/'+variant));
+  }
+});
+
+test('winery exploration stays on Koast across every winery, region and design preview',()=>{
+  const files=['wine-tours/','wineries/'].flatMap(dir=>readdirSync(new URL('../'+dir,import.meta.url)).filter(name=>name.endsWith('.html')).map(name=>dir+name));
+  files.push('services/wine-tours.html',...['cinema','journal','gallery'].map(name=>'preview/wine-designs/'+name+'.html'));
+  assert.ok(files.length>20,'Check the complete generated wine destination collection');
+  for(const file of files){
+    const page=readFileSync(new URL('../'+file,import.meta.url),'utf8');
+    // Booking/account handoffs belong to Koast's existing transaction flow.
+    for(const [,href] of page.matchAll(/<a\b[^>]*\bhref="([^"]+)"/gi)){
+      if(!/^(?:https?:)?\/\//i.test(href)) continue;
+      const url=new URL(href,'https://koastride.com');
+      assert.ok(['koastride.com','www.koastride.com','customer.moovs.app'].includes(url.hostname),`${file} sends winery exploration away: ${href}`);
+      if(url.hostname==='customer.moovs.app') assert.ok(['/koast/request/new','/koast/new/info'].includes(url.pathname),`${file} uses an unexpected provider path`);
+    }
+    if(file.startsWith('wineries/')&&!file.endsWith('/index.html')){
+      assert.match(page,/href="#winery-details">About this winery/);
+      assert.match(page,/<details[^>]*id="winery-details"/);
+    }
   }
 });

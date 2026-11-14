@@ -144,7 +144,7 @@ def renew_reference_page(source, context, variant, quote_url, email):
     route_link += f' · <a href="{quote_url}">Get a transportation quote</a>'
     if context['slug'] == 'healdsburg':
         route_link += ' · <a href="#choose-your-route">Compare winery routes</a>'
-    supplement = '<div class="reference-wrap reference-planning-link">'+route_link+'</div><details class="reference-more"><summary>Detailed winery, pickup and return planning</summary><div>'+extras+'</div></details>'
+    supplement = '<div class="reference-wrap reference-planning-link">'+route_link+'</div><details class="reference-more" id="winery-details"><summary>Detailed winery, pickup and return planning</summary><div>'+extras+'</div></details>'
     top = render_reference_top(context,variant,quote_url,email)
     if context['slug'] == 'healdsburg':
         top = top.replace('<h2>Discover your next stop.</h2>','<span id="choose-your-route"></span><h2>Discover your next stop.</h2>',1)

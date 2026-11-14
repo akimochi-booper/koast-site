@@ -2593,7 +2593,7 @@ def enhance():
             nearby = [w for w in WINERIES.get(region_slug,[]) if w['name'] != destination['name']]
             context = wine_context(winery_slug,destination['name'],[current_stop]+nearby,WINERY_DETAIL,wyslug)
             context.update(slug=winery_slug,design_variant='journal')
-            context['wineries'][0]['href'] = destination['website']
+            context['wineries'][0]['href'] = '#winery-details'
         src = renew_page(src, rel, visual_image, visual_alt, BOOK, 'mailto:' + EMAIL, context)
         src = _add_image_dimensions(src, fp)
         src = _update_favicon_links(src)
@@ -3323,7 +3323,7 @@ def winery_page(wslug, d):
       <div class="wy-row"><span class="wy-k">Known for</span><span class="wy-v">{d["known"][:1].upper() + d["known"][1:]}</span></div>
       <div class="wy-row"><span class="wy-k">Visits</span><span class="wy-v">{d["res"]}</span></div>
       <div class="wy-row"><span class="wy-k">Getting there</span><span class="wy-v">{dist}</span></div>
-      <div class="wy-row"><span class="wy-k">Website</span><span class="wy-v"><a href="{d["website"]}" target="_blank" rel="noopener nofollow">{d["website"].replace("https://www.","").replace("https://","").rstrip("/")}</a></span></div>
+      <div class="wy-row"><span class="wy-k">Your ride</span><span class="wy-v"><a href="#quote-request" data-start-quote>Plan my ride</a></span></div>
     </div>
   </div>
 </div></section>

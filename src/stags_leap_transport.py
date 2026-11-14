@@ -82,7 +82,7 @@ def render_body(booking_markup, quote_url):
   <h2>Choose the tasting.<br>We connect the day.</h2>
   <div class="renewal-split">
     <article><h3>Reserve with the winery</h3>
-      <p>Explore the <a href="https://www.stagsleapwinecellars.com/visit-us/experiences/">official experiences</a> and confirm your party size and availability. The <a href="https://www.stagsleapwinecellars.com/experience/estate-tour-tasting/">Estate Wine Tasting &amp; Cave Tour</a> is described as communal and requires reservations.</p>
+      <p>Choose your experience and confirm your party size and availability directly with the winery. The Estate Wine Tasting &amp; Cave Tour is described as communal and requires reservations.</p>
       <p class="renewal-trip-note">Winery reservations, admission and tasting fees are separate. A private car does not make a communal winery experience private.</p>
     </article>
     <article><h3>Give the drive a plan</h3>
@@ -98,11 +98,11 @@ def render_body(booking_markup, quote_url):
   <div class="renewal-fact-grid">
     <article><h3>Stag's Leap Wine Cellars</h3>
       <p><strong>5766 Silverado Trail, Napa, CA 94558.</strong></p>
-      <p>The destination on this page. Match your confirmation to the <a href="https://www.stagsleapwinecellars.com/contact-us/">official address</a> and review the <a href="https://www.stagsleapwinecellars.com/visit-us/">visitor guidance</a>.</p>
+      <p>The destination on this page. Match your confirmation to this address and confirm the winery's current visitor requirements before travel.</p>
     </article>
     <article><h3>Stags' Leap Winery</h3>
       <p><strong>6150 Silverado Trail, Napa, CA 94558.</strong></p>
-      <p>A separate winery. Check its <a href="https://www.stagsleap.com/pages/visit">official visit page</a> if this is the estate on your reservation, and send that full name and address.</p>
+      <p>A separate winery. If this is the estate on your reservation, send that full name and address and confirm its visitor requirements separately.</p>
     </article>
   </div>
 </div></section>

@@ -71,24 +71,24 @@ def render_healdsburg_body(booking_markup):
       <h3>Dry Creek Valley</h3>
       <p><span class="pill">Zinfandel-focused visits</span></p>
       <p>Compare appointments at <a href="/wineries/ridge-vineyards-lytton-springs">Ridge Lytton Springs</a> and <a href="/wineries/dry-creek-vineyard">Dry Creek Vineyard</a>. Check the route and lunch gap against confirmed times.</p>
-      <p><a href="/wine-tours/sonoma">Compare Sonoma wine tour planning</a> or explore the <a href="https://www.drycreekvalley.org/dry-creek-valley/">Dry Creek Valley winegrowers' guide</a>.</p>
+      <p><a href="/wine-tours/sonoma">Compare Sonoma wine tour planning</a> or explore <a href="/wineries/dry-creek-vineyard">our Dry Creek Vineyard guide</a>.</p>
     </article>
     <article class="renewal-winery-card card">
       <figure class="renewal-card-photo"><img src="/img/renewal-wine-terrace.jpg" alt="Illustrative wine-country terrace, not an Alexander Valley estate" loading="lazy"><figcaption>Wine-country ambience &middot; Illustration</figcaption></figure>
       <h3>Alexander Valley</h3>
       <p><span class="pill">Estate appointments</span></p>
       <p>Consider a booked estate experience such as Jordan. Choose the available experience first, then arrange the day around it rather than assuming a drop-in visit.</p>
-      <p>Read our <a href="/wineries/jordan-vineyard-and-winery">Jordan planning guide</a> and check <a href="https://www.jordanwinery.com/visit/">Jordan's current visits and reservations</a>.</p>
+      <p>Read our <a href="/wineries/jordan-vineyard-and-winery">Jordan planning guide</a> for visit details, then confirm your tasting appointment separately.</p>
     </article>
     <article class="renewal-winery-card card">
       <figure class="renewal-card-photo"><img src="/img/wt-healdsburg.jpg" alt="Downtown Healdsburg regional scene" loading="lazy"><figcaption>Healdsburg area &middot; Regional image</figcaption></figure>
       <h3>Russian River Valley</h3>
       <p><span class="pill">Pinot Noir &amp; Chardonnay</span></p>
       <p>Compare producers along a route that suits your pickup. Check actual addresses before adding another valley or a meal in town.</p>
-      <p>Read our <a href="/wineries/gary-farrell-vineyards-and-winery">Gary Farrell planning guide</a>, explore the <a href="https://russianrivervalley.org/about/neighborhoods/">Russian River Valley neighborhoods</a>, or compare <a href="/wineries/">Koast's winery planning directory</a>.</p>
+      <p>Read our <a href="/wineries/gary-farrell-vineyards-and-winery">Gary Farrell planning guide</a> or compare <a href="/wineries/">Koast's winery planning directory</a>.</p>
     </article>
   </div>
-  <p style="color:var(--muted);margin-top:24px">Prefer an afternoon in town? The <a href="https://stayhealdsburg.com/wine-country/">official Healdsburg wine-country guide</a> also lists downtown tasting rooms. Confirm whether each stop is a town tasting room or an estate visit before arranging transportation.</p>
+  <p style="color:var(--muted);margin-top:24px">Prefer an afternoon in town? <a href="#quote-details">Share your downtown tasting stops in your ride plan</a>. Confirm whether each stop is a town tasting room or an estate visit before arranging transportation.</p>
 </div></section>
 
 <section class="tight renewal-section"><div class="wrap grid-2 renewal-split">
@@ -101,7 +101,7 @@ def render_healdsburg_body(booking_markup):
       <li><strong>Ridge Lytton Springs:</strong> reserve the particular experience and check its party-size and visitor requirements before arranging the vehicle.</li>
       <li><strong>Dry Creek Vineyard:</strong> reservations are strongly encouraged; larger parties should contact its concierge.</li>
     </ul>
-    <p><a href="https://www.ridgewine.com/visit/lytton-springs/">Ridge visitor guidance</a> · <a href="https://drycreekvineyard.com/visit/">Dry Creek Vineyard reservations</a></p>
+    <p><a href="/wineries/ridge-vineyards-lytton-springs">Explore Ridge Lytton Springs</a> · <a href="/wineries/dry-creek-vineyard">Explore Dry Creek Vineyard</a></p>
   </div>
   <div class="card renewal-trip-note">
     <h3>One focused route to consider</h3>
