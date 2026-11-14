@@ -59,8 +59,8 @@ def render_livermore_body(booking_markup, quote_url):
   <div class="crumbs"><a href="/">Home</a><span>/</span><a href="/services/wine-tours">Wine Tours</a><span>/</span>Livermore Valley</div>
     <div class="hero-copy">
       <p class="renewal-kicker">Livermore Valley &middot; Private chauffeur</p>
-      <h1>Livermore Valley wine tours <span class="o">with a private driver.</span></h1>
-      <p class="lede">Your tastings, your party, your private driver. Local or Bay Area pickup, chosen winery stops and a confirmed return.</p>
+      <h1>Wine country.<br><span class="o">Your pace.</span></h1>
+      <p class="lede">Livermore Valley wine tours. Your tastings, your party, your private driver.</p>
       <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:24px">
         <a class="btn btn-orange" href="{quote}">Get a Livermore quote</a>
         <a class="btn btn-ghost-light" href="#plan-your-tastings">Plan your winery stops</a>
@@ -72,32 +72,32 @@ def render_livermore_body(booking_markup, quote_url):
 <section class="tight renewal-section" id="plan-your-tastings" style="scroll-margin-top:100px"><div class="wrap">
   <div class="sec-head"><span class="renewal-kicker">Livermore Valley tasting plans</span>
     <h2>Find your kind of wine day.</h2>
-    <p>Arroyo Road, Tesla Road and Mines Road are distinct destinations. Start with the wineries and experiences you want, check their opening and availability for your date, then build a route around confirmed appointments.</p>
+    <p>Compare the stops. Check each winery's experience, availability and tasting time. We'll connect your confirmed appointments.</p>
   </div>
   <div class="grid-3">
     <article class="renewal-winery-card card">
       <figure class="renewal-card-photo"><img src="/img/wt-livermore.jpg" alt="Livermore Valley regional landscape" loading="lazy"><figcaption>Livermore Valley &middot; Regional image</figcaption></figure>
       <h3>Wente Vineyards</h3>
       <p class="renewal-kicker">Arroyo Road</p><p><span class="pill">Reservations encouraged</span></p>
-      <p><strong>5050 Arroyo Road, Livermore.</strong> Confirm the location and seated tasting; ask about dining separately.</p>
-      <p>Use <a href="https://wentevineyards.com/visit/">Wente's official visitor guidance</a> and <a href="https://wentevineyards.com/contact-us/">current address</a>.</p>
+      <p><strong>5050 Arroyo Road, Livermore.</strong><br>Seated tastings. Confirm the experience and time.</p>
+      <p><a href="https://wentevineyards.com/visit/">Plan your visit</a> · <a href="https://wentevineyards.com/contact-us/">Address &amp; contact</a></p>
     </article>
     <article class="renewal-winery-card card">
       <figure class="renewal-card-photo"><img src="/img/renewal-wine-terrace.jpg" alt="Illustrative wine-country terrace, not Concannon Vineyard" loading="lazy"><figcaption>Wine-country ambience &middot; Illustration</figcaption></figure>
       <h3>Concannon Vineyard</h3>
       <p class="renewal-kicker">Tesla Road</p><p><span class="pill">Walk-ins subject to seating</span></p>
-      <p><strong>4590 Tesla Road, Livermore.</strong> Reservations are encouraged. Check the experience and ask the winery about larger parties.</p>
-      <p>Review <a href="https://concannon.wine/experiences/">Concannon's experiences and reservation guidance</a>.</p>
+      <p><strong>4590 Tesla Road, Livermore.</strong><br>Reservations are encouraged. Ask about larger parties.</p>
+      <p><a href="https://concannon.wine/experiences/">Explore winery experiences</a></p>
     </article>
     <article class="renewal-winery-card card">
       <figure class="renewal-card-photo"><img src="/img/wt-livermore.jpg" alt="Livermore Valley regional landscape" style="object-position:80% center" loading="lazy"><figcaption>Livermore Valley &middot; Regional image</figcaption></figure>
       <h3>Murrieta's Well</h3>
       <p class="renewal-kicker">Mines Road</p><p><span class="pill">Seated reservations recommended</span></p>
-      <p><strong>3005 Mines Road, Livermore.</strong> Check opening and experience for your date. Patio and walk-up arrangements differ from seated tastings.</p>
-      <p>Check <a href="https://murrietaswell.com/visit/">Murrieta's Well visitor information</a> before setting the route.</p>
+      <p><strong>3005 Mines Road, Livermore.</strong><br>Patio and walk-up options vary by date.</p>
+      <p><a href="https://murrietaswell.com/visit/">Explore winery experiences</a></p>
     </article>
   </div>
-  <p style="margin-top:24px">These are places to compare, not a fixed itinerary or included tasting package. Explore more stops with the <a href="https://www.lvwine.org/itinerary-planner.php">Livermore Valley Wine Community itinerary planner</a> and its <a href="https://www.lvwine.org/maps.php">regional winery maps</a>.</p>
+  <p style="margin-top:24px">More stops? Explore the <a href="https://www.lvwine.org/itinerary-planner.php">Livermore Valley itinerary planner</a> and <a href="https://www.lvwine.org/maps.php">winery maps</a>. Tasting reservations and fees are separate from transportation.</p>
 </div></section>
 
 <section class="tight renewal-section"><div class="wrap grid-2 renewal-split">

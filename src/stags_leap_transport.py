@@ -73,7 +73,7 @@ def render_body(booking_markup, quote_url):
     <a class="btn btn-orange" href="{quote}">Get a transportation quote</a>
     <p class="renewal-trip-note"><a href="#small-group-planning">Plan your visit</a> &middot; <a href="#reserve-ride">Arrange your ride</a></p>
   </div>
-  <img class="renewal-hero-image" src="/img/blog-banner-napa.jpg" alt="Vineyard rows and a winding lane in warm evening light" width="1100" height="456" fetchpriority="high">
+  <figure class="renewal-hero-visual"><img class="renewal-hero-image" src="/img/blog-banner-napa.jpg" alt="Vineyard rows and a winding lane in warm evening light" width="1100" height="456" fetchpriority="high"><img class="renewal-photo-inset" src="/img/renewal-wine-terrace.jpg" alt="Illustrative wine-country terrace" width="1254" height="1254" loading="lazy"></figure>
 </div>
 </header>
 

@@ -7,7 +7,7 @@ import {spawnSync} from 'node:child_process';
 const repository=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const testDirectories=['test','workers/koast-chat/test'];
 const syntaxFiles=[
-  'koast-acquisition.js','koast-chat-links.js','koast-chat-photos.js',
+  'koast-acquisition.js','marketing-design.js','koast-chat-links.js','koast-chat-photos.js',
   'koast-chat.js','koast-chat-voice.js','sw.js','src/chat-voice.mjs',
   'workers/koast-chat/worker.js','workers/koast-chat/photo-input.mjs',
 ];

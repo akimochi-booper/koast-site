@@ -9,13 +9,13 @@ const meta = (page, name) => page.match(new RegExp(`<meta (?:property|name)="${n
 test('sharing images represent locations, services and routes while home keeps the brand card', () => {
   const cases = [
     ['index.html', 'og-image-v2.jpg'],
-    ['cities/palo-alto.html', 'city-palo-alto.jpg'],
+    ['cities/palo-alto.html', 'city-palo-alto-renewal-v1.jpg'],
     ['airports/oak.html', 'oakland-generated-social-v1.jpg'],
     ['airports/sjc.html', 'santana-generated-social-v1.jpg'],
     ['airports/sfo.html', 'blog-banner-sfo.jpg'],
     ['wine-tours/healdsburg.html', 'wt-healdsburg.jpg'],
     ['wineries/stags-leap-wine-cellars.html', 'blog-banner-napa.jpg'],
-    ['routes/sjc-to-silicon-valley.html', 'city-palo-alto.jpg'],
+    ['routes/sjc-to-silicon-valley.html', 'city-palo-alto-renewal-v1.jpg'],
     ['routes/sfo-to-monterey.html', 'blog-banner-sfo.jpg'],
     ['services/corporate-travel.html', 'blog-banner-corporate.jpg'],
     ['services/weddings.html', 'svc-weddings.jpg'],

@@ -51,7 +51,7 @@ def render_palo_alto_body(booking_markup, quote_url):
     <p><a class="btn btn-orange" href="{quote}">Get a Palo Alto quote</a></p>
     <a href="#airport-options">Compare airport transfers →</a>
   </div>
-  <img class="renewal-hero-image" src="/img/city-palo-alto.jpg" alt="Tree-lined Palo Alto street in warm evening light" fetchpriority="high" decoding="async">
+  <img class="renewal-hero-image" src="/img/city-palo-alto-renewal-v1.jpg" alt="Tree-lined Palo Alto street in warm evening light" fetchpriority="high" decoding="async">
 </div></header>
 
 <section class="renewal-section" id="airport-options"><div class="wrap">

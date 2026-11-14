@@ -11,6 +11,7 @@ from src.palo_alto_car_service import PALO_ALTO_TITLE, PALO_ALTO_DESCRIPTION, PA
 from src.sacramento_car_service import SACRAMENTO_TITLE, SACRAMENTO_DESCRIPTION, SACRAMENTO_FAQS, render_sacramento_body
 from src.stags_leap_transport import STAGS_LEAP_TITLE, STAGS_LEAP_DESCRIPTION, STAGS_LEAP_FAQS, render_body as render_stags_leap_body
 from src.livermore_wine_tours import LIVERMORE_TITLE, LIVERMORE_DESCRIPTION, LIVERMORE_FAQS, render_livermore_body
+from src.marketing_design import renew_page, group_vehicle_options
 EDITORIAL_POSTS = load_posts(ROOT)
 EDITORIAL_BY_SLUG = {post["slug"]: post for post in EDITORIAL_POSTS}
 LEGACY_MODIFIED = {slug: "2026-10-13" for slug in (
@@ -520,12 +521,12 @@ def faq_section(items, title="Common questions"):
   <div class="faq">{blocks}</div>
 </div></section>"""
 
-def cta_section(h="Ride easy.", p=None):
+def cta_section(h="Ride easy.", p=None, quote_url=BOOK, label="Get an Instant Quote"):
     p = p or f"Get an instant quote now — or email us at {EMAIL}."
     return f"""
 <section style="padding-top:0"><div class="wrap"><div class="cta">
   <h2>{h}</h2><p>{p}</p>
-  <a class="btn btn-orange btn-lg" href="{BOOK}">Get an Instant Quote</a>
+  <a class="btn btn-orange btn-lg" href="{escape(quote_url, quote=True)}">{label}</a>
 </div></div></section>"""
 
 def write(path, html):
@@ -608,7 +609,7 @@ SERVICE_AREAS = [
  ("Wine Country","services/wine-tours.html","blog-banner-napa.jpg"),
  ("San Jose","cities/san-jose.html","city-san-jose.jpg"),
  ("Oakland","cities/oakland.html","city-oakland.jpg"),
- ("Palo Alto","cities/palo-alto.html","city-palo-alto.jpg"),
+ ("Palo Alto","cities/palo-alto.html","city-palo-alto-renewal-v1.jpg"),
  ("Seattle","cities/seattle.html","city-seattle.jpg"),
  ("Boston","cities/boston.html","city-boston.jpg"),
  ("Washington, D.C.","cities/washington-dc.html","city-washington-dc.jpg"),
@@ -761,38 +762,11 @@ home += f"""
 home += fleet_section()
 home += why_section()
 home += """
-<section style="padding:0"><div class="count-band"><div class="wrap">
-  <div class="count-row" id="kstats">
-    <div><strong data-seq="0/0|6/1|12/3|18/5|24/7">0/0</strong><span>Always available</span></div>
-    <div><strong class="t"><b data-count="30" data-fmt="int">0</b>+</strong><span>Cities served</span></div>
-    <div><strong class="o"><b data-count="3100" data-fmt="comma">0</b>+</strong><span>Chauffeurs nationwide</span></div>
-    <div><strong><b data-count="99" data-fmt="int">0</b>%</strong><span>Trips without issue</span></div>
-  </div>
-  <script>
-  (function(){
-    var row=document.getElementById('kstats'),done=false;
-    function fmt(v,f){return f==='comma'?Math.round(v).toLocaleString():Math.round(v)}
-    var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
-    function run(){
-      if(done)return; done=true;
-      row.querySelectorAll('[data-count]').forEach(function(el){
-        var to=+el.dataset.count,f=el.dataset.fmt,t0=null;
-        if(rm){el.textContent=fmt(to,f);return;}
-        function step(t){if(!t0)t0=t;var p=Math.min((t-t0)/1600,1);p=1-Math.pow(1-p,3);el.textContent=fmt(to*p,f);if(p<1)requestAnimationFrame(step);}
-        requestAnimationFrame(step);
-      });
-      row.querySelectorAll('[data-seq]').forEach(function(el){
-        var parts=el.dataset.seq.split('|');
-        if(rm){el.textContent=parts[parts.length-1];return;}
-        parts.forEach(function(s,i){setTimeout(function(){el.textContent=s},i*320)});
-      });
-    }
-    if('IntersectionObserver' in window){
-      new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)run()})},{threshold:.4}).observe(row);
-    } else { run(); }
-  })();
-  </script>
-</div></div></section>"""
+<section class="renewal-assurances"><div class="wrap renewal-assurance-grid">
+  <div><h3>Your quote, upfront</h3><p>Confirm the route and included service before travel.</p></div>
+  <div><h3>Your party, together</h3><p>Choose a vehicle around passengers, bags and plans.</p></div>
+  <div><h3>Human help</h3><p><a href="mailto:reserve@koastride.com">Talk through a journey with our team.</a></p></div>
+</div></section>"""
 home += service_areas_section()
 home += f"""
 <section style="padding-top:0"><div class="wrap"><div class="steps">
@@ -822,7 +796,8 @@ if APP_MARKETING_LIVE:
   <div style="text-align:center;margin-top:22px"><a class="btn btn-orange" href="app.html">Meet the Koast app &rarr;</a></div>
 </div></section>"""
 
-home += testi_section()
+# Testimonials and aggregate performance figures await attributable evidence.
+# Keep the renewal focused on practical planning and real booking paths.
 home += services_section()
 home += faq_section([
   ("How is Koast different from Uber or Lyft?",
@@ -1032,7 +1007,7 @@ for slug, c in CITIES.items():
 # ============================ CITY / AIRPORT IMAGES ============================
 CITY_IMG = {
  "san-francisco":"blog-banner-sf.jpg","san-jose":"city-san-jose.jpg","oakland":"city-oakland.jpg",
- "palo-alto":"city-palo-alto.jpg","new-york":"blog-banner-nyc.jpg","los-angeles":"blog-banner-la.jpg",
+ "palo-alto":"city-palo-alto-renewal-v1.jpg","new-york":"blog-banner-nyc.jpg","los-angeles":"blog-banner-la.jpg",
  "chicago":"blog-banner-chicago.jpg","miami":"blog-banner-miami.jpg","las-vegas":"blog-banner-vegas.jpg",
  "denver":"blog-banner-denver.jpg","dallas":"city-dallas.jpg","houston":"city-houston.jpg",
  "atlanta":"city-atlanta.jpg","boston":"city-boston.jpg","seattle":"city-seattle.jpg",
@@ -1642,8 +1617,8 @@ s += f"""
     <ul class="check">
       <li><strong>Couples</strong> — Business Sedan or First-Class SUV</li>
       <li><strong>Friends &amp; families (up to 6)</strong> — Business or First-Class SUV</li>
-      <li><strong>Groups up to 12</strong> — Executive Sprinter</li>
-      <li><strong>Big celebrations (up to 32)</strong> — Mid-Size or Large Party Bus</li>
+      <li><strong>Group days</strong> — vans and Sprinters by quote</li>
+      <li><strong>Bigger celebrations</strong> — buses by quote; confirm seating and venue access</li>
     </ul>
   </div>
   <div>
@@ -2604,6 +2579,8 @@ def enhance():
             urls.append(url)
         src = _rewrite_site_links(src, rel, root_files)
         src = _rewrite_absolute_site_urls(src)
+        visual_image, visual_alt = _social_image(rel, src)
+        src = renew_page(src, rel, visual_image, visual_alt, BOOK, 'mailto:' + EMAIL)
         src = _add_image_dimensions(src, fp)
         src = _update_favicon_links(src)
         if 'rel="canonical"' in src:
@@ -3113,7 +3090,7 @@ def winery_section(slug, nm):
     def cap(s): return s[:1].upper() + s[1:]
     import re as _wre, os as _wos
     rows = ""
-    for w in wl:
+    for index, w in enumerate(wl):
         cls = "req" if w["res"] == "Reservations required" else ("walk" if w["res"] == "Walk-ins welcome" else "")
         wslug = wyslug(w["name"])
         thumb = ""
@@ -3130,11 +3107,14 @@ def winery_section(slug, nm):
     ilist = _wj.dumps({"@context":"https://schema.org","@type":"ItemList",
         "name":"Notable wineries in " + nm,
         "itemListElement":[{"@type":"ListItem","position":i+1,"name":w["name"]} for i,w in enumerate(wl)]}, ensure_ascii=False)
+    regional = WINE_IMG.get(slug)
+    landscape = ('<figure class="renewal-region-banner"><img src="/img/' + regional + '" alt="' + escape(nm, quote=True)
+                 + ' regional scene" loading="lazy"><figcaption>' + escape(nm) + ' · Regional image</figcaption></figure>') if regional else ''
     return ('<section class="tight"><div class="wrap">'
-            '<div class="sec-head"><span class="pill">Where Regulars Stop</span>'
-            '<h2>' + nm + ' wineries we love driving to</h2>'
-            '<p style="color:var(--muted)">A few favorites from years of ' + nm + ' runs — tell us your taste and we\'ll build the route around them.</p></div>'
-            '<div class="wlist">' + rows + '</div>'
+            '<div class="sec-head"><span class="pill">Discover your next stop</span>'
+            '<h2>Find your kind of ' + nm + ' wine day.</h2>'
+            '<p style="color:var(--muted)">Compare the wineries and visit guidance, then plan your ride around confirmed appointments. Check current policies with each winery.</p></div>'
+            + landscape + '<div class="wlist">' + rows + '</div>'
             '<script type="application/ld+json">' + ilist + '</script>'
             '</div></section>')
 
@@ -3209,23 +3189,23 @@ for slug, r in WINE_REGIONS.items():
   <div>
     <span class="pill">The {nm} Day</span>
     <h2 style="font-size:32px;margin:14px 0 16px">How regulars do {nm}</h2>
-    <p style="color:var(--muted);margin-bottom:20px">{nm} is {r['drive']}, known for {r['known']}. Most tours anchor around {r['towns']} — three to four tastings with a long lunch in the middle.</p>
+    <p style="color:var(--muted);margin-bottom:20px">Explore {r['towns']}, known for {r['known']}. Build the day around the tasting lengths, travel between actual entrances, lunch and your required return.</p>
     <ul class="check">
-      <li>Morning pickup, reservation-only tasting first</li>
-      <li>Long lunch — we'll suggest spots in {r['towns'].split(',')[0]}</li>
-      <li>Two relaxed afternoon stops; route flexes as the day unfolds</li>
-      <li>Cases ride safely in the back on the way home</li>
+      <li>Confirm each winery experience, address and start time</li>
+      <li>Leave room for lunch and travel between appointments</li>
+      <li>Agree on pickup, waiting and your required return</li>
+      <li>Include passengers, luggage and space for purchases in the quote</li>
     </ul>
   </div>
   <div>
     <h3 style="margin-bottom:16px">Match the vehicle to the group</h3>
-    {routes_table([("Couples & small groups — Business Sedan / SUV","1–6 guests"),("Friends & celebrations — First-Class SUV","up to 6"),("The whole crew — Executive Sprinter","up to 12"),("Big celebrations — Party Bus","up to 32")], "Group", "Guests")}
+    {group_vehicle_options(EMAIL)}
   </div>
 </div></section>"""
     p += winery_section(slug, nm)
     p += faq_section([
       (f"How is a {nm} wine tour priced?",
-       "As an hourly charter — one flat hourly rate covering the vehicle, your dedicated chauffeur, water, and all driving. Most days run 6–8 hours door to door."),
+       "Request a quote for your actual itinerary, vehicle and service window. Confirm driving, waiting, your return and any change terms before reserving. Vans, Sprinters and buses require a tailored quote. Tasting reservations and fees are separate."),
       r["faq"],
       ("Can you help plan the winery lineup?",
        "Yes — tell us your taste and group size and we'll suggest a route, and can coordinate timed tasting reservations."),
@@ -3348,7 +3328,7 @@ def winery_page(wslug, d):
   </div>
   <div>
     <h3 style="margin-bottom:16px">Match the vehicle to the group</h3>
-    {routes_table([("Couples &amp; small groups &mdash; Business Sedan / SUV","1–6 guests"),("Friends &amp; celebrations &mdash; First-Class SUV","up to 6"),("The whole crew &mdash; Executive Sprinter","up to 12"),("Big celebrations &mdash; Party Bus","up to 32")], "Group", "Guests")}
+    {group_vehicle_options(EMAIL)}
   </div>
 </div></section>"""
     p += faq_section([
@@ -3360,8 +3340,8 @@ def winery_page(wslug, d):
        "driving for the day. You get the price upfront — no surge, no surprises."),
       (res_faq_q, res_faq_a),
       ("Can we visit other wineries the same day?",
-       f"Absolutely. Most {rn} days are three to four tastings with a long lunch. Tell us your taste and we'll "
-       "suggest a route and keep the car with you all day."),
+       f"Plan your {rn} stops around confirmed appointments, travel between their actual entrances, lunch and your required return. "
+       "Request an hourly service window if you need the vehicle between visits. Winery reservations and tasting fees are separate from transportation."),
     ], f"{nm} questions")
     _sibs = [s for s, v in WINERY_DETAIL.items() if v.get("region") == rs and s != wslug]
     p += plan_trip([
@@ -3489,8 +3469,8 @@ OCCASIONS = {
    "vehicles":[("Smaller groups — Executive Sprinter","up to 12"),("Mid-size party bus","groups & events"),("Large party bus","25+"),("Need two? We'll coordinate","any size")],
    "related":[("Popular for",[("../services/wine-tours.html","Wine tours","→"),("../services/corporate-travel.html","Corporate events","→")]),("Wine country",[("../wine-tours/napa-valley.html","Napa Valley","→"),("../wine-tours/sonoma.html","Sonoma","→")])],
    "faqs":[
-     ("How many people fit on a party bus?","We run mid-size and large party buses — the large bus seats 25 or more — plus an Executive Sprinter for smaller groups. Tell us your headcount and we'll match the vehicle."),
-     ("How does party bus pricing work?","One flat hourly rate covering the bus, your professional driver, and all the driving — no surge and no per-person app math. You get the price up front."),
+     ("How many people fit on a party bus?","Request a quote with your passenger count, luggage and venue details. Confirm the seating and access of the actual vehicle before reserving; buses, vans and Sprinters are quote-only."),
+     ("How does party bus pricing work?","Request a tailored quote for the vehicle, complete route and service window. Confirm the total, inclusions, waiting, changes and return arrangements before reserving."),
      ("Can you do a wine tour on the party bus?","Yes — it's one of the most popular uses. Book hourly and the bus stays with you winery to winery, with cases riding safely in the back."),
      ("Can we make multiple stops?","Of course. The bus and driver stay with you all night across dinners, bars, and venues, so nobody's re-summoning a ride between stops."),
      ("How far ahead should we book?","Weekends and peak season fill up fast, so book as soon as your date is set — especially for larger groups."),
@@ -3539,7 +3519,7 @@ def occasion_page(slug, d):
   </div>
   <div>
     <div class="sec-head"><span class="pill pill-orange">Vehicles</span><h2 style="font-size:24px;margin-top:8px">Match the vehicle to the group</h2></div>
-    {routes_table(d["vehicles"], "Vehicle", "Group")}
+    {group_vehicle_options(EMAIL)}
   </div>
 </div></section>
 <section class="tight"><div class="wrap">
@@ -3550,11 +3530,11 @@ def occasion_page(slug, d):
     {feat("users","o","Your group, together","Book by the hour and the vehicle stays with you across every stop.")}
     {feat("globe","t","Bay Area & beyond","Home in the Bay Area and wine country, serving major cities nationwide.")}
   </div>
-  <div style="text-align:center;margin-top:30px"><a class="btn btn-orange btn-lg" href="{BOOK}">Get an Instant Quote</a></div>
+  <div style="text-align:center;margin-top:30px"><a class="btn btn-orange btn-lg" href="mailto:{EMAIL}">Request an event quote</a></div>
 </div></section>"""
     p += faq_section(d["faqs"], f"{d['navlabel']} questions")
     p += plan_trip(d["related"])
-    p += cta_section(f"Plan your {d['navlabel'].lower()} ride.", "Tell us your date, group size, and stops — we'll handle the rest.")
+    p += cta_section(f"Plan your {d['navlabel'].lower()} ride.", "Send your date, group size and stops. Vans, Sprinters and buses require a tailored quote; confirm the vehicle, seating and venue access.", 'mailto:' + EMAIL, "Request an event quote")
     p += footer("../")
     service = {"@context":"https://schema.org","@type":"Service","name":d["title"].split("|")[0].strip(),
         "serviceType":"Chauffeured group and event transportation","provider":{"@id":BASE_URL+"/#org"},
