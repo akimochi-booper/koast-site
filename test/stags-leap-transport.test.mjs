@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
+import {readFileSync} from 'node:fs';
 
 // Exercise the pure owner without mutating or importing the site generator.
 const root = fileURLToPath(new URL('../', import.meta.url));
@@ -55,4 +56,29 @@ test('destination clarification and itinerary planning remain useful and navigab
   for (const target of [...body.matchAll(/href="#([^"]+)"/g)].map(match => match[1])) {
     assert.ok(body.includes(`id="${target}"`), `anchor ${target}`);
   }
+});
+
+test('generated winery page retains one indexable service and exactly matching visible FAQs',()=>{
+  const page=readFileSync(new URL('../wineries/stags-leap-wine-cellars.html',import.meta.url),'utf8');
+  const url='https://koastride.com/wineries/stags-leap-wine-cellars';
+  assert.equal((page.match(/<h1\b/g)||[]).length,1);
+  assert.equal(page.match(/<link rel="canonical" href="([^"]+)"/)[1],url);
+  assert.equal(page.match(/<meta property="og:url" content="([^"]+)"/)[1],url);
+  assert.doesNotMatch(page,/<meta[^>]*name="robots"[^>]*content="[^"]*noindex/);
+  const schemas=[...page.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(m=>JSON.parse(m[1]));
+  const service=schemas.filter(s=>s['@type']==='Service');
+  assert.equal(service.length,1);
+  assert.equal(service[0].url,url);
+  assert.equal(service[0].provider['@id'],'https://koastride.com/#org');
+  assert.equal(service[0].areaServed,'Napa Valley');
+  assert.equal(schemas.filter(s=>s['@type']==='Winery'||s['@type']==='LocalBusiness').length,0);
+  const plain=s=>s.replace(/<[^>]*>/g,'').trim();
+  const visible=[...page.matchAll(/<details><summary>([\s\S]*?)<\/summary><p>([\s\S]*?)<\/p><\/details>/g)].map(m=>({q:plain(m[1]),a:plain(m[2])}));
+  assert.equal(visible.length,6);
+  assert.deepEqual(schemas.find(s=>s['@type']==='FAQPage').mainEntity.map(x=>({q:x.name,a:x.acceptedAnswer.text})),visible);
+  assert.equal(schemas.find(s=>s['@type']==='BreadcrumbList').itemListElement.at(-1).item,url);
+  assert.ok(page.includes('href="https://customer.moovs.app/koast/request/new">Get a transportation quote</a>'));
+  assert.ok(page.includes('href="/cities/sacramento"'));
+  const napa=readFileSync(new URL('../wine-tours/napa-valley.html',import.meta.url),'utf8');
+  assert.ok(napa.includes("Stag's Leap small-group transportation"));
 });

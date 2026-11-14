@@ -8,6 +8,8 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 from editorial import load_posts, display_date, display_publication_date
 from healdsburg_wine_tours import HEALDSBURG_TITLE, HEALDSBURG_DESCRIPTION, HEALDSBURG_FAQS, render_healdsburg_body
 from src.palo_alto_car_service import PALO_ALTO_TITLE, PALO_ALTO_DESCRIPTION, PALO_ALTO_FAQS, render_palo_alto_body
+from src.sacramento_car_service import SACRAMENTO_TITLE, SACRAMENTO_DESCRIPTION, SACRAMENTO_FAQS, render_sacramento_body
+from src.stags_leap_transport import STAGS_LEAP_TITLE, STAGS_LEAP_DESCRIPTION, STAGS_LEAP_FAQS, render_body as render_stags_leap_body
 EDITORIAL_POSTS = load_posts(ROOT)
 EDITORIAL_BY_SLUG = {post["slug"]: post for post in EDITORIAL_POSTS}
 LEGACY_MODIFIED = {slug: "2026-10-13" for slug in (
@@ -947,6 +949,19 @@ def plan_trip(groups, lead=""):
 
 # ============================ CITY PAGES ============================
 for slug, c in CITIES.items():
+    if slug == "sacramento":
+        h = head(SACRAMENTO_TITLE, SACRAMENTO_DESCRIPTION, "../") + nav("../", "cities")
+        h += render_sacramento_body(book_card(), BOOK)
+        h += fleet_section("../")
+        h += faq_section(SACRAMENTO_FAQS, "Sacramento black car service questions")
+        h += plan_trip([
+            ("Services", [("/services/airport-transfers", "Airport-transfer planning", "→"), ("/services/corporate-travel", "Corporate car service", "→")]),
+            ("Wine country", [("/wine-tours/napa-valley", "Napa Valley transportation", "→"), ("/wineries/stags-leap-wine-cellars", "Stag's Leap private-car planning", "→")]),
+            ("Guides", [("/blog/hourly-chauffeur-vs-point-to-point-transfers", "Hourly or point-to-point?", "✦")]),
+        ])
+        h += cta_section("Plan your Sacramento ride.", "Send your route, flight or appointment details and passenger needs for a transportation quote.") + footer("../")
+        write("cities/sacramento.html", h)
+        continue
     if slug == "palo-alto":
         h = head(PALO_ALTO_TITLE, PALO_ALTO_DESCRIPTION, "../") + nav("../", "cities")
         h += render_palo_alto_body(book_card(), BOOK)
@@ -2486,6 +2501,8 @@ def _schema_for(rel, src, url, title, desc):
             "url":url,"description":desc})
         if rel == "cities/palo-alto.html":
             blocks[-1]["areaServed"] = {"@type":"City", "name":"Palo Alto", "address":{"@type":"PostalAddress", "addressRegion":"CA", "addressCountry":"US"}}
+        if rel == "cities/sacramento.html":
+            blocks[-1]["areaServed"] = {"@type":"City", "name":"Sacramento", "address":{"@type":"PostalAddress", "addressRegion":"CA", "addressCountry":"US"}}
     # Blog posts -> BlogPosting
     if rel.startswith("blog/") and rel != "blog/index.html":
         h1 = _re.search(r"<h1>(.*?)</h1>", src, _re.S)
@@ -3197,6 +3214,7 @@ for slug, r in WINE_REGIONS.items():
     p += plan_trip([
       ("Guides", [(f"../blog/{g}.html", GUIDE_TITLE[g], "✦") for g in WINE_BLOGS.get(slug, []) + ["group-wine-tour-planning"]]),
       ("Nearby wine country", [("/wine-tours/healdsburg", "Healdsburg private drivers and winery routes", "→")] if slug == "sonoma" else []),
+      ("Private-car planning", [("/wineries/stags-leap-wine-cellars", "Stag's Leap small-group transportation", "→"), ("/cities/sacramento", "Sacramento pickups and return planning", "→")] if slug == "napa-valley" else []),
       ("Getting there", [(f"../cities/{ct}.html", f"From {CITIES[ct]['name']}", "→") for ct in WINE_CITY.get(slug, []) if ct in CITIES]),
     ])
     p += cta_section(f"Plan your {nm} day.", "Tell us your date and group size — we'll handle everything else.")
@@ -3207,6 +3225,29 @@ for slug, r in WINE_REGIONS.items():
 # ============================ INDIVIDUAL WINERY PAGES ============================
 def winery_page(wslug, d):
     import json as _wj2
+    if wslug == "stags-leap-wine-cellars":
+        url = BASE_URL + "/wineries/" + wslug
+        p = head(STAGS_LEAP_TITLE, STAGS_LEAP_DESCRIPTION, "../") + nav("../", "wine")
+        p += render_stags_leap_body(book_card(), BOOK)
+        p += faq_section(STAGS_LEAP_FAQS, "Stag's Leap Wine Cellars transportation questions")
+        p += plan_trip([
+            ("Planning guides", [("/blog/group-wine-tour-planning", "Group wine-tour planning", "✦"), ("/blog/napa-tasting-and-transportation-reservations", "Separate tasting and transportation confirmations", "✦")]),
+            ("Getting there", [("/cities/sacramento", "Sacramento black car and return planning", "→"), ("/cities/san-francisco", "San Francisco transportation", "→"), ("/wine-tours/napa-valley", "Napa Valley wine transportation", "→")]),
+        ])
+        p += cta_section("Plan your Stag's Leap transportation.", "Send your confirmed tasting, pickup address, party needs and return plan for a transportation quote.") + footer("../")
+        service = {"@context":"https://schema.org", "@type":"Service",
+            "name":"Private transportation to Stag's Leap Wine Cellars",
+            "serviceType":"Chauffeured black car transportation", "provider":{"@id":BASE_URL+"/#org"},
+            "areaServed":"Napa Valley", "url":url, "description":STAGS_LEAP_DESCRIPTION}
+        crumb = {"@context":"https://schema.org", "@type":"BreadcrumbList", "itemListElement":[
+            {"@type":"ListItem", "position":1, "name":"Home", "item":BASE_URL+"/"},
+            {"@type":"ListItem", "position":2, "name":"Wine Tours", "item":BASE_URL+"/services/wine-tours"},
+            {"@type":"ListItem", "position":3, "name":"Napa Valley", "item":BASE_URL+"/wine-tours/napa-valley"},
+            {"@type":"ListItem", "position":4, "name":"Stag's Leap Wine Cellars", "item":url}]}
+        p += '<script type="application/ld+json">' + _wj2.dumps(service, ensure_ascii=False) + '</script>'
+        p += '<script type="application/ld+json">' + _wj2.dumps(crumb, ensure_ascii=False) + '</script>'
+        write("wineries/" + wslug + ".html", p)
+        return
     nm = d["name"]; rs = d["region"]; rn = WINE_REGIONS[rs]["name"]
     gw = CITIES[WINE_CITY[rs][0]]["name"] if WINE_CITY.get(rs) else "the city"
     drive = WINE_REGIONS[rs]["drive"]

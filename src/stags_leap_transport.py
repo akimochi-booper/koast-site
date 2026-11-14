@@ -64,7 +64,7 @@ def render_body(booking_markup, quote_url):
   <div class="crumbs"><a href="/">Home</a><span>/</span><a href="/services/wine-tours">Wine Tours</a><span>/</span><a href="/wine-tours/napa-valley">Napa Valley</a><span>/</span>Stag's Leap Wine Cellars</div>
   <div class="hero-grid">
     <div class="hero-copy">
-      <span class="wy-eyebrow">Napa Valley &middot; Stags Leap District</span>
+      <span class="wy-eyebrow" style="color:var(--orange-on-dark)">Napa Valley &middot; Stags Leap District</span>
       <h1>Stag's Leap Wine Cellars <span class="o">with a private driver.</span></h1>
       <p class="lede">Plan the ride around your confirmed winery reservation. A private car for your own party, hotel pickup and an agreed return plan let everyone leave the driving to a chauffeur.</p>
       <ul class="check">
