@@ -36,7 +36,7 @@ def head(title, desc, prefix="", extra=""):
 <link rel="stylesheet" href="{prefix}css/main.css?v=33">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0e1013">
-<script src="/koast-acquisition.js?v=2" defer></script>
+<script src="/koast-acquisition.js?v=3" defer></script>
 <meta property="og:site_name" content="Koast">{extra}
 </head>
 <body>
@@ -2225,7 +2225,7 @@ p += footer("")
 write("sms-consent.html", p)
 
 # ============================ SHARED PRIVACY ============================
-legal_page('privacy.html', 'Privacy Policy', "How Koast handles rider, chauffeur, operator and website information, permissions and privacy requests.", legal_body('privacy'), effective_date='October 31, 2026')
+legal_page('privacy.html', 'Privacy Policy', "How Koast handles rider, chauffeur, operator and website information, permissions and privacy requests.", legal_body('privacy'), effective_date='November 13, 2026')
 
 # ============================ SEO POST-PROCESSING ============================
 import re as _re, json as _json, glob as _glob, struct as _struct

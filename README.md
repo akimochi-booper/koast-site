@@ -33,6 +33,28 @@ No Moovs completion integration or unsupported iframe messages are assumed.
 Their documented GTM integration is separately enabled/configured; iframe loads
 and booking-link clicks must not be reported as quotes, reservations, or revenue.
 
+Native booking links use a limited first-touch handoff only when the destination
+is the exact HTTPS origin `app.koastride.com` and a `/book`, `/booking` or `/request`
+route. This does not change any destination, publish the prelaunch app, or add a
+Moovs integration. `ka_v=1` carries sanitized `ka_source`, `ka_medium`,
+`ka_campaign`, `ka_content`, `ka_landing_path`, `ka_referrer` and optional
+`ka_click_id_type` (`google`, `bing` or `facebook`). Empty labels are omitted;
+unknown source remains unknown. No event/session ID, raw advertising ID, search
+terms, form entries or contact details are added. Book validates these fields
+again and gives a valid handoff precedence over destination UTM tags; without a
+handoff its own landing UTM/referrer rules apply. Existing destination UTM,
+referral and hash fields are preserved. Existing native first touch stays fixed
+until its 30-minute idle expiry.
+
+Links are prepared on load and refreshed at ordinary click, auxiliary click,
+context menu and restored-page activation; navigation is never delayed or
+cancelled. A current DNT/GPC or session opt-out replaces all `ka_` fields with
+only `ka_tracking=off`, so native capture can honor the same choice. Nonproduction
+website hosts do not decorate links or collect events. The native app stores a
+validated source snapshot separately against an order, with 90-day retention;
+the anonymous Site events above still contain no order or customer identifier.
+The public privacy notice describes that separate source-record use.
+
 Validation (also required by the deployment workflow):
 
 ```sh

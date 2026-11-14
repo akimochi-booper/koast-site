@@ -13,7 +13,6 @@
   var params = new URLSearchParams(location.search);
   if (params.get('koast_tracking') === 'off') { disabled = true; write(OFF, '1'); }
   function optedOut() { return disabled || read(OFF) === '1' || navigator.doNotTrack === '1' || window.doNotTrack === '1' || navigator.globalPrivacyControl === true; }
-  if (optedOut()) return;
   function uuid() { return crypto.randomUUID(); }
   function label(value) {
     value = String(value || '').trim();
@@ -76,16 +75,56 @@
         referrerPolicy: 'no-referrer', headers: {'Content-Type': 'text/plain;charset=UTF-8'}, body: JSON.stringify(payload)}).catch(function () {});
     } catch (_) { /* Tracking failure must never affect browsing or booking. */ }
   }
+  function nativeBookingLink(u) {
+    return u.origin === 'https://app.koastride.com' && /^\/(?:book|booking|request)(?:\/|$)/.test(u.pathname);
+  }
+  function handoff(a) {
+    // Only source labels cross to our native booker: never a visitor/session ID.
+    // Keep destination UTM/referral fields intact; Book gives a valid ka_v=1
+    // first-touch snapshot precedence over those destination campaign fields.
+    try {
+      var u = new URL(a.href, location.href);
+      if (!nativeBookingLink(u)) return;
+      Array.from(u.searchParams.keys()).forEach(function (key) { if (key.indexOf('ka_') === 0) u.searchParams.delete(key); });
+      if (optedOut()) {
+        u.searchParams.set('ka_tracking', 'off');
+      } else {
+        var first = cleanTouch(session().first_touch);
+        u.searchParams.set('ka_v', '1');
+        ['source', 'medium', 'campaign', 'content'].forEach(function (key) {
+          if (first[key]) u.searchParams.set('ka_' + key, first[key]);
+        });
+        u.searchParams.set('ka_landing_path', first.path);
+        if (first.referrer) u.searchParams.set('ka_referrer', first.referrer);
+        var marker = {google: 'google', microsoft: 'bing', meta: 'facebook'}[first.click_id_type];
+        if (marker) u.searchParams.set('ka_click_id_type', marker);
+      }
+      a.href = u.href;
+    } catch (_) { /* A broken handoff never prevents ordinary navigation. */ }
+  }
+  function handoffLinks() {
+    if (document.querySelectorAll) document.querySelectorAll('a[href]').forEach(handoff);
+  }
   track('page_view', '');
-  window.addEventListener('pageshow', function (e) { if (e.persisted) track('page_view', ''); });
+  handoffLinks();
+  window.addEventListener('pageshow', function (e) { if (e.persisted) { track('page_view', ''); handoffLinks(); } });
+  // Refresh at activation too, for late-added links, changed privacy choices,
+  // restored pages and expired sessions. No interception or delayed navigation.
+  ['auxclick', 'contextmenu'].forEach(function (type) {
+    document.addEventListener(type, function (e) {
+      var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+      if (a) handoff(a);
+    });
+  });
   document.addEventListener('click', function (e) {
     var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
     if (!a) return;
     try {
+      handoff(a);
       var u = new URL(a.href, location.href);
       if (u.protocol === 'tel:' || u.protocol === 'mailto:') track('contact_click', u.protocol === 'tel:' ? 'phone' : 'email');
       else if (u.protocol === 'https:' && u.hostname === 'customer.moovs.app' && /^\/koast\/request\/new\/?$/.test(u.pathname)) track('booking_click', 'moovs');
-      else if (u.protocol === 'https:' && u.hostname === 'app.koastride.com' && /^\/(?:book|booking|request)(?:\/|$)/.test(u.pathname)) track('booking_click', 'book');
+      else if (nativeBookingLink(u)) track('booking_click', 'book');
     } catch (_) {}
   });
 })();
