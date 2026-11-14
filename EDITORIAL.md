@@ -13,7 +13,17 @@ New guides live in `content/posts/<slug>.json`. The generator adds them to the e
 7. Review diff. Fetch/rebase origin/main immediately before push and regenerate/recheck. Commit source and regenerated `_redirects`; use the Koast GitHub App credential helper and push to main to trigger deployment. Never call wrangler deploy directly.
 8. Verify the live article, dates/schema, index and sitemap after deployment, including visual checks. Report the live URL. If quality, source verification, build, deployment or live checks fail, do not claim publication success. Preserve work and report the exact blocker. Do not loosen security headers or change rates/policies to publish a guide.
 
+## Daily news scan and calls to action
+
+At each existing 9 AM Pacific publishing pass, check current FAA NAS/ATCSCC advisories, relevant airport and airline alerts, National Weather Service notices and official road/transit alerts for material passenger impacts. News outlets can surface leads; operational claims need primary-source verification. Check source/event dates and explicit time zones. An expected update or expiry is not a guaranteed restart. This is a daily scan, not continuous emergency monitoring.
+
+Choose events only when Koast can add useful pickup, luggage, entrance or itinerary guidance. Refresh the existing intent owner instead of duplicating it. Include a visible dated source snapshot and current official links; no speculative causes, capacity, availability or recovery promises. Recheck active disruption context on the next daily pass and while it remains current, then mark it resolved only with evidence and archive expired context. Missing source data does not prove resolution. Keep the daily publication limit; extra same-day changes require direct owner authorization.
+
+Check one relevant closing quote/contact CTA and natural service links in each guide. Existing reservations use their confirmation/day-of-trip contact path; a new quote does not amend an existing ride. Treat CTA clicks, quote requests, bookings, observed referrals and voluntary source reports as distinct evidence. Do not publish private customer referral anecdotes or names without separate permission.
+
 ## Current topic queue
+
+- Owner-directed additional update 2026-11-13: flight-change guide gets a clearly dated FAA Advisory 120 snapshot and arrival/departure pickup actions. Original October 20 publication preserved. Earlier official notice read directly; current archive recheck returned no record, so no current-stop or recovery claim. Recheck on the next daily pass; missing source data is not proof of resolution. [Source boundary](docs/flight-disruption-20261113.md).
 
 - Refreshed 2026-11-13: SFO, OAK or SJC? Choosing an Airport for a Silicon Valley Business Trip. The existing airport-choice guide owns the queued different-inbound/outbound question. Adds two separately confirmed ride legs, flight versus pickup local dates near midnight, a fictional comparison, change ownership and a copyable brief. Original October16 publication retained; substantive modification November13. Primary SJC/SFO/OAK resources reverified, new generic coastal-flight editorial image has internal provenance. [Daily record](docs/daily-guide-20261113.md).
 
