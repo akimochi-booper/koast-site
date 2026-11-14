@@ -2,6 +2,8 @@
 
 Renderer accepts trusted booking markup and the existing quote destination.
 Sources and search intent: docs/livermore-search-20261113.md.
+Visual contract: shared renewal classes; parent owns image derivatives and CSS.
+Regional/illustrative card images do not represent the named winery estates.
 """
 from html import escape
 
@@ -51,49 +53,54 @@ def render_livermore_body(booking_markup, quote_url):
     """Return body HTML; generator owns navigation, FAQ/schema and footer."""
     quote = escape(quote_url, quote=True)
     return f"""
-<header class="hero-dark"><div class="wrap">
+<header class="renewal-hero renewal-cinema">
+  <img class="renewal-hero-image" src="/img/renewal-vineyard-hero.jpg" alt="Illustrative California wine-country landscape" fetchpriority="high">
+  <div class="wrap renewal-hero-content">
   <div class="crumbs"><a href="/">Home</a><span>/</span><a href="/services/wine-tours">Wine Tours</a><span>/</span>Livermore Valley</div>
-  <div class="hero-grid">
     <div class="hero-copy">
+      <p class="renewal-kicker">Livermore Valley &middot; Private chauffeur</p>
       <h1>Livermore Valley wine tours <span class="o">with a private driver.</span></h1>
-      <p class="lede">Choose the tastings you want, then plan the ride around them. Arrange a chauffeured vehicle for your own party, local or Bay Area pickup and a confirmed return plan.</p>
-      <ul class="check" style="color:#cdd3dc">
-        <li>Private transportation between your chosen winery visits</li>
-        <li>Hotel, home and Bay Area pickups by arrangement</li>
-        <li>Vehicle, complete route and service window quoted before travel</li>
-      </ul>
+      <p class="lede">Your tastings, your party, your private driver. Local or Bay Area pickup, chosen winery stops and a confirmed return.</p>
       <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:24px">
         <a class="btn btn-orange" href="{quote}">Get a Livermore quote</a>
         <a class="btn btn-ghost-light" href="#plan-your-tastings">Plan your winery stops</a>
       </div>
     </div>
-    {booking_markup}
   </div>
-</div></header>
+</header>
 
-<section class="tight" id="plan-your-tastings" style="scroll-margin-top:100px"><div class="wrap">
-  <div class="sec-head"><span class="pill">Livermore Valley tasting plans</span>
-    <h2>Choose the experience, then connect the actual addresses</h2>
+<section class="tight renewal-section" id="plan-your-tastings" style="scroll-margin-top:100px"><div class="wrap">
+  <div class="sec-head"><span class="renewal-kicker">Livermore Valley tasting plans</span>
+    <h2>Find your kind of wine day.</h2>
     <p>Arroyo Road, Tesla Road and Mines Road are distinct destinations. Start with the wineries and experiences you want, check their opening and availability for your date, then build a route around confirmed appointments.</p>
   </div>
   <div class="grid-3">
-    <article class="card"><h3>Wente Vineyards</h3>
-      <p><strong>5050 Arroyo Road, Livermore.</strong> Check the location on your confirmation rather than relying on an older winery address. Reservations are encouraged for seated tastings; ask about the experience and any dining plans separately.</p>
+    <article class="renewal-winery-card card">
+      <figure class="renewal-card-photo"><img src="/img/wt-livermore.jpg" alt="Livermore Valley regional landscape" loading="lazy"><figcaption>Livermore Valley &middot; Regional image</figcaption></figure>
+      <h3>Wente Vineyards</h3>
+      <p class="renewal-kicker">Arroyo Road</p><p><span class="pill">Reservations encouraged</span></p>
+      <p><strong>5050 Arroyo Road, Livermore.</strong> Confirm the location and seated tasting; ask about dining separately.</p>
       <p>Use <a href="https://wentevineyards.com/visit/">Wente's official visitor guidance</a> and <a href="https://wentevineyards.com/contact-us/">current address</a>.</p>
     </article>
-    <article class="card"><h3>Concannon Vineyard</h3>
-      <p><strong>4590 Tesla Road, Livermore.</strong> Reservations are encouraged; walk-ins depend on available seating. Check the specific tasting and contact the winery about larger parties before choosing transportation.</p>
+    <article class="renewal-winery-card card">
+      <figure class="renewal-card-photo"><img src="/img/renewal-wine-terrace.jpg" alt="Illustrative wine-country terrace, not Concannon Vineyard" loading="lazy"><figcaption>Wine-country ambience &middot; Illustration</figcaption></figure>
+      <h3>Concannon Vineyard</h3>
+      <p class="renewal-kicker">Tesla Road</p><p><span class="pill">Walk-ins subject to seating</span></p>
+      <p><strong>4590 Tesla Road, Livermore.</strong> Reservations are encouraged. Check the experience and ask the winery about larger parties.</p>
       <p>Review <a href="https://concannon.wine/experiences/">Concannon's experiences and reservation guidance</a>.</p>
     </article>
-    <article class="card"><h3>Murrieta's Well</h3>
-      <p><strong>3005 Mines Road, Livermore.</strong> Reservations are recommended for seated tastings. Check the opening and experience for your particular date; a patio or walk-up bar visit has different arrangements from a seated reservation.</p>
+    <article class="renewal-winery-card card">
+      <figure class="renewal-card-photo"><img src="/img/wt-livermore.jpg" alt="Livermore Valley regional landscape" style="object-position:80% center" loading="lazy"><figcaption>Livermore Valley &middot; Regional image</figcaption></figure>
+      <h3>Murrieta's Well</h3>
+      <p class="renewal-kicker">Mines Road</p><p><span class="pill">Seated reservations recommended</span></p>
+      <p><strong>3005 Mines Road, Livermore.</strong> Check opening and experience for your date. Patio and walk-up arrangements differ from seated tastings.</p>
       <p>Check <a href="https://murrietaswell.com/visit/">Murrieta's Well visitor information</a> before setting the route.</p>
     </article>
   </div>
   <p style="margin-top:24px">These are places to compare, not a fixed itinerary or included tasting package. Explore more stops with the <a href="https://www.lvwine.org/itinerary-planner.php">Livermore Valley Wine Community itinerary planner</a> and its <a href="https://www.lvwine.org/maps.php">regional winery maps</a>.</p>
 </div></section>
 
-<section class="tight"><div class="wrap grid-2" style="align-items:start;gap:40px">
+<section class="tight renewal-section"><div class="wrap grid-2 renewal-split">
   <div>
     <span class="pill">Pickup and return</span><h2>Start locally or include the Bay Area journey</h2>
     <p><strong>Livermore or Pleasanton lodging:</strong> send the property name, street address and entrance. Include where you want to finish, whether that is the same hotel, dinner or another agreed destination.</p>
@@ -101,14 +108,14 @@ def render_livermore_body(booking_markup, quote_url):
     <p><strong>Between tastings:</strong> request an hourly chauffeur if you need the vehicle between appointments. Confirm driving, waiting and the return window. If you only need one transfer, describe that journey and arrange any later pickup separately.</p>
     <p>Compare our <a href="/blog/hourly-chauffeur-vs-point-to-point-transfers">hourly chauffeur and point-to-point options</a>, or review <a href="/cities/san-francisco">San Francisco</a> and <a href="/cities/san-jose">San Jose pickup planning</a>.</p>
   </div>
-  <article class="card"><h3>Keep two confirmations for your day</h3>
+  <article class="card renewal-trip-note"><h3>Your stops. One private ride.</h3>
     <p><strong>Winery experiences:</strong> confirm each reservation, start and expected finish, address and party requirements with the winery. Tasting fees, food and purchases are separate from the transportation quote.</p>
     <p><strong>Transportation:</strong> confirm your vehicle, pickup, stops, waiting, required return time and change terms. A car booking does not hold a tasting appointment.</p>
     <p>Koast transportation is a private ride for your party. It is not a seat on a shared trolley or train tour, and it does not make a winery-hosted experience private.</p>
   </article>
 </div></section>
 
-<section class="tight" id="quote-details" style="scroll-margin-top:100px"><div class="wrap grid-2" style="align-items:start;gap:40px">
+<section class="tight renewal-section" id="quote-details" style="scroll-margin-top:100px"><div class="wrap grid-2 renewal-split">
   <div><span class="pill">Build a realistic tasting day</span><h2>Leave room for the visits you book</h2>
     <p>Use the actual tasting lengths, travel between entrances, lunch and required return to choose the number of stops. There is no fixed tasting count for every party. Confirm food plans and any winery-specific visitor rules before adding a lunch stop.</p>
     <p>Age, non-taster, mobility, food and larger-party arrangements can differ by experience. Ask each winery directly, then share the transportation requirements for the actual vehicle and route.</p>
@@ -124,5 +131,10 @@ def render_livermore_body(booking_markup, quote_url):
     </ul>
     <p><a class="btn btn-orange" href="{quote}">Get a Livermore quote</a></p>
   </article>
+</div></section>
+
+<section class="tight renewal-section" id="reserve-ride" style="scroll-margin-top:100px"><div class="wrap renewal-split">
+  <div><p class="renewal-kicker">Your wine day, connected</p><h2>Plan the ride around your reservations.</h2><p>Private transportation, hotel or home pickup by arrangement, and a vehicle and service window quoted before travel. Winery reservations and tasting fees are separate.</p></div>
+  {booking_markup}
 </div></section>
 """

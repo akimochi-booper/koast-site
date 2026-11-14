@@ -2,6 +2,8 @@
 
 Uses the existing marketing hero, cards, grids and FAQ components. Source/factual
 review and Search Console baseline: docs/healdsburg-search-20261104.md.
+Visual contract: shared renewal classes; parent owns image derivatives and CSS.
+Regional/illustrative card images do not represent the named winery estates.
 """
 
 HEALDSBURG_TITLE = "Healdsburg Winery Tours with a Private Driver | Koast"
@@ -41,57 +43,59 @@ HEALDSBURG_FAQS = [
 def render_healdsburg_body(booking_markup):
     """Return this page's header and planning sections with the existing booking card."""
     return f"""
-<header class="hero-dark"><div class="wrap">
+<header class="renewal-hero renewal-cinema">
+  <img class="renewal-hero-image" src="/img/wt-healdsburg.jpg" alt="Downtown Healdsburg and its plaza" fetchpriority="high">
+  <div class="wrap renewal-hero-content">
   <div class="crumbs"><a href="/">Home</a><span>/</span><a href="/services/wine-tours">Wine Tours</a><span>/</span>Healdsburg</div>
-  <div class="hero-grid">
     <div class="hero-copy">
+      <p class="renewal-kicker">Healdsburg &middot; Your private wine day</p>
       <h1>Healdsburg winery tours <span class="o">with a private chauffeur.</span></h1>
-      <p class="lede">Visit wine country with a private driver and chauffeured vehicle for your group. Start from Healdsburg or arrange Bay Area pickup, choose your tasting appointments, and confirm the complete route and return plan before you travel.</p>
-      <ul class="check">
-        <li>Private transportation for your planned winery visits</li>
-        <li>Pickup from Healdsburg lodging or the Bay Area by arrangement</li>
-        <li>Vehicle, service window and itinerary confirmed before travel</li>
-      </ul>
+      <p class="lede">Your chosen tastings. Your own party. A private driver connecting Healdsburg or Bay Area pickup, winery appointments and your return.</p>
       <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:24px">
         <a class="btn btn-orange btn-lg" href="mailto:reserve@koastride.com">Email for a wine-tour quote</a>
         <a class="btn btn-ghost-light btn-lg" href="#choose-your-route">Compare winery routes</a>
       </div>
       <p style="font-size:16px;margin-top:16px;color:#cdd3dc">Have tasting times already? <a href="#quote-details" style="color:inherit;text-decoration:underline">See what to send for your transportation quote.</a></p>
     </div>
-    {booking_markup}
   </div>
-</div></header>
+</header>
 
-<section class="tight" id="choose-your-route" style="scroll-margin-top:100px"><div class="wrap">
-  <div class="sec-head"><span class="pill">Choose your wine country</span>
-    <h2>Which Healdsburg wine area fits your day?</h2>
-    <p>Healdsburg is a base for three nearby wine areas, plus downtown tasting rooms. Start with the wines or experience you want, then connect appointments that work together geographically. A visit to every valley is not a requirement.</p>
+<section class="tight renewal-section" id="choose-your-route" style="scroll-margin-top:100px"><div class="wrap">
+  <div class="sec-head"><span class="renewal-kicker">Choose your wine country</span>
+    <h2>Discover your next stop.</h2>
+    <p>Dry Creek, Alexander Valley, Russian River or a tasting room in town. Compare the experiences, then connect appointments that fit your day.</p>
   </div>
   <div class="grid-3">
-    <div class="card">
+    <article class="renewal-winery-card card">
+      <figure class="renewal-card-photo"><img src="/img/renewal-vineyard-hero.jpg" alt="Illustrative California wine-country landscape, not a Dry Creek estate" loading="lazy"><figcaption>Wine-country landscape &middot; Illustration</figcaption></figure>
       <h3>Dry Creek Valley</h3>
-      <p>A starting point for Zinfandel-focused visits. Compare appointment options at <a href="/wineries/ridge-vineyards-lytton-springs">Ridge Lytton Springs</a> and <a href="/wineries/dry-creek-vineyard">Dry Creek Vineyard</a>, then check the route and a lunch gap against your confirmed times.</p>
+      <p><span class="pill">Zinfandel-focused visits</span></p>
+      <p>Compare appointments at <a href="/wineries/ridge-vineyards-lytton-springs">Ridge Lytton Springs</a> and <a href="/wineries/dry-creek-vineyard">Dry Creek Vineyard</a>. Check the route and lunch gap against confirmed times.</p>
       <p><a href="/wine-tours/sonoma">Compare Sonoma wine tour planning</a> or explore the <a href="https://www.drycreekvalley.org/dry-creek-valley/">Dry Creek Valley winegrowers' guide</a>.</p>
-    </div>
-    <div class="card">
+    </article>
+    <article class="renewal-winery-card card">
+      <figure class="renewal-card-photo"><img src="/img/renewal-wine-terrace.jpg" alt="Illustrative wine-country terrace, not an Alexander Valley estate" loading="lazy"><figcaption>Wine-country ambience &middot; Illustration</figcaption></figure>
       <h3>Alexander Valley</h3>
-      <p>Consider a booked estate experience such as Jordan. Choose the experience and its available time first; arrange the rest of the day around that appointment instead of assuming you can drop in.</p>
+      <p><span class="pill">Estate appointments</span></p>
+      <p>Consider a booked estate experience such as Jordan. Choose the available experience first, then arrange the day around it rather than assuming a drop-in visit.</p>
       <p>Read our <a href="/wineries/jordan-vineyard-and-winery">Jordan planning guide</a> and check <a href="https://www.jordanwinery.com/visit/">Jordan's current visits and reservations</a>.</p>
-    </div>
-    <div class="card">
+    </article>
+    <article class="renewal-winery-card card">
+      <figure class="renewal-card-photo"><img src="/img/wt-healdsburg.jpg" alt="Downtown Healdsburg regional scene" loading="lazy"><figcaption>Healdsburg area &middot; Regional image</figcaption></figure>
       <h3>Russian River Valley</h3>
-      <p>Compare Pinot Noir and Chardonnay producers along a route that suits your pickup point. Check the actual winery addresses before combining visits with another valley or a meal in town.</p>
+      <p><span class="pill">Pinot Noir &amp; Chardonnay</span></p>
+      <p>Compare producers along a route that suits your pickup. Check actual addresses before adding another valley or a meal in town.</p>
       <p>Read our <a href="/wineries/gary-farrell-vineyards-and-winery">Gary Farrell planning guide</a>, explore the <a href="https://russianrivervalley.org/about/neighborhoods/">Russian River Valley neighborhoods</a>, or compare <a href="/wineries/">Koast's winery planning directory</a>.</p>
-    </div>
+    </article>
   </div>
   <p style="color:var(--muted);margin-top:24px">Prefer an afternoon in town? The <a href="https://stayhealdsburg.com/wine-country/">official Healdsburg wine-country guide</a> also lists downtown tasting rooms. Confirm whether each stop is a town tasting room or an estate visit before arranging transportation.</p>
 </div></section>
 
-<section class="tight"><div class="wrap grid-2" style="align-items:start;gap:40px">
+<section class="tight renewal-section"><div class="wrap grid-2 renewal-split">
   <div>
-    <span class="pill">Estate visits &amp; tasting appointments</span>
+    <span class="renewal-kicker">Estate visits &amp; tasting appointments</span>
     <h2>Build the itinerary around confirmed reservations</h2>
-    <p>Pick the experience you most want to book, then check the other stops around it. Include the full tasting duration, travel between entrances, lunch and the return journey. Check group limits and visitor requirements with each winery.</p>
+    <p>Start with your preferred experience, then fit other stops around its duration, travel, lunch and return. Check each winery's group limits and visitor requirements.</p>
     <ul class="check">
       <li><strong>Jordan:</strong> advance appointments are required; confirm the particular tour or tasting you want.</li>
       <li><strong>Ridge Lytton Springs:</strong> reserve the particular experience and check its party-size and visitor requirements before arranging the vehicle.</li>
@@ -99,18 +103,17 @@ def render_healdsburg_body(booking_markup):
     </ul>
     <p><a href="https://www.ridgewine.com/visit/lytton-springs/">Ridge visitor guidance</a> · <a href="https://drycreekvineyard.com/visit/">Dry Creek Vineyard reservations</a></p>
   </div>
-  <div class="card">
+  <div class="card renewal-trip-note">
     <h3>One focused route to consider</h3>
-    <p>A Dry Creek day might pair an available Ridge Lytton Springs appointment with a separately confirmed Dry Creek Vineyard visit. Add lunch only after checking the appointment lengths, transfer and return plan.</p>
-    <p>This is a planning example, subject to availability. It does not reserve either winery or promise a particular number of stops.</p>
+    <p>Pair an available Ridge Lytton Springs appointment with a separately confirmed Dry Creek Vineyard visit, leaving room for lunch and the return. This planning example is subject to availability; it reserves neither winery and promises no fixed stop count.</p>
     <p>Keep two confirmations: <strong>transportation</strong> for the vehicle and service window, and <strong>winery appointments</strong> for the experiences. Agree who is responsible for booking each one and what each price includes.</p>
     <p>For the broader reservation checklist, see <a href="/blog/napa-tasting-and-transportation-reservations">coordinating tastings and transportation</a>; its Napa examples illustrate the same confirmation process.</p>
   </div>
 </div></section>
 
-<section class="tight"><div class="wrap grid-2" style="align-items:start;gap:40px">
+<section class="tight renewal-section"><div class="wrap grid-2 renewal-split">
   <div>
-    <span class="pill">Pickup &amp; return</span>
+    <span class="renewal-kicker">Pickup &amp; return</span>
     <h2>Starting in Healdsburg or traveling from San Francisco?</h2>
     <p><strong>Staying in Healdsburg:</strong> send your lodging address, the first tasting time and where you want to finish. Confirm the property's pickup entrance and whether the final stop is your hotel, dinner or another agreed destination.</p>
     <p><strong>Downtown tasting room or winery estate:</strong> use the address in each tasting confirmation, including any entrance instructions. A winery name alone does not tell your driver which location or arrival point you booked.</p>
@@ -131,5 +134,10 @@ def render_healdsburg_body(booking_markup):
     <p><a href="/blog/group-wine-tour-planning">Plan a group wine tour</a> with the full party's requirements in one brief.</p>
     <p><a class="btn btn-orange btn-lg" href="mailto:reserve@koastride.com">Email your wine-tour plans</a></p>
   </div>
+</div></section>
+
+<section class="tight renewal-section" id="reserve-ride" style="scroll-margin-top:100px"><div class="wrap renewal-split">
+  <div><p class="renewal-kicker">Your wine day, connected</p><h2>Choose the stops. Confirm the ride.</h2><p>Private transportation from Healdsburg lodging or the Bay Area by arrangement. Confirm the vehicle, service window and itinerary before travel; keep each winery's separate reservation confirmation.</p></div>
+  {booking_markup}
 </div></section>
 """
