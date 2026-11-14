@@ -35,9 +35,9 @@ test('all six Livermore answers match their searchable schema and preserve reser
   assert.doesNotMatch(page,/three to four tastings|Most days run 6|reservation-only tasting first|booked in under a minute/);
 });
 
-test('local winery destinations and route controls use current official planning resources',()=>{
+test('local winery destinations and route controls keep exploration on Koast',()=>{
   for(const value of ['5050 Arroyo Road','4590 Tesla Road','3005 Mines Road','reservations are encouraged','seated tastings']) assert.ok(page.toLowerCase().includes(value.toLowerCase()),value);
-  for(const href of ['https://wentevineyards.com/visit/','https://concannon.wine/experiences/','https://murrietaswell.com/visit/','https://www.lvwine.org/itinerary-planner.php','https://www.lvwine.org/maps.php','/cities/san-francisco','/cities/san-jose','/blog/group-wine-tour-planning']) assert.ok(page.includes(`href="${href}"`),href);
+  for(const href of ['/wineries/wente-vineyards','/wineries/concannon-vineyard','/wineries/murrietas-well','/wineries/','/cities/san-francisco','/cities/san-jose','/blog/group-wine-tour-planning']) assert.ok(page.includes(`href="${href}"`),href);
   assert.ok(page.includes('href="https://customer.moovs.app/koast/request/new">Get a Livermore quote</a>'));
   assert.ok(page.includes('href="#plan-your-tastings"'));
   assert.ok(page.includes('id="plan-your-tastings" style="scroll-margin-top:100px"'));

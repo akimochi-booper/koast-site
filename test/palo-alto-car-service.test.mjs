@@ -20,7 +20,7 @@ test('Palo Alto retains one indexable URL and a truthful local service identity'
   assert.equal(services[0].areaServed.name, 'Palo Alto');
   assert.equal(services[0].areaServed.address.addressRegion, 'CA');
   assert.ok(!schemas.some(schema => schema['@type'] === 'LocalBusiness'), 'no invented local office');
-  assert.match(page, /property="og:image" content="https:\/\/koastride.com\/img\/city-palo-alto.jpg"/);
+  assert.match(page, /property="og:image" content="https:\/\/koastride.com\/img\/city-palo-alto-renewal-v1.jpg"/);
 });
 
 test('airport intent and quote planning use the established destinations', () => {

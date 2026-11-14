@@ -48,8 +48,9 @@ test('destination clarification and itinerary planning remain useful and navigab
   assert.ok(description.length <= 160);
   assert.match(body, /Stag's Leap Wine Cellars[\s\S]*5766 Silverado Trail, Napa, CA 94558/);
   assert.match(body, /Stags' Leap Winery[\s\S]*6150 Silverado Trail, Napa, CA 94558/);
-  assert.match(body, /https:\/\/www\.stagsleapwinecellars\.com\/visit-us\/experiences\//);
-  assert.match(body, /https:\/\/www\.stagsleap\.com\/pages\/visit/);
+  assert.match(body, /Estate Wine Tasting &amp; Cave Tour/);
+  assert.match(body, /confirm the winery's current visitor requirements/);
+  assert.doesNotMatch(body, /href="https:\/\/(?:www\.)?stagsleap/);
   assert.match(body, /pickup entrance/);
   assert.match(body, /return address and required return time/);
   assert.match(body, /service window/);

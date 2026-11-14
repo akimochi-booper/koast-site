@@ -39,87 +39,74 @@ PALO_ALTO_FAQS = [
 
 
 def render_palo_alto_body(booking_markup, quote_url):
-    """Render the local service brief around the unchanged native booking card/link."""
+    """Render the editorial city brief; keep booking and quote destinations injected."""
     quote = escape(quote_url, quote=True)
     return f"""
-<header class="hero-dark"><div class="wrap">
-  <div class="crumbs"><a href="/">Home</a><span>/</span><a href="/cities/">Cities</a><span>/</span>Palo Alto</div>
-  <div class="hero-grid">
-    <div class="hero-copy">
-      <h1>Palo Alto car service <span class="o">for SFO, SJC &amp; business travel.</span></h1>
-      <p class="lede">A private chauffeur for your airport arrival, Stanford visit or Silicon Valley meeting day. Arrange the complete route, choose a vehicle for your party and travel with a fixed transportation quote.</p>
-      <ul class="check">
-        <li>Flight-tracked SFO and SJC airport transfers</li>
-        <li>Downtown Palo Alto, Stanford and nearby Sand Hill Road</li>
-        <li>One transfer or an hourly meeting itinerary</li>
-      </ul>
-      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:24px">
-        <a class="btn btn-orange" href="{quote}">Get a Palo Alto quote</a>
-        <a class="btn btn-ghost-light" href="#airport-options">Compare airport transfers</a>
-      </div>
-    </div>
-    {booking_markup}
+<header class="renewal-hero renewal-editorial"><div class="wrap renewal-editorial-grid">
+  <div class="renewal-hero-content">
+    <div class="crumbs"><a href="/">Home</a><span>/</span><a href="/cities/">Cities</a><span>/</span>Palo Alto</div>
+    <p class="renewal-kicker">Palo Alto · Private chauffeur</p>
+    <h1>Palo Alto car service.<br><span class="o">Your next stop, connected.</span></h1>
+    <p class="lede">SFO or SJC arrivals. Stanford visits. A Silicon Valley meeting day. Arrange your complete route with a private chauffeur and a fixed transportation quote.</p>
+    <p><a class="btn btn-orange" href="{quote}">Get a Palo Alto quote</a></p>
+    <a href="#airport-options">Compare airport transfers →</a>
   </div>
+  <img class="renewal-hero-image" src="/img/city-palo-alto-renewal-v1.jpg" alt="Tree-lined Palo Alto street in warm evening light" fetchpriority="high" decoding="async">
 </div></header>
 
-<section class="tight" id="airport-options" style="scroll-margin-top:100px"><div class="wrap">
-  <div class="sec-head"><span class="pill">Palo Alto airport transfers</span>
+<section class="renewal-section" id="airport-options"><div class="wrap">
+  <div class="sec-head"><p class="renewal-kicker">From the terminal to your destination</p>
     <h2>SFO or SJC to Palo Alto?</h2>
-    <p>Compare the flight schedule and the actual address you need to reach. Both airports can serve a Palo Alto trip; the right ground plan depends on your arrival time, hotel and first appointment.</p>
+    <p>Compare the flight schedule with your hotel address and first appointment. Plan the ground journey around the trip you actually need.</p>
   </div>
-  <div class="grid-3">
-    <article class="card"><h3>SFO to Palo Alto</h3>
-      <p>Send the flight number and local arrival date, then name the hotel, Stanford building or office entrance. Include passengers, bags and any intermediate stop so the quote covers the whole journey.</p>
-      <p>Review <a href="/routes/sfo-to-silicon-valley">SFO to Palo Alto and Silicon Valley transfers</a> and the <a href="/airports/sfo">SFO pickup guide</a>.</p>
+  <div class="renewal-fact-grid">
+    <article class="card"><p class="renewal-kicker">SFO arrivals</p><h3>Flight to front door</h3>
+      <p>Send your flight number, local arrival date, passengers and bags. Name the hotel, Stanford building or office entrance, including any stop along the way.</p>
+      <p><a href="/routes/sfo-to-silicon-valley">SFO to Palo Alto and Silicon Valley transfers</a> · <a href="/airports/sfo">SFO pickup guide</a></p>
     </article>
-    <article class="card"><h3>SJC to Palo Alto</h3>
-      <p>Arrange a direct ride from San Jose Airport to your Palo Alto destination. For a trip continuing to Menlo Park, Mountain View or another meeting, list each address before confirming the transfer.</p>
-      <p>Plan <a href="/routes/sjc-to-silicon-valley">SJC to Palo Alto and Silicon Valley transfers</a> with the <a href="/airports/sjc">SJC pickup guide</a>.</p>
+    <article class="card"><p class="renewal-kicker">SJC arrivals</p><h3>Your Silicon Valley connection</h3>
+      <p>Arrange a private transfer from San Jose Airport. Continuing to Menlo Park or Mountain View? Include every address before confirming the route.</p>
+      <p><a href="/routes/sjc-to-silicon-valley">SJC to Palo Alto and Silicon Valley transfers</a> · <a href="/airports/sjc">SJC pickup guide</a></p>
     </article>
-    <article class="card"><h3>Palo Alto to the airport</h3>
-      <p>For the return, send the flight departure details and exact pickup entrance. Add hotel luggage collection or another stop to the plan, then agree on the pickup time with your airport arrival target in mind.</p>
-      <p>Comparing flights? Use our <a href="/blog/sfo-oak-sjc-silicon-valley-business-trip">SFO, OAK and SJC business-trip guide</a>.</p>
-    </article>
-  </div>
-</div></section>
-
-<section class="tight"><div class="wrap">
-  <div class="sec-head"><span class="pill">Local pickup details</span>
-    <h2>Make the address useful to your chauffeur</h2>
-    <p>A street address and the right entrance make a clearer plan than a campus or company name alone. Share the destination's own access instructions when you book.</p>
-  </div>
-  <div class="grid-3">
-    <article class="card"><h3>Downtown &amp; University Avenue</h3>
-      <p>For a hotel, restaurant or downtown office, include the property name and street address. Identify the entrance where your party will meet and any luggage collection needed before departure.</p>
-    </article>
-    <article class="card"><h3>Stanford visits</h3>
-      <p>Use the actual building or visitor destination rather than just “Stanford.” Ask your host about vehicle access and the meeting point. Campus activities and transportation need separate arrangements.</p>
-      <p>Check <a href="https://visit.stanford.edu/">Stanford's visitor information</a> and its <a href="https://transportation.stanford.edu/getting-around-bay/transportation-airports">official airport-transportation guide</a>.</p>
-    </article>
-    <article class="card"><h3>Research Park &amp; Sand Hill Road</h3>
-      <p>For Stanford Research Park appointments, name the office and entrance. For nearby Menlo Park or Sand Hill Road meetings, include each full address and appointment time, plus where the day should finish.</p>
-      <p>Planning a roadshow? Review <a href="/services/corporate-travel">corporate and executive transportation</a>.</p>
+    <article class="card"><p class="renewal-kicker">Your return flight</p><h3>Work back from departure</h3>
+      <p>Share the flight details, pickup entrance and hotel luggage collection. Agree on a pickup time using your airline's arrival guidance and conditions on your travel date.</p>
+      <p><a href="/blog/sfo-oak-sjc-silicon-valley-business-trip">Compare SFO, OAK and SJC for a business trip</a></p>
     </article>
   </div>
 </div></section>
 
-<section class="tight" id="plan-your-ride"><div class="wrap grid-2" style="align-items:start;gap:40px">
+<section class="renewal-section"><div class="wrap renewal-split">
+  <figure class="renewal-image-panel"><img src="/img/fleet-sedan-hotel-scene.webp" alt="Black sedan outside a warmly lit hotel entrance" loading="lazy" decoding="async"></figure>
   <div>
-    <span class="pill">Choose the service</span>
-    <h2>One airport ride or a full meeting day?</h2>
-    <p><strong>One journey:</strong> book a point-to-point transfer with all agreed stops in the quote. A later return is a separate leg to arrange.</p>
-    <p><strong>Several appointments:</strong> request an hourly chauffeur and send the meeting sequence, waiting gaps and required finish time. Confirm the vehicle's service window rather than assuming it stays after a one-way drop-off.</p>
-    <p>Our <a href="/blog/hourly-chauffeur-vs-point-to-point-transfers">hourly versus point-to-point guide</a> helps compare the two. For a larger party, <a href="mailto:reserve@koastride.com">request a van, Sprinter or bus quote</a> with the full passenger and luggage requirements.</p>
+    <p class="renewal-kicker">The local details</p><h2>A place name is a start.<br>The entrance makes the plan.</h2>
+    <article class="renewal-trip-note"><h3>Downtown &amp; University Avenue</h3>
+      <p>Share the hotel, restaurant or office address and the entrance where your party will meet. Include any luggage collection before departure.</p>
+    </article>
+    <article class="renewal-trip-note"><h3>Stanford visits</h3>
+      <p>Name the actual building or visitor destination. Ask your host about vehicle access and the meeting point; campus activities and transportation need separate arrangements.</p>
+      <p><a href="https://visit.stanford.edu/">Stanford visitor information</a> · <a href="https://transportation.stanford.edu/getting-around-bay/transportation-airports">Official airport-transportation guide</a></p>
+    </article>
+    <article class="renewal-trip-note"><h3>Research Park &amp; Sand Hill Road</h3>
+      <p>For Stanford Research Park, name the office and entrance. For meetings on nearby Sand Hill Road in Menlo Park, send each full address, appointment time and the final destination.</p>
+      <p><a href="/services/corporate-travel">Corporate and executive transportation</a></p>
+    </article>
   </div>
-  <div class="card"><h3>Have these details ready for your quote</h3>
-    <ul class="check">
-      <li>Local travel date, airport code and flight number where applicable</li>
-      <li>Exact pickup, drop-off and building entrances</li>
-      <li>Passengers, bags, equipment and any child-seat requirements</li>
-      <li>Meeting stops, waiting needs and the time you must finish</li>
-      <li>Any return leg, including hotel luggage collection</li>
-    </ul>
+</div></section>
+
+<section class="renewal-section" id="plan-your-ride"><div class="wrap">
+  <div class="sec-head"><p class="renewal-kicker">Choose your service</p><h2>One arrival. Or the whole meeting day.</h2></div>
+  <div class="renewal-fact-grid">
+    <article class="card"><h3>Point to point</h3><p>Arrange one journey with all agreed stops in the quote. A later return is a separate leg to confirm; a drop-off does not mean the car stays.</p></article>
+    <article class="card"><h3>Hourly chauffeur</h3><p>For several appointments, share the meeting sequence, waiting gaps and finish time. Confirm the vehicle's service window and how changes are handled.</p><p><a href="/blog/hourly-chauffeur-vs-point-to-point-transfers">Compare hourly and point-to-point service</a></p></article>
+    <article class="card"><h3>Your party &amp; bags</h3><p>Choose a sedan or SUV around your passengers, luggage and equipment. For a larger party, <a href="mailto:reserve@koastride.com">request a van, Sprinter or bus quote</a> and confirm the actual seating and luggage space.</p></article>
+  </div>
+</div></section>
+
+<section class="renewal-section" id="reserve-ride"><div class="wrap renewal-split">
+  <div><p class="renewal-kicker">Your ride, arranged</p><h2>Bring the itinerary.<br>We'll connect the journey.</h2>
+    <p>Have your local travel date, flight details, pickup and destination entrances, passengers and bags ready. Include meeting stops, waiting needs and any return leg.</p>
     <p><a class="btn btn-orange" href="{quote}">Get a Palo Alto quote</a></p>
   </div>
+  {booking_markup}
 </div></section>
 """

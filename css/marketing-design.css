@@ -1,0 +1,160 @@
+/* Public marketing renewal: approved Vineyard Cinema / Wine Journal, Nov 14. */
+.renewal-site{--bg:#fbf8f3;--bg-2:#f2ede5;--ink:#161616;--text:#353431;--muted:#68645e;--line:#dfd9d0;background:var(--bg);color:var(--text)}
+.renewal-site .site-nav{background:#fbf8f3f5;border-color:var(--line);backdrop-filter:blur(16px)}
+.renewal-site .site-wordmark{width:142px;height:auto}
+.renewal-site .nav-inner{height:72px;padding-top:10px;padding-bottom:10px}
+.renewal-site .nav-links>a,.renewal-site .nav-dd>a{color:var(--ink)}
+.renewal-site .nav-cta .btn-line{color:var(--ink);border-color:#a69b8d}
+.renewal-site .nav-burger{color:var(--ink)}
+.renewal-site .wrap{max-width:1280px}
+.renewal-site h1,.renewal-site h2{letter-spacing:-.055em;line-height:1.06}
+.renewal-site h2{font-size:clamp(30px,5vw,54px)}
+.renewal-site .btn{border-radius:12px;min-height:48px;box-shadow:none}
+.renewal-site .btn-orange{color:#15110c}
+.renewal-site .card{border:1px solid var(--line);background:transparent;border-radius:16px;box-shadow:none;overflow:hidden}
+.renewal-site .sec-head{max-width:860px;margin-bottom:32px}
+.renewal-site .sec-head p{font-size:17px;line-height:1.65;max-width:740px}
+.renewal-site .pill,.renewal-kicker{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.renewal-site .pill{background:transparent;padding:0;color:#786349;border:0}
+.renewal-site section{padding:64px 0}
+.renewal-site section.tight{padding:54px 0}
+.renewal-hero{position:relative;isolation:isolate;overflow:hidden}
+.renewal-editorial{padding:34px 0 54px}
+.renewal-editorial-grid{display:grid;grid-template-columns:1fr 1fr;gap:66px;align-items:center}
+.renewal-hero-content{position:relative;z-index:2;min-width:0}
+.renewal-hero h1{font-size:clamp(42px,5.5vw,76px);max-width:800px;margin:22px 0}
+.renewal-hero .lede{font-size:19px;line-height:1.55;max-width:640px;color:var(--text);margin-bottom:28px}
+.renewal-hero .o{color:#d95309}
+.renewal-hero .crumbs{font-size:11px;line-height:1.6;margin:0 0 28px;color:#6a6258;flex-wrap:wrap}
+.renewal-hero .crumbs a{color:inherit}
+.renewal-hero .crumbs span{margin:0 8px}
+.renewal-kicker{margin:0 0 18px;color:#73583d;line-height:1.6}
+.renewal-hero-visual{margin:0;min-width:0}
+.renewal-editorial .renewal-hero-visual{position:relative}
+.renewal-photo-inset{position:absolute;left:-28px;bottom:40px;width:45%;height:245px;object-fit:cover;border:4px solid var(--bg);border-radius:17px}
+.renewal-hero-image{display:block;width:100%;height:560px;object-fit:cover;border-radius:22px}
+.renewal-editorial .renewal-hero-image{object-position:center}
+.renewal-editorial .renewal-hero-content .btn-ghost-light{color:var(--ink);border-color:#b9afa2}
+.renewal-cinema{min-height:510px;display:flex;align-items:center;background:#191c19;padding:42px 0 54px;color:white}
+.renewal-cinema .renewal-editorial-grid{display:block;width:100%}
+.renewal-cinema .renewal-hero-visual{position:absolute;inset:0;z-index:-2}
+.renewal-cinema>.renewal-hero-image{position:absolute;inset:0;z-index:-2}
+.renewal-cinema>.renewal-hero-content{width:100%;max-width:1280px;margin:auto}
+.renewal-cinema>.renewal-hero-content .hero-copy{max-width:750px}
+.renewal-cinema .renewal-hero-image{height:100%;border-radius:0;filter:brightness(.64)}
+.renewal-cinema .renewal-hero-content{max-width:750px;text-shadow:0 2px 22px #0006}
+.renewal-cinema>.wrap.renewal-hero-content{max-width:1280px}
+.renewal-cinema h1{color:#fff}
+.renewal-cinema .renewal-kicker,.renewal-cinema .crumbs,.renewal-cinema .lede{color:#fff}
+.renewal-cinema .o{color:#ff9b29}
+.renewal-cinema h1{font-size:clamp(46px,6.5vw,84px)}
+.renewal-gallery{min-height:650px;padding:75px 0;background:#151a19;color:#fff;display:flex;align-items:end}
+.renewal-gallery .renewal-editorial-grid{display:block;width:100%}
+.renewal-gallery .renewal-hero-visual{position:absolute;inset:0;z-index:-2}
+.renewal-gallery .renewal-hero-image{height:100%;border-radius:0;filter:brightness(.38)}
+.renewal-gallery .renewal-hero-content{max-width:820px}
+.renewal-gallery h1{color:#fff;font-size:clamp(46px,6vw,80px)}
+.renewal-gallery .lede,.renewal-gallery .crumbs,.renewal-gallery .renewal-kicker{color:#fff}
+.renewal-gallery .wy-eyebrow{color:#fff}
+.renewal-gallery .o{color:#ffad47}
+.renewal-site .renewal-highlights{padding:22px 0;border-bottom:1px solid var(--line)}
+.renewal-highlights .check{display:flex;flex-wrap:wrap;gap:16px 34px;margin:0!important;color:var(--text)!important;font-size:13px;justify-content:space-between}
+.renewal-highlights .check li{flex:1;min-width:180px;margin:0;padding-left:0}
+.renewal-highlights .check li:before{display:none}
+.renewal-site .renewal-booking-section{padding:22px 0 10px}
+.renewal-booking{border:1px solid #d5ccbf;border-radius:15px;background:#fffdf9;scroll-margin-top:100px;overflow:hidden}
+.renewal-booking>summary{cursor:pointer;list-style-position:inside;padding:23px 28px;font-size:16px;font-weight:700;min-height:68px}
+.renewal-booking>summary:hover{background:#f3ece1}
+.renewal-booking-inner{display:grid;grid-template-columns:1fr minmax(320px,510px);gap:60px;padding:12px 28px 30px;align-items:start}
+.renewal-booking-inner>div:first-child{padding:38px 0}
+.renewal-booking-inner h2{max-width:350px;margin-bottom:20px}
+.renewal-booking-inner p{max-width:440px}
+.renewal-site .book-card{box-shadow:none;border:1px solid var(--line)}
+.renewal-section{scroll-margin-top:100px}
+.renewal-split{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:54px}
+.renewal-image-panel{margin:0;position:relative;min-width:0}
+.renewal-image-panel>img{display:block;width:100%;height:420px;object-fit:cover;border-radius:18px}
+.renewal-image-panel figcaption,.renewal-card-photo figcaption{font-size:10px;color:#746b60;margin-top:8px;line-height:1.5}
+.renewal-trip-note{padding:22px 25px;background:#f1eadf;border-radius:14px;border:1px solid #e1d8ca}
+.renewal-site .renewal-section:has(>.renewal-planning){padding:0}
+.renewal-planning{max-width:1216px;margin:0 auto;border-top:1px solid #ccc3b6}
+.renewal-planning>summary{cursor:pointer;padding:22px 32px;min-height:68px;font-weight:700;font-size:17px;line-height:1.4;list-style-position:inside}
+.renewal-planning>summary:hover{background:#f2ece2}
+.renewal-planning>.wrap{padding:24px 32px 40px}
+.renewal-planning .wrap h2{font-size:32px}
+.renewal-planning .wrap p{font-size:15px;line-height:1.75}
+.renewal-site .renewal-journey-band{padding:12px 0 32px}
+.renewal-fact-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.renewal-fact-grid .card{padding:26px}
+.renewal-assurances{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#f0e9de}
+.renewal-assurance-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+.renewal-assurance-grid h3{font-size:22px;margin-bottom:10px}
+.renewal-assurance-grid p{font-size:14px;line-height:1.65}
+.renewal-vehicle-options{display:grid;gap:14px}
+.renewal-vehicle-card{display:grid;grid-template-columns:42% 1fr;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fffdfa}
+.renewal-vehicle-card>img{display:block;width:100%;height:160px;object-fit:cover}
+.renewal-vehicle-card>div{padding:22px 18px}
+.renewal-vehicle-card h3{font-size:20px;margin:0 0 8px;letter-spacing:-.04em}
+.renewal-vehicle-card p{font-size:12px;line-height:1.5;margin:0 0 10px}
+.renewal-vehicle-card a{font-size:12px;font-weight:700}
+.renewal-vehicle-note{font-size:11px;color:var(--muted);line-height:1.5;margin:0}
+.renewal-site .renewal-winery-card{padding:0 0 24px}
+.renewal-winery-card>h3,.renewal-winery-card>p,.renewal-winery-card>.wres,.renewal-winery-card>.renewal-kicker,.renewal-winery-card>ul{margin-left:24px;margin-right:24px}
+.renewal-card-photo{margin:0 0 24px}
+.renewal-card-photo>img{height:245px;width:100%;display:block;object-fit:cover}
+.renewal-card-photo figcaption{padding:0 20px}
+.renewal-winery-card h3{font-size:23px;line-height:1.2;letter-spacing:-.04em;margin-bottom:12px}
+.renewal-winery-card p{font-size:14px;line-height:1.65}
+.renewal-winery-card>p{margin-bottom:12px}
+.renewal-site .renewal-winery-card .pill{display:inline-block;font-size:12px;letter-spacing:0;text-transform:none;background:#e9e8d3;padding:8px 10px;border-radius:9px;color:#36321d;font-weight:700}
+.renewal-site .wlist{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.renewal-site .wrow{display:flex;flex-direction:column;align-items:stretch;gap:0;padding:0 0 24px;overflow:hidden;border:1px solid var(--line);border-radius:16px;background:transparent;box-shadow:none}
+.renewal-site .wrow .wmain{padding:22px 24px 14px}
+.renewal-site .wrow .wmain b{font-size:24px;line-height:1.2;letter-spacing:-.04em}
+.renewal-site .wrow .wmain p{font-size:14px;line-height:1.65}
+.renewal-site .wrow .wres{align-self:start;margin:0 24px;white-space:normal;font-size:11px;border-radius:8px;padding:8px 10px}
+.renewal-site .wrow .wthumb{width:100%;height:235px;object-fit:cover;border-radius:0}
+.renewal-site .renewal-regional-caption{font-size:10px;padding:7px 24px 0;color:#746b60}
+.renewal-site .wrow-link:hover{transform:translateY(-3px);border-color:#bdab93}
+.renewal-region-banner{margin:0 0 26px}
+.renewal-region-banner img{width:100%;height:270px;object-fit:cover;border-radius:17px}
+.renewal-region-banner figcaption{font-size:10px;color:var(--muted);margin-top:8px}
+.renewal-site .wy-facts{background:#f1eadf;border:1px solid #dfd3c2;border-radius:16px;box-shadow:none}
+.renewal-site .wy-facts h3{font-family:Georgia,serif;font-size:28px;font-weight:400}
+.renewal-site .faq{max-width:none;border-top:1px solid #ccc3b6}
+.renewal-site .faq details{border:0;border-bottom:1px solid #ccc3b6;border-radius:0;background:transparent;margin:0;padding:0 8px}
+.renewal-site .faq summary{padding:22px 34px 22px 0;font-size:16px;line-height:1.4}
+.renewal-site .faq details p{max-width:900px;padding-bottom:22px;font-size:15px;line-height:1.75}
+.renewal-site .cta{position:relative;isolation:isolate;overflow:hidden;background:#1c201d url('/img/fleet-first-class-suv-coast-scene.webp') center/cover;border-radius:20px;padding:54px;text-align:left;min-height:290px;color:#fff}
+.renewal-site .cta::before{content:'';position:absolute;inset:0;z-index:-1;background:#0009}
+.renewal-site .cta h2{max-width:620px;font-size:clamp(30px,4vw,48px);color:#fff}
+.renewal-site .cta p{max-width:570px;color:#f3f0eb;font-size:16px;margin:18px 0 24px}
+.renewal-wine .cta,.renewal-winery .cta{background-image:url('/img/renewal-wine-ride.jpg')}
+.renewal-site .cta::after{content:'Illustrative vehicle scene';position:absolute;right:18px;bottom:10px;font-size:9px;color:#eee}
+.renewal-site .post-card,.renewal-site .city-card{background:#fffdfa}
+.renewal-site .post-card .thumb{border-radius:15px 15px 0 0}
+.renewal-site .site-footer{background:#181b19;color:#c7c8c1;margin-top:20px}
+.renewal-site .ptrip .chips{justify-content:flex-start;gap:12px}
+.renewal-site .ptrip .related-label{text-align:left;font-size:11px;letter-spacing:.13em;margin-top:24px}
+.renewal-site .ptrip .chip{border-color:#d5c7b5;border-radius:8px;box-shadow:none;background:transparent}
+.renewal-site .ptrip .chip i{display:none}
+.renewal-site :focus-visible{outline:3px solid #9c4b00;outline-offset:5px}
+.renewal-cinema :focus-visible,.renewal-site .cta :focus-visible{outline-color:#ffb55b}
+@media(max-width:1000px){.renewal-editorial-grid{gap:32px}.renewal-hero-image{height:480px}.renewal-site .wlist{grid-template-columns:repeat(2,minmax(0,1fr))}.renewal-booking-inner{gap:26px}.renewal-split{gap:30px}}
+@media(max-width:700px){
+  .renewal-site .site-wordmark{width:clamp(104px,34vw,136px);height:auto}
+  .renewal-site .wrap{padding-left:22px;padding-right:22px}.renewal-site section,.renewal-site section.tight{padding:38px 0}
+  .renewal-editorial{padding:24px 0 32px}.renewal-editorial-grid,.renewal-split,.renewal-booking-inner{grid-template-columns:1fr;gap:26px}
+  .renewal-hero h1{font-size:42px;margin:18px 0}.renewal-hero .lede{font-size:17px;line-height:1.6}.renewal-hero .crumbs{margin-bottom:22px}
+  .renewal-hero-image{height:330px;border-radius:15px}.renewal-kicker{font-size:10px}
+  .renewal-photo-inset{height:170px;bottom:16px;left:-7px;width:43%;border-width:3px}
+  .renewal-cinema{min-height:575px;padding:44px 0 60px}.renewal-cinema .renewal-hero-image{object-position:65% center;filter:brightness(.48)}
+  .renewal-cinema h1{font-size:46px}.renewal-hero-content .btn{font-size:13px;padding-left:20px;padding-right:20px}
+  .renewal-site .renewal-highlights{padding:20px 0}.renewal-highlights .check{gap:12px;font-size:12px}.renewal-highlights .check li{min-width:100%;border-bottom:1px solid var(--line);padding-bottom:12px}.renewal-highlights .check li:last-child{border:0;padding:0}
+  .renewal-site .renewal-booking-section{padding:18px 0 0}.renewal-booking>summary{padding:20px;font-size:14px}.renewal-booking-inner{padding:0 12px 16px}.renewal-booking-inner>div:first-child{padding:12px 5px}
+  .renewal-site .sec-head p{font-size:15px}.renewal-site .sec-head{margin-bottom:24px}.renewal-site .wlist,.renewal-fact-grid,.renewal-assurance-grid{grid-template-columns:1fr}
+  .renewal-card-photo>img,.renewal-site .wrow .wthumb{height:240px}.renewal-image-panel>img{height:300px}
+  .renewal-site .cta{padding:30px 24px;min-height:330px;background-position:60% center}.renewal-site .cta::before{background:#000a}.renewal-site .cta p{font-size:14px}
+  .renewal-site .faq summary{font-size:14px}.renewal-site .faq details p{font-size:14px}
+}
+@media(prefers-reduced-motion:reduce){.renewal-site .wrow-link:hover{transform:none}}

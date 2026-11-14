@@ -1,0 +1,221 @@
+/* Faithful, separate approved wine designs. Keep each composition scoped. */
+.wine-reference{--reference-orange:linear-gradient(180deg,#ffb52e 0%,#ff970f 42%,#ff6008 100%);--reference-paper:#fbf7f1;background:var(--reference-paper);color:#141414}
+.wine-reference .reference-wrap{width:calc(100% - 104px);max-width:1280px;margin:0 auto}
+.wine-reference .reference-icon{display:inline-block;width:22px;height:22px;flex:0 0 auto;vertical-align:middle}
+.wine-reference .reference-primary{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:44px;padding:12px 24px;border:0;border-radius:10px;background:var(--reference-orange);color:#090805;font:700 14px/1.3 'Plus Jakarta Sans',sans-serif;text-shadow:none;cursor:pointer;white-space:nowrap;text-decoration:none}
+.wine-reference .reference-primary:hover{filter:brightness(1.05)}
+.wine-reference .reference-primary:active{filter:brightness(.96)}
+.wine-reference .reference-primary:disabled{opacity:.55;cursor:wait}
+.wine-reference .reference-primary .reference-icon{width:20px;height:20px}
+.wine-reference .reference-gradient{color:#ff8821;background:linear-gradient(180deg,#ffb83c 12%,#ff9623 45%,#ff5e10 90%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.wine-reference .reference-nav{position:relative;top:auto;background:var(--reference-paper);border-bottom:1px solid #ddd4c9;backdrop-filter:none}
+.wine-reference .reference-nav-inner{width:calc(100% - 80px);height:64px;display:flex;align-items:center;justify-content:space-between;gap:25px}
+.wine-reference .reference-nav .site-wordmark{width:136px;height:auto}
+.reference-nav-links,.reference-nav-actions{display:flex;align-items:center;gap:34px}
+.reference-nav-links>a,.reference-nav-links .nav-dd>a{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:#111}
+.reference-nav-links .reference-icon{width:13px;height:13px}
+.reference-nav-actions{gap:16px}
+.reference-login{border:1px solid #a19888;border-radius:9px;padding:9px 22px;font-size:13px;font-weight:700;white-space:nowrap}
+.wine-reference .reference-nav .nav-burger{display:none}
+.wine-reference section{padding:0}
+.wine-reference .reference-eyebrow{font-size:13px;line-height:1.4;text-transform:uppercase;letter-spacing:.12em;font-weight:600;margin:0}
+.wine-reference .reference-hero{position:relative;isolation:isolate}
+.wine-reference .reference-hero-background{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1}
+.wine-reference .reference-hero h1{font-size:clamp(46px,6.5vw,88px);line-height:.99;letter-spacing:-.05em;font-weight:800;margin:14px 0 12px}
+.wine-reference .reference-lede{font-size:20px;line-height:1.45;margin:0 0 24px}
+.wine-reference .reference-cinema-hero{height:580px;padding-top:126px;color:#fff}
+.reference-cinema .reference-nav{position:absolute;top:0;left:0;right:0;z-index:50;background:transparent;border:0}
+.reference-cinema .reference-nav-inner{height:72px}
+.reference-cinema .reference-nav-links>a,.reference-cinema .reference-nav-links .nav-dd>a,.reference-cinema .reference-login{color:#fff}
+.reference-cinema .reference-nav-links .reference-icon,.reference-cinema .nav-burger .reference-icon{filter:invert(1)}
+.reference-cinema .reference-login{border-color:#b1aa9880}
+.reference-cinema .reference-nav .nav-burger{color:#fff}
+.reference-cinema .reference-cinema-hero h1{color:#fff}
+.reference-cinema .reference-hero-background{object-position:center 58%}
+.reference-cinema .reference-regional-photo{filter:brightness(.65)}
+.reference-cinema .reference-hero-button{font-size:16px;min-height:54px;padding:16px 36px;border-radius:18px}
+.reference-quote-bar{position:absolute;left:52px;right:52px;bottom:24px;max-width:1280px;margin:auto;background:#fbf8f3f5;border:1px solid #fff;border-radius:18px;padding:15px 16px;color:#111;box-shadow:0 8px 32px #0002}
+.reference-quote-form{display:grid;grid-template-columns:1.12fr .98fr 1fr auto;gap:14px;position:relative;align-items:start}
+.reference-field{min-width:0;height:44px;border:1px solid #e2dbd3;border-radius:10px;display:flex;gap:10px;align-items:center;padding:0 13px;position:relative;background:transparent;color:#171717;text-shadow:none}
+.reference-field>.reference-icon{width:19px;height:19px}
+.reference-field>.field-chevron{width:14px;height:14px;margin-left:auto;pointer-events:none}
+.reference-field input,.reference-field select{min-width:0;width:100%;border:0;outline:0;background:transparent;color:#171717;font:400 16px/1.3 'Plus Jakarta Sans',sans-serif;padding:0;box-shadow:none}
+.reference-field input::placeholder{color:#171717;opacity:1}
+.reference-field select{appearance:none;padding-right:18px;cursor:pointer}
+.reference-party .field-chevron{position:absolute;right:13px}
+.reference-date{font-size:16px;cursor:pointer}
+.reference-date input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}
+.reference-field:focus-within{outline:3px solid #a45a00;outline-offset:3px}
+.reference-quote-form>.reference-primary{height:44px;padding:10px 20px;font-size:13px;box-shadow:0 3px 8px #ff7b1b40}
+.reference-form-status{grid-column:1/-1;font-size:13px;color:#8b2a0b;margin:0;line-height:1.5}
+.reference-form-status:empty{display:none}
+.wine-reference .reference-discovery{padding:36px 0 28px}
+.reference-discovery h2{font-size:clamp(32px,5.1vw,58px);line-height:1.08;font-weight:800;letter-spacing:-.055em;margin:0;color:#080808}
+.reference-orange-rule{display:block;width:64px;height:5px;border-radius:4px;background:var(--reference-orange);margin:12px 0}
+.reference-section-lede{font-size:19px;line-height:1.45;margin:0 0 28px}
+.reference-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.reference-winery{border:1px solid #e3ddd4;border-radius:16px;overflow:hidden;box-shadow:0 2px 1px #0000000a;min-width:0}
+.reference-winery-photo{width:100%;height:clamp(230px,28vw,345px);object-fit:cover;display:block}
+.reference-winery-copy{padding:12px 20px 12px}
+.reference-winery h3{font:800 clamp(19px,2.4vw,29px)/1.15 'Plus Jakarta Sans',sans-serif;letter-spacing:-.04em;color:#090909;margin:0 0 8px}
+.reference-winery-meta{display:flex;flex-direction:column;gap:12px}
+.reference-location{display:flex;align-items:center;gap:7px;font-size:13px;line-height:1.4}
+.reference-location .reference-icon{width:15px;height:15px}
+.reference-reservation{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;line-height:1.15;min-height:40px;padding:6px 11px;border-radius:13px;background:#e7e8d0}
+.reference-reservation .reference-icon{width:20px;height:20px}
+.reference-reservation-2{background:#ffe7b6}.reference-reservation-3{background:#eadde3}
+.reference-winery-copy>p{font-size:14px;line-height:1.4;margin:10px 0;color:#23242a;min-height:40px}
+.reference-explore{font-size:15px;font-weight:700;color:#ee5900;display:inline-flex;align-items:center;gap:10px;text-decoration:none}
+.reference-explore .reference-icon{width:20px;height:20px;filter:invert(44%) sepia(99%) saturate(3000%) hue-rotate(359deg) brightness(100%)}
+.reference-cinema .reference-discovery>.reference-wrap,.reference-cinema .reference-cinema-end{width:calc(100% - 60px)}
+.reference-cinema .reference-discovery h2,.reference-cinema .reference-discovery .reference-section-lede,.reference-cinema .reference-discovery .reference-orange-rule{margin-left:22px}
+.reference-conversion{margin:6px 0 20px;position:relative;isolation:isolate;border-radius:17px;overflow:hidden;min-height:166px;display:flex;align-items:center;justify-content:space-between;padding:24px 22px;background:#1c1e1b;color:#fff;gap:22px}
+.reference-conversion>img{position:absolute;inset:0;z-index:-1;width:100%;height:100%;object-fit:cover}
+.wine-reference .reference-conversion h2{font-size:clamp(26px,3.7vw,44px);line-height:1.03;letter-spacing:-.05em;color:#fff;max-width:390px;margin:0 0 14px}
+.reference-conversion p{font-size:15px;line-height:1.25;margin:0;max-width:350px}
+.reference-conversion>.reference-primary{min-width:170px;font-size:16px;margin-right:0}
+.reference-detail{border-top:1px solid #ccc2b5;margin:0 18px;background:transparent}
+.reference-detail:last-of-type{border-bottom:1px solid #ccc2b5}
+.reference-detail>summary{list-style:none;display:flex;align-items:center;gap:20px;cursor:pointer;min-height:48px;padding:6px 0;font-size:16px;font-weight:700;line-height:1.4}
+.reference-detail>summary::-webkit-details-marker{display:none}
+.reference-detail>summary>.reference-icon:last-child{margin-left:auto;width:20px;height:20px}
+.reference-detail[open]>summary>.reference-icon:last-child{transform:rotate(180deg)}
+.reference-detail-symbol{background:#f0e4d1;border-radius:7px;padding:5px;display:flex}
+.reference-detail-symbol .reference-icon{width:22px;height:22px}
+.reference-detail>div{padding:12px 0 22px 52px;font-size:15px;line-height:1.65}
+.reference-detail p{margin:0 0 10px}
+.reference-separate{font:italic 13px/1.5 'Plus Jakarta Sans',sans-serif;margin:8px 22px 16px;color:#57524b}
+.wine-reference .reference-journal-hero{padding:24px 0 30px}
+.reference-journal .reference-wrap{width:calc(100% - 76px)}
+.reference-journal-hero>.reference-wrap{display:grid;grid-template-columns:.96fr 1fr;gap:48px;align-items:center;min-height:500px}
+.reference-journal-copy{position:relative;z-index:2;max-width:400px}
+.reference-journal .reference-eyebrow{font-size:11px;letter-spacing:.14em;color:#382019}
+.wine-reference .reference-journal-hero h1{font-size:clamp(62px,8.8vw,112px);line-height:.84;letter-spacing:-.065em;color:#000;margin:28px 0 22px}
+.reference-journal .reference-lede{font:italic 18px/1.4 Georgia,serif;white-space:nowrap;margin-bottom:26px}
+.reference-journal-photos{position:relative;margin:0;height:500px}
+.reference-journal-photos>img:first-child{width:100%;height:100%;object-fit:cover;border-radius:22px}
+.reference-journal-inset{position:absolute;left:-110px;bottom:50px;width:54%;height:300px;object-fit:cover;border:3px solid var(--reference-paper);border-radius:18px;z-index:1}
+.wine-reference .reference-journal-discovery{padding:0 0 28px}
+.reference-journal-discovery>.reference-wrap{border-top:1px solid #cdb69e;padding-top:24px}
+.reference-journal .reference-section-lede{font:italic 21px/1.4 Georgia,serif;margin:8px 0 24px}
+.reference-journal .reference-cards{display:block}
+.reference-journal .reference-winery{display:grid;grid-template-columns:1fr 1fr;gap:40px;border:0;border-radius:0;box-shadow:none;overflow:visible;margin:0 0 22px;min-height:148px}
+.reference-journal .reference-winery-photo{height:148px;border-radius:14px}
+.reference-journal .reference-winery-copy{padding:0;border-bottom:1px solid #ded5c9}
+.reference-journal .reference-winery h3{font:400 31px/1.1 Georgia,serif;letter-spacing:-.025em;margin:0 0 10px}
+.reference-journal .reference-winery-meta{flex-direction:row;align-items:center;gap:16px}
+.reference-journal .reference-location{font-size:12px;white-space:nowrap}
+.reference-journal .reference-reservation{font-size:11px;font-weight:400;min-height:25px;line-height:1.2;padding:3px 6px;border-radius:5px;background:#f1e9df;gap:6px}
+.reference-journal .reference-reservation .reference-icon{width:16px;height:16px}
+.reference-journal .reference-winery-copy>p{font-size:12px;line-height:1.45;margin:8px 0;min-height:0}
+.reference-journal .reference-explore{font-size:14px}
+.wine-reference .reference-journal-conversion{position:relative;isolation:isolate;background:#171b17;color:#fff;min-height:245px;padding:22px 0;overflow:hidden}
+.reference-journal-conversion>img{position:absolute;inset:0;z-index:-1;width:100%;height:100%;object-fit:cover;transform:scaleX(-1);object-position:center 58%}
+.reference-journal-conversion>.reference-wrap>div{width:50%;margin-left:auto}
+.wine-reference .reference-journal-conversion h2{font-size:clamp(32px,5.1vw,62px);line-height:.98;color:#fff;margin:0 0 14px}
+.reference-journal-conversion p{font-size:16px;line-height:1.35;margin:0 0 14px}
+.reference-journal-conversion .reference-separate{font:italic 13px/1.4 Georgia,serif;margin:10px 0 0;color:#eee}
+.wine-reference .reference-journal-end{padding-top:20px;padding-bottom:18px}
+.reference-journal-end .reference-detail{margin:0}.reference-journal-end .reference-detail>div{padding-left:0}
+.wine-reference.reference-gallery{--ink:#f6f0e5;--text:#f2ede5;--muted:#b9b6ad;background:#131617;color:#f6f0e5}
+.reference-gallery .reference-wrap{width:calc(100% - 80px)}
+.reference-gallery .reference-nav{background:#141617;border-color:#333}
+.reference-gallery .reference-nav-links>a{color:#f6f0e5}.reference-gallery .reference-nav-links>a:first-child{border-bottom:2px solid #ff980e;padding-bottom:9px;padding-top:11px}
+.reference-gallery .reference-nav-inner{height:72px}
+.wine-reference .reference-gallery-hero{height:425px;padding-top:36px;color:#f6f0e5}
+.reference-gallery .reference-hero-background{object-position:center 58%}
+.reference-gallery .reference-eyebrow{color:#ffe8b5;font-size:12px;font-weight:700;letter-spacing:.12em;display:flex;gap:12px;align-items:center}
+.reference-gallery .reference-eyebrow:before{content:'';width:36px;height:2px;background:#ff8b08}
+.wine-reference .reference-gallery-hero h1{font-size:clamp(46px,7.1vw,90px);line-height:.94;margin:20px 0 14px;color:#f6f0e5}
+.reference-gallery .reference-lede{font-size:20px}
+.reference-steps{display:flex;align-items:center;justify-content:space-between;gap:20px;height:76px}
+.reference-steps>span{display:flex;align-items:center;gap:18px;font-size:17px;font-weight:700;white-space:nowrap}
+.reference-steps .reference-icon{width:38px;height:38px;filter:invert(65%) sepia(83%) saturate(2254%) hue-rotate(358deg) brightness(101%)}
+.reference-steps>i{width:80px;height:2px;background:#ff980e;flex:1}
+.wine-reference.reference-gallery .reference-discovery{padding:22px 0 30px}
+.reference-gallery .reference-discovery .reference-wrap{width:calc(100% - 48px)}
+.reference-gallery .reference-discovery h2{color:#f6f0e5;font-size:clamp(32px,5vw,58px);margin:0 14px}
+.reference-gallery .reference-orange-rule{margin:16px 14px 22px;height:2px;width:80px}
+.reference-gallery .reference-cards{gap:16px}
+.reference-gallery .reference-winery{border:0;border-radius:0;background:#242525;box-shadow:none}
+.reference-gallery .reference-winery-photo{height:255px}
+.reference-gallery .reference-winery-copy{padding:14px 24px 20px}
+.reference-gallery .reference-winery h3{font-size:clamp(20px,2.7vw,30px);color:#f6f0e5}
+.reference-gallery .reference-location{font-size:14px;font-weight:700}
+.reference-gallery .reference-location .reference-icon{filter:invert(65%) sepia(83%) saturate(2254%) hue-rotate(358deg)}
+.reference-gallery .reference-winery-meta{gap:12px}
+.reference-gallery .reference-reservation{border-left:2px solid #ff980e;background:transparent;min-height:0;padding:0 0 0 14px;border-radius:0;font-size:14px}
+.reference-gallery .reference-reservation .reference-icon{display:none}
+.reference-gallery .reference-winery-copy>p{color:#f6f0e5;font-size:14px;min-height:40px}
+.reference-gallery .reference-explore{color:#ff900e}
+.wine-reference .reference-gallery-planner{--ink:#111;--text:#222;background:#f8f0e4;color:#111;padding:32px 0 20px}
+.reference-gallery-intro{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:center;margin-bottom:30px}
+.wine-reference .reference-gallery-intro h2{font-size:clamp(32px,5vw,58px);color:#080808;margin:0;line-height:1.1}
+.reference-gallery-intro p{border-left:2px solid #ff900e;padding-left:26px;font-size:16px;line-height:1.45;margin:0}
+.reference-gallery .reference-quote-form{grid-template-columns:1.6fr 1fr 1fr;margin-bottom:36px;gap:18px}
+.reference-gallery .reference-field{height:56px;border-color:#929594;border-radius:8px}
+.reference-gallery .reference-quote-form>.reference-primary{height:56px;font-size:17px;border-radius:9px}
+.reference-gallery .reference-detail{margin:0}.reference-gallery .reference-detail-symbol{display:none}
+.reference-gallery .reference-detail>summary{min-height:43px;font-size:15px}
+.reference-gallery .reference-detail>div{padding-left:0}
+.reference-gallery .reference-separate{margin:25px 0 8px;font-size:13px}
+.reference-more{margin:24px auto;border-top:1px solid #ccc2b5;max-width:1216px}
+.reference-more>summary{padding:20px;cursor:pointer;font-size:15px;font-weight:600}
+.reference-more>div{padding-top:20px}
+.reference-planning-link{font-size:13px;margin-top:20px!important;color:#825128}
+.reference-quote-dialog{max-width:620px;width:calc(100% - 32px);border:1px solid #d5c6b2;border-radius:22px;padding:36px;background:#fbf7f1;color:#151515;margin:auto;box-shadow:0 20px 100px #0007}
+.reference-quote-dialog::backdrop{background:#101515a6;backdrop-filter:blur(5px)}
+.reference-dialog-close{display:flex;align-items:center;justify-content:center;position:absolute;right:14px;top:14px;width:44px;height:44px;border:0;border-radius:50%;background:#eee6da;cursor:pointer}
+.reference-quote-dialog h2{color:#151515;font-size:36px;line-height:1.1;margin:14px 0 20px;max-width:470px}
+.reference-quote-dialog .reference-eyebrow{color:#73583a}
+.reference-quote-dialog p{font-size:15px;line-height:1.6;margin:0 0 18px}
+.reference-quote-dialog dl{margin:20px 0 24px;border-top:1px solid #ded2c3}
+.reference-quote-dialog dl>div{display:grid;grid-template-columns:95px 1fr;gap:16px;padding:12px 0;border-bottom:1px solid #ded2c3;font-size:14px;line-height:1.4}
+.reference-quote-dialog dt{font-weight:700}.reference-quote-dialog dd{margin:0;overflow-wrap:anywhere}
+.reference-quote-dialog .reference-quote-note{font-size:12px;color:#686055;margin:18px 0}
+.reference-edit{background:none;border:0;color:#885013;font-family:inherit;font-weight:600;font-size:14px;line-height:1.4;padding:12px;cursor:pointer}
+.reference-book-online{display:block;text-decoration:underline;font-size:13px;color:#73532e;margin-top:16px}
+.reference-quote-dialog .reference-quote-form{grid-template-columns:1fr;gap:14px}
+.reference-quote-dialog .reference-field{height:50px}.reference-quote-dialog .reference-quote-form>.reference-primary{height:48px}
+.wine-reference .reference-noscript{padding:20px}
+.wine-reference :focus-visible{outline:3px solid #a45a00;outline-offset:4px}
+.reference-cinema .reference-nav :focus-visible,.reference-gallery .reference-nav :focus-visible{outline-color:#ffb32e}
+@media(max-width:1100px){.reference-nav-links{gap:25px}.reference-journal-copy{max-width:370px}.reference-journal-inset{left:-95px}.reference-journal .reference-winery-meta{gap:12px}}
+@media(max-width:800px){
+ .wine-reference .reference-wrap,.reference-cinema .reference-discovery>.reference-wrap,.reference-cinema .reference-cinema-end,.reference-gallery .reference-wrap,.reference-gallery .reference-discovery .reference-wrap{width:calc(100% - 40px)}
+ .wine-reference .reference-nav-inner{width:calc(100% - 40px);height:72px;gap:12px}.reference-nav-links,.reference-login{display:none}.reference-nav-actions{gap:10px}
+ .wine-reference .reference-nav .nav-burger{display:flex}.wine-reference .reference-nav .site-wordmark{width:120px}.reference-nav-actions>.reference-primary{font-size:12px;padding:10px 17px}
+ .wine-reference .reference-nav .mobile-menu{background:#fbf7f1;color:#111;padding:10px 20px}.reference-gallery .reference-nav .nav-burger{color:#fff}.reference-gallery .reference-nav .nav-burger>.reference-icon{filter:invert(1)}
+ .wine-reference .reference-cinema-hero{height:auto;min-height:710px;padding:112px 0 28px}.wine-reference .reference-hero h1{font-size:clamp(42px,10vw,74px)}
+ .wine-reference .reference-eyebrow{font-size:10px}.wine-reference .reference-lede{font-size:17px;line-height:1.5}
+ .reference-quote-bar{position:relative;left:auto;right:auto;bottom:auto;margin:32px 0 0;padding:14px;border-radius:15px}
+ .reference-quote-form{grid-template-columns:1fr 1fr;gap:12px}.reference-pickup{grid-column:1/-1}.reference-quote-form>.reference-primary{grid-column:1/-1;height:48px;font-size:15px}
+ .reference-cards{grid-template-columns:1fr;gap:22px}.reference-winery-photo{height:300px}.reference-winery h3{font-size:25px}
+ .reference-winery-copy{padding:18px 20px 22px}.reference-winery-copy>p{font-size:16px;min-height:0}.reference-reservation{font-size:14px}.reference-location{font-size:14px}
+ .reference-cinema .reference-discovery h2,.reference-cinema .reference-discovery .reference-section-lede,.reference-cinema .reference-discovery .reference-orange-rule{margin-left:0}
+ .reference-section-lede{font-size:17px}.wine-reference .reference-discovery{padding:32px 0 24px}
+ .reference-conversion{min-height:290px;align-items:start;flex-direction:column;justify-content:center;padding:26px 22px;gap:20px}.reference-conversion>img{filter:brightness(.7);object-position:60% center}
+ .wine-reference .reference-conversion h2{font-size:33px}.reference-conversion p{font-size:14px}.reference-conversion>.reference-primary{font-size:14px;min-width:0}
+ .reference-detail{margin:0}.reference-detail>summary{font-size:14px;gap:12px;min-height:52px}.reference-detail>div{padding-left:0}.reference-separate{font-size:12px;margin-left:0}
+ .reference-journal-hero>.reference-wrap{grid-template-columns:1fr;gap:24px}.wine-reference .reference-journal-hero{padding-top:28px}.reference-journal-copy{max-width:100%}
+ .wine-reference .reference-journal-hero h1{font-size:clamp(66px,16vw,95px);line-height:.89;margin-top:22px}.reference-journal .reference-lede{font-size:18px;white-space:normal}
+ .reference-journal-photos{height:390px;margin-left:52px}.reference-journal-inset{left:-52px;width:48%;height:220px;bottom:30px}
+ .reference-journal .reference-winery{grid-template-columns:1fr;gap:14px;margin-bottom:26px}.reference-journal .reference-winery-photo{height:220px}.reference-journal .reference-winery-copy{padding-bottom:20px}
+ .reference-journal .reference-winery h3{font-size:31px}.reference-journal .reference-location{font-size:13px}.reference-journal .reference-reservation{font-size:12px}
+ .reference-journal .reference-winery-meta{flex-wrap:wrap;gap:12px}.reference-journal .reference-winery-copy>p{font-size:14px}.reference-journal .reference-section-lede{font-size:19px}
+ .wine-reference .reference-journal-conversion{min-height:350px;padding:32px 0}.reference-journal-conversion>img{filter:brightness(.55)}.reference-journal-conversion>.reference-wrap>div{width:100%}
+ .wine-reference .reference-journal-conversion h2{font-size:40px}.reference-journal-conversion .reference-separate{max-width:290px}
+ .wine-reference .reference-gallery-hero{height:430px;padding-top:32px}.wine-reference .reference-gallery-hero h1{font-size:clamp(38px,9.8vw,70px)}.reference-gallery .reference-hero-background{object-position:65% center;filter:brightness(.75)}
+ .reference-steps{height:auto;padding:22px 0;gap:12px}.reference-steps>span{flex-direction:column;gap:8px;white-space:normal;font-size:11px;text-align:center}.reference-steps .reference-icon{width:28px;height:28px}.reference-steps>i{width:10px}
+ .reference-gallery .reference-winery h3{font-size:26px}.reference-gallery .reference-winery-photo{height:280px}
+ .reference-gallery-intro{grid-template-columns:1fr;gap:18px;margin-bottom:25px}.reference-gallery-intro p{padding-left:18px;font-size:15px}
+ .reference-gallery .reference-quote-form{grid-template-columns:1fr;gap:14px}.reference-gallery .reference-pickup{grid-column:auto}.reference-gallery .reference-quote-form>.reference-primary{height:52px;font-size:15px}
+ .reference-quote-dialog{padding:30px 22px}.reference-quote-dialog h2{font-size:30px}.reference-quote-dialog dl>div{grid-template-columns:70px 1fr}
+}
+@media(forced-colors:active){.wine-reference .reference-gradient{background:none;color:CanvasText;-webkit-text-fill-color:CanvasText}.reference-primary{border:1px solid ButtonText}}
+@media(max-width:420px){
+ .wine-reference .reference-nav .site-wordmark{width:108px}
+ .reference-nav-actions>.reference-primary{padding-left:14px;padding-right:14px}
+ .reference-quote-form{grid-template-columns:1fr}
+ .reference-pickup{grid-column:auto}
+}

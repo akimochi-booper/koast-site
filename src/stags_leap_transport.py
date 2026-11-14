@@ -2,7 +2,8 @@
 
 Inputs: trusted existing booking markup and the existing quote destination. Returns
 body HTML only; the caller owns navigation, FAQ/schema, related links and footer.
-Uses existing marketing hero/cards/buttons in css/main.css; no external effects.
+Uses the public site's approved editorial renewal classes and existing buttons;
+no external effects. The Napa-mapped image is regional, not an estate photograph.
 
 Intent: answer small-group planning without selling winery admission or shared tours.
 Official sources checked 2026-11-13 (experience details/availability may change):
@@ -60,75 +61,77 @@ def render_body(booking_markup, quote_url):
     """Return body HTML around trusted booking markup; escape the quote URL attribute."""
     quote = escape(quote_url, quote=True)
     return f"""
-<header class="hero-dark"><div class="wrap">
+<header class="renewal-hero renewal-editorial">
+<div class="wrap">
   <div class="crumbs"><a href="/">Home</a><span>/</span><a href="/services/wine-tours">Wine Tours</a><span>/</span><a href="/wine-tours/napa-valley">Napa Valley</a><span>/</span>Stag's Leap Wine Cellars</div>
-  <div class="hero-grid">
-    <div class="hero-copy">
-      <span class="wy-eyebrow" style="color:var(--orange-on-dark)">Napa Valley &middot; Stags Leap District</span>
-      <h1>Stag's Leap Wine Cellars <span class="o">with a private driver.</span></h1>
-      <p class="lede">Plan the ride around your confirmed winery reservation. A private car for your own party, hotel pickup and an agreed return plan let everyone leave the driving to a chauffeur.</p>
-      <ul class="check">
-        <li>Private transportation for couples and small parties</li>
-        <li>Tasting reservations and admission booked separately</li>
-        <li>One transfer or a quoted hourly service window</li>
-      </ul>
-      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:24px">
-        <a class="btn btn-orange" href="{quote}">Get a transportation quote</a>
-        <a class="btn btn-ghost-light" href="#small-group-planning">Plan a small-group visit</a>
-      </div>
-    </div>
-    {booking_markup}
+</div>
+<div class="wrap renewal-editorial-grid">
+  <div class="renewal-hero-content">
+    <span class="renewal-kicker">Napa Valley &middot; Private transportation</span>
+    <h1>Stag's Leap Wine Cellars.<br><span class="o">Leave the drive to us.</span></h1>
+    <p class="lede">Your tasting, your own party, a private driver. Connect your hotel and winery reservation with a clear plan for the ride home.</p>
+    <a class="btn btn-orange" href="{quote}">Get a transportation quote</a>
+    <p class="renewal-trip-note"><a href="#small-group-planning">Plan your visit</a> &middot; <a href="#reserve-ride">Arrange your ride</a></p>
   </div>
-</div></header>
+  <figure class="renewal-hero-visual"><img class="renewal-hero-image" src="/img/blog-banner-napa.jpg" alt="Vineyard rows and a winding lane in warm evening light" width="1100" height="456" fetchpriority="high"><img class="renewal-photo-inset" src="/img/renewal-wine-terrace.jpg" alt="Illustrative wine-country terrace" width="1254" height="1254" loading="lazy"></figure>
+</div>
+</header>
 
-<section class="tight" id="small-group-planning" style="scroll-margin-top:100px"><div class="wrap">
-  <div class="sec-head"><span class="pill">Small-group planning</span>
-    <h2>A winery experience and a private ride are separate reservations.</h2>
-    <p>Visiting with a small party? Start with the winery's tasting or tour, then arrange the car around its confirmed schedule. Koast transportation is for your own party, rather than seats on a shared or join-in tour.</p>
-  </div>
-  <div class="grid-2">
-    <article class="card"><h3>Choose your winery experience</h3>
-      <p>The estate's <a href="https://www.stagsleapwinecellars.com/visit-us/experiences/">official experiences page</a> describes vineyard-view tastings and cave experiences. Its <a href="https://www.stagsleapwinecellars.com/experience/estate-tour-tasting/">Estate Wine Tasting &amp; Cave Tour</a> is described as communal and requires reservations. Ask the winery about the current format, your party size and availability before confirming a visit.</p>
-      <p>A private vehicle does not make the tasting or tour private. Winery reservations, admission and tasting fees are separate from the transportation quote.</p>
+<section class="renewal-section" id="small-group-planning"><div class="wrap">
+  <span class="renewal-kicker">The experience comes first</span>
+  <h2>Choose the tasting.<br>We connect the day.</h2>
+  <div class="renewal-split">
+    <article><h3>Reserve with the winery</h3>
+      <p>Choose your experience and confirm your party size and availability directly with the winery. The Estate Wine Tasting &amp; Cave Tour is described as communal and requires reservations.</p>
+      <p class="renewal-trip-note">Winery reservations, admission and tasting fees are separate. A private car does not make a communal winery experience private.</p>
     </article>
-    <article class="card"><h3>Arrange the driver and return</h3>
-      <p>Send the tasting confirmation, pickup address and return destination. For a hotel in Napa or Yountville, name the entrance and any loading instructions rather than only the property.</p>
-      <p>Choose a transfer for one journey or request an hourly driver for time between stops. Agree on the service window, included waiting and return pickup; a one-way ride does not reserve a car for the day.</p>
+    <article><h3>Give the drive a plan</h3>
+      <p>Share the tasting confirmation, hotel pickup entrance and return destination. Request a transfer for a single journey or hourly service between stops.</p>
+      <p class="renewal-trip-note">Confirm the service window, included waiting and return pickup. A one-way ride does not reserve a car for the day.</p>
     </article>
   </div>
 </div></section>
 
-<section class="tight"><div class="wrap">
-  <div class="sec-head"><span class="pill">Check the destination</span>
-    <h2>Two similar names. Two different estates.</h2>
-    <p>Use the full winery name and address from your confirmation when requesting the car.</p>
-  </div>
-  <div class="grid-2">
-    <article class="card"><h3>Stag's Leap Wine Cellars</h3>
-      <p><strong>5766 Silverado Trail, Napa, CA 94558.</strong> This page plans transportation to Wine Cellars. Check the estate's <a href="https://www.stagsleapwinecellars.com/contact-us/">official address</a> and <a href="https://www.stagsleapwinecellars.com/visit-us/">visitor guidance</a> alongside your reservation.</p>
+<section class="renewal-section"><div class="wrap">
+  <span class="renewal-kicker">Your destination, confirmed</span>
+  <h2>Similar names.<br>Different estates.</h2>
+  <div class="renewal-fact-grid">
+    <article><h3>Stag's Leap Wine Cellars</h3>
+      <p><strong>5766 Silverado Trail, Napa, CA 94558.</strong></p>
+      <p>The destination on this page. Match your confirmation to this address and confirm the winery's current visitor requirements before travel.</p>
     </article>
-    <article class="card"><h3>Stags' Leap Winery</h3>
-      <p><strong>6150 Silverado Trail, Napa, CA 94558.</strong> This is a different winery. If your confirmation names Stags' Leap Winery, use its <a href="https://www.stagsleap.com/pages/visit">official visit page</a> and tell us that full name and address.</p>
+    <article><h3>Stags' Leap Winery</h3>
+      <p><strong>6150 Silverado Trail, Napa, CA 94558.</strong></p>
+      <p>A separate winery. If this is the estate on your reservation, send that full name and address and confirm its visitor requirements separately.</p>
     </article>
   </div>
 </div></section>
 
-<section class="tight" id="transportation-details" style="scroll-margin-top:100px"><div class="wrap">
-  <div class="sec-head"><span class="pill">Your transportation quote</span>
-    <h2>Build the ride around the appointment.</h2>
+<section class="renewal-section" id="transportation-details"><div class="wrap">
+  <span class="renewal-kicker">A better day starts with the details</span>
+  <h2>Three things to share.</h2>
+  <div class="renewal-fact-grid">
+    <article><h3>01 &middot; Where you start</h3>
+      <p>Your date, hotel or home address, pickup entrance and winery check-in time. Napa and Yountville hotel pickups can be included in your request.</p>
+    </article>
+    <article><h3>02 &middot; How the day ends</h3>
+      <p>Each reserved stop, expected finish, return address and required return time. Confirm the driving, waiting and changes covered by your quote.</p>
+    </article>
+    <article><h3>03 &middot; Who is coming</h3>
+      <p>Your passengers, luggage and wine purchases. Winery party limits are separate from vehicle seating. Vans, Sprinters and buses require a quote.</p>
+    </article>
   </div>
-  <div class="grid-3">
-    <article class="card"><h3>Pickup and check-in</h3>
-      <p>Provide the date, hotel or home address, pickup entrance and winery check-in instructions. Plan pickup around the confirmed appointment and route for your travel day.</p>
-    </article>
-    <article class="card"><h3>Stops and service window</h3>
-      <p>List each reserved winery, lunch stop and expected finish. Include the return address and required return time, then confirm the driving, waiting and any itinerary changes in the quote.</p>
-    </article>
-    <article class="card"><h3>People, bags and vehicle</h3>
-      <p>Share passengers, luggage and space needed for wine purchases. Check the winery's party limit separately from vehicle seating. Vans, Sprinters and buses require a quote.</p>
-    </article>
+  <p class="renewal-trip-note">Planning more stops? Explore <a href="/wine-tours/napa-valley">Napa Valley private wine transportation</a> or compare <a href="/blog/hourly-chauffeur-vs-point-to-point-transfers">hourly service and separate transfers</a>.</p>
+</div></section>
+
+<section class="renewal-section" id="reserve-ride"><div class="wrap renewal-split">
+  <div>
+    <span class="renewal-kicker">Your winery day, connected</span>
+    <h2>The tasting is yours.<br>The driving is ours.</h2>
+    <p>Have your reservation details ready? Arrange transportation for your own party, with an agreed pickup and return plan.</p>
+    <a class="btn btn-orange" href="{quote}">Plan my winery transportation</a>
+    <p class="renewal-trip-note">Tasting reservations and fees are booked separately with the winery.</p>
   </div>
-  <p style="margin-top:24px">Planning a wider route? See <a href="/wine-tours/napa-valley">Napa Valley private wine transportation</a> and our <a href="/blog/hourly-chauffeur-vs-point-to-point-transfers">hourly chauffeur versus separate transfers guide</a>.</p>
-  <a class="btn btn-orange" href="{quote}">Plan my winery transportation</a>
+  {booking_markup}
 </div></section>
 """
