@@ -1,12 +1,16 @@
 # Shared-link banner color update — November 13, 2026
 
-Decision: deployment target requested by Eugene. Implementation: local candidate; release evidence follows in the shared audit.
+Decision: deployment target requested by Eugene; publication plus relevant thumbnail improvements explicitly approved November13. Implementation: combined candidate; release evidence follows in the shared audit.
 
 The existing San Francisco skyline / black SUV / “Ride easy.” composition is retained visually. Only the flat orange lettering is intentionally changed to the approved gold-to-orange family from `docs/brand-controls.md`. This is an AI image edit, so the photo is visually preserved rather than pixel-identical. White “Ride”, typography, placement and framing were compared with the prior asset. No new scene or copy was requested.
 
 Asset: `img/og-image-v2.jpg`, 1200×630 JPEG, quality95. The built-in image-editing tool produced the master at `C:/Users/eubur/.codex/generated_images/01a1d779-0ada-7522-aec4-4502807bb6aa/exec-c2b8740c-65c5-466e-8b53-a989443ce7c8.png`; exported with high-quality bicubic scaling. The prior `img/og-image.jpg` is retained. The versioned URL helps fresh crawls obtain the new image; messages/social platforms may retain already-cached cards.
 
-`generate.py:enhance` owns OG/Twitter metadata. Most non-article pages share this default; article hero overrides remain. The noindex splash preview also references the new default. No page-specific thumbnail rollout is part of this color-only change.
+`generate.py:_social_image` selects curated public artwork for `enhance`. City pages reuse `CITY_IMG`; airports reuse their existing hero or `AP_IMG`; wine regions use `WINE_IMG`; named wineries use regional art with regional alt text (there are no estate photographs in the current repository). Routes use destination city/wine art where mapped, otherwise their origin-airport art. Service pages reuse the existing service-carousel image. Article/occasion `post-hero` assets retain priority. Home and general pages retain the updated brand card; the noindex splash preview also references it. There is no first-arbitrary-image heuristic, new fleet claim or change to on-page artwork/copy.
+
+OAK/SJC retain their existing AI-created artwork and honest alt text. `oakland-generated-social-v1.jpg` and `santana-generated-social-v1.jpg` are JPEG92 exports of the respective `*-1440.webp` masters, preserving1440×810 geometry with no crop/stretch. Authoring used isolated Pillow12.0.0 under ignored `dist/social-tools`; production generation has no new dependency. Other existing images are reused byte-for-byte at their actual dimensions. OG dimensions/type/alt and matching Twitter image/alt are generated for every indexable page. No invented1200×630 dimensions for legacy panoramic images.
+
+Validation: installed `node scripts/check-pr.mjs`, including `test/social-images.test.mjs` for representative family selections, honest regional/AI alt, preserved old/article assets and local metadata consistency across the sitemap. Desktop/mobile example cards and actual live heads/assets are checked by the release coordinator.
 
 Built-in edit prompt:
 

@@ -2510,6 +2510,50 @@ def _update_favicon_links(src):
     src = _re.sub(r'<link\b(?=[^>]*\brel=["\'](?:shortcut\s+)?icon["\'])[^>]*>\s*', '', src, flags=_re.I)
     return src.replace('</head>', FAVICON_LINKS + '\n</head>', 1)
 
+def _social_image(rel, src):
+    """Select curated public artwork; never infer an image from a logo/fleet tile."""
+    from html import unescape
+    hero = _re.search(r'<img\b[^>]*class="post-hero"[^>]*>', src)
+    if hero:
+        image = _re.search(r'\bsrc="\.\./(img/[^"?#]+)"', hero.group(0))
+        alt = _re.search(r'\balt="([^"]*)"', hero.group(0))
+        if image:
+            return image.group(1), unescape(alt.group(1)) if alt else "Koast travel guide"
+
+    folder, _, filename = rel.rpartition('/')
+    slug = filename.removesuffix('.html')
+    image, alt = None, None
+    if folder == 'cities' and slug in CITIES:
+        image, alt = CITY_IMG.get(slug), f"{CITIES[slug]['name']} chauffeur travel"
+    elif folder == 'airports' and slug in AIRPORTS:
+        airport = AIRPORTS[slug]
+        photo = airport.get('hero_photo')
+        image = f"{photo['stem']}-social-v1.jpg" if photo else AP_IMG.get(slug)
+        alt = photo['alt'] if photo else f"{airport['name']} chauffeur travel"
+    elif folder == 'wine-tours' and slug in WINE_REGIONS:
+        image, alt = WINE_IMG.get(slug), f"{WINE_REGIONS[slug]['name']} wine country"
+    elif folder == 'wineries' and slug in WINERY_DETAIL:
+        # These are regional pictures, not photographs of the named estate.
+        region = WINERY_DETAIL[slug]['region']
+        image, alt = WINE_IMG.get(region), f"{WINE_REGIONS[region]['name']} wine country"
+    elif folder == 'routes' and slug in ROUTES:
+        route = ROUTES[slug]
+        destination = route.get('dest')
+        if destination:
+            target = _re.search(r'(cities|wine-tours)/([^/]+)\.html$', destination[0])
+            if target:
+                images = CITY_IMG if target[1] == 'cities' else WINE_IMG
+                image, alt = images.get(target[2]), f"{route['to']} chauffeur travel"
+        if not image:
+            image, alt = AP_IMG.get(route['from'].lower()), f"{route['from']} airport chauffeur travel"
+    elif folder == 'services':
+        image = next((item[3] for item in SERVICES_CAROUSEL if item[2] == rel), None)
+        alt = next((item[0] for item in SERVICES_CAROUSEL if item[2] == rel), None)
+
+    if image and os.path.isfile(os.path.join(ROOT, 'img', image)):
+        return 'img/' + image, alt
+    return 'img/og-image-v2.jpg', 'Ride easy. Koast chauffeur service with a San Francisco skyline and black SUV'
+
 def enhance():
     pages = sorted(
         fp for fp in _glob.glob(os.path.join(ROOT,"**","*.html"), recursive=True)
@@ -2536,12 +2580,14 @@ def enhance():
         title = _re.search(r"<title>(.*?)</title>", src, _re.S).group(1).strip()
         desc_m = _re.search(r'name="description" content="(.*?)"', src)
         desc = desc_m.group(1) if desc_m else ""
-        # Version the branded card so sharing services can fetch the color update.
-        ogimg = BASE_URL + "/img/og-image-v2.jpg"
-        him = _re.search(r'class="post-hero" src="\.\./(img/[^"]+)"', src)
-        if him: ogimg = BASE_URL + "/" + him.group(1)
+        image_path, image_alt = _social_image(rel, src)
+        ogimg = BASE_URL + '/' + image_path
+        dimensions = _image_dimensions(os.path.join(ROOT, image_path))
+        if not dimensions:
+            raise ValueError(f'{rel}: social image has no readable dimensions: {image_path}')
+        image_type = {'.jpg':'image/jpeg', '.jpeg':'image/jpeg', '.png':'image/png', '.webp':'image/webp'}[os.path.splitext(image_path)[1].lower()]
         ogtype = "article" if rel.startswith("blog/") and rel != "blog/index.html" else "website"
-        ogdims = '\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">' if ogimg.endswith("og-image-v2.jpg") else ""
+        ogdims = f'\n<meta property="og:image:width" content="{dimensions[0]}">\n<meta property="og:image:height" content="{dimensions[1]}">\n<meta property="og:image:type" content="{image_type}">\n<meta property="og:image:alt" content="{escape(image_alt, quote=True)}">'
         inject = f"""<link rel="canonical" href="{url}">
 <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <meta property="og:type" content="{ogtype}">
@@ -2554,6 +2600,7 @@ def enhance():
 <meta name="twitter:title" content="{title}">
 <meta name="twitter:description" content="{desc}">
 <meta name="twitter:image" content="{ogimg}">
+<meta name="twitter:image:alt" content="{escape(image_alt, quote=True)}">
 """
         for b in _schema_for(rel, src, url, title, desc):
             inject += '<script type="application/ld+json">' + _json.dumps(b, ensure_ascii=False) + "</script>\n"
