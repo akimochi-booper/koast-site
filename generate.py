@@ -2536,11 +2536,12 @@ def enhance():
         title = _re.search(r"<title>(.*?)</title>", src, _re.S).group(1).strip()
         desc_m = _re.search(r'name="description" content="(.*?)"', src)
         desc = desc_m.group(1) if desc_m else ""
-        ogimg = BASE_URL + "/img/og-image.jpg"
+        # Version the branded card so sharing services can fetch the color update.
+        ogimg = BASE_URL + "/img/og-image-v2.jpg"
         him = _re.search(r'class="post-hero" src="\.\./(img/[^"]+)"', src)
         if him: ogimg = BASE_URL + "/" + him.group(1)
         ogtype = "article" if rel.startswith("blog/") and rel != "blog/index.html" else "website"
-        ogdims = '\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">' if ogimg.endswith("og-image.jpg") else ""
+        ogdims = '\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">' if ogimg.endswith("og-image-v2.jpg") else ""
         inject = f"""<link rel="canonical" href="{url}">
 <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <meta property="og:type" content="{ogtype}">
