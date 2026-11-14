@@ -10,6 +10,7 @@ from healdsburg_wine_tours import HEALDSBURG_TITLE, HEALDSBURG_DESCRIPTION, HEAL
 from src.palo_alto_car_service import PALO_ALTO_TITLE, PALO_ALTO_DESCRIPTION, PALO_ALTO_FAQS, render_palo_alto_body
 from src.sacramento_car_service import SACRAMENTO_TITLE, SACRAMENTO_DESCRIPTION, SACRAMENTO_FAQS, render_sacramento_body
 from src.stags_leap_transport import STAGS_LEAP_TITLE, STAGS_LEAP_DESCRIPTION, STAGS_LEAP_FAQS, render_body as render_stags_leap_body
+from src.livermore_wine_tours import LIVERMORE_TITLE, LIVERMORE_DESCRIPTION, LIVERMORE_FAQS, render_livermore_body
 EDITORIAL_POSTS = load_posts(ROOT)
 EDITORIAL_BY_SLUG = {post["slug"]: post for post in EDITORIAL_POSTS}
 LEGACY_MODIFIED = {slug: "2026-10-13" for slug in (
@@ -1022,7 +1023,7 @@ for slug, c in CITIES.items():
     h += plan_trip([
       ("Guides", [(f"../blog/{g}.html", GUIDE_TITLE[g], "✦") for g in CITY_GUIDES.get(slug, DEFAULT_GUIDES)]),
       ("Airports we serve", [(f"../airports/{ap}.html", f"{AIRPORTS[ap]['code']} · {AIRPORTS[ap]['name']}", "→") for ap in CITY_AP.get(slug, [])]),
-      ("Wine country day trips", [(f"../wine-tours/{w}.html", WINE_REGIONS[w]["name"], "→") for w in CITY_WINE.get(slug, [])]),
+      ("Wine country day trips", [(f"../wine-tours/{w}.html", "Livermore private-driver wine tours" if slug == "san-jose" and w == "livermore" else WINE_REGIONS[w]["name"], "→") for w in CITY_WINE.get(slug, [])]),
     ], f"Everything Koast serves around {c['name']} — airport rides, day trips, and what's on this season.")
     h += cta_section(f"Ride easy in {c['name']}.")
     h += footer("../")
@@ -3162,6 +3163,24 @@ def healdsburg_winery_tours_page():
 
 
 for slug, r in WINE_REGIONS.items():
+    if slug == "livermore":
+        import json
+        service = {"@context":"https://schema.org", "@type":"Service",
+            "name":"Livermore Valley wine-tour transportation", "serviceType":"Private chauffeured winery transportation",
+            "url":BASE_URL+"/wine-tours/livermore", "description":LIVERMORE_DESCRIPTION,
+            "provider":{"@type":"Organization", "@id":BASE_URL+"/#org", "name":"Koast", "url":BASE_URL+"/"},
+            "areaServed":{"@type":"Place", "name":"Livermore Valley", "address":{"@type":"PostalAddress", "addressRegion":"CA", "addressCountry":"US"}}}
+        extra = '<script type="application/ld+json">' + json.dumps(service) + '</script>'
+        p = head(LIVERMORE_TITLE, LIVERMORE_DESCRIPTION, "../", extra=extra) + nav("../", "wine")
+        p += render_livermore_body(book_card(), BOOK)
+        p += faq_section(LIVERMORE_FAQS, "Livermore wine-tour transportation questions")
+        p += plan_trip([
+            ("Planning guides", [("/blog/group-wine-tour-planning", "Group wine-tour planning", "✦"), ("/blog/hourly-chauffeur-vs-point-to-point-transfers", "Hourly or separate transfers?", "✦")]),
+            ("Getting there", [("/cities/san-francisco", "San Francisco pickup planning", "→"), ("/cities/san-jose", "San Jose pickup planning", "→"), ("/cities/oakland", "Oakland transportation", "→")]),
+        ])
+        p += cta_section("Plan your Livermore wine-tour transportation.", "Send your date, pickup, tasting confirmations and return plan for a transportation quote.") + footer("../")
+        write("wine-tours/livermore.html", p)
+        continue
     if slug == "healdsburg":
         write("wine-tours/healdsburg.html", healdsburg_winery_tours_page())
         continue

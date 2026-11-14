@@ -1,0 +1,128 @@
+"""Pure Livermore wine-transport brief; existing marketing components, no effects.
+
+Renderer accepts trusted booking markup and the existing quote destination.
+Sources and search intent: docs/livermore-search-20261113.md.
+"""
+from html import escape
+
+LIVERMORE_TITLE = "Livermore Valley Wine Tours with a Private Driver | Koast"
+LIVERMORE_DESCRIPTION = (
+    "Plan Livermore Valley wine tours with a private driver for your party. "
+    "Choose tastings, arrange local or Bay Area pickup and confirm your return and quote."
+)
+LIVERMORE_FAQS = [
+    ("How do Livermore wine tours with Koast work?",
+     "Choose the winery experiences you want and confirm their opening and availability "
+     "for your date. Arrange tasting reservations directly with each winery, then send "
+     "your confirmations, pickup and return addresses and passenger needs for a private "
+     "transportation quote. Confirm the vehicle, route and service window before reserving."),
+    ("Are tasting reservations and fees included in the car booking?",
+     "A transportation reservation does not reserve a tasting. Confirm the winery "
+     "experience and its fees separately from your Koast quote. Reservation policies "
+     "differ: Wente and Concannon encourage reservations, and Murrieta's Well recommends "
+     "them for seated tastings. Check the current policy and availability for your date "
+     "and party; do not assume a walk-in place is available."),
+    ("Is this a private ride or a shared trolley tour?",
+     "Koast arranges a chauffeured vehicle for your own party. This page does not sell "
+     "seats on a shared trolley or train tour. Your winery experience may have its own "
+     "format and other guests; a private car does not make the tasting private."),
+    ("Can we start in Livermore, Pleasanton, San Francisco or San Jose?",
+     "Request pickup from your hotel, home or another agreed address and include the "
+     "full route in the quote. For a San Francisco or San Jose departure, include the "
+     "journey to wine country and the return. For Livermore or Pleasanton lodging, "
+     "name the property, entrance and return destination. Timing and availability "
+     "must be confirmed for your travel date."),
+    ("How many wineries should we visit, and will the driver stay?",
+     "Choose the number after checking tasting durations, travel between the actual "
+     "addresses, lunch and your required finish time. Request hourly service if you "
+     "need a car between appointments, and confirm waiting and the return window. "
+     "A one-way transfer does not reserve a car for the day, and there is no fixed "
+     "number of tastings that suits every party."),
+    ("What should we arrange for a group or guests with extra requirements?",
+     "Send passengers, luggage, space for purchases and any child-seat, mobility or "
+     "other requirements. Check the winery's experience-specific age, food, access "
+     "and party-size policies separately from the vehicle. Vans, Sprinters and buses "
+     "require a quote; confirm the actual seating, luggage space and pickup access "
+     "before reserving."),
+]
+
+
+def render_livermore_body(booking_markup, quote_url):
+    """Return body HTML; generator owns navigation, FAQ/schema and footer."""
+    quote = escape(quote_url, quote=True)
+    return f"""
+<header class="hero-dark"><div class="wrap">
+  <div class="crumbs"><a href="/">Home</a><span>/</span><a href="/services/wine-tours">Wine Tours</a><span>/</span>Livermore Valley</div>
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <h1>Livermore Valley wine tours <span class="o">with a private driver.</span></h1>
+      <p class="lede">Choose the tastings you want, then plan the ride around them. Arrange a chauffeured vehicle for your own party, local or Bay Area pickup and a confirmed return plan.</p>
+      <ul class="check" style="color:#cdd3dc">
+        <li>Private transportation between your chosen winery visits</li>
+        <li>Hotel, home and Bay Area pickups by arrangement</li>
+        <li>Vehicle, complete route and service window quoted before travel</li>
+      </ul>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:24px">
+        <a class="btn btn-orange" href="{quote}">Get a Livermore quote</a>
+        <a class="btn btn-ghost-light" href="#plan-your-tastings">Plan your winery stops</a>
+      </div>
+    </div>
+    {booking_markup}
+  </div>
+</div></header>
+
+<section class="tight" id="plan-your-tastings" style="scroll-margin-top:100px"><div class="wrap">
+  <div class="sec-head"><span class="pill">Livermore Valley tasting plans</span>
+    <h2>Choose the experience, then connect the actual addresses</h2>
+    <p>Arroyo Road, Tesla Road and Mines Road are distinct destinations. Start with the wineries and experiences you want, check their opening and availability for your date, then build a route around confirmed appointments.</p>
+  </div>
+  <div class="grid-3">
+    <article class="card"><h3>Wente Vineyards</h3>
+      <p><strong>5050 Arroyo Road, Livermore.</strong> Check the location on your confirmation rather than relying on an older winery address. Reservations are encouraged for seated tastings; ask about the experience and any dining plans separately.</p>
+      <p>Use <a href="https://wentevineyards.com/visit/">Wente's official visitor guidance</a> and <a href="https://wentevineyards.com/contact-us/">current address</a>.</p>
+    </article>
+    <article class="card"><h3>Concannon Vineyard</h3>
+      <p><strong>4590 Tesla Road, Livermore.</strong> Reservations are encouraged; walk-ins depend on available seating. Check the specific tasting and contact the winery about larger parties before choosing transportation.</p>
+      <p>Review <a href="https://concannon.wine/experiences/">Concannon's experiences and reservation guidance</a>.</p>
+    </article>
+    <article class="card"><h3>Murrieta's Well</h3>
+      <p><strong>3005 Mines Road, Livermore.</strong> Reservations are recommended for seated tastings. Check the opening and experience for your particular date; a patio or walk-up bar visit has different arrangements from a seated reservation.</p>
+      <p>Check <a href="https://murrietaswell.com/visit/">Murrieta's Well visitor information</a> before setting the route.</p>
+    </article>
+  </div>
+  <p style="margin-top:24px">These are places to compare, not a fixed itinerary or included tasting package. Explore more stops with the <a href="https://www.lvwine.org/itinerary-planner.php">Livermore Valley Wine Community itinerary planner</a> and its <a href="https://www.lvwine.org/maps.php">regional winery maps</a>.</p>
+</div></section>
+
+<section class="tight"><div class="wrap grid-2" style="align-items:start;gap:40px">
+  <div>
+    <span class="pill">Pickup and return</span><h2>Start locally or include the Bay Area journey</h2>
+    <p><strong>Livermore or Pleasanton lodging:</strong> send the property name, street address and entrance. Include where you want to finish, whether that is the same hotel, dinner or another agreed destination.</p>
+    <p><strong>San Francisco or San Jose:</strong> include both the trip to wine country and the return in the quote. Set pickup around the first confirmed tasting, check-in instructions and conditions for your travel day rather than a fixed drive-time estimate.</p>
+    <p><strong>Between tastings:</strong> request an hourly chauffeur if you need the vehicle between appointments. Confirm driving, waiting and the return window. If you only need one transfer, describe that journey and arrange any later pickup separately.</p>
+    <p>Compare our <a href="/blog/hourly-chauffeur-vs-point-to-point-transfers">hourly chauffeur and point-to-point options</a>, or review <a href="/cities/san-francisco">San Francisco</a> and <a href="/cities/san-jose">San Jose pickup planning</a>.</p>
+  </div>
+  <article class="card"><h3>Keep two confirmations for your day</h3>
+    <p><strong>Winery experiences:</strong> confirm each reservation, start and expected finish, address and party requirements with the winery. Tasting fees, food and purchases are separate from the transportation quote.</p>
+    <p><strong>Transportation:</strong> confirm your vehicle, pickup, stops, waiting, required return time and change terms. A car booking does not hold a tasting appointment.</p>
+    <p>Koast transportation is a private ride for your party. It is not a seat on a shared trolley or train tour, and it does not make a winery-hosted experience private.</p>
+  </article>
+</div></section>
+
+<section class="tight" id="quote-details" style="scroll-margin-top:100px"><div class="wrap grid-2" style="align-items:start;gap:40px">
+  <div><span class="pill">Build a realistic tasting day</span><h2>Leave room for the visits you book</h2>
+    <p>Use the actual tasting lengths, travel between entrances, lunch and required return to choose the number of stops. There is no fixed tasting count for every party. Confirm food plans and any winery-specific visitor rules before adding a lunch stop.</p>
+    <p>Age, non-taster, mobility, food and larger-party arrangements can differ by experience. Ask each winery directly, then share the transportation requirements for the actual vehicle and route.</p>
+    <p>Our <a href="/blog/group-wine-tour-planning">group wine-tour planning guide</a> helps put one brief together. For a van, Sprinter or bus, <a href="mailto:reserve@koastride.com">request a group quote</a> and confirm seating, luggage and access.</p>
+  </div>
+  <article class="card"><h3>Send these details for your transportation quote</h3>
+    <ul class="check">
+      <li>Travel date, pickup entrance and final return address</li>
+      <li>Passengers, bags, purchases and any assistance requirements</li>
+      <li>Winery names, actual addresses and confirmed tasting times</li>
+      <li>Lunch or other stops and the time you must finish</li>
+      <li>Whether you need one transfer or a chauffeur between visits</li>
+    </ul>
+    <p><a class="btn btn-orange" href="{quote}">Get a Livermore quote</a></p>
+  </article>
+</div></section>
+"""
