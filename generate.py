@@ -7,6 +7,7 @@ from data import BOOK, PHONE, SMS, EMAIL, FLEET, CITIES, AIRPORTS, WINE_REGIONS
 ROOT = os.path.dirname(os.path.abspath(__file__))
 from editorial import load_posts, display_date, display_publication_date
 from healdsburg_wine_tours import HEALDSBURG_TITLE, HEALDSBURG_DESCRIPTION, HEALDSBURG_FAQS, render_healdsburg_body
+from src.palo_alto_car_service import PALO_ALTO_TITLE, PALO_ALTO_DESCRIPTION, PALO_ALTO_FAQS, render_palo_alto_body
 EDITORIAL_POSTS = load_posts(ROOT)
 EDITORIAL_BY_SLUG = {post["slug"]: post for post in EDITORIAL_POSTS}
 LEGACY_MODIFIED = {slug: "2026-10-13" for slug in (
@@ -946,6 +947,18 @@ def plan_trip(groups, lead=""):
 
 # ============================ CITY PAGES ============================
 for slug, c in CITIES.items():
+    if slug == "palo-alto":
+        h = head(PALO_ALTO_TITLE, PALO_ALTO_DESCRIPTION, "../") + nav("../", "cities")
+        h += render_palo_alto_body(book_card(), BOOK)
+        h += fleet_section("../")
+        h += faq_section(PALO_ALTO_FAQS, "Palo Alto car service questions")
+        h += plan_trip([
+            ("Airport transfers", [("/airports/sfo", "SFO pickup planning", "→"), ("/airports/sjc", "SJC pickup planning", "→"), ("/airports/oak", "OAK pickup planning", "→")]),
+            ("Guides", [("/blog/sfo-oak-sjc-silicon-valley-business-trip", "Choose a Silicon Valley airport", "✦"), ("/blog/hourly-chauffeur-vs-point-to-point-transfers", "Hourly or point-to-point?", "✦")]),
+        ])
+        h += cta_section("Plan your Palo Alto ride.", "Start with the full route, flight details and passenger needs for a transportation quote.") + footer("../")
+        write("cities/palo-alto.html", h)
+        continue
     bay = c["region"] == "bay"
     h = head(f"Black Car Service in {c['name']} | Koast Chauffeur Service",
              f"Professional black car & chauffeur service in {c['name']}. Flat rates, vetted drivers, airport transfers & corporate travel. Book 24/7.", "../")
@@ -2471,6 +2484,8 @@ def _schema_for(rel, src, url, title, desc):
         blocks.append({"@context":"https://schema.org","@type":"Service","name":nm,
             "serviceType":"Chauffeured black car transportation","provider":{"@id":BASE_URL+"/#org"},
             "url":url,"description":desc})
+        if rel == "cities/palo-alto.html":
+            blocks[-1]["areaServed"] = {"@type":"City", "name":"Palo Alto", "address":{"@type":"PostalAddress", "addressRegion":"CA", "addressCountry":"US"}}
     # Blog posts -> BlogPosting
     if rel.startswith("blog/") and rel != "blog/index.html":
         h1 = _re.search(r"<h1>(.*?)</h1>", src, _re.S)
@@ -3181,6 +3196,7 @@ for slug, r in WINE_REGIONS.items():
     ], f"{nm} questions")
     p += plan_trip([
       ("Guides", [(f"../blog/{g}.html", GUIDE_TITLE[g], "✦") for g in WINE_BLOGS.get(slug, []) + ["group-wine-tour-planning"]]),
+      ("Nearby wine country", [("/wine-tours/healdsburg", "Healdsburg private drivers and winery routes", "→")] if slug == "sonoma" else []),
       ("Getting there", [(f"../cities/{ct}.html", f"From {CITIES[ct]['name']}", "→") for ct in WINE_CITY.get(slug, []) if ct in CITIES]),
     ])
     p += cta_section(f"Plan your {nm} day.", "Tell us your date and group size — we'll handle everything else.")

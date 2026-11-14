@@ -56,13 +56,13 @@ def render_healdsburg_body(booking_markup):
         <a class="btn btn-orange btn-lg" href="mailto:reserve@koastride.com">Email for a wine-tour quote</a>
         <a class="btn btn-ghost-light btn-lg" href="#choose-your-route">Compare winery routes</a>
       </div>
-      <p style="font-size:16px;margin-top:16px">Have tasting times already? <a href="#quote-details" style="color:inherit;text-decoration:underline">See what to send for your transportation quote.</a></p>
+      <p style="font-size:16px;margin-top:16px;color:#cdd3dc">Have tasting times already? <a href="#quote-details" style="color:inherit;text-decoration:underline">See what to send for your transportation quote.</a></p>
     </div>
     {booking_markup}
   </div>
 </div></header>
 
-<section class="tight" id="choose-your-route"><div class="wrap">
+<section class="tight" id="choose-your-route" style="scroll-margin-top:100px"><div class="wrap">
   <div class="sec-head"><span class="pill">Choose your wine country</span>
     <h2>Which Healdsburg wine area fits your day?</h2>
     <p>Healdsburg is a base for three nearby wine areas, plus downtown tasting rooms. Start with the wines or experience you want, then connect appointments that work together geographically. A visit to every valley is not a requirement.</p>
