@@ -28,3 +28,21 @@ test('all searchable FAQ answers are exactly the answers presented to visitors',
   const crumb=schemas.find(schema=>schema['@type']==='BreadcrumbList');
   assert.equal(crumb.itemListElement.at(-1).item,url);
 });
+
+test('private-driver search intent leads to existing quote and local planning destinations',()=>{
+  assert.match(page,/<title>Healdsburg Winery Tours with a Private Driver \| Koast<\/title>/);
+  assert.match(page,/<h1>Healdsburg winery tours /);
+  assert.match(page,/href="mailto:reserve@koastride\.com">Email for a wine-tour quote<\/a>/);
+  assert.match(page,/href="#choose-your-route">Compare winery routes<\/a>/);
+  assert.match(page,/id="quote-details"/);
+  assert.match(page,/address in each tasting confirmation/);
+  assert.match(page,/Driver for the day or a transfer/);
+  for(const slug of ['ridge-vineyards-lytton-springs','dry-creek-vineyard','gary-farrell-vineyards-and-winery']) {
+    assert.match(page,new RegExp(`href="/wineries/${slug}"`));
+  }
+  assert.doesNotMatch(page,/late arrival can shorten the appointment/);
+  const faq=schemas.find(schema=>schema['@type']==='FAQPage');
+  assert.equal(faq.mainEntity.length,6);
+  assert.match(page,/Vans, Sprinters and buses require a quote/);
+  assert.match(page,/A car reservation does not confirm a tasting appointment/);
+});
