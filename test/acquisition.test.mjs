@@ -7,19 +7,22 @@ import {join} from 'node:path';
 const source=readFileSync(new URL('../koast-acquisition.js',import.meta.url),'utf8');
 function browser(options={}) {
   const url=new URL(options.url || 'https://koastride.com/services/wine-tours?utm_source=google&utm_medium=organic&utm_campaign=autumn');
-  const events=[], listeners={}, store=options.store || new Map();
+  const events=[], listeners={}, store=options.store || new Map(), anchors=(options.anchors || []).map(href=>({href}));
   let now=options.now || 1_000_000;
   const navigator={...options.navigator};
-  const document={referrer:options.referrer || '', querySelector:()=>options.noCanonical?null:{href:'https://koastride.com/services/wine-tours'},
+  const document={referrer:options.referrer || '', querySelector:()=>options.noCanonical?null:{href:'https://koastride.com/services/wine-tours'},querySelectorAll:()=>anchors,
     addEventListener:(type,fn)=>listeners[type]=fn};
   const context=vm.createContext({URL,URLSearchParams,Number,window:{addEventListener:(type,fn)=>listeners[type]=fn},location:url,document,navigator,crypto:{randomUUID},
     Date:{now:()=>now},sessionStorage:{getItem:k=>{if(options.brokenStorage)throw Error('denied');return store.get(k)||null},setItem:(k,v)=>{if(options.brokenStorage)throw Error('denied');store.set(k,v)}},
     fetch:(endpoint,init)=>{if(options.brokenFetch)throw Error('offline');events.push({endpoint,init,data:JSON.parse(init.body)});return Promise.resolve({ok:true})}});
   function run(){vm.runInContext(source,context)}
   run();
-  return {events,store,run,navigator,advance:ms=>now+=ms,pageshow:persisted=>listeners.pageshow?.({persisted}),click:href=>{
-    let canceled=false;listeners.click?.({target:{closest:()=>({href})},preventDefault:()=>canceled=true});assert.equal(canceled,false);
-  }};
+  function activate(href,type='click'){
+    const anchor=typeof href==='string'?{href}:href;
+    let canceled=false;listeners[type]?.({target:{closest:()=>anchor},preventDefault:()=>canceled=true});assert.equal(canceled,false);
+    return anchor.href;
+  }
+  return {events,store,run,navigator,anchors,advance:ms=>now+=ms,pageshow:persisted=>listeners.pageshow?.({persisted}),click:href=>activate(href),activate};
 }
 test('one page view per document, sanitized campaign and referring origin only',()=>{
  const b=browser({referrer:'https://www.google.com/search?q=private@example.com'});b.run();
@@ -69,7 +72,7 @@ test('every generated HTML page loads the tracker once and CSP permits collector
  const root=new URL('..',import.meta.url).pathname.replace(/^\/([A-Za-z]:)/,'$1');
  function html(dir){return readdirSync(dir,{withFileTypes:true}).flatMap(e=>e.isDirectory()&&!e.name.startsWith('.')?html(join(dir,e.name)):e.isFile()&&e.name.endsWith('.html')?[join(dir,e.name)]:[])}
  const pages=html(root);assert.ok(pages.length>100,'Run python generate.py before this test');
- for(const p of pages){const text=readFileSync(p,'utf8');assert.equal((text.match(/src="\/koast-acquisition\.js\?v=2"/g)||[]).length,1,p);assert.equal(p.includes('care-rides.html'),false);}
+ for(const p of pages){const text=readFileSync(p,'utf8');assert.equal((text.match(/src="\/koast-acquisition\.js\?v=3"/g)||[]).length,1,p);assert.equal(p.includes('care-rides.html'),false);}
  const headers=readFileSync(new URL('../_headers',import.meta.url),'utf8');assert.match(headers,/connect-src[^;]*https:\/\/koast-platform\.euburaga\.workers\.dev/);
 });
 
@@ -129,4 +132,75 @@ test('Moovs login and unrelated or lookalike paths are not booking intent',()=>{
  assert.deepEqual(b.events.slice(1).map(x=>[x.data.event,x.data.destination]),[
   ['booking_click','moovs'],['booking_click','moovs'],['booking_click','moovs']
  ]);
+});
+
+test('native handoff carries sanitized first touch without changing destination campaign, referral or fragment',()=>{
+ const b=browser({referrer:'https://www.google.com/search?q=private@example.com'});
+ const href='https://app.koastride.com/book?utm_source=destination&utm_campaign=existing&ref=member-share&ka_source=stale&ka_unknown=remove#route';
+ const link=new URL(b.click(href));
+ assert.equal(link.searchParams.get('ka_v'),'1');
+ assert.equal(link.searchParams.get('ka_source'),'google');assert.equal(link.searchParams.get('ka_medium'),'organic');
+ assert.equal(link.searchParams.get('ka_campaign'),'autumn');assert.equal(link.searchParams.get('ka_landing_path'),'/services/wine-tours');
+ assert.equal(link.searchParams.get('ka_referrer'),'https://www.google.com');
+ assert.equal(link.searchParams.get('utm_source'),'destination');assert.equal(link.searchParams.get('utm_campaign'),'existing');
+ assert.equal(link.searchParams.get('ref'),'member-share');assert.equal(link.hash,'#route');assert.equal(link.searchParams.has('ka_unknown'),false);
+ const handoff=[...link.searchParams].filter(([key])=>key.startsWith('ka_'));
+ const serialized=JSON.stringify(handoff);
+ assert.equal(serialized.includes(b.events[0].data.session_id),false);
+ assert.doesNotMatch(serialized,/private@example\.com|session_id|event_id|utm_term/);
+ assert.equal(b.events.at(-1).data.destination,'book');
+});
+
+test('native handoff uses the original source after later campaigns and handles static or newly added links',()=>{
+ const first=browser();
+ const next=browser({store:first.store,url:'https://koastride.com/?utm_source=newsletter',anchors:['https://app.koastride.com/request?ref=member#form']});
+ assert.equal(next.events[0].data.utm_source,'newsletter');
+ assert.equal(new URL(next.anchors[0].href).searchParams.get('ka_source'),'google');
+ for(const type of ['click','auxclick','contextmenu']){
+  const link=new URL(next.activate('https://app.koastride.com/booking/new',type));
+  assert.equal(link.searchParams.get('ka_source'),'google');assert.equal(link.searchParams.get('ka_v'),'1');
+ }
+});
+
+test('native handoff forwards only an opt-out when disabled, including a change after link preparation',()=>{
+ for(const options of [{navigator:{doNotTrack:'1'}},{navigator:{globalPrivacyControl:true}},{url:'https://koastride.com/?koast_tracking=off'},{store:new Map([['koast_tracking_off','1']])}]){
+  const b=browser(options);
+  const link=new URL(b.click('https://app.koastride.com/book?ref=member&ka_v=1&ka_source=stale&ka_landing_path=/blog&ka_unknown=remove'));
+  assert.deepEqual([...link.searchParams],[['ref','member'],['ka_tracking','off']]);assert.equal(b.events.length,0);
+ }
+ const b=browser({anchors:['https://app.koastride.com/book']});
+ assert.equal(new URL(b.anchors[0].href).searchParams.get('ka_source'),'google');
+ b.navigator.globalPrivacyControl=true;b.activate(b.anchors[0],'contextmenu');
+ assert.deepEqual([...new URL(b.anchors[0].href).searchParams],[['ka_tracking','off']]);
+ assert.equal(b.events.length,1);
+});
+
+test('native handoff is confined to exact approved booking origin/routes and never alters Moovs or preview links',()=>{
+ const b=browser();
+ for(const href of ['https://app.koastride.com/account','https://app.koastride.com/bookings','https://app.koastride.com:444/book','https://app.koastride.com.evil.test/book','http://app.koastride.com/book','https://koast-book.euburaga.workers.dev/book','https://customer.moovs.app/koast/request/new?ref=existing'])assert.equal(b.click(href),href);
+ for(const url of ['http://127.0.0.1:8980/','https://preview.koast.pages.dev/']){
+  const p=browser({url});const href='https://app.koastride.com/book';assert.equal(p.click(href),href);assert.equal(p.events.length,0);
+ }
+});
+
+test('native handoff redacts unsafe labels, uses canonical landing path and forwards marker kind only',()=>{
+ for(const [key,marker] of [['gclid','google'],['msclkid','bing'],['fbclid','facebook']]){
+  const b=browser({url:'https://koastride.com/private@example.com?'+key+'=raw-private-click&utm_source=private%40example.com&utm_campaign=123456789&utm_term=private-search',noCanonical:true});
+  const link=new URL(b.click('https://app.koastride.com/book'));
+  assert.equal(link.searchParams.get('ka_click_id_type'),marker);assert.equal(link.searchParams.get('ka_landing_path'),'/404');
+  assert.equal(link.searchParams.has('ka_source'),false);assert.equal(link.searchParams.has('ka_campaign'),false);
+  assert.doesNotMatch(link.href,/raw-private-click|private-search|private%40example|123456789|utm_term/);
+ }
+ const unknown=browser({url:'https://koastride.com/'});
+ const link=new URL(unknown.click('https://app.koastride.com/book'));
+ assert.equal(link.searchParams.get('ka_v'),'1');assert.equal(link.searchParams.has('ka_source'),false);assert.equal(link.searchParams.has('ka_referrer'),false);
+});
+
+test('native handoff fails open with blocked storage/network and refreshes after an expired session',()=>{
+ for(const options of [{brokenStorage:true},{brokenFetch:true}])assert.doesNotThrow(()=>browser(options).click('https://app.koastride.com/book'));
+ const b=browser({anchors:['https://app.koastride.com/book']});
+ browser({store:b.store,now:3_000_001,url:'https://koastride.com/?utm_source=winery'});
+ b.advance(2_000_002);b.pageshow(true);
+ assert.equal(new URL(b.anchors[0].href).searchParams.get('ka_source'),'winery');
+ assert.equal(new URL(b.anchors[0].href).searchParams.get('ka_v'),'1');
 });

@@ -4,7 +4,7 @@ import {readFileSync} from 'node:fs';
 const read=p=>readFileSync(new URL('../'+p,import.meta.url),'utf8').replace(/\r\n/g,'\n');
 
 test('published legal pages resolve every role and show the approved effective date',()=>{
-  for(const [path,title,date] of [['privacy.html','Privacy Policy','October 31, 2026'],['terms/rider/index.html','Rider Terms','October 31, 2026'],['terms/driver/index.html','Driver App Terms','October 30, 2026'],['terms/connect/index.html','Connect Terms','October 30, 2026'],['legal/index.html','Policies and terms','October 31, 2026'],['terms/standing-authorization/index.html','Standing Booking and Payment Authorization','October 31, 2026']]){
+  for(const [path,title,date] of [['privacy.html','Privacy Policy','November 13, 2026'],['terms/rider/index.html','Rider Terms','October 31, 2026'],['terms/driver/index.html','Driver App Terms','October 30, 2026'],['terms/connect/index.html','Connect Terms','October 30, 2026'],['legal/index.html','Policies and terms','October 31, 2026'],['terms/standing-authorization/index.html','Standing Booking and Payment Authorization','October 31, 2026']]){
     const html=read(path);
     assert.ok(html.includes('<h1>'+title+'</h1>'),path);
     assert.ok(html.includes('Effective '+date),path);
@@ -35,4 +35,10 @@ test('shared privacy covers actual safety, permissions and future feature bounda
   const body=read('content/legal/privacy.inc');
   for(const text of ['garage positioning','automatically uploaded','no incident report','provider revocation','OpenAI','90-day','not a currently available control','Limited Use','STOP','HELP'])assert.ok(body.includes(text),text);
   assert.doesNotMatch(body,/It does not apply to information that we collect from or about vehicle drivers/);
+});
+
+test('privacy separates anonymous visits from limited native order attribution and its retention',()=>{
+  const body=read('content/legal/privacy.inc');
+  for(const text of ['Sources for native booking requests','does not include the website\'s random session identifier','associate those source labels with that order','separately from anonymous website events','removed after 90 days','A missing source remains unknown'])assert.ok(body.includes(text),text);
+  assert.ok(body.includes('does not record form entries, clicked contact details, payment details or booking contents'));
 });
