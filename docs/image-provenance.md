@@ -1,5 +1,21 @@
 # Editorial image provenance
 
+## November16,2026 — general and additional wine articles
+
+Built-in image generation using the imagegen skill. Both masters remain outside the public deployment; exports retain the full composition at1600x900. Generic imagined scenes, not documentation of named destinations, wineries or Koast fleet/service. No people, invented logo, visible text, license plate or capacity claim. Accurate post alt text/dimensions and generated metadata; no automatic visible AI caption. City/route geography and a warm cellar composition vary the recent architectural detail, luggage/equipment and flight images.
+
+### Airport transfer with multiple drop-offs
+
+Asset `img/airport-transfer-multiple-drop-offs.webp`,234728bytes, WebP quality74/method6. Master `C:/Users/eubur/.codex/generated_images/01a1a8af-065e-79c1-bec5-cc172d6d0032/exec-ce9b6d44-c2f9-47e4-90a3-be7505fc152c.png`. Reviewed realistic stone/brick buildings, streets, trees and waterfront; no claim that this depicts a particular real route or the fictional article itinerary.
+
+Exact prompt: Create a photorealistic premium travel-editorial cover photograph, wide horizontal landscape composition approximately16:9, for an article about planning an airport car transfer with two city drop-offs. Scene: an elevated diagonal view over a believable but fictional coastal American city neighborhood, handsome cream stone and red-brick midrise rooftops, two intersecting tree-lined streets, subtle everyday street detail and a distant pale blue waterfront. Soft clear late-morning daylight, true-to-life architectural geometry and material texture, sophisticated restrained color, calm editorial composition that remains legible as a small website card. Focus on urban route geography and destinations, not any vehicle. This is generic conceptual imagery, not a recognizable real location or documentary evidence. No maps, pins, arrows, overlays, text, lettering, signs, numbers, logos, license plates, people close-ups, aircraft, advertising or prominent vehicles. Avoid plastic CGI, hyper-HDR, orange sunset treatment and artificial miniatures. Deliver just the photograph.
+
+### Wine tasting versus winery tour
+
+Asset `img/wine-tasting-vs-winery-tour.webp`,191360bytes, WebP quality86/method6. Master `C:/Users/eubur/.codex/generated_images/01a1a8af-065e-79c1-bec5-cc172d6d0032/exec-50fe7d5e-d20d-46a3-8213-ea724c0c95f7.png`. Reviewed glass bowl/stem/base geometry, modest pour, barrels, stone and lighting. Not Pine Ridge, Sojourn, Sterling or another identifiable property; no real visit or endorsement implied.
+
+Exact prompt: Create a photorealistic premium wine-travel editorial cover photograph, wide horizontal landscape approximately16:9. A beautifully quiet fictional winery cellar: a low natural-stone vaulted passage opens into a softly lit tasting alcove, a small pair of clear unbranded stemmed wine glasses on the pale limestone ledge in the near foreground, one with a modest pour of ruby red wine. A few realistic oak barrels recede softly out of focus along one side of the passage; warm indirect cellar lighting and subtle cool daylight from a distant doorway. Refined restrained color, real grain and stone imperfections, believable glass geometry, elegant inviting composition. The image illustrates choosing between sitting for a tasting and touring a winery. Generic imagined setting, NOT an identifiable winery, NOT documentary evidence of a real visit or Koast service. No people, no hands, no vehicles, no signage, numbers, text, labels, vineyard brand, logos, watermarks, floating graphics or collage. Avoid glossy CGI, excessive HDR, artificial symmetry or a busy dark tabletop arrangement. Keep the tasting glasses and cellar entry clear in a small blog thumbnail. Image only.
+
 ## Airport-choice refresh — 2026-11-13
 
 - Tool: built-in image generation. Asset:`img/bay-area-airport-trip-planning.jpg`,1600×900,135712bytes. Entire composition resized using high-quality bicubic interpolation, JPEG quality83 via System.Drawing. Master outside deployment:`C:/Users/eubur/.codex/generated_images/01a1a8af-065e-79c1-bec5-cc172d6d0032/exec-979bf459-b88c-4ff8-b6fb-dadd3fb609f2.png`.
