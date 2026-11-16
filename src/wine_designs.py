@@ -111,7 +111,7 @@ def winery_browser(context, variant):
     count = len(context['wineries'])
     search = '''<label class="reference-winery-search">Find a winery<input type="search" data-winery-search placeholder="Name, area or wine style" autocomplete="off"></label><button type="button" data-clear-winery hidden>Clear search</button>''' if count >= 6 else ''
     controls = f'''<div class="reference-browse-tools" data-browse-tools hidden>{search}<div class="reference-carousel-actions"><span data-winery-count role="status" aria-live="polite">{count} wineries</span><button type="button" data-winery-previous aria-label="Previous wineries">{icon('arrow-right')}</button><button type="button" data-winery-next aria-label="Next wineries">{arrow()}</button></div></div>''' if count > 3 else ''
-    return f'''<div data-winery-browser>{controls}<div class="reference-cards" data-winery-track tabindex="0" role="region" aria-label="Wineries in {escape(context['region'],quote=True)}">{_cards(context,variant)}</div><p data-winery-empty hidden>No wineries match. Try another name, area or wine style.</p></div>'''
+    return f'''<div data-winery-browser>{controls}<div class="reference-cards" data-winery-track tabindex="0" role="region" aria-label="Wineries in {escape(context['region'],quote=True)}">{_cards(context,variant)}</div><p data-winery-empty hidden>No wineries match. Try another name, area or wine style.</p><p class="reference-imagery-note">Images are illustrative wine-country settings.</p></div>'''
 
 
 def render_reference_top(context, variant, quote_url, email):

@@ -479,6 +479,9 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
 #kchat .kchat-chips button:hover{color:var(--assistant-accent)}
 #kchat .km{max-width:88%;padding:12px 14px;border-radius:14px;font-size:15px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
 .kai .km.bot{background:var(--website-assistant-reply) border-box no-repeat;color:var(--website-assistant-reply-ink)}
+.kai .km{max-width:88%;min-width:0;flex-shrink:0;align-self:flex-start;padding:12px 14px;border-radius:14px;font-size:15px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
+.kai .km.bot{border-bottom-left-radius:4px}
+.kai .km.user{align-self:flex-end;border-bottom-right-radius:4px}
 #kchat .km.bot{background:var(--assistant-reply) border-box no-repeat;border:1px solid transparent;color:var(--website-assistant-reply-ink);border-bottom-left-radius:4px;align-self:flex-start}
 #kchat .km.bot a{color:inherit;text-decoration:underline;text-underline-offset:3px;overflow-wrap:anywhere}
 #kchat .km.user{background:var(--brand-gradient) border-box no-repeat;color:var(--brand-ink);border:0;border-bottom-right-radius:4px;align-self:flex-end;box-shadow:inset 0 1px 0 #ffffff24}
@@ -636,7 +639,7 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
 @media(max-width:900px){.wrow{flex-direction:column;align-items:flex-start;gap:10px}}
 
 /* Inline agent chat on support page */
-.ask-agent.aa-live{align-items:stretch}
+.ask-agent.aa-live{align-items:stretch;overflow:clip}
 .kai{flex:1;max-width:520px;min-width:340px;background:linear-gradient(165deg,rgba(255,255,255,.05),rgba(255,255,255,.02));backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:18px;display:flex;flex-direction:column;overflow:hidden;position:relative;z-index:2;box-shadow:0 24px 60px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.08)}
 .kai::before{content:'';position:absolute;inset:0;border-radius:18px;padding:1.5px;background:var(--brand-gradient);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;pointer-events:none;z-index:5}
 .kai-head{display:flex;align-items:center;gap:11px;padding:14px 18px;border-bottom:1px solid rgba(255,255,255,.07)}
@@ -653,6 +656,7 @@ body.kchat-open #kchat{opacity:1;visibility:visible;pointer-events:auto;transfor
 .kai-sms{display:block;text-align:center;font-size:12.5px;color:#8a919e;padding:9px 0 12px;background:transparent;font-weight:600;border-top:1px solid rgba(255,255,255,.07)}
 .kai-sms:hover{color:var(--orange)}
 @media(max-width:900px){.kai{max-width:100%;min-width:0;width:100%}}
+@media(max-width:600px){.ask-agent.aa-live{padding:24px 12px}.kai-msgs{padding:12px}.kai-foot{margin-left:10px;margin-right:10px}}
 
 /* winery row thumbnails */
 .wthumb{width:96px;height:70px;object-fit:cover;border-radius:10px;flex-shrink:0;box-shadow:0 3px 10px rgba(15,17,21,.12)}

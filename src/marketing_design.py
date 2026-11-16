@@ -149,7 +149,7 @@ def renew_reference_page(source, context, variant, quote_url, email):
     if nav:
         source = source[:nav['start']] + reference_nav(variant,quote_url) + source[nav['end']:]
     source = source.replace('<body>',f'<body class="renewal-site renewal-wine wine-reference reference-{variant}">',1)
-    source = source.replace('</head>','<link rel="stylesheet" href="/css/marketing-design.css?v=2">\n<link rel="stylesheet" href="/css/wine-reference.css?v=2">\n</head>',1)
+    source = source.replace('</head>','<link rel="stylesheet" href="/css/marketing-design.css?v=3">\n<link rel="stylesheet" href="/css/wine-reference.css?v=2">\n</head>',1)
     return source.replace('</body>','<script src="/wine-controls.js?v=1" defer></script>\n<script src="/marketing-design.js?v=3" defer></script>\n</body>',1)
 
 
@@ -185,7 +185,7 @@ def renew_page(source, path, image, image_alt, quote_url, group_quote_url=None, 
             family = "event"
             quote_url = group_quote_url or quote_url
     source = source.replace('<body>', f'<body class="renewal-site renewal-{family}">', 1)
-    source = source.replace('</head>', '<link rel="stylesheet" href="/css/marketing-design.css?v=2">\n</head>', 1)
+    source = source.replace('</head>', '<link rel="stylesheet" href="/css/marketing-design.css?v=3">\n</head>', 1)
     if family != "general":
         source = _hero(source, image, image_alt, family, quote_url)
     return source

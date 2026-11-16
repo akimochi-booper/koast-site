@@ -143,6 +143,7 @@
 @media(max-width:1000px){.renewal-editorial-grid{gap:32px}.renewal-hero-image{height:480px}.renewal-site .wlist{grid-template-columns:repeat(2,minmax(0,1fr))}.renewal-booking-inner{gap:26px}.renewal-split{gap:30px}}
 @media(max-width:700px){
   .renewal-site .site-wordmark{width:clamp(104px,34vw,136px);height:auto}
+  .renewal-site .nav-cta .btn{white-space:nowrap;font-size:12px;padding:10px 12px;min-height:44px}
   .renewal-site .wrap{padding-left:22px;padding-right:22px}.renewal-site section,.renewal-site section.tight{padding:38px 0}
   .renewal-editorial{padding:24px 0 32px}.renewal-editorial-grid,.renewal-split,.renewal-booking-inner{grid-template-columns:1fr;gap:26px}
   .renewal-hero h1{font-size:42px;margin:18px 0}.renewal-hero .lede{font-size:17px;line-height:1.6}.renewal-hero .crumbs{margin-bottom:22px}

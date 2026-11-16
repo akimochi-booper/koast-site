@@ -233,9 +233,10 @@
 [data-winery-previous] img{transform:rotate(180deg)}
 .wine-reference .reference-cards.is-carousel{display:grid;grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:calc((100% - 32px)/3);gap:16px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding:2px;padding:4px 2px 14px;scrollbar-width:thin}
 .reference-cards.is-carousel .reference-winery{scroll-snap-align:start;height:100%;margin:0}
-.reference-cards .reference-winery[hidden]{display:none}
+.wine-reference .reference-cards.is-carousel .reference-winery[hidden]{display:none}
 .wine-reference .reference-cards[hidden]{display:none}
 .reference-winery-copy>.reference-address{font-size:12px;min-height:0;margin:6px 0 12px;line-height:1.45;color:#60584e}
+.reference-imagery-note{font-size:12px;line-height:1.5;margin:12px 0 0;color:inherit;opacity:.8}
 .reference-journal .reference-cards.is-carousel{grid-template-rows:repeat(3,auto);grid-auto-columns:100%}
 .reference-journal .reference-winery{gap:24px}
 .reference-journal .reference-winery-meta{flex-wrap:wrap}
