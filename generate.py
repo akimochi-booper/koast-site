@@ -3730,7 +3730,7 @@ sp += f"""
       </div>
       <div class="kai-foot">
         <input id="kai-in" type="text" aria-label="Ask the Koast agent" placeholder="Type a question…" maxlength="500">
-        <button id="kai-send" type="button" aria-label="Send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+        <button id="kai-send" type="button" aria-label="Send" aria-busy="false" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
       </div>
       <a class="kai-sms" href="mailto:reserve@koastride.com">Prefer a human? Email us →</a>
     </div>
@@ -3740,29 +3740,58 @@ sp += f"""
   (function(){{
     var URL_="{CHAT_WORKER_URL}";
     var msgs=document.getElementById('kai-msgs'),inp=document.getElementById('kai-in'),btn=document.getElementById('kai-send');
-    var hist=[],busy=false;
+    var hist=[],busy=false,failedPayload=null,failureNode=null;
     function add(cls,text){{var d=document.createElement('div');d.className='km '+cls;if(cls.indexOf('dots')!==-1)d.setAttribute('aria-hidden','true');d.textContent=text;msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;return d;}}
-    window.kaiAsk=function(q){{inp.value=q;send();inp.focus();}};
-    function send(){{
-      var q=inp.value.trim();if(!q||busy)return;
-      inp.value='';busy=true;
-      add('user',q);hist.push({{role:'user',content:q}});
+    function syncControls(){{
+      btn.disabled=busy||!inp.value.trim();
+      btn.setAttribute('aria-busy',String(busy));
+      msgs.setAttribute('aria-busy',String(busy));
+    }}
+    function clearFailure(){{
+      if(failureNode)failureNode.remove();
+      failureNode=null;failedPayload=null;
+    }}
+    function requestReply(payload){{
+      if(busy)return;
+      clearFailure();busy=true;syncControls();
       var dots=add('bot dots','…');
-      fetch(URL_,{{method:'POST',headers:{{'Content-Type':'application/json'}},body:JSON.stringify({{messages:hist}})}})
-        .then(function(r){{return r.json()}})
+      var controller=new AbortController();
+      var timeout=setTimeout(function(){{controller.abort();}},40000);
+      fetch(URL_,{{method:'POST',headers:{{'Content-Type':'application/json'}},body:JSON.stringify({{messages:payload}}),signal:controller.signal}})
+        .then(function(r){{if(!r.ok)throw new Error('request_failed');return r.json();}})
         .then(function(d){{
-          dots.remove();
-          var a=d.reply||"Sorry — something went wrong. Email us at reserve@koastride.com and a human will help.";
-          add('bot',a);hist.push({{role:'assistant',content:a}});busy=false;
+          if(!d||d.error||typeof d.reply!=='string'||!d.reply.trim())throw new Error('empty_reply');
+          add('bot',d.reply);hist.push({{role:'assistant',content:d.reply}});
         }})
         .catch(function(){{
-          dots.remove();
-          add('bot',"I can't connect right now — email us at reserve@koastride.com and a real person will answer.");
-          busy=false;
+          failedPayload=payload;
+          failureNode=add('bot kai-error','I couldn’t connect. Try again, or email our team below.');
+          var retry=document.createElement('button');
+          retry.type='button';retry.className='kai-retry';retry.textContent='Try again';
+          retry.style.display='block';retry.style.minHeight='44px';
+          retry.addEventListener('click',function(){{
+            if(!failedPayload||busy)return;
+            requestReply(failedPayload);inp.focus();
+          }});
+          failureNode.appendChild(retry);
+        }})
+        .finally(function(){{
+          clearTimeout(timeout);dots.remove();busy=false;syncControls();
+          msgs.scrollTop=msgs.scrollHeight;
         }});
     }}
+    function send(){{
+      var q=inp.value.trim();if(!q||busy)return;
+      inp.value='';add('user',q);hist.push({{role:'user',content:q}});
+      hist=hist.slice(-12);requestReply(hist.slice());
+    }}
+    window.kaiAsk=function(q){{if(busy)return;inp.value=q;send();inp.focus();}};
     btn.addEventListener('click',send);
-    inp.addEventListener('keydown',function(e){{if(e.key==='Enter')send();}});
+    inp.addEventListener('input',syncControls);
+    inp.addEventListener('keydown',function(e){{
+      if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing&&e.keyCode!==229){{e.preventDefault();send();}}
+    }});
+    syncControls();
   }})();
   </script>
 </div></section>
