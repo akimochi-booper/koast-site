@@ -7,6 +7,7 @@ from html import escape
 from html.parser import HTMLParser
 import re
 from src.wine_designs import reference_nav, render_reference_top
+from src.wine_planning import render_wine_planning
 
 
 def group_vehicle_options(email):
@@ -125,7 +126,7 @@ def _hero(source, image, image_alt, family, quote_url):
 
 
 def renew_reference_page(source, context, variant, quote_url, email):
-    """Compose one complete approved design, retaining SEO and detailed planning."""
+    """Compose the approved design with concise planning and the authored FAQ."""
     nodes = _Elements(source)
     header = nodes.first(tag='header')
     sections = sorted((n for n in nodes.elements if n['tag']=='section'),key=lambda n:n['start'])
@@ -133,18 +134,7 @@ def renew_reference_page(source, context, variant, quote_url, email):
     if not header or not faq:
         return source
     extras = source[header['end']:faq['start']]
-    # The reference discovery owns this anchor; preserve old details separately.
-    extras = extras.replace('id="plan-your-tastings"','id="detailed-tastings"',1)
-    extras = extras.replace('id="choose-your-route"','id="detailed-routes"',1)
-    hero_parts = _Elements(nodes.html(header))
-    booking = hero_parts.first(cls='book-card')
-    if booking:
-        extras += '<section id="reserve-ride"><div class="reference-wrap">' + hero_parts.html(booking) + '</div></section>'
-    route_link = '<a href="#plan-your-tastings">Plan your winery stops</a>'
-    route_link += f' · <a href="{quote_url}">Get a transportation quote</a>'
-    if context['slug'] == 'healdsburg':
-        route_link += ' · <a href="#choose-your-route">Compare winery routes</a>'
-    supplement = '<div class="reference-wrap reference-planning-link">'+route_link+'</div><details class="reference-more" id="winery-details"><summary>Detailed winery, pickup and return planning</summary><div>'+extras+'</div></details>'
+    supplement = render_wine_planning(context,extras,quote_url)
     top = render_reference_top(context,variant,quote_url,email)
     if context['slug'] == 'healdsburg':
         top = top.replace('<h2>Discover your next stop.</h2>','<span id="choose-your-route"></span><h2>Discover your next stop.</h2>',1)
@@ -159,8 +149,8 @@ def renew_reference_page(source, context, variant, quote_url, email):
     if nav:
         source = source[:nav['start']] + reference_nav(variant,quote_url) + source[nav['end']:]
     source = source.replace('<body>',f'<body class="renewal-site renewal-wine wine-reference reference-{variant}">',1)
-    source = source.replace('</head>','<link rel="stylesheet" href="/css/marketing-design.css?v=2">\n<link rel="stylesheet" href="/css/wine-reference.css?v=1">\n</head>',1)
-    return source.replace('</body>','<script src="/marketing-design.js?v=2" defer></script>\n</body>',1)
+    source = source.replace('</head>','<link rel="stylesheet" href="/css/marketing-design.css?v=2">\n<link rel="stylesheet" href="/css/wine-reference.css?v=2">\n</head>',1)
+    return source.replace('</body>','<script src="/wine-controls.js?v=1" defer></script>\n<script src="/marketing-design.js?v=3" defer></script>\n</body>',1)
 
 
 def renew_page(source, path, image, image_alt, quote_url, group_quote_url=None, wine_context=None):

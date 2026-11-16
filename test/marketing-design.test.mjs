@@ -49,7 +49,7 @@ test('generated public families preserve identity and quote-only groups',()=>{
   }
   for(const path of ['wine-tours/napa-valley.html','wineries/wente-vineyards.html']){
     const page=readFileSync(new URL('../'+path,import.meta.url),'utf8');
-    assert.match(page,/Buses · Quote required/);
+    assert.match(page,/Vans, Sprinters and buses require a quote/);
     assert.doesNotMatch(page,/up to 32/);
   }
 });

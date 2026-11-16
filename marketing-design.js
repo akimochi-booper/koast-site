@@ -59,7 +59,10 @@ function buildWineQuoteEmail(email, trip) {
       const result = validateWineTrip({pickup:form.elements.namedItem('pickup').value,date:date?.value||'',party:form.elements.namedItem('party').value,dateOptional:form.dataset.dateOptional==='true',region:form.dataset.region},today);
       const status = form.querySelector('[role="status"]');
       status.textContent = result.error || '';
-      if (result.error) { form.elements.namedItem(result.field)?.focus(); return; }
+      if (result.error) {
+        (result.field==='party' ? form.querySelector('.reference-party-button') || form.elements.namedItem('party') : form.elements.namedItem(result.field))?.focus();
+        return;
+      }
       const trip = result.trip;
       lastForm = form;
       dialog.querySelector('[data-review-pickup]').textContent = trip.pickup;

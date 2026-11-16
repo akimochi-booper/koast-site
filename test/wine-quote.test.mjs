@@ -35,7 +35,7 @@ test('three design previews stay separate, noindex, and outside the sitemap',()=
     const page=readFileSync(new URL('../preview/wine-designs/'+variant+'.html',import.meta.url),'utf8');
     assert.match(page,new RegExp('wine-reference reference-'+variant));
     assert.match(page,/name="robots" content="noindex, nofollow"/);
-    assert.match(page,/\/css\/wine-reference\.css\?v=1/);
+    assert.match(page,/\/css\/wine-reference\.css\?v=2/);
     assert.equal((page.match(/<h1\b/g)||[]).length,1);
     assert.equal((page.match(/<form\b/g)||[]).length,1);
     assert.match(page,/data-wine-quote/);
@@ -58,7 +58,7 @@ test('winery exploration stays on Koast across every winery, region and design p
     }
     if(file.startsWith('wineries/')&&!file.endsWith('/index.html')){
       assert.match(page,/href="#winery-details">About this winery/);
-      assert.match(page,/<details[^>]*id="winery-details"/);
+      assert.match(page,/<section[^>]*id="winery-details"/);
     }
   }
 });

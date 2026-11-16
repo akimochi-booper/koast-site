@@ -2592,7 +2592,7 @@ def enhance():
             current_stop = dict(name=destination['name'],area=destination['area'],res=destination['res'],known=destination['known'])
             nearby = [w for w in WINERIES.get(region_slug,[]) if w['name'] != destination['name']]
             context = wine_context(winery_slug,destination['name'],[current_stop]+nearby,WINERY_DETAIL,wyslug)
-            context.update(slug=winery_slug,design_variant='journal')
+            context.update(slug=winery_slug,design_variant='journal',destination=destination)
             context['wineries'][0]['href'] = '#winery-details'
         src = renew_page(src, rel, visual_image, visual_alt, BOOK, 'mailto:' + EMAIL, context)
         src = _add_image_dimensions(src, fp)
