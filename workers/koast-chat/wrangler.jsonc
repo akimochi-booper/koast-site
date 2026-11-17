@@ -27,6 +27,25 @@
         "limit": 30,
         "period": 60
       }
+    },
+    {
+      "name": "QUOTE_RATE_LIMITER",
+      "namespace_id": "225957864797270",
+      "simple": {
+        "limit": 3,
+        "period": 60
+      }
+    },
+    {
+      "name": "QUOTE_GLOBAL_LIMITER",
+      "namespace_id": "234793577679070",
+      "simple": {
+        "limit": 20,
+        "period": 60
+      }
     }
-  ]
+  ],
+  "vars": {
+    "QUOTE_EMAIL_FROM": "Koast Website <quotes@koastride.com>"
+  }
 }

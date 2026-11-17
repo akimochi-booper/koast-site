@@ -1,5 +1,5 @@
-/* Quote planning stays in the page. Only the visitor opens an email draft or
-   the existing booking destination; no form values enter storage or analytics. */
+/* Quote planning stays in the page. Explicit Send submits the team enquiry;
+   contact/trip fields stay out of browser persistence and analytics. */
 function validateWineTrip(values, today) {
   const pickup = String(values.pickup || '').trim();
   const party = String(values.party || '');
@@ -20,7 +20,8 @@ function buildWineQuoteEmail(email, trip) {
   const idea = trip.tourId ? 'Suggested wine day: '+trip.tourTitle+'\nIdea reference: '+trip.tourId+'\n' : '';
   const vehicle = trip.vehicle ? 'Requested vehicle: '+trip.vehicle+' (subject to confirmation)\n' : '';
   const notes = String(trip.notes||'').slice(0,1200);
-  const body = 'Hello Koast,\n\nPlease quote private transportation for these plans:\n\n'+idea+vehicle+'Wine country: '+trip.region+'\nPickup: '+trip.pickup+'\nTravel date: '+(trip.date||'To be confirmed')+'\nParty: '+party+'\n\nWinery appointments, pickup time, return and other requirements:\n'+notes+'\n\nPlease confirm the itinerary, vehicle, service window, total price and availability. I understand tasting reservations and fees are separate.\n';
+  const reference = trip.requestId ? 'Website request reference: '+trip.requestId+'\nPlease check the status before treating this as another request.\n\n' : '';
+  const body = 'Hello Koast,\n\nPlease quote private transportation for these plans:\n\n'+reference+idea+vehicle+'Wine country: '+trip.region+'\nPickup: '+trip.pickup+'\nTravel date: '+(trip.date||'To be confirmed')+'\nParty: '+party+'\n\nWinery appointments, pickup time, return and other requirements:\n'+notes+'\n\nPlease confirm the itinerary, vehicle, service window, total price and availability. I understand tasting reservations and fees are separate.\n';
   return 'mailto:'+email+'?subject='+encodeURIComponent(trip.region+' transportation quote request')+'&body='+encodeURIComponent(body);
 }
 
@@ -50,6 +51,12 @@ function resolveWineDayIdea(id, catalogue) {
   const inputs = dialog.querySelector('[data-quote-inputs]');
   const vehicleInput = dialog.querySelector('[data-review-vehicle]');
   const notesInput = dialog.querySelector('[data-review-notes]');
+  const nameInput=dialog.querySelector('[data-quote-name]');
+  const emailInput=dialog.querySelector('[data-quote-contact-email]');
+  const sendButton=dialog.querySelector('[data-send-quote]');
+  const quoteStatus=dialog.querySelector('[data-quote-status]');
+  const success=dialog.querySelector('[data-quote-success]');
+  const submission=createQuoteSubmission();
   let catalogue=[];
   try { catalogue=JSON.parse(document.getElementById('wine-day-catalog')?.textContent||'[]'); } catch { /* Generic team request remains available. */ }
   let lastForm,lastTrip,selectedIdea=null,requestedVehicle='',quoteOpener;
@@ -57,8 +64,44 @@ function resolveWineDayIdea(id, catalogue) {
     if(!lastTrip) return;
     lastTrip.vehicle=requestedVehicle;
     lastTrip.notes=notesInput.value;
-    dialog.querySelector('[data-quote-email]').href=buildWineQuoteEmail(dialog.dataset.email,lastTrip);
+    lastTrip.requestId=submission.state().reference;
+    dialog.querySelector('[data-quote-email-fallback]').href=buildWineQuoteEmail(dialog.dataset.email,lastTrip);
   }
+  function renderSubmissionState() {
+    const state=submission.state();
+    updateEmail();
+    [nameInput,emailInput,notesInput,vehicleInput].forEach(field=>{field.disabled=state.locked||state.pending;});
+    const vehicleButton=vehicleInput.parentElement.querySelector('.reference-choice-button');
+    if(vehicleButton)vehicleButton.disabled=vehicleInput.disabled;
+    dialog.querySelector('[data-edit-quote]').disabled=state.locked||state.pending;
+    sendButton.disabled=state.pending||state.expired;
+    sendButton.setAttribute('aria-busy',String(state.pending));
+    sendButton.textContent=state.pending?'Sending request…':state.locked?'Retry sending request':'Send quote request';
+    dialog.querySelector('#quote-dialog-title').textContent=state.accepted?'Request sent.':"Let's plan your wine day.";
+    dialog.querySelector('.reference-book-online:not([data-quote-email-fallback])').hidden=Boolean(state.accepted)||state.locked;
+    dialog.querySelector('[data-quote-email-fallback]').hidden=!state.locked||state.pending;
+    review.hidden=Boolean(state.accepted);
+    success.hidden=!state.accepted;
+    if(state.accepted){
+      dialog.querySelector('[data-quote-reference]').textContent=state.accepted;
+      if(dialog.open)success.focus();
+    }
+  }
+  sendButton.addEventListener('click',async()=>{
+    if(!lastTrip||submission.state().pending)return;
+    const contact=validateQuoteContact({name:nameInput.value,email:emailInput.value});
+    if(contact.field&&!submission.state().locked){quoteStatus.textContent=contact.message;(contact.field==='name'?nameInput:emailInput).focus();return;}
+    updateEmail();
+    quoteStatus.textContent='';
+    const sending=submission.submit({...lastTrip,name:nameInput.value,email:emailInput.value,page:location.pathname.replace(/\.html$/,''),website:dialog.querySelector('[data-quote-website]').value});
+    renderSubmissionState();
+    const result=await sending;
+    renderSubmissionState();
+    if(result.ok)return;
+    if(dialog.open&&!submission.state().expired)sendButton.focus();
+    quoteStatus.textContent=result.error==='rate_limit'?'Please wait a minute, then retry this request. Your details are kept here.':result.error==='expired_request'?'This request is too old to retry safely. Email our team with your plans and reference '+result.reference+'.':result.error==='invalid_request'?'Check your request details and try again.':'We couldn’t confirm your request was sent. Your details are kept here. Retry this same request, or email our team for help.';
+  });
+  dialog.querySelector('[data-quote-done]').addEventListener('click',()=>dialog.close());
   function updateSelectedLabels() {
     document.querySelectorAll('[data-selected-wine-day-label]').forEach(label=>{
       label.textContent=selectedIdea ? selectedIdea.title+(requestedVehicle?' · '+requestedVehicle:'') : '';
@@ -80,6 +123,8 @@ function resolveWineDayIdea(id, catalogue) {
   }));
   function startQuote(opener) {
     quoteOpener=opener;
+    if(submission.state().locked){if(!dialog.open)dialog.showModal();renderSubmissionState();return;}
+    if(submission.state().accepted){submission.reset();nameInput.value='';emailInput.value='';notesInput.value='';quoteStatus.textContent='';renderSubmissionState();}
     const inline=document.querySelector('form[data-wine-quote]');
     if(inputs) {
       review.hidden=true;inputs.hidden=false;dialog.showModal();inputs.querySelector('[name="pickup"]').focus();
@@ -89,6 +134,7 @@ function resolveWineDayIdea(id, catalogue) {
     }
   }
   document.querySelectorAll('[data-plan-wine-day]').forEach(button=>button.addEventListener('click',()=>{
+    if(submission.state().locked){startQuote(button);return;}
     const idea=resolveWineDayIdea(button.dataset.planWineDay,catalogue);
     if(!idea) return;
     selectedDay(idea);startQuote(button);
@@ -108,6 +154,8 @@ function resolveWineDayIdea(id, catalogue) {
     form.querySelector('button[type="submit"]').disabled = false;
     form.addEventListener('submit',event => {
       event.preventDefault();
+      if(submission.state().locked){if(!dialog.open)dialog.showModal();renderSubmissionState();return;}
+      if(submission.state().accepted)submission.reset();
       const result = validateWineTrip({pickup:form.elements.namedItem('pickup').value,date:date?.value||'',party:form.elements.namedItem('party').value,dateOptional:form.dataset.dateOptional==='true',region:form.dataset.region},today);
       const status = form.querySelector('[role="status"]');
       status.textContent = result.error || '';
@@ -128,10 +176,11 @@ function resolveWineDayIdea(id, catalogue) {
       vehicleInput.value=requestedVehicle;
       vehicleInput.dispatchEvent(new Event('change',{bubbles:true}));
       updateEmail();
+      renderSubmissionState();
       review.hidden = false;
       if (inputs) inputs.hidden = true;
       if (!dialog.open) dialog.showModal();
-      dialog.querySelector('[data-quote-email]').focus();
+      nameInput.focus();
     });
   });
   document.querySelectorAll('[data-start-quote]').forEach(link => link.addEventListener('click',event => {
@@ -141,6 +190,7 @@ function resolveWineDayIdea(id, catalogue) {
   dialog.addEventListener('close',()=>{if(inputs) quoteOpener?.focus();});
   dialog.querySelector('[data-close-quote]').addEventListener('click',() => dialog.close());
   dialog.querySelector('[data-edit-quote]').addEventListener('click',() => {
+    if(submission.state().locked)return;
     if (inputs) {
       review.hidden = true;
       inputs.hidden = false;

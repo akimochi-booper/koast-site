@@ -5,10 +5,19 @@ import {fileURLToPath} from 'node:url';
 const root=resolve(fileURLToPath(new URL('..',import.meta.url)));
 const port=Number(process.env.PORT);if(!Number.isInteger(port)||port<1024)throw new Error('Use the allocated PORT.');
 const failed=new Set();
+const quoteAccepted=new Set();
 const mime={'.html':'text/html; charset=utf-8','.review':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.svg':'image/svg+xml','.webp':'image/webp','.jpg':'image/jpeg','.png':'image/png','.woff2':'font/woff2','.json':'application/json'};
 createServer(async(req,res)=>{
  const url=new URL(req.url,'http://127.0.0.1:'+port);
  const send=(status,type,body)=>{res.writeHead(status,{'Content-Type':type,'Cache-Control':'no-store'});res.end(body);};
+ if(url.pathname==='/__preview_quote'){
+  let raw='';for await(const chunk of req){raw+=chunk;if(raw.length>8192)return send(413,'application/json','{}');}
+  let body;try{body=JSON.parse(raw);}catch{return send(400,'application/json','{}');}
+  const retry=String(body.notes||'').includes('[retry preview]');
+  if(retry&&!quoteAccepted.has(body.requestId)){quoteAccepted.add(body.requestId);return send(503,'application/json',JSON.stringify({error:'delivery_unconfirmed'}));}
+  quoteAccepted.add(body.requestId);
+  return setTimeout(()=>send(200,'application/json',JSON.stringify({ok:true,reference:body.requestId})),String(body.notes||'').includes('[pending preview]')?2500:100);
+ }
  if(url.pathname==='/__preview_voice.js')return send(200,'text/javascript',await readFile(resolve(root,'scripts/voice-preview-fixture.js')));
  if(url.pathname==='/__preview_booking')return send(200,'text/html','<html style="background:#f8f5ef"><body style="font:14px system-ui;color:#777;padding:24px">Booking widget is inactive in this local preview.</body></html>');
  if(url.pathname==='/__preview_chat/capabilities')return send(200,'application/json',JSON.stringify({photos:true,maxPhotos:2,maxFileBytes:8388608}));
@@ -23,5 +32,5 @@ createServer(async(req,res)=>{
  }
  let relative=decodeURIComponent(url.pathname).replace(/^\/+/, '');if(relative==='preview/site-walkthrough.html')relative='preview/site-walkthrough.review';let file=resolve(root,relative||'index.html');
  if(!file.startsWith(root+sep)&&file!==resolve(root,'index.html'))return send(403,'text/plain','Forbidden');
- try{let data;try{data=await readFile(file);}catch{if(!extname(file)){try{file+='.html';data=await readFile(file);}catch{file=resolve(root,relative,'index.html');data=await readFile(file);}}else throw new Error('missing');}const ext=extname(file);if(ext==='.js'&&file.endsWith('koast-chat.js'))data=data.toString().replace('https://koast-chat.euburaga.workers.dev','/__preview_chat');if(ext==='.html'){data=data.toString().replaceAll('https://koast-chat.euburaga.workers.dev','/__preview_chat').replaceAll('https://customer.moovs.app/koast/iframe','/__preview_booking').replace(/<body\b[^>]*>/,'$&<div style="position:fixed;top:0;left:0;right:0;z-index:950;font:10px/18px system-ui;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#ade8df;background:#102624">LOCAL PREVIEW · '+(url.searchParams.has('voice')?'synthetic speech + measured test tone · no microphone':'sample replies · no production actions')+'</div>');if(url.searchParams.has('voice'))data=data.replace('</head>','<script src="/__preview_voice.js"></script></head>');}return send(200,mime[ext]||'application/octet-stream',data);}catch{return send(404,'text/plain','Not found');}
+ try{let data;try{data=await readFile(file);}catch{if(!extname(file)){try{file+='.html';data=await readFile(file);}catch{file=resolve(root,relative,'index.html');data=await readFile(file);}}else throw new Error('missing');}const ext=extname(file);if(ext==='.js'&&file.endsWith('quote-request.js'))data=data.toString().replace('https://koast-chat.euburaga.workers.dev/quote-requests','/__preview_quote');if(ext==='.js'&&file.endsWith('koast-chat.js'))data=data.toString().replace('https://koast-chat.euburaga.workers.dev','/__preview_chat');if(ext==='.html'){data=data.toString().replaceAll('https://koast-chat.euburaga.workers.dev','/__preview_chat').replaceAll('https://customer.moovs.app/koast/iframe','/__preview_booking').replace(/<body\b[^>]*>/,'$&<div style="position:fixed;top:0;left:0;right:0;z-index:950;font:10px/18px system-ui;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#ade8df;background:#102624">LOCAL PREVIEW · '+(url.searchParams.has('voice')?'synthetic speech + measured test tone · no microphone':'sample replies · no production actions')+'</div>');if(url.searchParams.has('voice'))data=data.replace('</head>','<script src="/__preview_voice.js"></script></head>');}return send(200,mime[ext]||'application/octet-stream',data);}catch{return send(404,'text/plain','Not found');}
 }).listen(port,'127.0.0.1',()=>console.log('Website assistant local fixture http://127.0.0.1:'+port+'; no upstream chat or booking requests.'));

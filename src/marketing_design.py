@@ -150,8 +150,8 @@ def renew_reference_page(source, context, variant, quote_url, email):
     if nav:
         source = source[:nav['start']] + reference_nav(variant,quote_url) + source[nav['end']:]
     source = source.replace('<body>',f'<body class="renewal-site renewal-wine wine-reference reference-{variant}">',1)
-    source = source.replace('</head>','<link rel="stylesheet" href="/css/marketing-design.css?v=3">\n<link rel="stylesheet" href="/css/wine-reference.css?v=4">\n<link rel="stylesheet" href="/css/wine-days.css?v=1">\n</head>',1)
-    return source.replace('</body>','<script src="/wine-controls.js?v=3" defer></script>\n<script src="/wine-days.js?v=1" defer></script>\n<script src="/marketing-design.js?v=4" defer></script>\n</body>',1)
+    source = source.replace('</head>','<link rel="stylesheet" href="/css/marketing-design.css?v=3">\n<link rel="stylesheet" href="/css/wine-reference.css?v=5">\n<link rel="stylesheet" href="/css/wine-days.css?v=1">\n</head>',1)
+    return source.replace('</body>','<script src="/wine-controls.js?v=3" defer></script>\n<script src="/wine-days.js?v=1" defer></script>\n<script src="/quote-request.js?v=1" defer></script><script src="/marketing-design.js?v=5" defer></script>\n</body>',1)
 
 
 def renew_page(source, path, image, image_alt, quote_url, group_quote_url=None, wine_context=None):
@@ -198,6 +198,6 @@ def renew_page(source, path, image, image_alt, quote_url, group_quote_url=None, 
             email = (group_quote_url or 'mailto:reserve@koastride.com').removeprefix('mailto:')
             collection = '<div class="wine-reference">'+render_wine_days()+quote_dialog('Wine country','journal',quote_url,email)+'</div>'
             source = source[:anchor['end']] + collection + source[anchor['end']:]
-            source = source.replace('</head>','<link rel="stylesheet" href="/css/wine-reference.css?v=4">\n<link rel="stylesheet" href="/css/wine-days.css?v=1">\n</head>',1)
-            source = source.replace('</body>','<script src="/wine-controls.js?v=3" defer></script><script src="/wine-days.js?v=1" defer></script><script src="/marketing-design.js?v=4" defer></script></body>',1)
+            source = source.replace('</head>','<link rel="stylesheet" href="/css/wine-reference.css?v=5">\n<link rel="stylesheet" href="/css/wine-days.css?v=1">\n</head>',1)
+            source = source.replace('</body>','<script src="/wine-controls.js?v=3" defer></script><script src="/wine-days.js?v=1" defer></script><script src="/quote-request.js?v=1" defer></script><script src="/marketing-design.js?v=5" defer></script></body>',1)
     return source

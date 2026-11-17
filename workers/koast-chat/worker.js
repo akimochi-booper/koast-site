@@ -1,5 +1,6 @@
 // Website Kopilot information assistant. Photos are transient, validated input.
 import {ChatInputError,MAX_PHOTOS,MAX_FILE_BYTES,readBoundedBytes,readChatBody,photosReady,sanitizeMessages,prepareModelMessages} from './photo-input.mjs';
+import {handleQuoteRequests} from './quote-requests.mjs';
 
 const ALLOWED_ORIGINS = [
   "https://koastride.com",
@@ -31,6 +32,7 @@ FACTS YOU KNOW (answer ONLY from these):
 
 export default {
   async fetch(request, env) {
+    if(new URL(request.url).pathname==='/quote-requests') return handleQuoteRequests(request,env);
     const origin = request.headers.get("Origin") || "";
     const allowed = ALLOWED_ORIGINS.includes(origin);
     const cors = {

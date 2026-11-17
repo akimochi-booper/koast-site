@@ -87,3 +87,7 @@ Quote fields now have a single parent focus rim instead of nested orange outline
 ## Standing website finishing review — owner requested November16
 
 The shared design index now routes public-website work through design-system/marketing/README.md. Future work reuses this website control family, preserves its selected composition and reviews opened/selected/focused/error/disabled states on actual light/dark surfaces and320/390px phones before calling the page ready. One focus rim, contrasting guide cards, coordinated scrollbars,44px targets,16px input text, bounded menus/dialogs, retained drafts and real CTA destinations are part of that review. Current source ownership stays here and in SOURCE-MAP.md; the shared entry links these owners rather than copying implementation tokens into a second library. Existing required local/hosted/live checks and Actions batching remain.
+
+## Direct team enquiry - November16 local candidate
+
+Owner requested on-page submission instead of an email draft. Existing review/Compact controls and three compositions are preserved. Name and reply email use native autocomplete/email semantics and matching16px/50px cream fields. Send has busy/disabled, unknown-outcome retry and concise accepted-request states. Unknown sends freeze exact values/key; Close/reopen retains them in this page. Success focuses its confirmation. Existing Moovs links stay separate. Actual delivery configuration/hosted/live acceptance is pending; local fixtures never send mail. Contract: docs/wine-day-ideas.md.

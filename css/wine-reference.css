@@ -342,3 +342,19 @@ html:has(>body.reference-gallery)::-webkit-scrollbar-thumb,.reference-gallery ::
  .reference-compact-picker.is-keyboard [role=option].is-active{outline:2px solid Highlight;outline-offset:-2px;box-shadow:none}
  .wine-reference .ptrip .chip::after{background:none;border-right:2px solid ButtonText;border-top:2px solid ButtonText;width:10px;height:10px;flex-basis:10px;transform:rotate(45deg)}
 }
+
+/* Explicit team enquiry: existing cream field/Compact choices, native contact semantics. */
+.reference-contact-fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.reference-review-field>input{display:block;width:100%;min-width:0;min-height:50px;padding:12px 14px;border:1px solid #baa98f;border-radius:12px;background:#fbf7f1;color:#171717;font:400 16px/24px 'Plus Jakarta Sans',sans-serif}
+.wine-reference .reference-review-field>input:focus{outline:none;border-color:var(--wine-control-focus);box-shadow:0 0 0 3px var(--wine-control-glow)}
+.reference-quote-dialog .reference-quote-status{color:#8b2a0b;font-size:14px;line-height:1.5;margin:16px 0;overflow-wrap:anywhere}
+.reference-quote-status:empty{display:none}
+.reference-quote-trap{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.reference-quote-dialog :disabled{opacity:.62;cursor:default}
+.reference-quote-dialog [data-send-quote]{min-height:48px}
+.reference-quote-dialog .reference-edit{border-radius:12px;min-height:44px}
+.reference-quote-reference{font-size:13px;overflow-wrap:anywhere}
+.reference-book-online[hidden]{display:none}
+[data-quote-success]:focus{outline:none}
+@media(max-width:600px){.reference-contact-fields{grid-template-columns:1fr}}
+@media(forced-colors:active){.wine-reference .reference-review-field>input:focus{outline:2px solid Highlight;box-shadow:none}.reference-quote-dialog :disabled{color:GrayText}}

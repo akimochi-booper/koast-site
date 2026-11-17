@@ -58,7 +58,7 @@ test('homepage keeps ordinary booking before tour discovery and all styles retai
   for(const file of ['index.html','services/wine-tours.html','wine-tours/napa-valley.html','wine-tours/sonoma.html','wine-tours/livermore.html','wine-tours/healdsburg.html']){
     const page=readFileSync(new URL('../'+file,import.meta.url),'utf8');
     assert.match(page,/id="wine-day-catalog"/);assert.match(page,/data-plan-wine-day=/);
-    assert.match(page,/Open email draft/);assert.match(page,/You send the request through your email app/);
+    assert.match(page,/Send quote request/);assert.match(page,/Send your plans here/);assert.match(page,/data-quote-contact-email/);
     assert.match(page,/https:\/\/customer\.moovs\.app\/koast\/request\/new/);
     assert.doesNotMatch(page,/Get my exact price|Price after pickup|\$960|\$860/);
     assert.equal((page.match(/id="quote-request"/g)||[]).length,1,file);

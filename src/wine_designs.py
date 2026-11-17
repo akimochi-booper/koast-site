@@ -2,7 +2,7 @@
 
 Pure trusted-context renderer. Images are illustrative ambience; winery facts and
 destinations come from the generator's existing content owners. Quote requests
-are reviewed locally before the visitor chooses the existing email/booking path.
+are reviewed locally before the visitor submits a team enquiry or books online.
 """
 from html import escape
 from src.wine_imagery import winery_photo
@@ -53,7 +53,7 @@ def quote_form(region, variant):
       <option value="1">1 guest</option><option value="2">2 guests</option><option value="3">3 guests</option><option value="4">4 guests</option><option value="5">5 guests</option><option value="6">6 guests</option><option value="7+">7+ guests · group quote</option></select>{icon('chevron-down','field-chevron')}</label>
       <button class="reference-primary" type="submit" disabled>{submit}{arrow()}</button>
       <p class="reference-selected-day" data-selected-wine-day hidden><span data-selected-wine-day-label></span> <button type="button" data-clear-wine-day>Clear day idea</button></p>
-      <p class="reference-request-method">Our team confirms your plans and price. You send the request through your email app.</p>
+      <p class="reference-request-method">Send your plans here. Our team confirms your ride and price.</p>
       <p class="reference-form-status" role="status" aria-live="polite"></p>
     </form>'''
 
@@ -64,13 +64,19 @@ def quote_dialog(region, variant, quote_url, email):
     return f'''<dialog id="quote-request" class="reference-quote-dialog" data-email="{escape(email,quote=True)}" aria-labelledby="quote-dialog-title">
       <button class="reference-dialog-close" type="button" data-close-quote aria-label="Close quote request">{icon('x')}</button>
       <p class="reference-eyebrow">Team quote request</p><h2 id="quote-dialog-title">Let's plan your wine day.</h2>{inputs}
-      <div data-quote-review hidden><p>Check these details, then open an email draft to send to our team.</p>
+      <div data-quote-review hidden><p>Check your plans and tell us how to reach you.</p>
       <dl><div data-review-day-row hidden><dt>Day idea</dt><dd data-review-day></dd></div><div><dt>Pickup</dt><dd data-review-pickup></dd></div><div><dt>Date</dt><dd data-review-date></dd></div><div><dt>Your party</dt><dd data-review-party></dd></div><div><dt>Wine country</dt><dd data-review-region>{escape(region)}</dd></div></dl>
       <label class="reference-review-field">Requested vehicle<select data-review-vehicle><option value="">Help me choose</option>{vehicle_options}</select></label>
       <label class="reference-review-field">Winery stops or other requests (optional)<textarea data-review-notes maxlength="1200" rows="2"></textarea></label>
-      <a class="reference-primary" data-quote-email href="mailto:{escape(email,quote=True)}">Open email draft{arrow()}</a>
+      <div class="reference-contact-fields"><label class="reference-review-field">Your name<input data-quote-name name="quote-name" autocomplete="name" maxlength="80" required></label>
+      <label class="reference-review-field">Email for your quote<input data-quote-contact-email name="quote-email" type="email" autocomplete="email" maxlength="254" required></label></div>
+      <div class="reference-quote-trap" aria-hidden="true"><label>Leave this blank<input data-quote-website tabindex="-1" autocomplete="off"></label></div>
+      <button class="reference-primary" type="button" data-send-quote>Send quote request{arrow()}</button>
       <button class="reference-edit" type="button" data-edit-quote>Edit my plans</button>
-      <p class="reference-quote-note">Your email app opens a draft for you to send. The team confirms the vehicle, route, price and availability. Tasting reservations and fees are separate.</p></div>
+      <p class="reference-quote-status" data-quote-status role="status" aria-live="polite"></p>
+      <p class="reference-quote-note">We use your details to reply about this request. <a href="/privacy">Privacy</a>. A request does not confirm a booking. Tastings are booked separately.</p>
+      <a class="reference-book-online" data-quote-email-fallback hidden href="mailto:{escape(email,quote=True)}">Need help? Email our team</a></div>
+      <div data-quote-success hidden tabindex="-1"><p>Our team will reply by email to confirm your plans and price.</p><p class="reference-quote-reference">Reference <span data-quote-reference></span></p><p class="reference-quote-note">This is a quote request. Your ride and tasting reservations are not confirmed yet.</p><button class="reference-primary" type="button" data-quote-done>Done</button></div>
       <a class="reference-book-online" href="{escape(quote_url,quote=True)}">Prefer to book online? Open the booking page</a>
     </dialog><noscript><p class="reference-noscript">For a quote, <a href="{escape(quote_url,quote=True)}">open our booking page</a> or email {escape(email)} with your plans.</p></noscript>'''
 

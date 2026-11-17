@@ -7,9 +7,9 @@ import {spawnSync} from 'node:child_process';
 const repository=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const testDirectories=['test','workers/koast-chat/test'];
 const syntaxFiles=[
-  'koast-acquisition.js','marketing-design.js','wine-controls.js','wine-days.js','koast-chat-links.js','koast-chat-photos.js',
+  'koast-acquisition.js','quote-request.js','marketing-design.js','wine-controls.js','wine-days.js','koast-chat-links.js','koast-chat-photos.js',
   'koast-chat.js','koast-chat-voice.js','sw.js','src/chat-voice.mjs',
-  'workers/koast-chat/worker.js','workers/koast-chat/photo-input.mjs',
+  'workers/koast-chat/worker.js','workers/koast-chat/photo-input.mjs','workers/koast-chat/quote-requests.mjs',
 ];
 
 export function siteDate(now=new Date()){
