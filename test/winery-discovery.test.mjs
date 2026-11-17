@@ -23,6 +23,7 @@ test('every wine destination has concise visible planning and distinct photograp
   const wineryPhotos=new Map();
   for(const file of files){
     const html=readFileSync(new URL('../'+file,import.meta.url),'utf8');
+    if(html.includes('id="wine-day-ideas"')) assert.ok(html.indexOf('id="plan-your-tastings"')<html.indexOf('id="wine-day-ideas"'),file+': wineries precede suggested wine days');
     assert.doesNotMatch(html,/Detailed winery, pickup and return planning|Pacing &amp; reservations|class="reference-detail"/,file);
     assert.match(html,/class="reference-plan-grid"/,file);
     assert.match(html,/Vans, Sprinters and buses require a quote/,file);

@@ -145,4 +145,4 @@ def render_reference_top(context, variant, quote_url, email):
         discovery = f'''<section class="reference-discovery" id="plan-your-tastings" style="scroll-margin-top:100px"><div class="reference-wrap"><h2>Where would you like to go?</h2><span class="reference-orange-rule"></span>{cards}</div></section>'''
         end = f'''<section class="reference-gallery-planner"><div class="reference-wrap"><div class="reference-gallery-intro"><h2>Make a day of it.</h2><p>Share your pickup, date and party.<br>We'll confirm the ride around your stops.</p></div>{quote_form(context['region'],variant)}<p class="reference-separate">Tasting reservations and fees are separate from transportation.</p></div></section>'''
     ideas = '' if context.get('destination') else render_wine_days(context['slug'])
-    return hero + ideas + discovery + end + quote_dialog(context['region'],variant,quote_url,email)
+    return hero + discovery + ideas + end + quote_dialog(context['region'],variant,quote_url,email)
