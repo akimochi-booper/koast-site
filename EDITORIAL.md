@@ -25,9 +25,11 @@ Check one relevant closing quote/contact CTA and natural service links in each g
 
 ## Current topic queue
 
+- November17 daily pair: **general** — Airport Pickup Without Mobile Data: Make a Backup Plan (`airport-pickup-without-mobile-data`); **additional wine** — Wine Country with Non-Drinkers: Plan a Day for Everyone (`wine-country-with-non-drinkers`). Separate new articles with actual November17 publication dates; news is independent. [Sources and stream record](docs/daily-guide-20261117.md). Publication/live status is recorded in the shared owning audit.
+
 - November16 daily pair: **general** — Airport Transfer with Multiple Drop-Offs: Plan the Stops (`airport-transfer-multiple-drop-offs`); **additional wine** — Wine Tasting or Winery Tour? Choosing Your Napa or Sonoma Experience (`wine-tasting-vs-winery-tour`). Both are new articles with actual November16 publication dates, separate original intent and distinct generated editorial images. Neither is a news update or substitutes for the other. [Sources and stream record](docs/daily-guide-20261116.md); final deployment/live proof is in the shared owning audit.
 
-- Next wine question to research: planning a winery day with companions who are not tasting. Verify each property's age/admission/food/access rules; do not assume all tasting formats admit the same party. Review the experience-format guide before selecting a distinct angle.
+- Completed November17 wine question: companions who are not tasting; specific season/age/food examples checked against current primary sources. Next distinct wine question to research: winery bottle-purchase collection when purchases are made on different days; review the existing flying-home-with-wine guide before selecting an intent owner.
 
 - Cadence changed by owner November16,2026: one new general article plus one additional new wine article at the daily9AM pass; news/maintenance is independent. For wine, research a distinct practical visitor question and check the existing regional guides before choosing it. No wine article is counted as general as well. Do not invent winery experience, tasting policies, partnerships, commissions, availability or travel times. No article has been published merely by recording this cadence change.
 
