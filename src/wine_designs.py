@@ -48,7 +48,7 @@ def quote_form(region, variant):
     label = 'Where are we picking you up?' if variant == 'gallery' else 'Pickup'
     submit = 'Review my request'
     return f'''<form class="reference-quote-form" data-wine-quote data-region="{escape(region,quote=True)}" data-date-optional="{'true' if variant == 'gallery' else 'false'}" novalidate action="#quote-request" method="post">
-      <label class="reference-field reference-pickup">{icon('map-pin')}<input name="pickup" type="text" list="wine-pickups" aria-label="Pickup" placeholder="{label}" autocomplete="street-address" maxlength="180" required></label>
+      <label class="reference-field reference-pickup">{icon('map-pin')}<input name="pickup" type="text" aria-label="Pickup" placeholder="{label}" autocomplete="street-address" maxlength="180" required></label>
       {date}<label class="reference-field reference-party">{icon('users')}<select name="party" aria-label="Your party" required><option value="" selected disabled>Your party</option>
       <option value="1">1 guest</option><option value="2">2 guests</option><option value="3">3 guests</option><option value="4">4 guests</option><option value="5">5 guests</option><option value="6">6 guests</option><option value="7+">7+ guests · group quote</option></select>{icon('chevron-down','field-chevron')}</label>
       <button class="reference-primary" type="submit" disabled>{submit}{arrow()}</button>
@@ -61,8 +61,7 @@ def quote_form(region, variant):
 def quote_dialog(region, variant, quote_url, email):
     vehicle_options = ''.join(f'<option>{escape(vehicle)}</option>' for vehicle in REQUESTED_VEHICLE_CLASSES)
     inputs = f'<div data-quote-inputs><p>Pickup, date and your party. Let\'s put your wine day together.</p>{quote_form(region, "dialog")}</div>' if variant == 'journal' else ''
-    return f'''<datalist id="wine-pickups"><option value="Livermore or Pleasanton"><option value="San Francisco"><option value="San Jose"><option value="Oakland / East Bay"><option value="Healdsburg"><option value="Napa"></datalist>
-    <dialog id="quote-request" class="reference-quote-dialog" data-email="{escape(email,quote=True)}" aria-labelledby="quote-dialog-title">
+    return f'''<dialog id="quote-request" class="reference-quote-dialog" data-email="{escape(email,quote=True)}" aria-labelledby="quote-dialog-title">
       <button class="reference-dialog-close" type="button" data-close-quote aria-label="Close quote request">{icon('x')}</button>
       <p class="reference-eyebrow">Team quote request</p><h2 id="quote-dialog-title">Let's plan your wine day.</h2>{inputs}
       <div data-quote-review hidden><p>Check these details, then open an email draft to send to our team.</p>

@@ -86,18 +86,23 @@ function matchesWinery(searchable, query) {
     function mark() {
       [...menu.children].forEach((option,i) => option.classList.toggle('is-active',i===active));
       menu.setAttribute('aria-activedescendant',menu.children[active].id);
-      menu.children[active].scrollIntoView({block:'nearest'});
+      // Scroll this list only: scrollIntoView can also move its containing dialog.
+      const option=menu.children[active];
+      const top=option.offsetTop, bottom=top+option.offsetHeight;
+      if(top<menu.scrollTop) menu.scrollTop=top;
+      else if(bottom>menu.scrollTop+menu.clientHeight) menu.scrollTop=bottom-menu.clientHeight;
     }
     function choose(i) {
       select.value = choices[i].value;
       select.dispatchEvent(new Event('change',{bubbles:true}));
       close(true);
     }
-    function open(last=false) {
+    function open(last=false,keyboard=false) {
       closeCurrent?.();
       menu = document.createElement('div');
       menu.id = 'wine-choice-options-'+index;
       menu.className = 'reference-compact-picker';
+      menu.classList.toggle('is-keyboard',keyboard);
       menu.role = 'listbox'; menu.tabIndex = -1;
       menu.setAttribute('aria-label',choiceLabel);
       choices.forEach((choice,i) => {
@@ -109,7 +114,7 @@ function matchesWinery(searchable, query) {
         const check = document.createElement('span'); check.className='picker-check'; check.textContent='✓'; check.setAttribute('aria-hidden','true');
         option.append(text,check);
         option.addEventListener('click',() => choose(i));
-        option.addEventListener('pointermove',() => { active=i; mark(); });
+        option.addEventListener('pointermove',() => { menu.classList.remove('is-keyboard');active=i;mark(); });
         menu.append(option);
       });
       (select.closest('dialog') || document.body).append(menu);
@@ -127,6 +132,7 @@ function matchesWinery(searchable, query) {
       if (active<0) active = last ? choices.length-1 : 0;
       trigger.setAttribute('aria-expanded','true');
       menu.addEventListener('keydown',event => {
+        menu.classList.add('is-keyboard');
         if (event.key==='Escape') { event.preventDefault(); event.stopPropagation(); close(true); return; }
         if (event.key==='Tab') { close(true); return; }
         if (event.key==='Enter' || event.key===' ') { event.preventDefault(); choose(active); return; }
@@ -147,9 +153,9 @@ function matchesWinery(searchable, query) {
       closeCurrent=close;
       menu.focus({preventScroll:true}); mark();
     }
-    trigger.addEventListener('click',() => menu ? close(true) : open());
+    trigger.addEventListener('click',event => menu ? close(true) : open(false,event.detail===0));
     trigger.addEventListener('keydown',event => {
-      if (event.key==='ArrowDown' || event.key==='ArrowUp') { event.preventDefault(); open(event.key==='ArrowUp'); }
+      if (event.key==='ArrowDown' || event.key==='ArrowUp') { event.preventDefault(); open(event.key==='ArrowUp',true); }
     });
     select.form?.addEventListener('reset',() => { close(); queueMicrotask(sync); });
     select.closest('dialog')?.addEventListener('close',() => close());
