@@ -62,3 +62,21 @@ All four exports retain the complete composition, resized with System.Drawing hi
 
 
 November16 package prototype: `sprinter-vineyard-outing-master.png`,1536×1024,3297682bytes,SHA256a20cb4bd25edf4acc3f87350e7b2c75435c10f5f2e6f3bfef444779812d701b6, shared `assets/20261116/packages/`. Built-in ImageGen generated one people-free fictional rear-three-quarter black van at a vineyard picnic turnout; empty table left, rows/dry hills, closed doors, no readable marks/plates/text. Original exec-47e9b901-380e-48d6-9b24-9850d3fceb22.png preserved under generated_images/01a1e3ae-d022-71e3-9a6c-8af427060195. Whole composition resized with high-quality bicubic to1140×760 JPEGquality85 as `img/wine-sprinter-outing.jpg`. Preview vehicle-class ambience, not assigned fleet/estate evidence. Remaining package card scenes reuse existing approved fleet/regional assets and their owning provenance, with nine distinct scene files in the current catalogue; no new capacity or equipment claim.
+
+## November16 winery-card image correction
+
+Supersedes the earlier wine-day package-card assignments. All nine discovery images now lead with fictional wine-country scenery: vineyards, terraces, a cellar, garden, veranda, tasting room and picnic setting. No people or vehicles are present. Vehicle categories remain explicit text choices; dedicated fleet presentation and the original three page compositions are unchanged. These are not photographs of named estates or proof of an included tasting. Existing earlier images remain preserved.
+
+Built-in image_gen made one distinct landscape master per card. Shared masters and exact prompt set: mockups/livermore-visual-directions/2026-11-14/assets/20261116/wine-country/ (generation.json). Whole compositions exported to1140x760 JPEG quality85 with high-quality bicubic resize. Contact sheet and actual rendered evidence are in the existing implementation folder.
+
+| Export in img/ | Original generated master | SHA256 master |
+|---|---|---|
+| wine-day-napa-terrace.jpg | exec-e0a0a524-a6e7-42a3-814e-655447202f65.png | 563acd62dec33d98ccdf18f52b733559067638b3894a15640b461509d833888c |
+| wine-day-napa-cellar.jpg | exec-e26bc396-b558-4dcf-94e4-665161c1cfc2.png | 2971f26defe52893671449e9380ce7c1c74711c264028d6f0bd95a8705ef5c1e |
+| wine-day-napa-estate.jpg | exec-6bf79af7-b806-4e24-a420-99dce66aa0b9.png | 764c6856b656713bf3162d52108eea46abdba1d4d84a25160bb2989f1102a712 |
+| wine-day-sonoma-oaks.jpg | exec-b0724bf9-a6b4-413f-b1e9-3d599b95f790.png | a9b04fa77f0869950a6000866b91d00ba96449618cd1de627932f82506b460d2 |
+| wine-day-sonoma-garden.jpg | exec-991d872b-3d4a-4869-a812-9efabe16f9ff.png | 330ee77b8c5bdabced362ef50f6ce609b4d171a195cf40f6dcbb55099f705f81 |
+| wine-day-sonoma-veranda.jpg | exec-94818c30-7990-4e18-b2d4-8c732637a626.png | 7615650d2fed19f8b27ae96b035808358d2ffc1215673e1aa5121a1aedd76479 |
+| wine-day-livermore-rows.jpg | exec-93b6e93a-6d6e-4ad9-9506-726aa5d44766.png | cd53ad3b425d776b5c025ff23cdabc85c42da29f88c0aa903dd40565135fcf23 |
+| wine-day-livermore-tasting.jpg | exec-8d40cff6-ff28-42af-b30c-53269ed62732.png | fe6c1fcaa3cc8fcd3a1ac55d891bd2227193bebd74311ff32030c1a9a43928a5 |
+| wine-day-livermore-picnic.jpg | exec-c20f337a-e9ae-4fa5-a5ee-fd74948ff93e.png | 62c2cdfdb6f7cbf9b3d9a23142e41c0530b60b9d40cae3fe8e969a6184b7385c |

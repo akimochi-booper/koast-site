@@ -19,14 +19,20 @@ _VEHICLES = (
     ('group-bus','Party bus / coach','Birthdays, reunions and team outings, planned around your party.','Get a group quote'),
 )
 _PHOTOS = (
-    ('blog-banner-napa.jpg','fleet-sprinter.jpg','fleet-large-party-bus-events-scene.webp'),
-    ('fleet-first-class-suv-coast-scene.webp','fleet-sprinter-wine-tour-scene.webp','fleet-mid-party-bus.jpg'),
-    ('fleet-business-suv.jpg','wine-sprinter-outing.jpg','fleet-mid-party-bus-events-scene.webp'),
+    ('wine-day-napa-terrace.jpg','wine-day-napa-cellar.jpg','wine-day-napa-estate.jpg'),
+    ('wine-day-sonoma-oaks.jpg','wine-day-sonoma-garden.jpg','wine-day-sonoma-veranda.jpg'),
+    ('wine-day-livermore-rows.jpg','wine-day-livermore-tasting.jpg','wine-day-livermore-picnic.jpg'),
+)
+_PHOTO_ALTS = (
+    ('Wine glasses on a terrace overlooking vineyards','Oak barrels and a tasting table in a wine cave','Stone winery courtyard beside vineyard rows'),
+    ('Vineyards beneath a spreading valley oak','Empty tasting table in a flowering winery garden','Redwood winery veranda overlooking vines'),
+    ('Grape rows and golden inland hills','Tasting counter beside a broad vineyard window','Picnic table shaded by a tree beside vineyards'),
 )
 WINE_DAY_IDEAS = tuple(
     dict(id=f'{slug}-{key}-day',region_slug=slug,region=name,title=titles[index],
          vehicle=vehicle,summary=summary,action=action,image='/img/'+_PHOTOS[row][index],
-         image_provenance='Existing illustrative vehicle/regional artwork; not assigned-fleet evidence',
+         image_alt='Illustrative wine-country scene: '+_PHOTO_ALTS[row][index],
+         image_provenance='AI-generated fictional wine-country ambience; not a photograph of a named estate or offered tasting',
          state='exploratory',price_state='team_quote',duration_hours=None,stops=(),
          requestable_vehicle_classes=REQUESTED_VEHICLE_CLASSES,
          itinerary_verified=False,exclusions=('Tasting reservations and fees','Meals and purchases'))
@@ -65,7 +71,7 @@ def render_wine_days(region=None):
     for idea in ideas:
         w = {key:escape(str(value),quote=True) for key,value in idea.items()}
         cards += f'''<article class="wine-day-card" data-wine-day-card data-region="{w['region_slug']}">
-          <img class="wine-day-photo" src="{w['image']}" alt="Illustrative {w['vehicle']} wine-day scene; actual vehicle confirmed in your quote" loading="lazy">
+          <img class="wine-day-photo" src="{w['image']}" alt="{w['image_alt']}" loading="lazy">
           <div class="wine-day-copy"><p class="wine-day-kicker">{w['region']} · {w['vehicle']}</p><h3>{w['title']}</h3><p>{w['summary']}</p>
           <span class="wine-day-price">Transportation quoted for your plans</span><button class="wine-day-action" type="button" data-plan-wine-day="{w['id']}">{w['action']}<img src="/img/icons/tabler/arrow-right.svg" width="20" height="20" alt=""></button></div></article>'''
     catalogue = json.dumps(ideas,ensure_ascii=False).replace('<','\\u003c').replace('&','\\u0026')
