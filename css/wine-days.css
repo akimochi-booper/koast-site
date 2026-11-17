@@ -1,0 +1,39 @@
+/* Exploratory merchandising, using the owning website's three compositions. */
+.wine-day-collection{--day-paper:#fbf7f1;--day-ink:#171817;--day-line:#d5cabb;background:var(--day-paper);color:var(--day-ink);padding:42px 0!important;scroll-margin-top:100px}
+.wine-day-wrap{width:calc(100% - 80px);max-width:1280px;margin:auto}
+.wine-day-eyebrow{font-size:11px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:#875423;margin:0 0 12px}
+.wine-day-collection h2{font-size:clamp(32px,4.6vw,58px);line-height:1.06;letter-spacing:-.05em;color:inherit;margin:0 0 12px}
+.wine-day-intro{font-size:17px;line-height:1.5;margin:0 0 18px}
+.wine-day-regions{display:flex;gap:8px;overflow-x:auto;scrollbar-width:thin;padding-bottom:4px;margin:20px 0 12px}
+.wine-day-regions button{flex:0 0 auto;white-space:nowrap;font:600 14px/1.4 'Plus Jakarta Sans',sans-serif;min-height:44px;padding:9px 17px;color:inherit;background:transparent;border:1px solid var(--day-line);border-radius:12px;cursor:pointer}
+.wine-day-regions button[aria-pressed=true]{background:linear-gradient(180deg,#ffb52e,#ff970f 42%,#ff6008);color:#17120a;border-color:#f79320}
+.wine-day-tools{display:flex;justify-content:space-between;align-items:center;gap:16px;margin:0 0 14px;font-size:13px}
+.wine-day-tools>div{display:flex;gap:8px}.wine-day-tools button{display:grid;place-items:center;width:44px;height:44px;background:transparent;border:1px solid var(--day-line);border-radius:12px;color:inherit;cursor:pointer}.wine-day-tools button:disabled{opacity:.3;cursor:default}
+[data-wine-day-previous] img{transform:rotate(180deg)}.reference-gallery .wine-day-tools img{filter:invert(1)}
+.wine-day-track{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 32px)/3);gap:16px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scrollbar-width:thin;padding:2px 2px 14px}
+.wine-day-card{scroll-snap-align:start;min-width:0;display:flex;flex-direction:column;border:1px solid var(--day-line);border-radius:16px;overflow:hidden;background:#fffaf3}
+.wine-day-card[hidden]{display:none}
+.wine-day-photo{display:block;width:100%;height:235px;object-fit:cover;background:#e9e6e0}
+.wine-day-copy{display:flex;flex:1;flex-direction:column;padding:20px}
+.wine-day-kicker{font-size:11px;font-weight:700;line-height:1.5;letter-spacing:.06em;text-transform:uppercase;color:#795027;margin:0 0 12px}
+.wine-day-card h3{font-size:27px;line-height:1.13;letter-spacing:-.04em;color:inherit;margin:0 0 12px}
+.wine-day-copy>p:not(.wine-day-kicker){font-size:15px;line-height:1.5;margin:0 0 18px}
+.wine-day-price{font-size:13px;font-weight:600;margin-top:auto;line-height:1.5}
+.wine-day-action{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;margin:16px 0 0;padding:12px 14px;border:0;border-radius:10px;background:linear-gradient(180deg,#ffb52e,#ff970f 42%,#ff6008);color:#17120a;font:700 14px/1.4 'Plus Jakarta Sans',sans-serif;text-align:left;cursor:pointer}
+.wine-day-action:hover{filter:brightness(1.04)}.wine-day-action:active{filter:brightness(.97)}
+.wine-day-note{font-size:12px;line-height:1.6;margin:14px 0 0;max-width:95ch}
+.reference-gallery .wine-day-collection{--day-paper:#181b1b;--day-ink:#f6f0e5;--day-line:#5f5a51}
+.reference-gallery .wine-day-card{background:#242725}.reference-gallery .wine-day-kicker,.reference-gallery .wine-day-eyebrow{color:#ffb84f}
+.reference-journal .wine-day-card h3{font-family:Georgia,serif;font-weight:400;letter-spacing:-.025em}
+.reference-request-method,.reference-selected-day{grid-column:1/-1;font-size:12px;line-height:1.5;margin:2px 0 0}
+.reference-selected-day{border-top:1px solid #c7bba8;padding-top:10px;font-weight:600}
+.reference-selected-day button{background:transparent;border:0;text-decoration:underline;min-height:44px;padding:8px;font:inherit;cursor:pointer}
+.reference-review-field{display:grid;gap:7px;margin:0 0 16px;color:#352c22;font-size:13px;font-weight:600}
+.reference-review-field select,.reference-review-field textarea{border:1px solid #b7a78f;border-radius:12px;background:#fff9;color:#171817;font:400 16px/24px 'Plus Jakarta Sans',sans-serif;padding:12px;min-height:48px;max-width:100%;width:100%}
+.reference-review-field textarea{resize:vertical}
+.reference-review-field .reference-choice-button{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px;border:1px solid #b7a78f;border-radius:12px;background:#fff9;padding:12px;font:400 16px/24px 'Plus Jakarta Sans',sans-serif;color:#171817}
+.reference-quote-dialog{max-height:calc(100dvh - 24px);overflow-y:auto}
+[data-review-day-row][hidden]{display:none}
+@media(min-width:801px){.wine-reference .reference-cinema-hero.has-selected-day{height:680px}}
+@media(max-width:800px){.wine-day-wrap{width:calc(100% - 40px)}.wine-day-track{grid-auto-columns:86%}.wine-day-photo{height:220px}.wine-day-card h3{font-size:27px}.wine-day-copy{padding:18px}.wine-day-collection{padding:32px 0!important}}
+@media(forced-colors:active){.wine-day-action,.wine-day-regions button[aria-pressed=true]{background:ButtonFace;color:ButtonText;border:1px solid ButtonText}}

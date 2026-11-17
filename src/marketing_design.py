@@ -6,7 +6,8 @@ canonical identity and FAQ remain owned by the generator/route renderers.
 from html import escape
 from html.parser import HTMLParser
 import re
-from src.wine_designs import reference_nav, render_reference_top
+from src.wine_designs import reference_nav, render_reference_top, quote_dialog
+from src.wine_days import render_wine_days
 from src.wine_planning import render_wine_planning
 
 
@@ -149,8 +150,8 @@ def renew_reference_page(source, context, variant, quote_url, email):
     if nav:
         source = source[:nav['start']] + reference_nav(variant,quote_url) + source[nav['end']:]
     source = source.replace('<body>',f'<body class="renewal-site renewal-wine wine-reference reference-{variant}">',1)
-    source = source.replace('</head>','<link rel="stylesheet" href="/css/marketing-design.css?v=3">\n<link rel="stylesheet" href="/css/wine-reference.css?v=2">\n</head>',1)
-    return source.replace('</body>','<script src="/wine-controls.js?v=1" defer></script>\n<script src="/marketing-design.js?v=3" defer></script>\n</body>',1)
+    source = source.replace('</head>','<link rel="stylesheet" href="/css/marketing-design.css?v=3">\n<link rel="stylesheet" href="/css/wine-reference.css?v=3">\n<link rel="stylesheet" href="/css/wine-days.css?v=1">\n</head>',1)
+    return source.replace('</body>','<script src="/wine-controls.js?v=2" defer></script>\n<script src="/wine-days.js?v=1" defer></script>\n<script src="/marketing-design.js?v=4" defer></script>\n</body>',1)
 
 
 def renew_page(source, path, image, image_alt, quote_url, group_quote_url=None, wine_context=None):
@@ -188,4 +189,15 @@ def renew_page(source, path, image, image_alt, quote_url, group_quote_url=None, 
     source = source.replace('</head>', '<link rel="stylesheet" href="/css/marketing-design.css?v=3">\n</head>', 1)
     if family != "general":
         source = _hero(source, image, image_alt, family, quote_url)
+    if path in ('index.html','services/wine-tours.html'):
+        nodes = _Elements(source)
+        booking = nodes.first(tag='section',cls='renewal-booking-section')
+        header = nodes.first(tag='header')
+        anchor = booking or header
+        if anchor:
+            email = (group_quote_url or 'mailto:reserve@koastride.com').removeprefix('mailto:')
+            collection = '<div class="wine-reference">'+render_wine_days()+quote_dialog('Wine country','journal',quote_url,email)+'</div>'
+            source = source[:anchor['end']] + collection + source[anchor['end']:]
+            source = source.replace('</head>','<link rel="stylesheet" href="/css/wine-reference.css?v=3">\n<link rel="stylesheet" href="/css/wine-days.css?v=1">\n</head>',1)
+            source = source.replace('</body>','<script src="/wine-controls.js?v=2" defer></script><script src="/wine-days.js?v=1" defer></script><script src="/marketing-design.js?v=4" defer></script></body>',1)
     return source

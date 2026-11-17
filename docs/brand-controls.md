@@ -64,3 +64,12 @@ Website-scoped adoption: party-size choices use the Passenger Compact picker geo
 Support retains the already adopted website neutral composer/Satin Send geometry; pending starters preserve drafts, IME Enter does not send, empty/pending Send is disabled, aria-busy follows the actual request,40-second abort and explicit manual retry preserve a later draft. Popup and inline Support remain separate controllers. Passing source tests is not visual acceptance: final desktop/390px/320px interactive review is required for this iteration.
 
 November16 verified follow-up: per-winery card imagery remains consistent across pages, while scenes may recur in unrelated regions. Visible discovery captions identify illustrative settings. Actual phone QA restored inline Support bubble padding/wrapping (popup-only scoping had omitted it), prevents decorative-panel hidden scrolling, and keeps the narrow public-nav booking action on one line. Current local acceptance and intentional mockup departures are in `design-qa.md`.
+
+
+## November16 package/Booker coordination
+
+Eugene clarified the replacement Booker is unfinished and requested coordination with the wine-tour/packages chat. Both `Design Wine Tour Homepage Features` and `Booking Wizard` supplied current handoffs: concepts/local synthetic work only, no approved rate/duration/package inventory, no public replacement URL or import contract. Existing current Moovs booking links remain separate and intact.
+
+The three approved site compositions remain the visual targets. New wine-day merchandising is **Experimental / local draft**, not a selected replacement design or live package shop. Home adds a regional collection after ordinary booking utility; Napa/Sonoma/Livermore/Healdsburg add equally prominent SUV/Sprinter/bus enquiry cards before winery discovery. Cards carry a suggested idea and requested vehicle into one manual team-quote flow. No mock dollar amounts, guaranteed hours/stops, capacities, admissions or availability are displayed. The expanded Cinema selected-day state has extra hero height so it does not overlap the original headline/action.
+
+The pickup/date/party bar now says Review my request and visibly explains visitor-sent email. Review includes the selected idea, optional requested vehicle/custom stops and Open email draft; no automatic send or booking success. Vehicle choices reuse the scoped Compact picker. Contract/catalogue source and app handoff: `docs/wine-day-ideas.md`, `src/wine_days.py`.

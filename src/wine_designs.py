@@ -6,6 +6,7 @@ are reviewed locally before the visitor chooses the existing email/booking path.
 """
 from html import escape
 from src.wine_imagery import winery_photo
+from src.wine_days import render_wine_days, REQUESTED_VEHICLE_CLASSES
 
 
 def wine_context(slug, region, wineries, winery_details, slug_for):
@@ -45,25 +46,30 @@ def quote_form(region, variant):
     date = f'''<label class="reference-field reference-date">{icon('calendar')}
       <input type="date" name="date" aria-label="Travel date{' (optional)' if variant == 'gallery' else ''}" {'required' if variant != 'gallery' else ''}></label>'''
     label = 'Where are we picking you up?' if variant == 'gallery' else 'Pickup'
-    submit = 'Start my ride plan' if variant == 'gallery' else 'Get a quote'
+    submit = 'Review my request'
     return f'''<form class="reference-quote-form" data-wine-quote data-region="{escape(region,quote=True)}" data-date-optional="{'true' if variant == 'gallery' else 'false'}" novalidate action="#quote-request" method="post">
       <label class="reference-field reference-pickup">{icon('map-pin')}<input name="pickup" type="text" list="wine-pickups" aria-label="Pickup" placeholder="{label}" autocomplete="street-address" maxlength="180" required></label>
       {date}<label class="reference-field reference-party">{icon('users')}<select name="party" aria-label="Your party" required><option value="" selected disabled>Your party</option>
       <option value="1">1 guest</option><option value="2">2 guests</option><option value="3">3 guests</option><option value="4">4 guests</option><option value="5">5 guests</option><option value="6">6 guests</option><option value="7+">7+ guests · group quote</option></select>{icon('chevron-down','field-chevron')}</label>
       <button class="reference-primary" type="submit" disabled>{submit}{arrow()}</button>
+      <p class="reference-selected-day" data-selected-wine-day hidden><span data-selected-wine-day-label></span> <button type="button" data-clear-wine-day>Clear day idea</button></p>
+      <p class="reference-request-method">Our team confirms your plans and price. You send the request through your email app.</p>
       <p class="reference-form-status" role="status" aria-live="polite"></p>
     </form>'''
 
 
 def quote_dialog(region, variant, quote_url, email):
+    vehicle_options = ''.join(f'<option>{escape(vehicle)}</option>' for vehicle in REQUESTED_VEHICLE_CLASSES)
     inputs = f'<div data-quote-inputs><p>Pickup, date and your party. Let\'s put your wine day together.</p>{quote_form(region, "dialog")}</div>' if variant == 'journal' else ''
     return f'''<datalist id="wine-pickups"><option value="Livermore or Pleasanton"><option value="San Francisco"><option value="San Jose"><option value="Oakland / East Bay"><option value="Healdsburg"><option value="Napa"></datalist>
     <dialog id="quote-request" class="reference-quote-dialog" data-email="{escape(email,quote=True)}" aria-labelledby="quote-dialog-title">
       <button class="reference-dialog-close" type="button" data-close-quote aria-label="Close quote request">{icon('x')}</button>
-      <p class="reference-eyebrow">Your private ride</p><h2 id="quote-dialog-title">Your wine day, connected.</h2>{inputs}
-      <div data-quote-review hidden><p>Review your plans, then send them to Koast for a transportation quote.</p>
-      <dl><div><dt>Pickup</dt><dd data-review-pickup></dd></div><div><dt>Date</dt><dd data-review-date></dd></div><div><dt>Your party</dt><dd data-review-party></dd></div><div><dt>Wine country</dt><dd>{escape(region)}</dd></div></dl>
-      <a class="reference-primary" data-quote-email href="mailto:{escape(email,quote=True)}">Email my quote request{arrow()}</a>
+      <p class="reference-eyebrow">Team quote request</p><h2 id="quote-dialog-title">Let's plan your wine day.</h2>{inputs}
+      <div data-quote-review hidden><p>Check these details, then open an email draft to send to our team.</p>
+      <dl><div data-review-day-row hidden><dt>Day idea</dt><dd data-review-day></dd></div><div><dt>Pickup</dt><dd data-review-pickup></dd></div><div><dt>Date</dt><dd data-review-date></dd></div><div><dt>Your party</dt><dd data-review-party></dd></div><div><dt>Wine country</dt><dd data-review-region>{escape(region)}</dd></div></dl>
+      <label class="reference-review-field">Requested vehicle<select data-review-vehicle><option value="">Help me choose</option>{vehicle_options}</select></label>
+      <label class="reference-review-field">Winery stops or other requests (optional)<textarea data-review-notes maxlength="1200" rows="2"></textarea></label>
+      <a class="reference-primary" data-quote-email href="mailto:{escape(email,quote=True)}">Open email draft{arrow()}</a>
       <button class="reference-edit" type="button" data-edit-quote>Edit my plans</button>
       <p class="reference-quote-note">Your email app opens a draft for you to send. The team confirms the vehicle, route, price and availability. Tasting reservations and fees are separate.</p></div>
       <a class="reference-book-online" href="{escape(quote_url,quote=True)}">Prefer to book online? Open the booking page</a>
@@ -138,4 +144,5 @@ def render_reference_top(context, variant, quote_url, email):
           <div class="reference-wrap reference-steps" id="how-it-works"><span>{icon('plant')}Explore wineries</span><i></i><span>{icon('car')}Plan your ride</span><i></i><span>{icon('glass')}Enjoy your day</span></div>'''
         discovery = f'''<section class="reference-discovery" id="plan-your-tastings" style="scroll-margin-top:100px"><div class="reference-wrap"><h2>Where would you like to go?</h2><span class="reference-orange-rule"></span>{cards}</div></section>'''
         end = f'''<section class="reference-gallery-planner"><div class="reference-wrap"><div class="reference-gallery-intro"><h2>Make a day of it.</h2><p>Share your pickup, date and party.<br>We'll confirm the ride around your stops.</p></div>{quote_form(context['region'],variant)}<p class="reference-separate">Tasting reservations and fees are separate from transportation.</p></div></section>'''
-    return hero + discovery + end + quote_dialog(context['region'],variant,quote_url,email)
+    ideas = '' if context.get('destination') else render_wine_days(context['slug'])
+    return hero + ideas + discovery + end + quote_dialog(context['region'],variant,quote_url,email)

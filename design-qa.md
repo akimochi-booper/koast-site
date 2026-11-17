@@ -1,6 +1,24 @@
 # Public marketing design QA — November16,2026
 
-final result: passed
+final result: passed; exploratory local candidate, unpublished
+
+## Coordinated wine-day ideas — November16 follow-up
+
+The unfinished replacement Booker is not connected. Existing Moovs booking links remain in place. The website's wine-day request prepares an email draft for the visitor to send; it does not calculate an instant price, submit a lead, create a booking or take payment. Both the package-design and Booking Wizard chats confirmed this boundary. No proposed package rates, durations, reservations, itinerary or inventory were promoted from their exploratory images.
+
+Added nine suggested wine days across Napa, Sonoma and Livermore, with equally sized SUV, Executive Sprinter and party bus/coach cards, region filters and a manual carousel. Homepage and wine-tour overview retain their existing general booking utility before the collection. Regional pages retain their distinct Cinema, Journal and Gallery compositions. Each card has its own image; the new people-free Sprinter vineyard scene is illustrative vehicle-class ambience. These ideas remain Experimental, with team-quoted transportation, unverified empty itineraries and no priced package SKU.
+
+Selecting an idea carries its stable identifier, title and region into the existing manual request. Pickup, native date, party, requested vehicle and optional winery/return notes survive review and editing. Vehicle changes update the selected label and encoded email draft. Clear day idea preserves entered trip details. The final action explicitly says “Open email draft,” with instructions that the visitor sends it and the team confirms plans and price. Requested vehicle uses the scoped Compact picker; no public Booker API or guessed link parameters were added.
+
+Actual browser checks covered the full selected-idea/edit/review/email-draft flow, region filtering, ordinary requests without an idea, and Escape behavior. The 320px and 390px frames checked Home, Journal, Gallery and the Wente request: no document overflow, one H1 and bounded picker/dialog geometry. Cinema expands only while an idea is selected, keeping the quote bar clear of its hero CTA. The dialog's hidden Day idea row stays hidden on generic requests. No email, booking, payment or provider request was submitted. This is browser emulation, not physical-device acceptance.
+
+Proof in the shared mockup implementation folder: `packages-coordinated-desktop.jpg`, `packages-final-mobile-320.jpg`, `packages-team-request-390.jpg`, and `packages-{home,journal,gallery}-320.jpg`. The user-facing local walkthrough remains http://127.0.0.1:59399/preview/site-walkthrough.html and starts on the coordinated homepage collection. Its private review shell is excluded from generated customer HTML and production deployment.
+
+The canonical source is `src/wine_days.py`; `python -m src.wine_days` exports its preview contract for the independently owned Passenger preview. `docs/wine-day-ideas.md` records the state, IDs, fields and handoff limits. The existing twelve-region winery catalogue is editorial browsing identity, not operational coverage. This change performs no geolocation.
+
+Validation: `node scripts/check-pr.mjs --today 2026-11-16` passes 201 tests, zero failures/skips, 238 generated pages, 49 blog posts, 18 dated editorial posts and zero errors. The five added wine-day tests verify the catalogue/export, filters, strict idea resolution, literal inquiry context and preserved ordinary booking path. All earlier required checks remain enabled. Draft PR10 is the review destination; this iteration has no production release or live acceptance.
+
+## Earlier concise-content and control review
 
 Local unpublished PR10 candidate. This review supersedes the November14 retained-planning disclosure and related visual acceptance for the changed surfaces. The original three mockups remain the targets for their unchanged compositions; Eugene explicitly requested the concise content, image variety, carousel/search and control corrections below. Booking, Passenger, Driver and operations apps are outside scope.
 

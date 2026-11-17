@@ -263,8 +263,8 @@
 .reference-gallery .reference-group-note a,.reference-gallery .reference-plan-number{color:#ffb33a}
 .reference-gallery .reference-quote-form{grid-template-columns:1.2fr 1fr 1fr auto}
 .reference-party{padding:0 13px}
-.reference-party-button{flex:1;min-width:0;align-self:stretch;border:0;background:transparent;font:400 16px/24px 'Plus Jakarta Sans',sans-serif;color:inherit;text-align:left;cursor:pointer;padding:0 18px 0 0}
-.reference-party-button>span{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.reference-choice-button{flex:1;min-width:0;align-self:stretch;border:0;background:transparent;font:400 16px/24px 'Plus Jakarta Sans',sans-serif;color:inherit;text-align:left;cursor:pointer;padding:0 18px 0 0}
+.reference-choice-button>span{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .reference-compact-picker{position:fixed;z-index:1000;width:min(360px,calc(100vw - 24px));max-height:264px;overflow-y:auto;overscroll-behavior:contain;border:1px solid #baa98f;border-radius:12px;background:#fbf7f1;color:#171717;box-shadow:0 8px 24px #0002;padding:4px;margin:0;font:500 16px/24px 'Plus Jakarta Sans',sans-serif}
 .reference-compact-picker [role=option]{min-height:48px;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border-radius:8px;cursor:pointer}
 .reference-compact-picker [role=option][aria-selected=true]{font-weight:600}

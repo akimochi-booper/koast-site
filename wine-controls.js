@@ -1,4 +1,4 @@
-/* Progressive enhancement for winery discovery and the website's party picker.
+/* Progressive enhancement for winery discovery and the website's Compact choice pickers.
    Native form values remain authoritative; date and address editors stay native. */
 function matchesWinery(searchable, query) {
   return String(searchable).normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase()
@@ -45,19 +45,24 @@ function matchesWinery(searchable, query) {
   });
 
   let closeCurrent;
-  document.querySelectorAll('[data-wine-quote] select[name="party"]').forEach((select,index) => {
-    const field = select.closest('.reference-field');
+  document.querySelectorAll('[data-wine-quote] select[name="party"], [data-review-vehicle]').forEach((select,index) => {
+    const field = select.closest('.reference-field, .reference-review-field');
+    const choiceLabel = select.hasAttribute('data-review-vehicle') ? 'Requested vehicle' : 'Your party';
     const trigger = document.createElement('button');
     trigger.type = 'button';
-    trigger.className = 'reference-party-button';
+    trigger.className = 'reference-choice-button'+(select.name==='party'?' reference-party-button':'');
     trigger.setAttribute('aria-haspopup','listbox');
     trigger.setAttribute('aria-expanded','false');
-    trigger.setAttribute('aria-controls','wine-party-options-'+index);
+    trigger.setAttribute('aria-controls','wine-choice-options-'+index);
     const label = document.createElement('span');
     trigger.append(label);
+    if(select.hasAttribute('data-review-vehicle')) {
+      const chevron=document.createElement('img');chevron.src='/img/icons/tabler/chevron-down.svg';
+      chevron.alt='';chevron.width=14;chevron.height=14;chevron.setAttribute('aria-hidden','true');trigger.append(chevron);
+    }
     const sync = () => {
       label.textContent = select.selectedOptions[0]?.textContent || 'Your party';
-      trigger.setAttribute('aria-label','Your party: '+label.textContent);
+      trigger.setAttribute('aria-label',choiceLabel+': '+label.textContent);
     };
     sync();
     select.addEventListener('change',sync);
@@ -91,10 +96,10 @@ function matchesWinery(searchable, query) {
     function open(last=false) {
       closeCurrent?.();
       menu = document.createElement('div');
-      menu.id = 'wine-party-options-'+index;
+      menu.id = 'wine-choice-options-'+index;
       menu.className = 'reference-compact-picker';
       menu.role = 'listbox'; menu.tabIndex = -1;
-      menu.setAttribute('aria-label','Your party');
+      menu.setAttribute('aria-label',choiceLabel);
       choices.forEach((choice,i) => {
         const option = document.createElement('div');
         option.id = menu.id+'-'+i;
