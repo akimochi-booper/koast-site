@@ -1,5 +1,9 @@
 # November 13 FAA disruption and editorial news scan
 
+## November18 separate local-program refresh
+
+FAA XML at8:58AM PST November18 lists SFO ground-delay program for wind. Add a clearly dated local snapshot to the existing intent owner, preserve October20 publication/image and modify November18. No average-delay-as-pickup-time, universal-flight, new national stop or future restart claim. Preserved the previously verified explicit national cancellation005; November18 archive recheck now returns NO Advisory, not evidence of reversal or recovery. Current Southwest page says no travel advisories; earlier recovery description becomes explicitly historical. This maintenance/news refresh completes neither daily new-article stream. Primary current source: https://nasstatus.faa.gov/api/airport-status-information ; live UI/resources: https://nasstatus.faa.gov/ . Archived snapshot and subsequent checks in shared FAA audit; final publication proof in shared November18 daily audit.
+
 Owner explicitly requested this additional same-day update after today's scheduled airport-choice refresh. It is an existing-guide update, not another scheduled daily publication or a new URL. Fresh clone baseline: 37d80f362e038bbdf721e8ae13c48cb28a25fdc5.
 
 ## November 14 follow-up: explicit cancellation verified

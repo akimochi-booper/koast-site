@@ -25,6 +25,10 @@ Check one relevant closing quote/contact CTA and natural service links in each g
 
 ## Current topic queue
 
+- November18 pair: **general** — Delayed Baggage? How to Handle Your Airport Pickup (`delayed-baggage-airport-pickup`, https://koastride.com/blog/delayed-baggage-airport-pickup); **additional wine** — Wine Club Pickup: Add Your Orders to a Napa or Sonoma Trip (`wine-club-pickup-trip-planning`, https://koastride.com/blog/wine-club-pickup-trip-planning). Separate new articles with actual November18 dates. Independent news refresh at existing `airport-ride-flight-change` preserves October20 publication and updates November18. [Sources/stream record](docs/daily-guide-20261118.md); final live proof in shared daily audit.
+
+- Completed November18 queue question: orders collected on different dates, now owned by `wine-club-pickup-trip-planning`, distinct from flight packing. Next general question to research: hotel names versus convention pickup entrances; check existing venue/hotel handoff intent first. Preparation alone does not count as publication.
+
 - November17 daily pair: **general** — Airport Pickup Without Mobile Data: Make a Backup Plan (`airport-pickup-without-mobile-data`); **additional wine** — Wine Country with Non-Drinkers: Plan a Day for Everyone (`wine-country-with-non-drinkers`). Separate new articles with actual November17 publication dates; news is independent. [Sources and stream record](docs/daily-guide-20261117.md). Publication/live status is recorded in the shared owning audit.
 
 - November16 daily pair: **general** — Airport Transfer with Multiple Drop-Offs: Plan the Stops (`airport-transfer-multiple-drop-offs`); **additional wine** — Wine Tasting or Winery Tour? Choosing Your Napa or Sonoma Experience (`wine-tasting-vs-winery-tour`). Both are new articles with actual November16 publication dates, separate original intent and distinct generated editorial images. Neither is a news update or substitutes for the other. [Sources and stream record](docs/daily-guide-20261116.md); final deployment/live proof is in the shared owning audit.

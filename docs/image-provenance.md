@@ -1,5 +1,9 @@
 # Editorial image provenance
 
+## November18,2026 — general and additional wine
+
+Empty baggage carousel and unlabelled cartons at a winery doorway: two distinct fictional generated scenes. [Prompts/masters/export/provenance](image-provenance-20261118.md). No actual airport/property/fleet/service claim or automatic visible generated caption.
+
 ## November16,2026 — general and additional wine articles
 
 Built-in image generation using the imagegen skill. Both masters remain outside the public deployment; exports retain the full composition at1600x900. Generic imagined scenes, not documentation of named destinations, wineries or Koast fleet/service. No people, invented logo, visible text, license plate or capacity claim. Accurate post alt text/dimensions and generated metadata; no automatic visible AI caption. City/route geography and a warm cellar composition vary the recent architectural detail, luggage/equipment and flight images.

@@ -1,0 +1,15 @@
+# November18 editorial image provenance
+
+Built-in image_gen through imagegen skill, two original fictional scenes, no actual airport/named winery/Koast fleet/service/customer/packaging claim. No text/logos/automatic visible caption. PNG masters outside deploy: C:/Users/eubur/.codex/generated_images/01a1a8af-065e-79c1-bec5-cc172d6d0032/. Full compositions exported Pillow Lanczos1600x900 WebPquality84/method6, no meaningful crop/stretch. Accurate alt/dimensions/generated metadata.
+
+## General
+
+Asset img/delayed-baggage-airport-pickup.webp,138032bytes. Master exec-6057134b-9657-4c43-a819-8de8043151eb.png. Inspected plausible conveyor/metal/terminal geometry, no identifying signs or service evidence. Cool architectural scene varies recent sunlit suitcase photograph.
+
+Exact prompt: Use case: photorealistic-natural. Asset type: premium travel-editorial website article hero, wide 16:9 landscape. Create an original fictional airport baggage-reclaim hall, viewed low and diagonally along a single empty black rubber baggage carousel with brushed stainless steel edging; the belt sweeps in a calm elegant curve through the foreground. Cool overcast daylight from high windows, quiet pale architectural walls, believable large-scale terminal geometry, fine realistic metal reflections, restrained blue-gray and charcoal palette. An editorial photograph about waiting for a missing checked bag; no distressed people or security emergency. No people, suitcases, counters with text, readable signage, flight screens, numbers, logos, symbols, aircraft, cars or dramatic haze. Not an identifiable actual airport; no documentary service or location claim. Full balanced composition must read clearly at a small card size. Avoid CGI, miniature look, orange sunset, tabletop, icons and overlays. Deliver just the image.
+
+## Additional wine
+
+Asset img/wine-club-pickup-trip-planning.webp,169042bytes. Master exec-8a357d24-e07c-4f2a-aae5-c9db8532beb2.png. Inspected plain cartons, counter/door/vines/natural light. Not Jordan/Frog's Leap/Stag's Leap or documented collection facility. Warm doorway detail varies garden/cellar/glass imagery.
+
+Exact prompt: Use case: photorealistic-natural. Asset type: premium wine-country travel-editorial website article hero, wide 16:9 landscape. An original fictional California winery order-collection corner: two neatly closed plain kraft cardboard wine cartons on a pale oak counter at an open rustic doorway, with a soft glimpse of autumn vineyard rows beyond. Three-quarter side composition, warm late-morning side light, tactile paper and natural oak grain, believable modest carton dimensions, elegant cream and muted olive palette. No bottles exposed, no wine glasses, no people, no vehicles, no text or labels on cartons, no signs, branding, numbers or logos. Not any named winery, actual pickup facility or promise of packaging/services. Natural editorial photography, quiet refined detail, no plastic CGI or heavy HDR. Different from a wine cellar or garden seating scene. Wide composition legible as a small website card. Deliver just the image.
