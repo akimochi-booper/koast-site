@@ -1,5 +1,13 @@
 # Wine-day discovery and team quote requests
 
+## November18 inquiry-receipt revision — local candidate
+
+The original direct-submit intake was published at c5ad1e002cd4fdf46612ff0981ae3a8eb38d0a9b. The November16 Livermore synthetic test reached the reservations inbox; its deliberately fake name/pickup/notes were verified in Outlook during this review. The older local-candidate status below describes the original preparation checkpoint, not the current delivery capability.
+
+Eugene requested a clearer inquiry email after seeing that test. The new local `quoteEmail` renderer provides branded responsive HTML plus a plain-text alternative, a contact action, readable travel date/passengers/pickup/requested vehicle, preserved customer notes and separate browsing context. Request/idea IDs move below the useful details. Missing fields remain explicit unknowns; no phone, pickup time, return location or confirmed itinerary is invented. Current public form fields are unchanged. Calendar-only travel dates retain the chosen day; request-created timestamps are labeled Pacific rather than represented as receipt times. User values are escaped in HTML. Recipient, Reply-To, request validation, retry identity, rate limits and booking/provider boundaries remain unchanged.
+
+This receipt revision is not published. Local required checks pass (218 tests, 240 generated pages, zero errors); browser previews fit 1280px, 390px and 320px widths. Preview data is fictional, and no email was sent for this revision. Hosted exact-candidate validation, Worker publication and actual inbox rendering/delivery remain release checks. See `design-qa.md` for screenshot paths.
+
 Status: catalogue remains exploratory/unpriced; visual website released atce67e514. **Direct submission candidate: local, not published**, November16,2026. Eugene requested coordination between the public website and `Design Wine Tour Homepage Features`. The existing Cinema, Journal and Gallery compositions stay distinct. These additions are suggestions for enquiry, not approved sellable package inventory. The new intake follows Eugene's request to submit directly to the team. Its credential setup, hosted and live delivery checks remain pending; this contract does not authorize a Booker cutover.
 
 ## One content owner

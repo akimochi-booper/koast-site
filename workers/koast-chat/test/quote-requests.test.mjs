@@ -20,11 +20,37 @@ test('request validation bounds contact/trip fields, real dates, paths and retry
  assert.equal(validateQuoteRequest({...base,date:'2026-11-16'},NOW+22*3600000).quote.date,'2026-11-16','an unchanged retry stays valid across Pacific midnight');
 });
 
-test('only the fixed team inbox receives a plain-text enquiry with customer reply-to and preserved details',()=>{
+test('only the fixed team inbox receives the branded enquiry and text alternative with customer reply-to',()=>{
  const payload=quoteEmail({...base,to:'attacker@example.com',from:'attacker@example.com'},'Koast Website <quotes@koastride.com>');
  assert.deepEqual(payload.to,['reserve@koastride.com']);assert.equal(payload.reply_to,base.email);
- assert.equal(payload.from,'Koast Website <quotes@koastride.com>');assert.equal(payload.html,undefined);
+ assert.equal(payload.from,'Koast Website <quotes@koastride.com>');assert.match(payload.html,/<!doctype html>/);
  for(const value of [ID,base.name,base.email,base.pickup,base.vehicle,base.tourId,base.tourTitle,base.notes,'7+ guests','No booking'])assert.ok(payload.text.includes(value),value);
+});
+
+test('the inquiry presents human trip details before technical references and preserves untrusted notes safely',()=>{
+ const quote={...base,name:'Alex <Guest> & "Team"',notes:'<img src=x onerror=alert(1)>\nSecond line & final request'};
+ const payload=quoteEmail(quote,'Koast Website <quotes@koastride.com>');
+ assert.match(payload.html,/Alex &lt;Guest&gt; &amp; &quot;Team&quot;/);
+ assert.ok(payload.html.includes('&lt;img src=x onerror=alert(1)&gt;\nSecond line &amp; final request'));
+ assert.doesNotMatch(payload.html,/<img src=x|<script/);
+ assert.ok(payload.text.includes(quote.notes),'plain-text alternative retains the original customer note');
+ assert.ok(payload.html.indexOf('Trip request')<payload.html.indexOf('Reference:'));
+ assert.match(payload.html,/Sat, Nov 21, 2026/);
+ assert.match(payload.subject,/Website inquiry · Livermore Valley · Sat, Nov 21, 2026 · Alex/);
+ assert.match(payload.html,/7\+ guests — exact count to confirm/);
+ assert.match(payload.html,/href="mailto:quote-test%40example.com"/);
+ assert.match(payload.html,/https:\/\/koastride.com\/wine-tours\/livermore/);
+ assert.match(payload.html,/width="146" height="45"/);
+});
+
+test('unknown plans remain unknown and a date-only choice never shifts to the previous day',()=>{
+ const payload=quoteEmail({...base,date:'',vehicle:'',tourId:'',tourTitle:'',notes:''},'Koast Website <quotes@koastride.com>');
+ for(const value of ['Date not provided','Customer would like help choosing','No day idea selected','No additional notes provided.','No booking']) {
+  assert.ok(payload.text.includes(value),value);assert.ok(payload.html.includes(value),value);
+ }
+ assert.doesNotMatch(payload.text,/Phone:|Confirmed pickup|Confirmed itinerary/);
+ const dated=quoteEmail({...base,date:'2026-11-21'},'Koast Website <quotes@koastride.com>');
+ assert.match(dated.text,/Sat, Nov 21, 2026/);assert.doesNotMatch(dated.text,/Fri, Nov 20/);
 });
 
 test('origin, method and content-type rejection never call the email provider',async()=>{

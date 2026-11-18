@@ -75,3 +75,11 @@ Complete201-test/238-page final gate passes; zero failures/skips/errors. Evidenc
 ## November16 direct quote submission candidate
 
 Eugene requested direct submission instead of a customer-sent email. Local candidate in koast-site-direct-quotes-20261116-01a1d779 preserves the approved compositions/review panel; adds native name/reply-email fields, Send, busy/locked retry and accepted-request states. Separate quote-request.js and Worker quote-requests.mjs own the contract; Moovs and Kopilot remain separate. Final216checks/238generated pages passed, including midpoint/midnight retry cases; shared direct-quote-final-check.log owns evidence. Provider configuration, hosted and live delivery acceptance remain open. No credential creation, provider send, Git push or publication yet.
+
+## November18 inquiry receipt — local candidate
+
+Scope: internal website inquiry email only; preserves the approved public Cinema, Journal and Gallery surfaces. Reuses the approved orange Koast wordmark, warm neutral palette and single-column readable layout. This is an implementation preview, not an owner-approved new shared component or a live email-client acceptance result.
+
+Customer identity/contact action and trip details now precede notes, browsing context and technical references. No fabricated contact or trip information; illustrative fixture uses alex@example.com and an explicit fictional-preview note. No production send occurred. Browser visual inspection at 1280×1000, 390×844 and 320×740 confirms visible logo, readable hierarchy, wrapped notes/identity and no horizontal overflow (document widths equal viewports). Native Outlook/client rendering remains a separate release check.
+
+Evidence under `C:/Users/eubur/.codex/visualizations/2026/11/04/01a1a8af-065e-79c1-bec5-cc172d6d0032/`: `website-inquiry-before.jpg`, `website-inquiry-after-desktop.jpg`, `website-inquiry-after-mobile.jpg`, `website-inquiry-after-320.jpg`. Owned preview tab/server and leases are released after QA. Full local gate: `node scripts/check-pr.mjs --today 2026-11-18`, 218 passed/zero failures, 240 pages/zero errors. The first check encountered the local email fixture in the site's generated-HTML audit; moving that ignored fixture to a non-site `.review` file resolved it without weakening the audit.

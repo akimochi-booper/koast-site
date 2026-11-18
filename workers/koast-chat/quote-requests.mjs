@@ -33,8 +33,40 @@ export function validateQuoteRequest(value,now=Date.now()) {
 }
 
 export function quoteEmail(quote,from) {
-  const fields=[['Reference',quote.requestId],['Name',quote.name],['Reply email',quote.email],['Wine country',quote.region],['Suggested day (unconfirmed)',quote.tourTitle||'Custom plans'],['Idea reference',quote.tourId||'None'],['Requested vehicle (unconfirmed)',quote.vehicle||'Help me choose'],['Pickup',quote.pickup],['Travel date',quote.date||'To be confirmed'],['Party',quote.party==='7+'?'7+ guests · group quote':quote.party+' guest'+(quote.party==='1'?'':'s')],['Customer notes',quote.notes||'None'],['Public page','https://koastride.com'+quote.page]];
-  return {from,to:[TEAM_EMAIL],reply_to:quote.email,subject:'Website quote request · '+quote.region+' · '+quote.requestId.slice(0,8),text:'New website transportation enquiry\n\n'+fields.map(([label,value])=>label+': '+value).join('\n\n')+'\n\nCustomer-supplied enquiry only. No booking, price, availability or tasting reservation has been confirmed. Reply to the customer to arrange the quote.'};
+  const escape=value=>String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+  const date=quote.date ? new Intl.DateTimeFormat('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric',timeZone:'UTC'}).format(new Date(quote.date+'T12:00:00Z')) : 'Date not provided';
+  const party=quote.party==='7+'?'7+ guests — exact count to confirm':quote.party+' guest'+(quote.party==='1'?'':'s');
+  const source='https://koastride.com'+quote.page;
+  const reply='mailto:'+encodeURIComponent(quote.email);
+  const created=new Intl.DateTimeFormat('en-US',{dateStyle:'medium',timeStyle:'short',timeZone:'America/Los_Angeles'}).format(new Date(quote.createdAt))+' Pacific';
+  const trip=[['Travel date',date],['Passengers',party],['Pickup location',quote.pickup],['Requested vehicle',quote.vehicle||'Customer would like help choosing']];
+  const context=[['Wine region',quote.region],['Wine-day idea',quote.tourTitle||'No day idea selected']];
+  const notes=quote.notes||'No additional notes provided.';
+  const notice='Quote request only. No booking, price, availability or tasting reservation has been confirmed.';
+  const fields=rows=>rows.map(([label,value])=>label+': '+value).join('\n');
+  const text=['NEW WEBSITE INQUIRY',quote.name+' · '+quote.region,'ACTION: Reply to '+quote.email+' to clarify the plans and prepare a quote.','CONTACT\n'+fields([['Name',quote.name],['Email',quote.email]]),'TRIP REQUEST\n'+fields(trip),'CUSTOMER NOTES\n'+notes,'BROWSING CONTEXT\n'+fields(context),'Before quoting: confirm the pickup time, return plan, exact party size where needed, and tasting appointments with the customer.',notice,'REQUEST DETAILS\n'+fields([['Source page',source],['Request created',created],['Reference',quote.requestId],['Idea reference',quote.tourId||'Not selected']])].join('\n\n');
+  const rows=items=>items.map(([label,value])=>`<tr><td style="padding:12px 0;border-bottom:1px solid #e7e4dd"><div style="font-size:12px;line-height:18px;color:#59616a">${escape(label)}</div><div style="font-size:16px;line-height:24px;color:#20242a;overflow-wrap:anywhere;word-break:break-word">${escape(value)}</div></td></tr>`).join('');
+  const section=(title,content)=>`<h2 style="margin:26px 0 4px;font-size:13px;line-height:20px;color:#59616a;text-transform:uppercase;letter-spacing:1px">${title}</h2>${content}`;
+  const table=items=>`<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">${rows(items)}</table>`;
+  const html=`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>New website inquiry</title></head>
+<body style="margin:0;background:#f4f2ed;color:#20242a;font-family:Arial,Helvetica,sans-serif">
+<div style="display:none;max-height:0;overflow:hidden">${escape(quote.name)} · ${escape(quote.region)} · ${escape(date)} · ${escape(party)}</div>
+<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="background:#f4f2ed"><tr><td align="center" style="padding:24px 12px">
+<table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="max-width:620px;background:#fff;border:1px solid #e7e4dd;border-radius:16px"><tr><td style="padding:28px 24px">
+<a href="https://koastride.com/"><img src="https://koastride.com/img/koast-wordmark-orange-v1.png" alt="Koast" width="146" height="45" style="display:block;width:146px;height:45px;border:0"></a>
+<p style="margin:24px 0 6px;font-size:12px;letter-spacing:1px;color:#59616a">NEW WEBSITE INQUIRY</p>
+<h1 style="margin:0;font-size:26px;line-height:34px;overflow-wrap:anywhere">${escape(quote.name)}</h1>
+<p style="margin:8px 0 20px;font-size:16px;line-height:24px;color:#59616a">${escape(quote.region)} · ${escape(date)}<br>${escape(party)}</p>
+<a href="${escape(reply)}" style="display:inline-block;padding:13px 20px;background:#f7a339;border-radius:10px;color:#241205;font-size:15px;font-weight:bold;text-decoration:none">Reply to customer</a>
+<p style="font-size:13px;line-height:20px;color:#59616a">Replies go to <a href="${escape(reply)}" style="color:#a63b10;overflow-wrap:anywhere">${escape(quote.email)}</a>.</p>
+${section('Trip request',table(trip))}
+${section('Customer notes',`<div style="padding:16px;background:#f8f6f1;border-left:3px solid #e9ad59;font-size:16px;line-height:25px;white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word">${escape(notes)}</div>`)}
+${section('Browsing context',table(context))}
+<p style="margin:24px 0 12px;font-size:14px;line-height:22px">Before quoting, confirm the pickup time, return plan, exact party size where needed, and tasting appointments with the customer.</p>
+<p style="padding:14px;background:#f8f6f1;font-size:13px;line-height:21px;color:#59616a">${notice}</p>
+${section('Request details',`<p style="font-size:12px;line-height:20px;color:#59616a;overflow-wrap:anywhere;word-break:break-word">Source: <a href="${escape(source)}" style="color:#a63b10">${escape(source)}</a><br>Request created: ${escape(created)}<br>Reference: ${escape(quote.requestId)}<br>Idea reference: ${escape(quote.tourId||'Not selected')}</p>`)}
+</td></tr></table><p style="margin:16px 0;font-size:12px;color:#59616a">Koast website · Internal team notification</p></td></tr></table></body></html>`;
+  return {from,to:[TEAM_EMAIL],reply_to:quote.email,subject:'Website inquiry · '+quote.region+' · '+date+' · '+quote.name,text,html};
 }
 
 export function quoteRequestsReady(env) {
