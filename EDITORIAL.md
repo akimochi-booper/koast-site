@@ -25,6 +25,10 @@ Check one relevant closing quote/contact CTA and natural service links in each g
 
 ## Current topic queue
 
+- November19 pair: **general** — Convention Center Pickup: Confirm the Building and Exit (`convention-center-pickup-building-entrance`, https://koastride.com/blog/convention-center-pickup-building-entrance); **additional wine** — Winery Picnics in Napa and Sonoma: Check the Food Rules (`winery-picnic-rules-napa-sonoma`, https://koastride.com/blog/winery-picnic-rules-napa-sonoma). Distinct new articles with actual November19 dates. No news or maintenance item counts toward either stream. [Sources/stream record](docs/daily-guide-20261119.md); final deployment/live proof in the shared daily audit.
+
+- Completed November19 queue: convention building versus passenger exit/loading point. Next general question to research: a passenger joining an already-arranged ride partway through a journey; compare existing group/multiple-stop/booker handoffs before selecting the intent. Next wine question: arriving late for a tasting appointment; compare the reservation guide before choosing an original new angle. Queue entries alone do not establish publication.
+
 - November18 pair: **general** — Delayed Baggage? How to Handle Your Airport Pickup (`delayed-baggage-airport-pickup`, https://koastride.com/blog/delayed-baggage-airport-pickup); **additional wine** — Wine Club Pickup: Add Your Orders to a Napa or Sonoma Trip (`wine-club-pickup-trip-planning`, https://koastride.com/blog/wine-club-pickup-trip-planning). Separate new articles with actual November18 dates. Independent news refresh at existing `airport-ride-flight-change` preserves October20 publication and updates November18. [Sources/stream record](docs/daily-guide-20261118.md); final live proof in shared daily audit.
 
 - Completed November18 queue question: orders collected on different dates, now owned by `wine-club-pickup-trip-planning`, distinct from flight packing. Next general question to research: hotel names versus convention pickup entrances; check existing venue/hotel handoff intent first. Preparation alone does not count as publication.

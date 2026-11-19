@@ -1,5 +1,7 @@
 # Editorial image provenance
 
+November19 daily pair: [exact prompts, masters and optimized assets](image-provenance-20261119.md) for convention-center-pickup-building-entrance.webp and winery-picnic-rules-napa-sonoma.webp. Fictional generic editorial imagery, no actual venue/fleet/service or picnic-permission claim; no automatic visible generated caption.
+
 ## November18,2026 — general and additional wine
 
 Empty baggage carousel and unlabelled cartons at a winery doorway: two distinct fictional generated scenes. [Prompts/masters/export/provenance](image-provenance-20261118.md). No actual airport/property/fleet/service claim or automatic visible generated caption.
