@@ -169,3 +169,6 @@ Use case: photorealistic-natural. Create one original landscape 16:9 premium tra
 
 ## November17 daily pair
 See [exact prompts, masters and export provenance](image-provenance-20261117.md) for airport-pickup-without-mobile-data.webp and wine-country-with-non-drinkers.webp. Both generated fictional scenes,1600x900, no actual facility/fleet claims or visible automatic AI caption.
+
+
+November21 general and additional wine: [exact prompts, masters and optimized assets](image-provenance-20261121.md). Anonymous additional-pickup and owner-with-dog vineyard scenes; no documentary property/fleet/service claim.
