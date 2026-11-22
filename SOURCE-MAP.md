@@ -1,5 +1,7 @@
 # Koast website source map
 
+November22 daily general/additional wine: `content/posts/changed-hotel-airport-transfer.json` and `content/posts/winery-tasting-room-address-entrance.json` use existing editorial article/index/canonical/sitemap rendering. Content-only; no provider/runtime changes. Sources/intent: `docs/daily-guide-20261122.md`; assets/prompts: `docs/image-provenance-20261122.md`. Verification: `node scripts/check-pr.mjs --today 2026-11-22` and actual desktop/mobile article/card QA.
+
 November21 daily general/additional wine: `content/posts/adding-passenger-pickup-stop.json` and `content/posts/dogs-at-napa-sonoma-wineries.json` use existing `editorial.py` / `generate.py` article/index/canonical/sitemap rendering. Content-only; no provider/runtime changes. Sources/intent: `docs/daily-guide-20261121.md`; assets/prompts: `docs/image-provenance-20261121.md`. Required verification: `node scripts/check-pr.mjs --today 2026-11-21` plus actual article/card desktop/mobile QA.
 
 November19 daily general and additional wine content: `content/posts/convention-center-pickup-building-entrance.json` and `content/posts/winery-picnic-rules-napa-sonoma.json` use existing `editorial.py` / `generate.py` article, index, canonical and sitemap rendering. No runtime/provider changes. Sources, distinct intent and dates: `docs/daily-guide-20261119.md`; image assets/prompts: `docs/image-provenance-20261119.md`. Verification: `node scripts/check-pr.mjs --today 2026-11-19` and actual article/card desktop/mobile QA.
