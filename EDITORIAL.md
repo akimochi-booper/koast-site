@@ -25,6 +25,11 @@ Check one relevant closing quote/contact CTA and natural service links in each g
 
 ## Current topic queue
 
+
+- November23 pair: **general** — Left Something at the Hotel Before Your Airport Ride? (`forgotten-item-hotel-airport-ride`, https://koastride.com/blog/forgotten-item-hotel-airport-ride); **additional wine** — What to Wear Wine Tasting in Napa and Sonoma (`what-to-wear-wine-tasting-napa-sonoma`, https://koastride.com/blog/what-to-wear-wine-tasting-napa-sonoma). Distinct new November23 articles, with independent publication/live gates in the shared daily audit. [Sources/intent](docs/daily-guide-20261123.md). News never completes either slot.
+
+- November23 queue decisions: a separate lunch reservation article would overlap the existing picnic/food guide, so select the practical clothes/shoes/layers question instead. The hotel lost-item question distinguishes a pending search from a collection-ready stop, without advertising unaccompanied delivery. Next general lead: travelers arriving at different terminals on one ride; compare existing group arrivals/added stops. Next wine lead: a tasting appointment held in another traveler's name; compare existing reservation/third-party booking intent. No query-volume claim.
+
 - November22 pair: **general** — Changed Hotels? Update Your Airport Transfer Destination (`changed-hotel-airport-transfer`, https://koastride.com/blog/changed-hotel-airport-transfer); **additional wine** — Winery Address or Tasting Room? Confirm the Right Entrance (`winery-tasting-room-address-entrance`, https://koastride.com/blog/winery-tasting-room-address-entrance). Distinct new November22 articles; independent full gates/live completion tracked in shared daily audit. [Sources/intent](docs/daily-guide-20261122.md). News never completes either slot.
 
 - November22 queue decisions: held separate hotel-luggage delivery as an unestablished service rather than advertise it; selected hotel-change amendment instead. Tasting-room address question now owns exact-property/entrance matching. Next general question: an airport transfer when a traveler leaves a personal item at the hotel; compare stored-luggage/equipment owners before selecting. Next wine question: whether to reserve lunch separately between tastings; compare picnic and reservation owners before selecting. No query-volume claim.
