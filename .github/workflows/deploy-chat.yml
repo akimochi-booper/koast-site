@@ -1,8 +1,5 @@
 name: Validate website chat Worker
 on:
-  push:
-    branches: [main]
-    paths: ['workers/koast-chat/**', '.github/workflows/deploy-chat.yml']
   workflow_dispatch:
 concurrency:
   group: validate-koast-chat

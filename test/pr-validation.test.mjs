@@ -56,7 +56,7 @@ test('validation generates first, includes every discovered suite, and checks pa
   assert(syntax.includes('koast-chat.js'));assert(syntax.includes('koast-chat-voice.js'));
   assert(syntax.includes('sw.js'));
   assert(syntax.includes('workers/koast-chat/worker.js'));assert(syntax.includes('workers/koast-chat/photo-input.mjs'));
-  assert.deepEqual(calls.at(-1).slice(0,2),['python',['scripts/check_site.py','--today','2026-11-13']]);
+  assert.deepEqual(calls.at(-1).slice(0,2),['python',['scripts/stage_pages.py','--today','2026-11-13']]);
   for(const [,args,options] of calls){
     assert.equal(options.cwd,root);assert.equal(options.shell,false);assert.equal(options.windowsHide,true);
     assert(!args.some(arg=>/deploy|wrangler|https?:/.test(arg)),'validation has no deployment or service command');

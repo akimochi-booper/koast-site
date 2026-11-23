@@ -1,4 +1,4 @@
-// Local/CI validation only. Publication remains in the existing deploy workflow.
+// Local/CI validation only. The trusted-main Pages job publishes the checked output.
 import {readdirSync} from 'node:fs';
 import {dirname,resolve} from 'node:path';
 import {fileURLToPath,pathToFileURL} from 'node:url';
@@ -44,7 +44,8 @@ export function runSiteChecks({root=repository,today=siteDate(),run=spawnSync}={
     ['Generate site','python',['generate.py']],
     ...syntaxFiles.map(file=>[`Parse ${file}`,process.execPath,['--check',file]]),
     ['Test website and assistant',process.execPath,['--test','--test-concurrency=2',...tests]],
-    ['Check generated pages','python',['scripts/check_site.py','--today',today]],
+    ['Test Pages file selection','python',['-m','unittest','discover','-s','test','-p','test_stage_pages.py']],
+    ['Check staged public pages','python',['scripts/stage_pages.py','--today',today]],
   ];
   console.log(`Site validation: ${tests.length} test files, ${syntaxFiles.length} JavaScript syntax checks; Pacific date ${today}.`);
   for(const [name,command,args] of steps){

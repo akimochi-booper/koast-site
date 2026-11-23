@@ -9,8 +9,8 @@ import json
 import sys
 import xml.etree.ElementTree as ET
 
-ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT))
+SOURCE = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(SOURCE))
 from editorial import load_posts
 
 class Page(HTMLParser):
@@ -31,9 +31,16 @@ class Page(HTMLParser):
     def handle_data(self, data):
         if self.in_title: self.title+=data
 
+def published_target_exists(target):
+    candidates=[target,target/"index.html"]
+    if target.name and not target.suffix: candidates.append(target.with_suffix(".html"))
+    return any(candidate.is_file() for candidate in candidates)
+
 parser=argparse.ArgumentParser()
 parser.add_argument("--today", required=True, help="Current date in America/Los_Angeles")
+parser.add_argument("--site-root", type=Path, default=SOURCE, help="Directory containing the public site")
 args=parser.parse_args()
+ROOT=args.site_root.resolve()
 today=date.fromisoformat(args.today)
 errors=[]; titles=Counter(); descriptions=Counter(); page_count=0; nonindexable=set()
 for path in sorted(ROOT.rglob("*.html")):
@@ -47,10 +54,8 @@ for path in sorted(ROOT.rglob("*.html")):
         url=urlsplit(ref)
         if not url.path or url.scheme or url.netloc: continue
         target=ROOT/unquote(url.path).lstrip("/") if url.path.startswith("/") else path.parent/unquote(url.path)
-        candidates=[target,target/"index.html"]
-        if target.name and not target.suffix: candidates.append(target.with_suffix(".html"))
-        if not any(candidate.is_file() for candidate in candidates): errors.append(f"{path.relative_to(ROOT)}: missing {ref}")
-posts=load_posts(ROOT)
+        if not published_target_exists(target): errors.append(f"{path.relative_to(ROOT)}: missing {ref}")
+posts=load_posts(SOURCE)
 for line in (ROOT/"_redirects").read_text(encoding="utf-8").splitlines():
     fields=line.split()
     if len(fields)!=3 or line.startswith("#"): continue
@@ -58,15 +63,14 @@ for line in (ROOT/"_redirects").read_text(encoding="utf-8").splitlines():
     url=urlsplit(destination)
     if url.scheme or url.netloc: continue
     target=ROOT/unquote(url.path).lstrip("/")
-    candidates=[target,target/"index.html"]
-    if target.name and not target.suffix: candidates.append(target.with_suffix(".html"))
-    if not any(candidate.is_file() for candidate in candidates): errors.append(f"{source}: redirect targets missing {destination}")
+    if not published_target_exists(target): errors.append(f"{source}: redirect targets missing {destination}")
 index=(ROOT/"blog/index.html").read_text(encoding="utf-8")
 sitemap=(ROOT/"sitemap.xml").read_text(encoding="utf-8")
 ns={"s":"http://www.sitemaps.org/schemas/sitemap/0.9"}
 sitemap_dates={entry.findtext("s:loc",namespaces=ns):entry.findtext("s:lastmod",namespaces=ns) for entry in ET.fromstring(sitemap).findall("s:url",ns)}
 dated_urls={"https://koastride.com/blog/"+post["slug"] for post in posts}
 for url,modified in sitemap_dates.items():
+    if not published_target_exists(ROOT/unquote(urlsplit(url).path).lstrip("/")): errors.append(f"{url}: sitemap target missing from public site")
     if url in nonindexable: errors.append(f"{url}: noindex page listed in sitemap")
     if modified is not None and url not in dated_urls: errors.append(f"{url}: unverified sitemap modification date")
 for post in posts:

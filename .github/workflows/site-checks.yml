@@ -5,21 +5,30 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      publish:
+        description: Publish the validated main commit to Cloudflare Pages
+        type: boolean
+        required: false
+        default: false
 permissions:
   contents: read
-concurrency:
-  group: site-checks-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
 jobs:
   validation:
     name: Site PR validation
     runs-on: ubuntu-24.04
     timeout-minutes: 10
+    concurrency:
+      group: site-checks-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}-${{ inputs.publish || false }}
+      cancel-in-progress: true
+    outputs:
+      pages_id: ${{ steps.pages.outputs.artifact-id }}
     steps:
       - name: Check out the proposed merge
         uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
           persist-credentials: false
+          fetch-depth: 2
       - name: Set up Python
         uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
         with:
@@ -30,4 +39,61 @@ jobs:
           node-version: '22'
           package-manager-cache: false
       - name: Validate the website and assistant
+        env:
+          KOAST_PAGES_OUTPUT: ${{ runner.temp }}/koast-pages
         run: node scripts/check-pr.mjs
+      - name: Check tracked redirects
+        run: git diff --exit-code HEAD -- _redirects
+      - name: Bundle the website chat Worker when its inputs change
+        env:
+          BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        shell: bash
+        run: |
+          if [[ -n "$BASE" ]] && git diff --quiet "$BASE" HEAD -- workers/koast-chat .github/workflows/site-checks.yml .github/workflows/deploy-chat.yml; then
+            exit 0
+          fi
+          cd workers/koast-chat
+          npx --yes esbuild@0.25.0 worker.js --bundle --format=esm --outfile="$RUNNER_TEMP/koast-chat.mjs"
+      - name: Save the checked main output for Pages
+        id: pages
+        if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.publish))
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: pages-${{ github.sha }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/koast-pages
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 1
+          compression-level: 1
+
+  publish:
+    name: Publish validated Pages
+    needs: validation
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.publish))
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    concurrency:
+      group: deploy-koast
+      cancel-in-progress: false
+    steps:
+      - name: Require the validated artifact ID
+        env:
+          PAGES_ID: ${{ needs.validation.outputs.pages_id }}
+        run: test -n "$PAGES_ID"
+      - name: Download this run's checked files
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          artifact-ids: ${{ needs.validation.outputs.pages_id }}
+          merge-multiple: true
+          path: dist
+          digest-mismatch: error
+      - name: Verify the candidate is still main
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: test "$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/main" --jq .object.sha)" = "$GITHUB_SHA"
+      - name: Deploy the checked directory
+        uses: cloudflare/wrangler-action@9acf94ace14e7dc412b076f2c5c20b8ce93c79cd # v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: 9481e14d6980f4de99bebe0097842362
+          command: pages deploy dist --project-name=koast --branch=main --commit-hash=${{ github.sha }}
