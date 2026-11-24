@@ -25,6 +25,9 @@ Check one relevant closing quote/contact CTA and natural service links in each g
 
 ## Current topic queue
 
+- November24 independent news update: existing `airport-ride-flight-change` adds the current Southwest SFO November25 weather advisory and separate pickup-reconfirmation steps; archives the November18 SFO snapshot without inferring resolution. October20 publication/image preserved; substantive modification November24. Neither daily evergreen slot is fulfilled by this update. [Sources and separate stream record](docs/daily-guide-20261124.md).
+
+
 
 - November23 pair: **general** — Left Something at the Hotel Before Your Airport Ride? (`forgotten-item-hotel-airport-ride`, https://koastride.com/blog/forgotten-item-hotel-airport-ride); **additional wine** — What to Wear Wine Tasting in Napa and Sonoma (`what-to-wear-wine-tasting-napa-sonoma`, https://koastride.com/blog/what-to-wear-wine-tasting-napa-sonoma). Distinct new November23 articles, with independent publication/live gates in the shared daily audit. [Sources/intent](docs/daily-guide-20261123.md). News never completes either slot.
 
