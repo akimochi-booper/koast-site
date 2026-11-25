@@ -175,3 +175,6 @@ November21 general and additional wine: [exact prompts, masters and optimized as
 
 
 November 23, 2026: [hotel forgotten-item and wine-tasting attire editorial images](image-provenance-20261123.md), built-in image_gen; anonymous conceptual scenes, not actual Koast service. Full compositions exported at 1600x900, quality82: 122504 and 246090 bytes, respectively.
+
+
+November25 general and additional wine masters/prompts/optimized assets: [image provenance](image-provenance-20261125.md). Existing flight-change image retained.
