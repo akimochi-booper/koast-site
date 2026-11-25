@@ -25,6 +25,9 @@ Check one relevant closing quote/contact CTA and natural service links in each g
 
 ## Current topic queue
 
+- November25 independent streams: **general** — `codeshare-flight-number-airport-pickup` (final inbound leg and marketing/operating identifiers); **additional wine** — `napa-sonoma-wineries-with-children` (experience-specific child admission, supervision and transport handoff). Both are new November25 evergreen articles, distinct from flight-change recovery and non-drinking adult companions. Separate **news** refreshes `airport-ride-flight-change` with the9:03AM PST FAA SFO low-ceiling ground-delay snapshot, preserving original publication. [Sources, stream status and release gates](docs/daily-guide-20261125.md).
+- November25 queue review: multi-terminal shared arrival overlaps group arrivals/added stops; another traveler's tasting reservation overlaps the existing reservation-owner checklist. Selected codeshare identification and child admission instead. Next general lead: airport pickup when a traveler has a separate ticketed rail connection; verify distinct intent and actual station handoff. Next wine lead: comparing a downtown tasting room with an estate visit when the group needs a short walking route; compare entrance/experience owners before selecting. No new Search Console measurement is claimed.
+
 - November24 independent news update: existing `airport-ride-flight-change` adds the current Southwest SFO November25 weather advisory and separate pickup-reconfirmation steps; archives the November18 SFO snapshot without inferring resolution. October20 publication/image preserved; substantive modification November24. Neither daily evergreen slot is fulfilled by this update. [Sources and separate stream record](docs/daily-guide-20261124.md).
 
 
