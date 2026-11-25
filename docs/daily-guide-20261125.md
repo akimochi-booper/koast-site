@@ -33,3 +33,14 @@ Required node scripts/check-pr.mjs --today2026-11-25 passes218website/assistant 
 
 
 Deployment and verified per-stream completion are owned by the shared `audits/2026-11-25-daily-pair/REPORT.md` release record. Source preparation alone does not establish a completed stream. The Miles & More source returned403to the direct Node probe; its official page was independently readable through the web tool with the operating-carrier guidance intact. The other23source/internal/quote URLs returned200. No protection was bypassed.
+
+
+## Independent 1 PM news update - SFO cancellation
+
+General and additional wine remain separately COMPLETE on November25: https://koastride.com/blog/codeshare-flight-number-airport-pickup and https://koastride.com/blog/napa-sonoma-wineries-with-children . Both actual publication dates were freshly verified; this refresh does not consume either slot.
+
+Primary FAA ATCSCC Advisory070 of November25, issued20:34UTC/12:34PM PST, explicitly reports cancellation of the SFO ground-delay program due to improved weather. The1:02PM current-plan snapshot and subsequently fetched dated archive both contain the explicit statement. Source https://www.fly.faa.gov/adv/adv_otherdis?adv_date=11252026&advn=70 . Web's rewritten current-plan endpoint returned no plan, so the preserved direct200response and dated archive own this factual claim; no resolution is inferred from the NAS feed omitting SFO.
+
+The existing flight-change guide archives its9:03AM low-ceiling snapshot, leads with explicit cancellation and explains that individual flight/car arrangements still require confirmation. Original October20publication and November25modified date remain. Existing image, layout, internal links, CTA, prices/policies/crawler controls unchanged. No new news URL or imagery. Caltrans' newly observed US101-to-SR1 flooding closure is retained in the dated operational scan rather than inserted into an unrelated flight guide.
+
+Publication and exact gate/live evidence will be recorded in shared audits/2026-11-13-faa-flight-change/REPORT.md, November25 1PM section. Preparation alone is not publication.
