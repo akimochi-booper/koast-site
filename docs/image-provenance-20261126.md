@@ -1,0 +1,15 @@
+# November 26 editorial image provenance
+
+Tool: built-in image_gen, one original generation per distinct article. Both outputs visually reviewed for geometry, text, brand marks and relevance. Anonymous conceptual scenes, not actual Koast service, a named hotel/estate, fleet or a real reservation. No automatic visible generated-image captions. Accurate descriptive alt text, dimensions, social/schema identity in article JSON. Original masters retained outside deployment; optimized project assets below.
+
+## General
+
+- Public asset: img/airport-arrival-before-hotel-check-in.webp, 1600x900, WebP quality82/method6, full composition retained (negligible aspect-ratio normalization from master).
+- Master: C:/Users/eubur/.codex/generated_images/01a1a8af-065e-79c1-bec5-cc172d6d0032/exec-d124c340-4497-4f97-844e-1f4b99877b57.png
+- Exact prompt: Use case: photorealistic-natural. Create one premium realistic travel-editorial photograph, wide horizontal 16:9, for a practical guide to reaching a hotel before the room is ready. A quiet anonymous hotel lounge in early morning: a muted olive carry-on suitcase and a small tan overnight bag beside a pale upholstered bench, tall windows casting soft angled morning light across warm stone flooring, understated reception architecture softly out of focus beyond. Intimate architectural composition with natural texture, believable luggage proportions, calm arrival mood, no cars, no document or phone close-up, no floating graphics. Keep the bags and bench fully in view in the central composition so it remains legible as a small blog card. No people, branding, readable signage, logos, room numbers, clocks or text. An anonymous conceptual editorial scene, not a documentary photograph of Fairmont, any named hotel, actual luggage storage or Koast service.
+
+## Additional wine
+
+- Public asset: img/rainy-day-wine-tasting-napa-sonoma.webp, 1600x900, WebP quality82/method6, full composition retained.
+- Master: C:/Users/eubur/.codex/generated_images/01a1a8af-065e-79c1-bec5-cc172d6d0032/exec-14709503-c907-4df3-9665-74258f6b53c6.png
+- Exact prompt: Use case: photorealistic-natural. Create one premium realistic travel-editorial photograph, wide horizontal 16:9, for a practical guide to making an indoor backup plan for rainy-day wine tasting in Napa and Sonoma. View from inside an anonymous modestly elegant wine-country tasting room: rain droplets on a large dark-framed window, soft gray daylight over misty autumn vineyard rows outside, a simple oak tasting table and two empty clear wine glasses in the foreground, warm muted stone and wood textures. Quiet candid architectural photograph, natural lens perspective, restrained colors, no exaggerated HDR or staged golden sunset. Clear central composition that reads at blog-card size, with intact believable glass geometry and no cropped important objects. No people, bottles, menus, brand names, invented logos or text. Do not depict or imply a specific real winery, Pine Ridge estate, Koast vehicle or actual booked experience; this is an anonymous conceptual editorial scene.

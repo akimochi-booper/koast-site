@@ -178,3 +178,6 @@ November 23, 2026: [hotel forgotten-item and wine-tasting attire editorial image
 
 
 November25 general and additional wine masters/prompts/optimized assets: [image provenance](image-provenance-20261125.md). Existing flight-change image retained.
+
+
+November26 general and additional wine: [exact prompts, preserved masters and optimized hotel/rainy-tasting assets](image-provenance-20261126.md). Anonymous conceptual scenes, not actual properties or Koast service. Exports1600x900:141742and248292bytes.
