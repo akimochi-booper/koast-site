@@ -181,3 +181,6 @@ November25 general and additional wine masters/prompts/optimized assets: [image 
 
 
 November26 general and additional wine: [exact prompts, preserved masters and optimized hotel/rainy-tasting assets](image-provenance-20261126.md). Anonymous conceptual scenes, not actual properties or Koast service. Exports1600x900:141742and248292bytes.
+
+
+November27 general and additional wine: [exact prompts, preserved masters and optimized station/street assets](image-provenance-20261127.md). Anonymous conceptual scenes; no documentary airport/property/fleet claim or visible automatic generated-image caption.

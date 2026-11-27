@@ -1,3 +1,7 @@
+# November27 daily guides — scoped local QA
+
+final result: passed locally; publication/live verification pending in the shared daily release record. Existing article/card design retained; no component redesign or policy/control changes. General rail-connection and additional walking-Healdsburg articles inspected at1280/390/320widths, including whole heroes, card thumbnails, checklists, source links and closing CTAs. Both have one H1, full1600x900images and no document overflow. Sources/intent/provenance/checks in docs/daily-guide-20261127.md. Screenshots in the shared audits/2026-11-27-daily-pair folder. Existing prior task evidence follows unchanged.
+
 # Public marketing design QA — November16,2026
 
 final result: passed; exploratory local candidate, unpublished
