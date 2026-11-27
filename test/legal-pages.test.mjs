@@ -4,7 +4,7 @@ import {readFileSync} from 'node:fs';
 const read=p=>readFileSync(new URL('../'+p,import.meta.url),'utf8').replace(/\r\n/g,'\n');
 
 test('published legal pages resolve every role and show the approved effective date',()=>{
-  for(const [path,title,date] of [['privacy.html','Privacy Policy','November 13, 2026'],['terms/rider/index.html','Rider Terms','October 31, 2026'],['terms/driver/index.html','Driver App Terms','October 30, 2026'],['terms/connect/index.html','Connect Terms','October 30, 2026'],['legal/index.html','Policies and terms','October 31, 2026'],['terms/standing-authorization/index.html','Standing Booking and Payment Authorization','October 31, 2026']]){
+  for(const [path,title,date] of [['privacy.html','Privacy Policy','November 27, 2026'],['terms/rider/index.html','Rider Terms','October 31, 2026'],['terms/driver/index.html','Driver App Terms','October 30, 2026'],['terms/connect/index.html','Connect Terms','October 30, 2026'],['legal/index.html','Policies and terms','October 31, 2026'],['terms/standing-authorization/index.html','Standing Booking and Payment Authorization','October 31, 2026']]){
     const html=read(path);
     assert.ok(html.includes('<h1>'+title+'</h1>'),path);
     assert.ok(html.includes('Effective '+date),path);
@@ -37,8 +37,9 @@ test('shared privacy covers actual safety, permissions and future feature bounda
   assert.doesNotMatch(body,/It does not apply to information that we collect from or about vehicle drivers/);
 });
 
-test('privacy separates anonymous visits from limited native order attribution and its retention',()=>{
+test('privacy explains approved first-party continuity, excluded private contents and 90-day measurement retention',()=>{
   const body=read('content/legal/privacy.inc');
-  for(const text of ['Sources for native booking requests','does not include the website\'s random session identifier','associate those source labels with that order','separately from anonymous website events','removed after 90 days','A missing source remains unknown'])assert.ok(body.includes(text),text);
-  assert.ok(body.includes('does not record form entries, clicked contact details, payment details or booking contents'));
+  for(const text of ['short-lived first-party journey reference','associate that journey with your Koast account or order','not identify anonymous visitors by guessing','kept for 90 days','Do Not Track, Global Privacy Control','collection and journey association','Missing history or source information remains unknown'])assert.ok(body.includes(text),text);
+  for(const text of ['typed form entries','message or attachment contents','passwords','payment details','raw IP addresses','keystrokes, mouse trails or session replay'])assert.ok(body.includes(text),text);
+  assert.ok(!body.includes('does not include the website\'s random session identifier'));
 });

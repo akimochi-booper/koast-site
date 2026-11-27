@@ -75,21 +75,38 @@
         referrerPolicy: 'no-referrer', headers: {'Content-Type': 'text/plain;charset=UTF-8'}, body: JSON.stringify(payload)}).catch(function () {});
     } catch (_) { /* Tracking failure must never affect browsing or booking. */ }
   }
+  var journeyBridge = null, bridgePending = false;
+  function prepareBridge() {
+    var gate=document.querySelector&&document.querySelector('meta[name="koast-journey"]');
+    if (bridgePending || optedOut() || !gate || !gate.getAttribute || gate.getAttribute('content')!=='enabled') return;
+    var current = session();
+    if (journeyBridge && journeyBridge.session === current.id && journeyBridge.expires > Date.now() + 30000) return;
+    bridgePending = true;
+    fetch(ENDPOINT.replace('/events', '/bridge'), {method:'POST',mode:'cors',credentials:'omit',referrerPolicy:'no-referrer',headers:{'Content-Type':'text/plain;charset=UTF-8'},body:JSON.stringify({session_id:current.id})})
+      .then(function(r){return r.ok?r.json():null;}).then(function(data){
+        if (!optedOut() && data && typeof data.token === 'string' && data.token.length <= 1800 && data.expires_at > Date.now() && session().id === current.id) {
+          journeyBridge = {session:current.id,token:data.token,expires:data.expires_at};handoffLinks();
+        }
+      }).catch(function(){}).finally(function(){bridgePending=false;});
+  }
   function nativeBookingLink(u) {
     return u.origin === 'https://app.koastride.com' && /^\/(?:book|booking|request)(?:\/|$)/.test(u.pathname);
   }
   function handoff(a) {
-    // Only source labels cross to our native booker: never a visitor/session ID.
+    // Approved signed, expiring first-party continuity reference. Source labels remain untrusted evidence.
     // Keep destination UTM/referral fields intact; Book gives a valid ka_v=1
     // first-touch snapshot precedence over those destination campaign fields.
     try {
       var u = new URL(a.href, location.href);
       if (!nativeBookingLink(u)) return;
       Array.from(u.searchParams.keys()).forEach(function (key) { if (key.indexOf('ka_') === 0) u.searchParams.delete(key); });
+      u.hash=u.hash.replace(/(?:^#|&)kj=[^&]*/g,'').replace(/^&/,'#');
       if (optedOut()) {
-        u.searchParams.set('ka_tracking', 'off');
+        journeyBridge=null;u.searchParams.set('ka_tracking', 'off');
       } else {
-        var first = cleanTouch(session().first_touch);
+        var currentSession=session();
+        if(journeyBridge&&journeyBridge.session===currentSession.id&&journeyBridge.expires>Date.now())u.hash=(u.hash?u.hash+'&':'#')+'kj='+encodeURIComponent(journeyBridge.token);
+        var first = cleanTouch(currentSession.first_touch);
         u.searchParams.set('ka_v', '1');
         ['source', 'medium', 'campaign', 'content'].forEach(function (key) {
           if (first[key]) u.searchParams.set('ka_' + key, first[key]);
@@ -106,12 +123,15 @@
     if (document.querySelectorAll) document.querySelectorAll('a[href]').forEach(handoff);
   }
   track('page_view', '');
+  if(typeof setTimeout==='function'){setTimeout(prepareBridge,1000);setTimeout(prepareBridge,4000);}
+  // Refresh ahead of an ordinary native-link activation; navigation itself never waits.
+  if(document.addEventListener){['pointerover','focusin'].forEach(function(type){document.addEventListener(type,function(e){var a=e.target&&e.target.closest?e.target.closest('a[href]'):null;if(a){try{if(nativeBookingLink(new URL(a.href,location.href)))prepareBridge();}catch(_){}}},{passive:true});});}
   try{if(typeof window.createKoastJourney==='function')window.createKoastJourney({optedOut:optedOut,session:session,path:path,send:function(payload){
     if(optedOut())return;
     try{fetch(ENDPOINT,{method:'POST',mode:'cors',credentials:'omit',keepalive:true,referrerPolicy:'no-referrer',headers:{'Content-Type':'text/plain;charset=UTF-8'},body:JSON.stringify(payload)}).catch(function(){});}catch(_){}
   }});}catch(_){} // Optional interaction measurement cannot break source handoff.
   handoffLinks();
-  window.addEventListener('pageshow', function (e) { if (e.persisted) { track('page_view', ''); handoffLinks(); } });
+  window.addEventListener('pageshow', function (e) { if (e.persisted) { track('page_view', ''); handoffLinks();prepareBridge(); } });
   // Refresh at activation too, for late-added links, changed privacy choices,
   // restored pages and expired sessions. No interception or delayed navigation.
   ['auxclick', 'contextmenu'].forEach(function (type) {

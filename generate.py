@@ -27,9 +27,9 @@ CARE_RIDES_LIVE = False
 # Keep the unfinished rider app out of public marketing until launch.
 APP_MARKETING_LIVE = False
 
-# Remains OFF until Eugene approves the exact expanded measurement notice and
-# both collector/migration rollout gates pass. No implicit environment activation.
-JOURNEY_MEASUREMENT_LIVE = False
+# Owner-approved Nov27 rollout: publish this matching notice/SDK only after
+# schema and dedicated-secret staging; verify collectors/native app and live gates.
+JOURNEY_MEASUREMENT_LIVE = True
 
 def head(title, desc, prefix="", extra=""):
     return f"""<!DOCTYPE html>
@@ -47,7 +47,7 @@ def head(title, desc, prefix="", extra=""):
 <meta name="theme-color" content="#0e1013">
 {('<meta name="koast-journey" content="enabled">' if JOURNEY_MEASUREMENT_LIVE else '')}
 <script src="/koast-journey.js?v=1" defer></script>
-<script src="/koast-acquisition.js?v=3" defer></script>
+<script src="/koast-acquisition.js?v=4" defer></script>
 <meta property="og:site_name" content="Koast">{extra}
 </head>
 <body>
@@ -2227,7 +2227,7 @@ p += footer("")
 write("sms-consent.html", p)
 
 # ============================ SHARED PRIVACY ============================
-legal_page('privacy.html', 'Privacy Policy', "How Koast handles rider, chauffeur, operator and website information, permissions and privacy requests.", legal_body('privacy'), effective_date='November 13, 2026')
+legal_page('privacy.html', 'Privacy Policy', "How Koast handles rider, chauffeur, operator and website information, permissions and privacy requests.", legal_body('privacy'), effective_date='November 27, 2026')
 
 # ============================ SEO POST-PROCESSING ============================
 import re as _re, json as _json, glob as _glob, struct as _struct

@@ -43,7 +43,7 @@ test('generated public families preserve identity and quote-only groups',()=>{
   for(const path of ['cities/palo-alto.html','wine-tours/livermore.html','wineries/stags-leap-wine-cellars.html','airports/sfo.html','services/corporate-travel.html']){
     const page=readFileSync(new URL('../'+path,import.meta.url),'utf8');
     assert.equal((page.match(/<h1\b/g)||[]).length,1,path);
-    assert.match(page,/koast-acquisition\.js\?v=3/,path);
+    assert.match(page,/koast-acquisition\.js\?v=4/,path);
     assert.match(page,/marketing-design\.css\?v=3/,path);
     assert.match(page,/rel="canonical"/,path);
   }
