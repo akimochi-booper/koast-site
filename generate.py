@@ -27,6 +27,10 @@ CARE_RIDES_LIVE = False
 # Keep the unfinished rider app out of public marketing until launch.
 APP_MARKETING_LIVE = False
 
+# Remains OFF until Eugene approves the exact expanded measurement notice and
+# both collector/migration rollout gates pass. No implicit environment activation.
+JOURNEY_MEASUREMENT_LIVE = False
+
 def head(title, desc, prefix="", extra=""):
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -41,6 +45,8 @@ def head(title, desc, prefix="", extra=""):
 <link rel="stylesheet" href="{prefix}css/main.css?v=34">
 <link rel="manifest" href="/site.webmanifest">
 <meta name="theme-color" content="#0e1013">
+{('<meta name="koast-journey" content="enabled">' if JOURNEY_MEASUREMENT_LIVE else '')}
+<script src="/koast-journey.js?v=1" defer></script>
 <script src="/koast-acquisition.js?v=3" defer></script>
 <meta property="og:site_name" content="Koast">{extra}
 </head>
@@ -207,6 +213,7 @@ CHAT_WIDGET = r"""
     panel.style.setProperty('--kchat-keyboard',Math.max(0,window.innerHeight-viewport.height-viewport.offsetTop)+'px');
   }
   function setChat(open){
+    if(window.koastJourney)window.koastJourney.record(open?'assistant_open':'control_click',open?{}:{action:'assistant_close'});
     document.body.classList.toggle('kchat-open',open);
     window.koastModalBackground(panel,open);
     launcher.setAttribute('aria-expanded',String(open));
@@ -238,6 +245,7 @@ CHAT_WIDGET = r"""
   function clearFailure(){if(failureNode){failureNode.remove();failureNode=null;}failedRequest=null;}
   function requestReply(payload){
     if(busy)return;
+    if(window.koastJourney)window.koastJourney.record('assistant_send');
     clearFailure();busy=true;syncControls();status.textContent='Kopilot is replying.';
     var thinking=appendMessage('bot dots','…');thinking.setAttribute('aria-hidden','true');
     var controller=new AbortController();var timeout=setTimeout(function(){controller.abort();},40000);
@@ -246,8 +254,10 @@ CHAT_WIDGET = r"""
       .then(function(data){
         if(!data||typeof data.reply!=='string'||!data.reply.trim())throw new Error('empty_reply');if(data.error)throw new Error(data.reply);
         appendMessage('bot',data.reply);history.push({role:'assistant',content:data.reply});
+        if(window.koastJourney)window.koastJourney.record('assistant_reply');
       })
       .catch(function(error){
+        if(window.koastJourney)window.koastJourney.record('assistant_unconfirmed');
         failedRequest=payload;
         failureNode=appendMessage('bot kchat-error',error.requestStatus?error.message:'I couldn’t connect. Try again, or email our team below.');
         var retry=document.createElement('button');retry.type='button';retry.className='kchat-retry';retry.textContent='Try again';

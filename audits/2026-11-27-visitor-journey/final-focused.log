@@ -1,0 +1,33 @@
+✔ one page view per document, sanitized campaign and referring origin only (3.1144ms)
+✔ booking and contact clicks count intent without addresses, URLs or navigation interception (2.6576ms)
+✔ DNT, GPC, opt out and non-production hosts suppress all events (3.9029ms)
+✔ session identity and attribution survive internal navigation, then expire after 30 idle minutes (1.9025ms)
+✔ new campaigns update last touch while keeping first touch (1.2869ms)
+✔ reject personal-looking campaign labels and unknown paths (0.7205ms)
+✔ storage and network failures do not break browsing; in-memory session still works (1.965ms)
+✔ every generated HTML page loads the tracker once and CSP permits collector (199.7405ms)
+✔ campaign labels match backend grammar, length, and lowercase contract (2.7793ms)
+✔ advertising marker types persist without transmitting or storing their values or search terms (6.8556ms)
+✔ restored history pages count another page view, respect opt out, and expire idle sessions (0.8969ms)
+✔ restored history page adopts the newer session written in the same tab (1.7516ms)
+✔ Moovs login and unrelated or lookalike paths are not booking intent (1.0072ms)
+✔ native handoff carries sanitized first touch without changing destination campaign, referral or fragment (1.1444ms)
+✔ native handoff uses the original source after later campaigns and handles static or newly added links (1.6349ms)
+✔ native handoff forwards only an opt-out when disabled, including a change after link preparation (2.739ms)
+✔ native handoff is confined to exact approved booking origin/routes and never alters Moovs or preview links (2.1072ms)
+✔ native handoff redacts unsafe labels, uses canonical landing path and forwards marker kind only (3.3355ms)
+✔ native handoff fails open with blocked storage/network and refreshes after an expired session (2.5886ms)
+✔ default-off initializes no observers, event handlers or identity (3.7955ms)
+✔ an initial privacy opt-out creates no journey owner or handlers (0.646ms)
+✔ only coarse context and fixed milestone properties are serialized (2.9888ms)
+✔ scroll quartiles are bounded/deduplicated and opt-out stops subsequent events (1.3421ms)
+✔ visibility time excludes hidden duration; duplicate hide does not duplicate an observation (0.9562ms)
+✔ private links and invalid properties are discarded and per-page volume is bounded (2.0534ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 590.5225

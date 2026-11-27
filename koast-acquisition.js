@@ -106,6 +106,10 @@
     if (document.querySelectorAll) document.querySelectorAll('a[href]').forEach(handoff);
   }
   track('page_view', '');
+  try{if(typeof window.createKoastJourney==='function')window.createKoastJourney({optedOut:optedOut,session:session,path:path,send:function(payload){
+    if(optedOut())return;
+    try{fetch(ENDPOINT,{method:'POST',mode:'cors',credentials:'omit',keepalive:true,referrerPolicy:'no-referrer',headers:{'Content-Type':'text/plain;charset=UTF-8'},body:JSON.stringify(payload)}).catch(function(){});}catch(_){}
+  }});}catch(_){} // Optional interaction measurement cannot break source handoff.
   handoffLinks();
   window.addEventListener('pageshow', function (e) { if (e.persisted) { track('page_view', ''); handoffLinks(); } });
   // Refresh at activation too, for late-added links, changed privacy choices,

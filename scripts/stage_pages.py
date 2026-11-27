@@ -14,7 +14,7 @@ WELL_KNOWN_FILES = {"apple-app-site-association", "assetlinks.json", "security.t
 ASSET_TYPES = {".css", ".gif", ".html", ".ico", ".jpg", ".js", ".mjs", ".png", ".svg", ".txt", ".webp", ".woff2"}
 ROOT_ASSETS = {
     "_headers", "_redirects", "favicon-v2.ico", "llms.txt", "robots.txt", "sitemap.xml", "site.webmanifest",
-    "sw.js", "koast-acquisition.js", "koast-chat.js", "koast-chat-links.js", "koast-chat-photos.js",
+    "sw.js", "koast-acquisition.js", "koast-journey.js", "koast-chat.js", "koast-chat-links.js", "koast-chat-photos.js",
     "koast-chat-voice.js", "marketing-design.js", "quote-request.js", "wine-controls.js", "wine-days.js",
 }
 

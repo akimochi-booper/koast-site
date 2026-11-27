@@ -1,0 +1,749 @@
+Site validation: 28 test files, 14 JavaScript syntax checks; Pacific date 2026-11-27.
+Generate site
+wrote index.html
+wrote cities/san-francisco.html
+wrote cities/san-jose.html
+wrote cities/oakland.html
+wrote cities/palo-alto.html
+wrote cities/new-york.html
+wrote cities/los-angeles.html
+wrote cities/chicago.html
+wrote cities/miami.html
+wrote cities/las-vegas.html
+wrote cities/dallas.html
+wrote cities/houston.html
+wrote cities/atlanta.html
+wrote cities/boston.html
+wrote cities/seattle.html
+wrote cities/washington-dc.html
+wrote cities/san-diego.html
+wrote cities/austin.html
+wrote cities/nashville.html
+wrote cities/denver.html
+wrote cities/phoenix.html
+wrote cities/philadelphia.html
+wrote cities/orlando.html
+wrote cities/charlotte.html
+wrote cities/minneapolis.html
+wrote cities/portland.html
+wrote cities/sacramento.html
+wrote cities/new-orleans.html
+wrote cities/tampa.html
+wrote cities/detroit.html
+wrote cities/salt-lake-city.html
+wrote cities/san-antonio.html
+wrote cities/raleigh.html
+wrote cities/index.html
+wrote airports/sfo.html
+wrote airports/oak.html
+wrote airports/sjc.html
+wrote airports/jfk.html
+wrote airports/lga.html
+wrote airports/ewr.html
+wrote airports/lax.html
+wrote airports/ord.html
+wrote airports/mdw.html
+wrote airports/mia.html
+wrote airports/las.html
+wrote airports/den.html
+wrote airports/dfw.html
+wrote airports/dal.html
+wrote airports/iah.html
+wrote airports/hou.html
+wrote airports/aus.html
+wrote airports/atl.html
+wrote airports/bos.html
+wrote airports/iad.html
+wrote airports/dca.html
+wrote airports/san.html
+wrote airports/phl.html
+wrote airports/phx.html
+wrote airports/clt.html
+wrote airports/bna.html
+wrote airports/msp.html
+wrote airports/mco.html
+wrote services/airport-transfers.html
+wrote services/corporate-travel.html
+wrote services/wine-tours.html
+wrote blog/index.html
+wrote blog/sfo-to-san-francisco-black-car-guide.html
+Done - site generated.
+wrote blog/san-francisco-summer-2026-events.html
+wrote blog/napa-sonoma-chauffeur-day-trip.html
+wrote blog/nyc-ground-travel-guide.html
+wrote blog/ea-guide-executive-ground-travel.html
+wrote terms.html
+wrote terms/rider/index.html
+wrote terms/driver/index.html
+wrote terms/connect/index.html
+wrote terms/standing-authorization/index.html
+wrote legal/index.html
+wrote sms-terms.html
+wrote sms-consent.html
+wrote privacy.html
+wrote blog/lax-airport-black-car-guide.html
+wrote blog/chicago-ohare-midway-guide.html
+wrote blog/vegas-convention-transportation.html
+wrote blog/miami-getting-around.html
+wrote blog/denver-mountain-transfers.html
+wrote blog/choosing-corporate-car-service.html
+wrote blog/chauffeur-terms-glossary.html
+wrote wine-tours/napa-valley.html
+wrote wine-tours/sonoma.html
+wrote wine-tours/healdsburg.html
+wrote wine-tours/paso-robles.html
+wrote wine-tours/santa-ynez.html
+wrote wine-tours/livermore.html
+wrote wine-tours/temecula.html
+wrote wine-tours/willamette-valley.html
+wrote wine-tours/walla-walla.html
+wrote wine-tours/finger-lakes.html
+wrote wine-tours/texas-hill-country.html
+wrote wine-tours/virginia.html
+wrote wineries/domaine-carneros.html
+wrote wineries/stags-leap-wine-cellars.html
+wrote wineries/inglenook.html
+wrote wineries/frogs-leap-winery.html
+wrote wineries/v-sattui-winery.html
+wrote wineries/castello-di-amorosa.html
+wrote wineries/buena-vista-winery.html
+wrote wineries/gundlach-bundschu-winery.html
+wrote wineries/benziger-family-winery.html
+wrote wineries/chateau-st-jean.html
+wrote wineries/st-francis-winery-and-vineyards.html
+wrote wineries/larson-family-winery.html
+wrote wineries/jordan-vineyard-and-winery.html
+wrote wineries/francis-ford-coppola-winery.html
+wrote wineries/dry-creek-vineyard.html
+wrote wineries/ridge-vineyards-lytton-springs.html
+wrote wineries/gary-farrell-vineyards-and-winery.html
+wrote wineries/rochioli-vineyards-and-winery.html
+wrote wineries/daou-vineyards.html
+wrote wineries/justin-vineyards-and-winery.html
+wrote wineries/tablas-creek-vineyard.html
+wrote wineries/eberle-winery.html
+wrote wineries/halter-ranch.html
+wrote wineries/turley-wine-cellars.html
+wrote wineries/sunstone-winery.html
+wrote wineries/fess-parker-winery-and-vineyard.html
+wrote wineries/firestone-vineyard.html
+wrote wineries/the-brander-vineyard.html
+wrote wineries/gainey-vineyard.html
+wrote wineries/alma-rosa-winery-and-vineyards.html
+wrote wineries/wente-vineyards.html
+wrote wineries/concannon-vineyard.html
+wrote wineries/murrietas-well.html
+wrote wineries/mcgrail-vineyards-and-winery.html
+wrote wineries/the-steven-kent-winery.html
+wrote wineries/las-positas-vineyards.html
+wrote wineries/wilson-creek-winery-and-vineyard.html
+wrote wineries/south-coast-winery-resort-and-spa.html
+wrote wineries/ponte-winery.html
+wrote wineries/leoness-cellars.html
+wrote wineries/doffo-winery.html
+wrote wineries/robert-renzoni-vineyards-and-winery.html
+wrote wineries/domaine-drouhin-oregon.html
+wrote wineries/the-eyrie-vineyards.html
+wrote wineries/argyle-winery.html
+wrote wineries/adelsheim-vineyard.html
+wrote wineries/brooks-wine.html
+wrote wineries/king-estate-winery.html
+wrote wineries/lecole-no-41.html
+wrote wineries/woodward-canyon-winery.html
+wrote wineries/long-shadows-vintners.html
+wrote wineries/dunham-cellars.html
+wrote wineries/pepper-bridge-winery.html
+wrote wineries/sleight-of-hand-cellars.html
+wrote wineries/dr-konstantin-frank-winery.html
+wrote wineries/hermann-j-wiemer-vineyard.html
+wrote wineries/fox-run-vineyards.html
+wrote wineries/wagner-vineyards-estate-winery.html
+wrote wineries/sheldrake-point-winery.html
+wrote wineries/heron-hill-winery.html
+wrote wineries/barboursville-vineyards.html
+wrote wineries/king-family-vineyards.html
+wrote wineries/pippin-hill-farm-and-vineyards.html
+wrote wineries/stone-tower-winery.html
+wrote wineries/breaux-vineyards.html
+wrote wineries/greenhill-vineyards.html
+wrote wineries/becker-vineyards.html
+wrote wineries/william-chris-vineyards.html
+wrote wineries/grape-creek-vineyards.html
+wrote wineries/pedernales-cellars.html
+wrote wineries/signor-vineyards.html
+wrote wineries/lost-draw-cellars.html
+wrote wineries/index.html
+wrote routes/sfo-to-san-francisco.html
+wrote routes/sfo-to-napa.html
+wrote routes/sfo-to-sonoma.html
+wrote routes/sfo-to-monterey.html
+wrote routes/oak-to-san-francisco.html
+wrote routes/oak-to-napa.html
+wrote routes/oak-to-sonoma.html
+wrote routes/sjc-to-silicon-valley.html
+wrote routes/sjc-to-san-francisco.html
+wrote routes/sfo-to-silicon-valley.html
+wrote services/weddings.html
+wrote services/party-bus.html
+wrote blog/austin-festival-season.html
+wrote blog/boston-logan-guide.html
+wrote blog/seattle-getting-around.html
+wrote blog/dc-airport-decision.html
+wrote blog/sonoma-first-timers.html
+wrote blog/temecula-balloons-tastings.html
+wrote blog/willamette-pinot-weekend.html
+wrote blog/group-wine-tour-planning.html
+wrote support.html
+wrote blog/nyc-events-calendar.html
+wrote blog/chicago-summer-festivals.html
+wrote blog/miami-art-week.html
+wrote blog/nashville-music-calendar.html
+wrote blog/houston-rodeo-guide.html
+wrote blog/seattle-events-guide.html
+wrote blog/jfk-black-car-guide.html
+wrote blog/atlanta-airport-black-car-guide.html
+wrote blog/dfw-black-car-guide.html
+wrote blog/miami-airport-black-car-guide.html
+wrote blog/investor-roadshow-ground-travel.html
+wrote blog/rainy-day-wine-tasting-napa-sonoma.html
+wrote blog/airport-arrival-before-hotel-check-in.html
+wrote blog/napa-sonoma-wineries-with-children.html
+wrote blog/codeshare-flight-number-airport-pickup.html
+wrote blog/what-to-wear-wine-tasting-napa-sonoma.html
+wrote blog/forgotten-item-hotel-airport-ride.html
+wrote blog/winery-tasting-room-address-entrance.html
+wrote blog/changed-hotel-airport-transfer.html
+wrote blog/dogs-at-napa-sonoma-wineries.html
+wrote blog/adding-passenger-pickup-stop.html
+wrote blog/winery-picnic-rules-napa-sonoma.html
+wrote blog/convention-center-pickup-building-entrance.html
+wrote blog/wine-club-pickup-trip-planning.html
+wrote blog/delayed-baggage-airport-pickup.html
+wrote blog/wine-country-with-non-drinkers.html
+wrote blog/airport-pickup-without-mobile-data.html
+wrote blog/wine-tasting-vs-winery-tour.html
+wrote blog/airport-transfer-multiple-drop-offs.html
+wrote blog/airport-pickup-mobility-needs.html
+wrote blog/flying-home-with-wine.html
+wrote blog/flying-with-presentation-equipment.html
+wrote blog/flying-with-golf-clubs-airport-transfer.html
+wrote blog/airport-pickup-dates-midnight-overnight-flights.html
+wrote blog/airport-rides-with-child-seats.html
+wrote blog/airport-ride-flight-change.html
+wrote blog/airport-suv-luggage-planning.html
+wrote blog/wedding-guest-return-rides.html
+wrote blog/napa-tasting-and-transportation-reservations.html
+wrote blog/sfo-oak-sjc-silicon-valley-business-trip.html
+wrote blog/hotel-checkout-before-evening-flight.html
+wrote blog/booking-airport-ride-for-someone-else.html
+wrote blog/hourly-chauffeur-vs-point-to-point-transfers.html
+wrote blog/group-airport-transfers.html
+wrote blog/black-car-vs-rideshare-cost.html
+wrote preview/wine-designs/cinema.html
+wrote preview/wine-designs/journal.html
+wrote preview/wine-designs/gallery.html
+enhanced airports/atl.html
+enhanced airports/aus.html
+enhanced airports/bna.html
+enhanced airports/bos.html
+enhanced airports/clt.html
+enhanced airports/dal.html
+enhanced airports/dca.html
+enhanced airports/den.html
+enhanced airports/dfw.html
+enhanced airports/ewr.html
+enhanced airports/hou.html
+enhanced airports/iad.html
+enhanced airports/iah.html
+enhanced airports/jfk.html
+enhanced airports/las.html
+enhanced airports/lax.html
+enhanced airports/lga.html
+enhanced airports/mco.html
+enhanced airports/mdw.html
+enhanced airports/mia.html
+enhanced airports/msp.html
+enhanced airports/oak.html
+enhanced airports/ord.html
+enhanced airports/phl.html
+enhanced airports/phx.html
+enhanced airports/san.html
+enhanced airports/sfo.html
+enhanced airports/sjc.html
+enhanced blog/adding-passenger-pickup-stop.html
+enhanced blog/airport-arrival-before-hotel-check-in.html
+enhanced blog/airport-pickup-dates-midnight-overnight-flights.html
+enhanced blog/airport-pickup-mobility-needs.html
+enhanced blog/airport-pickup-without-mobile-data.html
+enhanced blog/airport-ride-flight-change.html
+enhanced blog/airport-rides-with-child-seats.html
+enhanced blog/airport-suv-luggage-planning.html
+enhanced blog/airport-transfer-multiple-drop-offs.html
+enhanced blog/atlanta-airport-black-car-guide.html
+enhanced blog/austin-festival-season.html
+enhanced blog/black-car-vs-rideshare-cost.html
+enhanced blog/booking-airport-ride-for-someone-else.html
+enhanced blog/boston-logan-guide.html
+enhanced blog/changed-hotel-airport-transfer.html
+enhanced blog/chauffeur-terms-glossary.html
+enhanced blog/chicago-ohare-midway-guide.html
+enhanced blog/chicago-summer-festivals.html
+enhanced blog/choosing-corporate-car-service.html
+enhanced blog/codeshare-flight-number-airport-pickup.html
+enhanced blog/convention-center-pickup-building-entrance.html
+enhanced blog/dc-airport-decision.html
+enhanced blog/delayed-baggage-airport-pickup.html
+enhanced blog/denver-mountain-transfers.html
+enhanced blog/dfw-black-car-guide.html
+enhanced blog/dogs-at-napa-sonoma-wineries.html
+enhanced blog/ea-guide-executive-ground-travel.html
+enhanced blog/flying-home-with-wine.html
+enhanced blog/flying-with-golf-clubs-airport-transfer.html
+enhanced blog/flying-with-presentation-equipment.html
+enhanced blog/forgotten-item-hotel-airport-ride.html
+enhanced blog/group-airport-transfers.html
+enhanced blog/group-wine-tour-planning.html
+enhanced blog/hotel-checkout-before-evening-flight.html
+enhanced blog/hourly-chauffeur-vs-point-to-point-transfers.html
+enhanced blog/houston-rodeo-guide.html
+enhanced blog/index.html
+enhanced blog/investor-roadshow-ground-travel.html
+enhanced blog/jfk-black-car-guide.html
+enhanced blog/lax-airport-black-car-guide.html
+enhanced blog/miami-airport-black-car-guide.html
+enhanced blog/miami-art-week.html
+enhanced blog/miami-getting-around.html
+enhanced blog/napa-sonoma-chauffeur-day-trip.html
+enhanced blog/napa-sonoma-wineries-with-children.html
+enhanced blog/napa-tasting-and-transportation-reservations.html
+enhanced blog/nashville-music-calendar.html
+enhanced blog/nyc-events-calendar.html
+enhanced blog/nyc-ground-travel-guide.html
+enhanced blog/rainy-day-wine-tasting-napa-sonoma.html
+enhanced blog/san-francisco-summer-2026-events.html
+enhanced blog/seattle-events-guide.html
+enhanced blog/seattle-getting-around.html
+enhanced blog/sfo-oak-sjc-silicon-valley-business-trip.html
+enhanced blog/sfo-to-san-francisco-black-car-guide.html
+enhanced blog/sonoma-first-timers.html
+enhanced blog/temecula-balloons-tastings.html
+enhanced blog/vegas-convention-transportation.html
+enhanced blog/wedding-guest-return-rides.html
+enhanced blog/what-to-wear-wine-tasting-napa-sonoma.html
+enhanced blog/willamette-pinot-weekend.html
+enhanced blog/wine-club-pickup-trip-planning.html
+enhanced blog/wine-country-with-non-drinkers.html
+enhanced blog/wine-tasting-vs-winery-tour.html
+enhanced blog/winery-picnic-rules-napa-sonoma.html
+enhanced blog/winery-tasting-room-address-entrance.html
+enhanced cities/atlanta.html
+enhanced cities/austin.html
+enhanced cities/boston.html
+enhanced cities/charlotte.html
+enhanced cities/chicago.html
+enhanced cities/dallas.html
+enhanced cities/denver.html
+enhanced cities/detroit.html
+enhanced cities/houston.html
+enhanced cities/index.html
+enhanced cities/las-vegas.html
+enhanced cities/los-angeles.html
+enhanced cities/miami.html
+enhanced cities/minneapolis.html
+enhanced cities/nashville.html
+enhanced cities/new-orleans.html
+enhanced cities/new-york.html
+enhanced cities/oakland.html
+enhanced cities/orlando.html
+enhanced cities/palo-alto.html
+enhanced cities/philadelphia.html
+enhanced cities/phoenix.html
+enhanced cities/portland.html
+enhanced cities/raleigh.html
+enhanced cities/sacramento.html
+enhanced cities/salt-lake-city.html
+enhanced cities/san-antonio.html
+enhanced cities/san-diego.html
+enhanced cities/san-francisco.html
+enhanced cities/san-jose.html
+enhanced cities/seattle.html
+enhanced cities/tampa.html
+enhanced cities/washington-dc.html
+enhanced index.html
+enhanced legal/index.html
+enhanced preview/wine-designs/cinema.html
+enhanced preview/wine-designs/gallery.html
+enhanced preview/wine-designs/journal.html
+enhanced privacy.html
+enhanced routes/oak-to-napa.html
+enhanced routes/oak-to-san-francisco.html
+enhanced routes/oak-to-sonoma.html
+enhanced routes/sfo-to-monterey.html
+enhanced routes/sfo-to-napa.html
+enhanced routes/sfo-to-san-francisco.html
+enhanced routes/sfo-to-silicon-valley.html
+enhanced routes/sfo-to-sonoma.html
+enhanced routes/sjc-to-san-francisco.html
+enhanced routes/sjc-to-silicon-valley.html
+enhanced services/airport-transfers.html
+enhanced services/corporate-travel.html
+enhanced services/party-bus.html
+enhanced services/weddings.html
+enhanced services/wine-tours.html
+enhanced sms-consent.html
+enhanced sms-terms.html
+enhanced support.html
+enhanced terms.html
+enhanced terms/connect/index.html
+enhanced terms/driver/index.html
+enhanced terms/rider/index.html
+enhanced terms/standing-authorization/index.html
+enhanced wine-tours/finger-lakes.html
+enhanced wine-tours/healdsburg.html
+enhanced wine-tours/livermore.html
+enhanced wine-tours/napa-valley.html
+enhanced wine-tours/paso-robles.html
+enhanced wine-tours/santa-ynez.html
+enhanced wine-tours/sonoma.html
+enhanced wine-tours/temecula.html
+enhanced wine-tours/texas-hill-country.html
+enhanced wine-tours/virginia.html
+enhanced wine-tours/walla-walla.html
+enhanced wine-tours/willamette-valley.html
+enhanced wineries/adelsheim-vineyard.html
+enhanced wineries/alma-rosa-winery-and-vineyards.html
+enhanced wineries/argyle-winery.html
+enhanced wineries/barboursville-vineyards.html
+enhanced wineries/becker-vineyards.html
+enhanced wineries/benziger-family-winery.html
+enhanced wineries/breaux-vineyards.html
+enhanced wineries/brooks-wine.html
+enhanced wineries/buena-vista-winery.html
+enhanced wineries/castello-di-amorosa.html
+enhanced wineries/chateau-st-jean.html
+enhanced wineries/concannon-vineyard.html
+enhanced wineries/daou-vineyards.html
+enhanced wineries/doffo-winery.html
+enhanced wineries/domaine-carneros.html
+enhanced wineries/domaine-drouhin-oregon.html
+enhanced wineries/dr-konstantin-frank-winery.html
+enhanced wineries/dry-creek-vineyard.html
+enhanced wineries/dunham-cellars.html
+enhanced wineries/eberle-winery.html
+enhanced wineries/fess-parker-winery-and-vineyard.html
+enhanced wineries/firestone-vineyard.html
+enhanced wineries/fox-run-vineyards.html
+enhanced wineries/francis-ford-coppola-winery.html
+enhanced wineries/frogs-leap-winery.html
+enhanced wineries/gainey-vineyard.html
+enhanced wineries/gary-farrell-vineyards-and-winery.html
+enhanced wineries/grape-creek-vineyards.html
+enhanced wineries/greenhill-vineyards.html
+enhanced wineries/gundlach-bundschu-winery.html
+enhanced wineries/halter-ranch.html
+enhanced wineries/hermann-j-wiemer-vineyard.html
+enhanced wineries/heron-hill-winery.html
+enhanced wineries/index.html
+enhanced wineries/inglenook.html
+enhanced wineries/jordan-vineyard-and-winery.html
+enhanced wineries/justin-vineyards-and-winery.html
+enhanced wineries/king-estate-winery.html
+enhanced wineries/king-family-vineyards.html
+enhanced wineries/larson-family-winery.html
+enhanced wineries/las-positas-vineyards.html
+enhanced wineries/lecole-no-41.html
+enhanced wineries/leoness-cellars.html
+enhanced wineries/long-shadows-vintners.html
+enhanced wineries/lost-draw-cellars.html
+enhanced wineries/mcgrail-vineyards-and-winery.html
+enhanced wineries/murrietas-well.html
+enhanced wineries/pedernales-cellars.html
+enhanced wineries/pepper-bridge-winery.html
+enhanced wineries/pippin-hill-farm-and-vineyards.html
+enhanced wineries/ponte-winery.html
+enhanced wineries/ridge-vineyards-lytton-springs.html
+enhanced wineries/robert-renzoni-vineyards-and-winery.html
+enhanced wineries/rochioli-vineyards-and-winery.html
+enhanced wineries/sheldrake-point-winery.html
+enhanced wineries/signor-vineyards.html
+enhanced wineries/sleight-of-hand-cellars.html
+enhanced wineries/south-coast-winery-resort-and-spa.html
+enhanced wineries/st-francis-winery-and-vineyards.html
+enhanced wineries/stags-leap-wine-cellars.html
+enhanced wineries/stone-tower-winery.html
+enhanced wineries/sunstone-winery.html
+enhanced wineries/tablas-creek-vineyard.html
+enhanced wineries/the-brander-vineyard.html
+enhanced wineries/the-eyrie-vineyards.html
+enhanced wineries/the-steven-kent-winery.html
+enhanced wineries/turley-wine-cellars.html
+enhanced wineries/v-sattui-winery.html
+enhanced wineries/wagner-vineyards-estate-winery.html
+enhanced wineries/wente-vineyards.html
+enhanced wineries/william-chris-vineyards.html
+enhanced wineries/wilson-creek-winery-and-vineyard.html
+enhanced wineries/woodward-canyon-winery.html
+sitemap.xml, robots.txt, llms.txt written
+wrote 404.html
+Parse koast-acquisition.js
+Parse quote-request.js
+Parse marketing-design.js
+Parse wine-controls.js
+Parse wine-days.js
+Parse koast-chat-links.js
+Parse koast-chat-photos.js
+Parse koast-chat.js
+Parse koast-chat-voice.js
+Parse sw.js
+Parse src/chat-voice.mjs
+Parse workers/koast-chat/worker.js
+Parse workers/koast-chat/photo-input.mjs
+Parse workers/koast-chat/quote-requests.mjs
+Test website and assistant
+✔ one page view per document, sanitized campaign and referring origin only (2.1174ms)
+✔ booking and contact clicks count intent without addresses, URLs or navigation interception (3.288ms)
+✔ DNT, GPC, opt out and non-production hosts suppress all events (3.8194ms)
+✔ session identity and attribution survive internal navigation, then expire after 30 idle minutes (1.4855ms)
+✔ new campaigns update last touch while keeping first touch (0.975ms)
+✔ reject personal-looking campaign labels and unknown paths (0.6412ms)
+✔ storage and network failures do not break browsing; in-memory session still works (1.6717ms)
+✔ every generated HTML page loads the tracker once and CSP permits collector (62.9134ms)
+✔ campaign labels match backend grammar, length, and lowercase contract (2.8283ms)
+✔ advertising marker types persist without transmitting or storing their values or search terms (6.0223ms)
+✔ restored history pages count another page view, respect opt out, and expire idle sessions (0.8789ms)
+✔ restored history page adopts the newer session written in the same tab (1.6608ms)
+✔ Moovs login and unrelated or lookalike paths are not booking intent (0.9949ms)
+✔ native handoff carries sanitized first touch without changing destination campaign, referral or fragment (1.0791ms)
+✔ native handoff uses the original source after later campaigns and handles static or newly added links (1.5431ms)
+✔ native handoff forwards only an opt-out when disabled, including a change after link preparation (2.6049ms)
+✔ native handoff is confined to exact approved booking origin/routes and never alters Moovs or preview links (1.5275ms)
+✔ native handoff redacts unsafe labels, uses canonical landing path and forwards marker kind only (3.2622ms)
+✔ native handoff fails open with blocked storage/network and refreshes after an expired session (2.7996ms)
+✔ dictation inserts at selection, native input persists, Stop drains then releases (2.5758ms)
+✔ Cancel restores start draft; stale result cannot replace it (0.3087ms)
+✔ explicit Send finish fences final callbacks from a cleared/new draft (0.2184ms)
+✔ manual typing stops capture without restoring over new text (0.2128ms)
+✔ principal/room guard rejects results; old onend cannot clear new session (0.2301ms)
+✔ permission denial resets pressed state and reports actionable copy key (0.6229ms)
+✔ late getUserMedia stream is stopped after cancel; AudioContext closed (0.3819ms)
+✔ background finishes visible transcript and releases audio stream (0.3632ms)
+✔ Stop has bounded drain when browser never ends (0.9694ms)
+✔ same microphone toggles Stop; different field fences old capture (0.2564ms)
+✔ always-on preference restarts natural end, keeps segments, explicit Stop never restarts (0.2492ms)
+✔ synchronous native stop/end leaves no orphan drain timer (0.1898ms)
+✔ a browser that never confirms microphone start exits after bounded request (0.1523ms)
+✔ hidden and disabled inputs stop capture without waiting for a new result (0.1943ms)
+✔ waveform height follows actual analyser samples (0.5511ms)
+✔ refresh preserves the existing URL and month-only visible publication without a duplicate card (1.1555ms)
+✔ refresh retains the historical schema date and exposes only its real modification date (2.6269ms)
+✔ the existing Healdsburg URL stays indexable with one heading and consistent service identity (1.501ms)
+✔ all searchable FAQ answers are exactly the answers presented to visitors (0.8781ms)
+✔ private-driver search intent leads to existing quote and local planning destinations (0.2875ms)
+✔ reported legacy San Francisco URL redirects to the indexable city page (4.2291ms)
+✔ default-off initializes no observers, event handlers or identity (3.5488ms)
+✔ only coarse context and fixed milestone properties are serialized (2.6337ms)
+✔ scroll quartiles are bounded/deduplicated and opt-out stops subsequent events (0.8424ms)
+✔ visibility time excludes hidden duration; duplicate hide does not duplicate an observation (0.6785ms)
+✔ private links and invalid properties are discarded and per-page volume is bounded (1.5234ms)
+✔ published legal pages resolve every role and show the approved effective date (4.0391ms)
+✔ legacy URL and role URL serve identical ride-specific terms and preserve privacy anchors (4.153ms)
+✔ public service copy no longer advertises the superseded universal ride schedules (6.1782ms)
+✔ shared privacy covers actual safety, permissions and future feature boundaries (4.9463ms)
+✔ privacy separates anonymous visits from limited native order attribution and its retention (0.6843ms)
+✔ Livermore remains one indexable regional transport service with its existing social image (0.9424ms)
+✔ all six Livermore answers match their searchable schema and preserve reservation boundaries (0.9042ms)
+✔ local winery destinations and route controls keep exploration on Koast (1.4758ms)
+✔ pure Livermore renderer retains the existing booking slot and escapes a supplied quote URL (68.0251ms)
+✔ marketing renewal preserves corporate and secondary hero actions (0.6761ms)
+✔ marketing renewal retains one complete nested booking widget and moves its initializer with it (0.2486ms)
+✔ marketing renewal leaves held preview designs untouched (0.0974ms)
+✔ generated public families preserve identity and quote-only groups (2.9045ms)
+✔ Palo Alto retains one indexable URL and a truthful local service identity (1.5235ms)
+✔ airport intent and quote planning use the established destinations (0.3572ms)
+✔ Palo Alto FAQ schema is exactly the visible FAQ and relevant inbound links remain (1.8576ms)
+✔ offscreen booking waits until near viewport and loads only once (1.994ms)
+✔ keyboard focus and browsers without IntersectionObserver can load booking (0.9947ms)
+✔ booking sizing ignores other origins and unreasonable heights (0.6454ms)
+✔ test discovery includes both owners and newly added files in stable order (13.9182ms)
+✔ missing, empty or non-file test owners fail before any process starts (30.8965ms)
+✔ validation generates first, includes every discovered suite, and checks pages last without a shell (16.7181ms)
+✔ nonzero exits, signals and launch errors stop validation and remain failures (11.2478ms)
+✔ the default date follows the Pacific midnight boundary (12.2586ms)
+✔ impossible or malformed dates cannot start the build (8.1014ms)
+✔ CLI help works without site files and unknown arguments fail without starting validation (966.2135ms)
+✔ name and reply email validation fails before starting a request (0.9102ms)
+✔ a double click sends once while pending and success cannot be resent (15.8385ms)
+✔ uncertain retry sends the identical frozen payload and key despite edited values (0.5038ms)
+✔ non-JSON, unknown success, unavailable and mismatched receipt responses remain unconfirmed (0.94ms)
+✔ definite validation errors allow correction, rate limits retain the request and expiry blocks automatic resend (0.6861ms)
+✔ form data never enters browser storage, analytics or automatic customer email (0.238ms)
+✔ Sacramento keeps its canonical and local Service identity without an invented office (1.6069ms)
+✔ Sacramento answers match the search schema and preserve transport boundaries (0.9296ms)
+✔ Sacramento planning and quote links resolve to existing destinations with a contextual inbound path (0.7143ms)
+✔ sharing images represent locations, services and routes while home keeps the brand card (6.5194ms)
+✔ every indexable sharing card references a local image with consistent metadata (120.5783ms)
+✔ transport owner preserves the native booking slot and escapes the injected quote URL (0.7365ms)
+✔ small-party answers distinguish winery admission, shared experiences and vehicle capacity (0.2757ms)
+✔ destination clarification and itinerary planning remain useful and navigable (0.2705ms)
+✔ generated winery page retains one indexable service and exactly matching visible FAQs (1.8743ms)
+✔ public authorization renders exactly the customer contract frozen for acceptance (7.0398ms)
+✔ standing authorization preserves company, request, pricing and payment limits (0.416ms)
+✔ rider discovery and privacy records support separate, scoped authorization (0.9482ms)
+✔ exact approved destinations become same-context native links with visible literal labels (1.9455ms)
+✔ keeps unapproved token literal: "javascript:alert(1)" (0.4935ms)
+✔ keeps unapproved token literal: "data:text/html,evil" (0.4376ms)
+✔ keeps unapproved token literal: "http://koastride.com/" (0.9652ms)
+✔ keeps unapproved token literal: "//koastride.com/" (0.5192ms)
+✔ keeps unapproved token literal: "https://koastride.com.evil.test/" (0.5606ms)
+✔ keeps unapproved token literal: "https://evil.test/https://koastride.com/" (0.4399ms)
+✔ keeps unapproved token literal: "https://koastride.com@evil.test/" (0.4551ms)
+✔ keeps unapproved token literal: "https://evil@koastride.com/" (0.514ms)
+✔ keeps unapproved token literal: "https://koastride.com:443/" (0.4743ms)
+✔ keeps unapproved token literal: "https://koastride.com./" (0.4527ms)
+✔ keeps unapproved token literal: "https://www.koastride.com/" (0.4068ms)
+✔ keeps unapproved token literal: "https://koastride.com/unknown" (0.4293ms)
+✔ keeps unapproved token literal: "https://koastride.com/?next=https://evil.test" (0.4654ms)
+✔ keeps unapproved token literal: "https://koastride.com/#unknown" (0.3713ms)
+✔ keeps unapproved token literal: "https://koastride.com/%2f" (0.3929ms)
+✔ keeps unapproved token literal: "https://koastride.com/%2e%2e/" (0.3879ms)
+✔ keeps unapproved token literal: "https://koastride.com/\\evil" (0.3724ms)
+✔ keeps unapproved token literal: "https://koastride.com/\u0000" (0.4811ms)
+✔ keeps unapproved token literal: "https://koastride.com/​" (0.5806ms)
+✔ keeps unapproved token literal: "https://koastride.com/‮evil" (0.4091ms)
+✔ keeps unapproved token literal: "https://koastrіde.com/" (0.3981ms)
+✔ keeps unapproved token literal: "HTTPS://KOASTRIDE.COM/" (0.3885ms)
+✔ keeps unapproved token literal: "https://customer.moovs.app/koast/request/new/" (0.3894ms)
+✔ keeps unapproved token literal: "https://customer.moovs.app/other/request/new" (0.419ms)
+✔ keeps unapproved token literal: "https://customer.moovs.app/koast/request/new?email=private" (0.3777ms)
+✔ keeps unapproved token literal: "https://customer.moovs.app/koast/new/info#private" (0.4018ms)
+✔ keeps unapproved token literal: "https://customer.moovs.app.evil/koast/request/new" (0.3868ms)
+✔ keeps unapproved token literal: "reserve@koastride.com.evil" (0.4004ms)
+✔ keeps unapproved token literal: "mailto:reserve@koastride.com?bcc=evil@example.test" (0.4495ms)
+✔ keeps unapproved token literal: "mailto:evil@koastride.com" (0.3798ms)
+✔ keeps unapproved token literal: "https://koastride.com&#47;" (0.4133ms)
+✔ keeps unapproved token literal: "https://%6boastride.com/" (0.4375ms)
+✔ keeps unapproved token literal: "https://koastride.com/%252f" (0.4623ms)
+✔ keeps unapproved token literal: "prefixhttps://koastride.com/" (0.4554ms)
+✔ keeps unapproved token literal: "[Click](https://koastride.com/)" (0.4282ms)
+✔ HTML-looking content stays text even when followed by an approved link (0.5796ms)
+✔ empty and unlinked replies retain exact text without extra elements (0.7765ms)
+✔ bare canonical host gets a native root link without changing its displayed text (0.4911ms)
+✔ every allowed public Koast destination has a generated canonical page (0.8293ms)
+✔ photo choice is gated by capability and keeps preparation local until taken (2.2924ms)
+✔ batch conversion failure is atomic and leaves a prior photo intact (0.64ms)
+✔ closing during preparation discards late results and restores controls (0.5987ms)
+✔ removal returns focus to attach and busy blocks file changes (0.6301ms)
+✔ count guard rejects oversize batches before decoding (0.692ms)
+✔ original file size/type and decompression bomb headers are rejected before bitmap decode (1.0634ms)
+✔ non-image bytes cannot be decoded as uploaded photos (0.5365ms)
+✔ cancelled batch never starts file two or overlaps a replacement decode (1.2334ms)
+✔ false and unavailable capabilities keep attachments hidden and allow a later retry (1.1075ms)
+✔ PNG, JPEG and all common WebP headers return expected dimensions (1.1759ms)
+✔ welcome opens without a software-keyboard focus and Escape restores launcher/background (3.4851ms)
+✔ quick question uses text-only API; busy blocks duplicates and keeps a newly typed draft (5.3944ms)
+✔ only assistant replies gain approved links; user URLs remain literal (1.8824ms)
+✔ failed request retries the same payload without duplicating the user message or clearing a draft (1.7768ms)
+✔ a stalled request aborts and recovers controls with a manual retry (1.5032ms)
+✔ IME Enter is retained and outgoing conversation history is bounded (2.0008ms)
+✔ closing the assistant stops active dictation and restores its accessible state (1.8123ms)
+✔ late dictation results after send or close cannot replace a newer draft (1.7556ms)
+✔ explicitly stopping dictation still accepts its final result before ending (1.3335ms)
+✔ image-only send sends the prepared attachment and keeps previews out of ordinary text (3.3482ms)
+✔ photo retry retains the exact attachment payload and a newer typed draft (1.8083ms)
+✔ photo failure can explicitly clear image context and continue with text without an automatic send (1.8294ms)
+✔ continuing with text also cancels a new photo still being prepared (1.8261ms)
+✔ multiline composer keeps Shift+Enter and IME, grows within bounds and resets after native Send (1.3757ms)
+✔ Send preserves focused input through press, sends only on click and ignores disabled/nonprimary presses (1.1589ms)
+✔ empty and pending Send states are accurate and busy starters preserve the next draft (3.9642ms)
+✔ IME and Shift+Enter remain native; ordinary Enter sends once and clears the accepted draft (0.8745ms)
+✔ manual retry reuses the failed payload without another user bubble or clearing a newer draft (3.4322ms)
+✔ a stalled request aborts after forty seconds and exposes manual recovery without replay (1.0635ms)
+✔ HTTP errors, malformed replies and provider error envelopes all remain recoverable failures (3.2814ms)
+✔ new messages retire failed retries, bound conversation history and render replies as literal text (1.412ms)
+✔ one wine-day catalogue supplies distinct region/vehicle ideas without invented prices or durations (1.2047ms)
+✔ active region filtering excludes other regions and All retains the full collection (0.1603ms)
+✔ manual quote context resolves an authored idea and rejects unknown or non-quote entries (0.145ms)
+✔ email preparation retains selected tour, requested class and custom stops without provider submission (0.5358ms)
+✔ homepage keeps ordinary booking before tour discovery and all styles retain the current online handoff (4.182ms)
+✔ quote planner validates required fields and real future calendar dates (2.2122ms)
+✔ reviewed email draft retains all trip inputs, encodes special characters and makes no reservation (0.988ms)
+✔ three design previews stay separate, noindex, and outside the sitemap (2.0342ms)
+✔ winery exploration stays on Koast across every winery, region and design preview (36.7588ms)
+✔ winery search matches names, styles and areas without accent or case surprises (0.7449ms)
+✔ every wine destination has concise visible planning and distinct photographs within the page (36.6343ms)
+✔ planning changes leave authored articles and legal reading surfaces outside the wine enhancer (1.0838ms)
+✔ sends stateless OpenAI request and preserves public reply contract (20.253ms)
+✔ history limits and model override are respected (1.1729ms)
+✔ human fallback for http-error (0.9938ms)
+✔ human fallback for incomplete (1.2416ms)
+✔ human fallback for empty (0.6223ms)
+✔ human fallback for network (0.4466ms)
+✔ human fallback for missing-key (0.3451ms)
+✔ rejects malformed conversations before model use (0.604ms)
+✔ uses decoded and re-encoded image input without forwarding source metadata (28.9676ms)
+✔ two images and photo-only messages are valid, while mixed role history stays plain text (2.2419ms)
+✔ rejects URL before decoder or model (1.4032ms)
+✔ rejects SVG before decoder or model (0.654ms)
+✔ rejects fake MIME before decoder or model (0.6299ms)
+✔ rejects bad padding before decoder or model (0.5635ms)
+✔ rejects noncanonical base64 before decoder or model (0.4864ms)
+✔ rejects truncated before decoder or model (0.5526ms)
+✔ rejects trailing active content before decoder or model (0.6194ms)
+✔ rejects over byte limit before decoder or model (3.9723ms)
+✔ rejects maximum bounded non-JPEG payload before decoder or model (24.8841ms)
+✔ metadata between the final scan and EOI is removed too (0.3968ms)
+✔ rejects oversized dimensions before decode, even with a small compressed file (1.3516ms)
+✔ rejects assistant images before image service (0.5174ms)
+✔ rejects non-array images before image service (0.3825ms)
+✔ rejects excess photos before image service (0.2334ms)
+✔ rejects empty conversation before image service (0.2192ms)
+✔ rejects null message before image service (0.2701ms)
+✔ rejects empty final turn before image service (0.2339ms)
+✔ photos fail closed without IMAGES while capabilities reports disabled (0.5075ms)
+✔ photos fail closed without PHOTO_RATE_LIMITER while capabilities reports disabled (0.3733ms)
+✔ photos fail closed without PHOTO_GLOBAL_LIMITER while capabilities reports disabled (0.3916ms)
+✔ photos fail closed without OPENAI_API_KEY while capabilities reports disabled (0.3852ms)
+✔ capabilities are no-store and expose no key or provider internals (0.2676ms)
+✔ ip rate rejection runs before decoder and model (4.9103ms)
+✔ shared rate rejection runs before decoder and model (0.7877ms)
+✔ missing edge identity and limiter outages fail closed without content disclosure (1.0517ms)
+✔ decoder disagreement, corrupt output and transformation failures never reach model (1.9077ms)
+✔ JSON stream is bounded independently of declared length (1.0866ms)
+✔ untrusted origins and content types are rejected; legacy text needs no photo bindings (0.9164ms)
+✔ planning instructions receive answered context and preserve the stateless tool-less contract (23.0969ms)
+✔ support context reaches the model without adding account tools or claiming a handoff (1.1596ms)
+✔ request validation bounds contact/trip fields, real dates, paths and retry lifetime (17.7354ms)
+✔ only the fixed team inbox receives the branded enquiry and text alternative with customer reply-to (1.648ms)
+✔ the inquiry presents human trip details before technical references and preserves untrusted notes safely (0.4732ms)
+✔ unknown plans remain unknown and a date-only choice never shifts to the previous day (0.4938ms)
+✔ origin, method and content-type rejection never call the email provider (18.9826ms)
+✔ missing delivery configuration and limiter failures fail closed (6.0867ms)
+✔ per-address and shared rate limits return a wait period before delivery (0.998ms)
+✔ oversized, malformed and invalid input cannot send mail (2.2948ms)
+{"event":"website_quote_accepted","reference":"4c13433d-29a0-40b5-8a64-86f915af028c","providerId":"7c13433d-29a0-40b5-8a64-86f915af028c"}
+{"event":"website_quote_accepted","reference":"4c13433d-29a0-40b5-8a64-86f915af028c","providerId":"7c13433d-29a0-40b5-8a64-86f915af028c"}
+✔ accepted email response returns a reference and stable key, without exposing provider/customer fields (3.9686ms)
+{"event":"website_quote_delivery_unconfirmed","reference":"4c13433d-29a0-40b5-8a64-86f915af028c","status":500}
+✔ provider error, timeout, malformed response or missing receipt never claim success (4.5681ms)
+✔ the existing Worker routes enquiries separately without using the assistant/model path (0.6034ms)
+ℹ tests 223
+ℹ suites 0
+ℹ pass 223
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5237.8649
+Test Pages file selection
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.264s
+
+OK
+Check staged public pages
+{
+  "pages": 254,
+  "blog_posts": 65,
+  "dated_editorial_posts": 34,
+  "errors": []
+}

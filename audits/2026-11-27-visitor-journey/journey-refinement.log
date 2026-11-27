@@ -1,0 +1,14 @@
+✔ default-off initializes no observers, event handlers or identity (3.4299ms)
+✔ an initial privacy opt-out creates no journey owner or handlers (0.5376ms)
+✔ only coarse context and fixed milestone properties are serialized (2.6282ms)
+✔ scroll quartiles are bounded/deduplicated and opt-out stops subsequent events (0.7272ms)
+✔ visibility time excludes hidden duration; duplicate hide does not duplicate an observation (0.6329ms)
+✔ private links and invalid properties are discarded and per-page volume is bounded (1.5607ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 277.6663

@@ -32,6 +32,8 @@ function resolveWineDayIdea(id, catalogue) {
 
 (() => {
   if (typeof document === 'undefined') return;
+  // Telemetry never receives contact, itinerary, date, request ID or form values.
+  const journey=(event,properties)=>{try{if(typeof window!=='undefined'&&window.koastJourney)window.koastJourney.record(event,properties);}catch{}};
   function revealTarget() {
     let id;
     try { id = decodeURIComponent(location.hash.slice(1)); } catch { return; }
@@ -59,7 +61,7 @@ function resolveWineDayIdea(id, catalogue) {
   const submission=createQuoteSubmission();
   let catalogue=[];
   try { catalogue=JSON.parse(document.getElementById('wine-day-catalog')?.textContent||'[]'); } catch { /* Generic team request remains available. */ }
-  let lastForm,lastTrip,selectedIdea=null,requestedVehicle='',quoteOpener;
+  let lastForm,lastTrip,selectedIdea=null,requestedVehicle='',quoteOpener,trackedAcknowledgement=null;
   function updateEmail() {
     if(!lastTrip) return;
     lastTrip.vehicle=requestedVehicle;
@@ -90,14 +92,16 @@ function resolveWineDayIdea(id, catalogue) {
   sendButton.addEventListener('click',async()=>{
     if(!lastTrip||submission.state().pending)return;
     const contact=validateQuoteContact({name:nameInput.value,email:emailInput.value});
-    if(contact.field&&!submission.state().locked){quoteStatus.textContent=contact.message;(contact.field==='name'?nameInput:emailInput).focus();return;}
+    if(contact.field&&!submission.state().locked){journey('quote_validation',{step:'contact'});quoteStatus.textContent=contact.message;(contact.field==='name'?nameInput:emailInput).focus();return;}
     updateEmail();
     quoteStatus.textContent='';
+    if(!submission.state().accepted)journey('quote_submit');
     const sending=submission.submit({...lastTrip,name:nameInput.value,email:emailInput.value,page:location.pathname.replace(/\.html$/,''),website:dialog.querySelector('[data-quote-website]').value});
     renderSubmissionState();
     const result=await sending;
     renderSubmissionState();
-    if(result.ok)return;
+    if(result.ok){if(trackedAcknowledgement!==result.reference){trackedAcknowledgement=result.reference;journey('quote_acknowledged');}return;}
+    journey(result.error==='invalid_request'?'quote_validation':'quote_unconfirmed',{step:'request'});
     if(dialog.open&&!submission.state().expired)sendButton.focus();
     quoteStatus.textContent=result.error==='rate_limit'?'Please wait a minute, then retry this request. Your details are kept here.':result.error==='expired_request'?'This request is too old to retry safely. Email our team with your plans and reference '+result.reference+'.':result.error==='invalid_request'?'Check your request details and try again.':'We couldn’t confirm your request was sent. Your details are kept here. Retry this same request, or email our team for help.';
   });
@@ -122,6 +126,7 @@ function resolveWineDayIdea(id, catalogue) {
     selectedDay(null);button.closest('form').querySelector('[name="pickup"]').focus();
   }));
   function startQuote(opener) {
+    journey('quote_open');
     quoteOpener=opener;
     if(submission.state().locked){if(!dialog.open)dialog.showModal();renderSubmissionState();return;}
     if(submission.state().accepted){submission.reset();nameInput.value='';emailInput.value='';notesInput.value='';quoteStatus.textContent='';renderSubmissionState();}
@@ -160,10 +165,12 @@ function resolveWineDayIdea(id, catalogue) {
       const status = form.querySelector('[role="status"]');
       status.textContent = result.error || '';
       if (result.error) {
+        journey('quote_validation',{step:'trip'});
         (result.field==='party' ? form.querySelector('.reference-party-button') || form.elements.namedItem('party') : form.elements.namedItem(result.field))?.focus();
         return;
       }
       const trip = result.trip;
+      journey('quote_review');
       if(selectedIdea) Object.assign(trip,{tourId:selectedIdea.id,tourTitle:selectedIdea.title,region:selectedIdea.region});
       lastForm = form;
       lastTrip = trip;
